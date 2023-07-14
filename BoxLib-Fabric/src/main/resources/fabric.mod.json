@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "boxlib",
+  "version": "${version}",
+  "name": "BoxLib",
+  "description": "The most basic client-side library mod (embedded in all of Boxadactle's mods)",
+  "icon": "assets/boxlib/icon.png",
+  "authors": [
+    "Boxadactle"
+  ],
+  "contact": {},
+  "license": "MIT",
+  "environment": "client",
+  "mixins": [ "boxlib.mixins.json" ],
+  "entrypoints": {
+    "client": [
+      "dev.boxadactle.boxlib.BoxLib"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.14.21",
+    "fabric": "*",
+    "minecraft": ">=1.20"
+  },
+  "custom": {
+    "modmenu": {
+      "badges": [ "library" ]
+    }
+  }
+}
