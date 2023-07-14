@@ -48,7 +48,7 @@ repositories {
 dependencies {
     [...]
 
-    # recommended
+    // recommended
     modApi("me.shedaniel.cloth:cloth-config-fabric:VERSION") {
         exclude(group: "net.fabricmc.fabric-api")
     }
@@ -64,7 +64,7 @@ _Make sure to replace `VERSION` with the correct version of each mod_
 #### Setup with Forge
 **`build.gradle:`**
 ```gradle
-# For Forge, I recommend embedding the mod with the built-in jarJar
+// For Forge, I recommend embedding the mod with the built-in jarJar
 jarJar.enable()
 
 repositories {
@@ -75,12 +75,12 @@ repositories {
 dependencies {
     [...]
 
-    # any config library of your choice
+    // any config library of your choice
     implementation "me.shedaniel.cloth:cloth-config-forge:VERSION"
 
     implementation fg.deobf("dev.boxadactle:BoxLib-Forge:VERSION")
     
-    # optional way of embedding the mod
+    // optional way of embedding the mod
     jarJar(group: 'dev.boxadactle', name: 'BoxLib-Forge', version: "[VERSION,)")
 }
 ```
