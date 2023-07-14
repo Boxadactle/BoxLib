@@ -2,13 +2,13 @@
 The most basic client-side library mod
 
 ### Supported Versions
-| Version | Supported Fabric Versions| Supported Forge Versions |
-| ------ | ------ | ------ |
-| 1.16 | Not Supported | Not Supported |
-| 1.17 | Not Supported | Not Supported |
-| 1.18 | Not Supported | Not Supported |
-| 1.19 | Not Supported | Not Supported |
-| 1.20 | 1.20, 1.20.1 | 1.20, 1.20.1 |
+| Minecraft Version | Mod Version |
+| ------ | ------ |
+| 1.16 | Not Supported |
+| 1.17 | Not Supported |
+| 1.18 | Not Supported |
+| 1.19 | Not Supported |
+| 1.20 | v3.0.0 |
 
 ### Embedding
 Most of my mods embed this mod, here is the list:
