@@ -2,13 +2,13 @@
 The most basic client-side library mod
 
 ### Supported Versions
-| Minecraft Version | Mod Version |
+| Minecraft Version | Most Recent Version |
 | ------ | ------ |
 | 1.16 | Not Supported |
 | 1.17 | Not Supported |
 | 1.18 | Not Supported |
 | 1.19 | Not Supported |
-| 1.20 | v3.0.0 |
+| 1.20 | v4.5.1 |
 
 ### Embedding
 Most of my mods embed this mod, here is the list:
