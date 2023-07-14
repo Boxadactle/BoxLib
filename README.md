@@ -14,7 +14,7 @@ The most basic client-side library mod
 Most of my mods embed this mod, here is the list:
 | Name      | Version |
 | ----------- | ----------- |
-| [Coordinates Display](https://modrinth.com/mod/coordinates-display)      | Since [v3.0.0](https://modrinth.com/mod/coordinates-display/version/3.0.0+1.20.1)       |
+| Coordinates Display | Since v3.0.0 |       |
 
 ### API
 
