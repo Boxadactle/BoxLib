@@ -75,7 +75,7 @@ repositories {
 dependencies {
     [...]
 
-	# any config library of your choice
+    # any config library of your choice
     implementation "me.shedaniel.cloth:cloth-config-forge:VERSION"
 
     implementation fg.deobf("dev.boxadactle:BoxLib-Forge:VERSION")
