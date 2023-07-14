@@ -1,6 +1,15 @@
 # BoxLib
 The most basic client-side library mod
 
+### Supported Versions
+| Version | Supported Fabric Versions| Supported Forge Versions |
+| ------ | ------ | ------ |
+| 1.16 | Not Supported | Not Supported |
+| 1.17 | Not Supported | Not Supported |
+| 1.18 | Not Supported | Not Supported |
+| 1.19 | Not Supported | Not Supported |
+| 1.20 | 1.20, 1.20.1 | 1.20, 1.20.1 |
+
 ### Embedding
 Most of my mods embed this mod, here is the list:
 | Name      | Version |
@@ -66,7 +75,7 @@ repositories {
 dependencies {
     [...]
 
-    # recommended
+	# any config library of your choice
     implementation "me.shedaniel.cloth:cloth-config-forge:VERSION"
 
     implementation fg.deobf("dev.boxadactle:BoxLib-Forge:VERSION")
