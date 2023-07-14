@@ -48,7 +48,7 @@ repositories {
 dependencies {
     [...]
 
-	# recommended
+    # recommended
     modApi("me.shedaniel.cloth:cloth-config-fabric:VERSION") {
         exclude(group: "net.fabricmc.fabric-api")
     }
