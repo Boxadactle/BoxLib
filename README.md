@@ -8,7 +8,7 @@ The most basic client-side library mod
 | 1.17 | Not Supported |
 | 1.18 | Not Supported |
 | 1.19 | Not Supported |
-| 1.20 | v4.5.1 |
+| 1.20 | v5.0.1 |
 
 ### Embedding
 Most of my mods embed this mod, here is the list:
@@ -20,6 +20,7 @@ Most of my mods embed this mod, here is the list:
 
 #### Features
 - Config GUI Handler
+- Config file loader/saver
 - Client Command Handler
 - Basic Math (Vectors, Rect, and Dimension)
 - Client Utils
@@ -41,18 +42,11 @@ Please DO NOT use BoxLib for server mods, it's been specifically written for Cli
 **`build.gradle:`**
 ```gradle
 repositories {
-    maven { url = "https://maven.shedaniel.me/" } #recommended
     maven { url = "https://maven.boxadactle.dev/" }
 }
 
 dependencies {
     [...]
-
-    // recommended
-    modApi("me.shedaniel.cloth:cloth-config-fabric:VERSION") {
-        exclude(group: "net.fabricmc.fabric-api")
-    }
-    include("me.shedaniel.cloth:cloth-config-fabric:VERSION")
 
     modApi("dev.boxadactle:BoxLib-Fabric:VERSION")
     include("dev.boxadactle:BoxLib-Fabric:VERSION")
@@ -68,15 +62,11 @@ _Make sure to replace `VERSION` with the correct version of each mod_
 jarJar.enable()
 
 repositories {
-    maven { url = "https://maven.shedaniel.me/" } #recommended
     maven { url = "https://maven.boxadactle.dev/" }
 }
 
 dependencies {
     [...]
-
-    // any config library of your choice
-    implementation "me.shedaniel.cloth:cloth-config-forge:VERSION"
 
     implementation fg.deobf("dev.boxadactle:BoxLib-Forge:VERSION")
     
