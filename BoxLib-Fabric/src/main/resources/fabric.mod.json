@@ -15,6 +15,9 @@
   "entrypoints": {
     "client": [
       "dev.boxadactle.boxlib.BoxLib"
+    ],
+    "modmenu": [
+      "dev.boxadactle.boxlib.ModMenuIntegration"
     ]
   },
   "depends": {

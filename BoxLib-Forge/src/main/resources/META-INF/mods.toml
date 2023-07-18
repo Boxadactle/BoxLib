@@ -10,6 +10,7 @@ authors = "Boxadactle"
 description = '''
 The most basic client-side library mod (embedded in all of Boxadactle's mods)
 '''
+logoFile="assets/boxlib/icon.png"
 # A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
 [[dependencies.boxlib]] #optional
 # the modid of the dependency

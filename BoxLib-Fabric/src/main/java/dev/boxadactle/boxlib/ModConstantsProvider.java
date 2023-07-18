@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
+@Deprecated
+@SuppressWarnings("unchecked")
 public abstract class ModConstantsProvider {
 
     private static final List<ModConstantsProvider> INSTANCES = new ArrayList<>();

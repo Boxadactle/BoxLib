@@ -10,7 +10,11 @@ import java.util.function.Consumer;
 public interface BConfigHelper {
 
     default ButtonWidget createCancelButton(int startX, int startY, Screen parent) {
-        return new ButtonWidget.Builder(GuiUtils.CANCEL, b -> ClientUtils.setScreen(parent))
+        return createCancelButton(startX, startY, b -> ClientUtils.setScreen(parent));
+    }
+
+    default ButtonWidget createCancelButton(int startX, int startY, Consumer<ButtonWidget> buttonWidgetConsumer) {
+        return new ButtonWidget.Builder(GuiUtils.CANCEL, buttonWidgetConsumer::accept)
                 .dimensions(startX, startY, getButtonWidth(ButtonType.NORMAL), getButtonHeight())
                 .build();
     }
@@ -28,7 +32,11 @@ public interface BConfigHelper {
     }
 
     default ButtonWidget createHalfCancelButton(int startX, int startY, Screen parent) {
-        return new ButtonWidget.Builder(GuiUtils.CANCEL, b -> ClientUtils.setScreen(parent))
+        return createHalfCancelButton(startX, startY, b -> ClientUtils.setScreen(parent));
+    }
+
+    default ButtonWidget createHalfCancelButton(int startX, int startY, Consumer<ButtonWidget> buttonWidgetConsumer) {
+        return new ButtonWidget.Builder(GuiUtils.CANCEL, buttonWidgetConsumer::accept)
                 .dimensions(startX, startY, getButtonWidth(ButtonType.SMALL), getButtonHeight())
                 .build();
     }

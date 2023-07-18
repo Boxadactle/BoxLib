@@ -10,7 +10,11 @@ import java.util.function.Consumer;
 public interface BConfigHelper {
 
     default Button createCancelButton(int startX, int startY, Screen parent) {
-        return new Button.Builder(GuiUtils.CANCEL, b -> ClientUtils.setScreen(parent))
+        return createCancelButton(startX, startY, b -> ClientUtils.setScreen(parent));
+    }
+
+    default Button createCancelButton(int startX, int startY, Consumer<Button> ButtonConsumer) {
+        return new Button.Builder(GuiUtils.CANCEL, ButtonConsumer::accept)
                 .bounds(startX, startY, getButtonWidth(ButtonType.NORMAL), getButtonHeight())
                 .build();
     }
@@ -26,13 +30,17 @@ public interface BConfigHelper {
                 .bounds(startX, startY, getButtonWidth(ButtonType.NORMAL), getButtonHeight())
                 .build();
     }
-    
+
     default Button createHalfCancelButton(int startX, int startY, Screen parent) {
-        return new Button.Builder(GuiUtils.CANCEL, b -> ClientUtils.setScreen(parent))
+        return createHalfCancelButton(startX, startY, b -> ClientUtils.setScreen(parent));
+    }
+
+    default Button createHalfCancelButton(int startX, int startY, Consumer<Button> ButtonConsumer) {
+        return new Button.Builder(GuiUtils.CANCEL, ButtonConsumer::accept)
                 .bounds(startX, startY, getButtonWidth(ButtonType.SMALL), getButtonHeight())
                 .build();
     }
-    
+
     default Button createHalfSaveButton(int startX, int startY, Consumer<Button> saveConsumer) {
         return new Button.Builder(GuiUtils.SAVE, saveConsumer::accept)
                 .bounds(startX + getButtonWidth(ButtonType.SMALL) + getPadding(), startY, getButtonWidth(ButtonType.SMALL), getButtonHeight())

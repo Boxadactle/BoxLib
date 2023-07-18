@@ -134,17 +134,17 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 repositories {
 }
 
-/*mixin {
-    add sourceSets.main, "boxlib.refmap.json"
-
-    config "boxlib.mixins.json"
-
-    debug.verbose = true
-    debug.export = true
-    dumpTargetOnFailure = true
-
-    quiet
-}*/
+//mixin {
+//    add sourceSets.main, "boxlib.refmap.json"
+//
+//    config "boxlib.mixins.json"
+//
+//    debug.verbose = true
+//    debug.export = true
+//    dumpTargetOnFailure = true
+//
+//    quiet
+//}
 
 dependencies {
     // Specify the version of Minecraft to use. If this is any group other than 'net.minecraft', it is assumed

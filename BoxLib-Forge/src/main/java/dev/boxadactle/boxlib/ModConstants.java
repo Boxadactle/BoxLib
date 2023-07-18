@@ -1,32 +1,12 @@
 package dev.boxadactle.boxlib;
 
-public class ModConstants extends ModConstantsProvider {
-    public static void init() {
-        new ModConstants();
-    }
+public class ModConstants {
 
-    @Override
-    public String getName() {
-        return "BoxLib";
-    }
+    public static final String MOD_NAME = "BoxLib";
 
-    @Override
-    public String getModId() {
-        return "boxlib";
-    }
+    public static final String MOD_ID = "boxlib";
 
-    @Override
-    public String getVersion() {
-        return "4.5.1";
-    }
+    public static final String VERSION = "5.0.0";
 
-    @Override
-    public String[] getAuthors() {
-        return new String[]{ "Boxadactle" };
-    }
-
-    @Override
-    public String getWiki() {
-        return null;
-    }
+    public static final String WIKI = "https://github.com/Boxadactle/boxlib";
 }
