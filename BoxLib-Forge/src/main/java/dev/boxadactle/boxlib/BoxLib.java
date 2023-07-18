@@ -27,7 +27,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 @Mod("boxlib")
 public class BoxLib {
 
-    public static ModLogger LOGGER;
+    public static final ModLogger LOGGER = new ModLogger(ModConstants.MOD_NAME);
 
     public static BConfigClass<ExampleConfigClass> CONFIG;
 
@@ -40,8 +40,6 @@ public class BoxLib {
     }
 
     private void initializeMod(FMLCommonSetupEvent event) {
-        LOGGER = new ModLogger("BoxLib");
-
         GuiUtils.init();
         RenderUtils.init();
 

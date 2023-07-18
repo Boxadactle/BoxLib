@@ -4,7 +4,6 @@ import dev.boxadactle.boxlib.command.BCommandManager;
 import dev.boxadactle.boxlib.config.BConfigClass;
 import dev.boxadactle.boxlib.config.BConfigHandler;
 import dev.boxadactle.boxlib.example.ExampleConfigClass;
-import dev.boxadactle.boxlib.example.ExampleConfigScreen;
 import dev.boxadactle.boxlib.util.GuiUtils;
 import dev.boxadactle.boxlib.util.ModLogger;
 import dev.boxadactle.boxlib.util.RenderUtils;
@@ -13,16 +12,12 @@ import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallba
 
 public class BoxLib implements ClientModInitializer {
 
-    public static ModLogger LOGGER;
-
-    public static final boolean DEBUG_MODE = true;
+    public static final ModLogger LOGGER = new ModLogger(ModConstants.MOD_NAME);
 
     public static BConfigClass<ExampleConfigClass> CONFIG;
 
     @Override
     public void onInitializeClient() {
-        LOGGER = new ModLogger(ModConstants.MOD_NAME);
-
         GuiUtils.init();
         RenderUtils.init();
 
