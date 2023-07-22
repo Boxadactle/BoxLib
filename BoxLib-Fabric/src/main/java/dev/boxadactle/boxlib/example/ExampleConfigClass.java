@@ -34,13 +34,14 @@ public class ExampleConfigClass implements BConfig {
 
 
     @Override
-    public void onConfigLoad() {
+    public void onConfigLoadPost() {
         BoxLib.LOGGER.info("This will be logged every time this config class successfully gets loaded with values.");
     }
 
     @Override
-    public void onConfigSave() {
-        BoxLib.LOGGER.info("This will be logged every time this config class successfully gets saved.");
+    public void onConfigSavePre() {
+        BoxLib.LOGGER.info("This will be logged before every time this config class successfully gets saved.");
+        BoxLib.LOGGER.info("Might be a good idea to do some final changes before saving the config.");
     }
 
     public enum ExampleEnum {

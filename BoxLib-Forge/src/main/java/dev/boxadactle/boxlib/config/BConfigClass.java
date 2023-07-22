@@ -54,13 +54,15 @@ public class BConfigClass<T extends BConfig> implements Supplier<T> {
 
     public void load() {
         try {
+            config.onConfigLoadPre();
+
             BufferedReader r = new BufferedReader(new FileReader(filePath));
 
             config = serializer.fromJson(r, configClass);
 
             BoxLib.LOGGER.info("Successfully loaded config class %s" + configClass.getName());
 
-            config.onConfigLoad();
+            config.onConfigLoadPost();
         } catch (FileNotFoundException ignored) {
             BoxLib.LOGGER.warn("Could not find file %s so creating it" + filePath.getName());
 
@@ -72,6 +74,8 @@ public class BConfigClass<T extends BConfig> implements Supplier<T> {
 
     public void save() {
         try {
+            config.onConfigSavePre();
+
             String json = serializer.toJson(config);
             FileWriter writer = new FileWriter(filePath);
             writer.write(json);
@@ -80,7 +84,7 @@ public class BConfigClass<T extends BConfig> implements Supplier<T> {
 
             BoxLib.LOGGER.info("Successfully saved config for class %s", configClass.getName());
 
-            config.onConfigSave();
+            config.onConfigSavePost();
         } catch (IOException e) {
             BoxLib.LOGGER.error("Could not save config for class %s", configClass.getName());
             BoxLib.LOGGER.printStackTrace(e);

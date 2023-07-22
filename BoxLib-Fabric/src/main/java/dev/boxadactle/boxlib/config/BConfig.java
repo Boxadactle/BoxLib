@@ -2,9 +2,11 @@ package dev.boxadactle.boxlib.config;
 
 public interface BConfig {
 
-    default void onConfigLoad() {}
+    default void onConfigLoadPre() {}
+    default void onConfigLoadPost() {}
 
-    default void onConfigSave() {}
+    default void onConfigSavePre() {}
+    default void onConfigSavePost() {}
 
     class ConfigException extends RuntimeException {
         public ConfigException(String message) {
