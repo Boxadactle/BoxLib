@@ -31,7 +31,10 @@ public class ExampleConfigClass implements BConfig {
 
     public String aString = "Basic string value";
 
-
+    @Override
+    public void onConfigLoadPre() {
+        BoxLib.LOGGER.info("This method will run before the config loads.");
+    }
 
     @Override
     public void onConfigLoadPost() {
@@ -42,6 +45,11 @@ public class ExampleConfigClass implements BConfig {
     public void onConfigSavePre() {
         BoxLib.LOGGER.info("This will be logged every time this config class successfully gets saved.");
         BoxLib.LOGGER.info("Might be a good idea to make some final config changes here.");
+    }
+
+    @Override
+    public void onConfigSavePost() {
+        BoxLib.LOGGER.info("This method will run after the config saves.");
     }
 
     public enum ExampleEnum {

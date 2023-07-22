@@ -19,6 +19,8 @@ public class BConfigClass<T extends BConfig> implements Supplier<T> {
         this.configClass = configClass;
         filePath = configFile;
         serializer = new GsonBuilder().setPrettyPrinting().create();
+
+        config = BoxLib.initializeClass(configClass);
     }
 
     public T get() {
