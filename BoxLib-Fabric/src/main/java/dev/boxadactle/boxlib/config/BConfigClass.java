@@ -80,6 +80,8 @@ public class BConfigClass<T extends BConfig> implements Supplier<T> {
             writer.close();
 
             BoxLib.LOGGER.info("Successfully saved config for class %s", configClass.getName());
+
+            config.onConfigSave();
         } catch (IOException e) {
             BoxLib.LOGGER.error("Could not save config for class %s", configClass.getName());
             BoxLib.LOGGER.printStackTrace(e);

@@ -82,7 +82,6 @@ public class BWidgetContainer extends AbstractWidget implements Renderable, BCon
 
     @Override
     protected void updateWidgetNarration(NarrationElementOutput p_259858_) {
-
     }
 
     @Override
@@ -92,7 +91,7 @@ public class BWidgetContainer extends AbstractWidget implements Renderable, BCon
         AbstractWidget w1 = (AbstractWidget) widget1;
         AbstractWidget w2 = (AbstractWidget) widget2;
 
-        if (w1.isHovered()) {
+        if (w1.isHovered() && w1.active) {
             w1.onClick(mouseX, mouseY);
 
             if (widget1 instanceof EditBox)
@@ -101,7 +100,7 @@ public class BWidgetContainer extends AbstractWidget implements Renderable, BCon
             if (widget2 instanceof EditBox)
                 ((EditBox) widget2).setFocused(false);
         }
-        else if (w2.isHovered()) {
+        else if (w2.isHovered() && w2.active) {
             w2.onClick(mouseX, mouseY);
 
             if (widget2 instanceof EditBox)
@@ -116,9 +115,13 @@ public class BWidgetContainer extends AbstractWidget implements Renderable, BCon
     public void onUnselect() {
         if (widget1 instanceof EditBox)
             ((EditBox) widget1).setFocused(false);
+        else
+            widget1.onUnselect();
 
         if (widget2 instanceof EditBox)
             ((EditBox) widget2).setFocused(false);
+        else
+            widget2.onUnselect();
     }
 
     @Override
