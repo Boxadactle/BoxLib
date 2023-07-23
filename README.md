@@ -34,8 +34,6 @@ Most of my mods embed this mod, here is the list:
 
 If you would like to use this library, it is published on my maven repository: `https://maven.boxadactle.dev`
 
-It is recommended to use a config library such as [Cloth Config](https://modrinth.com/mod/cloth-config/versions) as BoxLib does not handle config saving/loading.
-
 Please DO NOT use BoxLib for server mods, it's been specifically written for Client mods.
 
 #### Setup with Fabric
