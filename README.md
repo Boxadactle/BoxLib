@@ -8,7 +8,7 @@ The most basic client-side library mod
 | 1.17 | Not Supported |
 | 1.18 | Not Supported |
 | 1.19 | Not Supported |
-| 1.20 | v5.1.1 |
+| 1.20 | v5.1.5 |
 
 ### Embedding
 Most of my mods embed this mod, here is the list:
