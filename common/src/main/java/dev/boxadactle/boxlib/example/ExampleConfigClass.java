@@ -32,8 +32,6 @@ public class ExampleConfigClass implements BConfig {
 
     public String aString = "Basic string value";
 
-    public KeyMapping a = new KeyMapping("effect.duration.infinite", 23, "effect.minecraft.water_breathing");
-
     @Override
     public void onConfigLoadPre() {
         BoxLib.LOGGER.info("This method will run before the config loads.");
