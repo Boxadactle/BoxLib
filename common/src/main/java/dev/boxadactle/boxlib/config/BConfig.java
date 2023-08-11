@@ -1,5 +1,11 @@
 package dev.boxadactle.boxlib.config;
 
+/**
+ * Class for BoxLib config files
+ * <p>
+ * Config classes MUST annotate {@link dev.boxadactle.boxlib.config.BConfigFile} to be
+ * registered as a config class
+ */
 public interface BConfig {
 
     default void onConfigLoadPre() {}
