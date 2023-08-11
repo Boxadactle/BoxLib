@@ -8,6 +8,15 @@ import dev.boxadactle.boxlib.util.ClientUtils;
 import dev.boxadactle.boxlib.util.GuiUtils;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
+
+/**
+ * Here is a super basic example config screen.
+ * Config screens must extend {@link dev.boxadactle.boxlib.gui.BConfigScreen} to access the methods
+ * Config values can be accessed/saved with config classes.
+ * You can use an external library such as Cloth Config, but BoxLib already handles config
+ * @see dev.boxadactle.boxlib.config.BConfig
+ * @see dev.boxadactle.boxlib.config.BConfigFile
+ */
 public class ExampleConfigScreen extends BConfigScreen {
 
     public ExampleConfigScreen(Screen parent) {
@@ -30,7 +39,7 @@ public class ExampleConfigScreen extends BConfigScreen {
     // initialize the config screen save and cancel buttons like this
     @Override
     protected void initFooter(int startX, int startY) {
-        // here is where we restore the cache to undo all the changes to the config
+        // here is where we restore the reload the config to undo all the changes to the config
         addRenderableWidget(createHalfCancelButton(startX, startY, (b) -> {
             ClientUtils.setScreen(parent);
             BoxLib.CONFIG.restoreCache();
@@ -55,24 +64,25 @@ public class ExampleConfigScreen extends BConfigScreen {
 
         // here's how you would make an argb field
         // since they don't initialize with a label, I recommend adding one
-        addConfigOption(new BCenteredLabel(Component.translatable("boxlib.anArgbField")));
+        addConfigLine(new BCenteredLabel(Component.translatable("boxlib.anArgbField")));
 
-        addConfigOption(new BArgbField(
+        addConfigLine(new BArgbField(
                 config().anArgbColor,
                 newVal -> config().anArgbColor = newVal
         ));
 
-        // here's how you would make a boolean button
-        // since this one is a button, we don't need to add a label
-        addConfigOption(new BBooleanButton(
+        // you can add 2 entries in 1 line by passing 2 entries into the method
+        addConfigLine(
+            // here's how you would make a boolean button
+            // since this one is a button, we don't need to add a label
+            new BBooleanButton(
                 "boxlib.aBoolean",
                 config().aBoolean,
                 newVal -> config().aBoolean = newVal
-        ));
-
-        // here's how you would make a toggle button out of an enum
-        // you can make your own toggle buttons by extending the BToggleButton class
-        addConfigOption(new BEnumButton<>(
+        ),
+            // here's how you would make a toggle button out of an enum
+            // you can make your own toggle buttons by extending the BToggleButton class
+            new BEnumButton<>(
                 "boxlib.anEnum",
                 config().anEnum,
                 ExampleConfigClass.ExampleEnum.class,
@@ -84,13 +94,13 @@ public class ExampleConfigScreen extends BConfigScreen {
         // this will allow us to have 2 values right text to each other
 
         // add this first so the labels can be above the fields
-        addConfigOption(new BWidgetContainer(
+        addConfigLine(
                 new BCenteredLabel(Component.translatable("boxlib.aDouble")),
                 new BCenteredLabel(Component.translatable("boxlib.aFloat"))
-        ));
+        );
 
         // add the two fields
-        addConfigOption(new BWidgetContainer(
+        addConfigLine(
                 new BDoubleField(
                         config().aDouble,
                         newVal -> config().aDouble = newVal
@@ -99,28 +109,28 @@ public class ExampleConfigScreen extends BConfigScreen {
                         config().aFloat,
                         newVal -> config().aFloat = newVal
                 )
-        ));
+        );
 
         // the rest is pretty much the same as the previous
-        addConfigOption(new BCenteredLabel(Component.translatable("boxlib.aHexColor")));
+        addConfigLine(new BCenteredLabel(Component.translatable("boxlib.aHexColor")));
 
-        addConfigOption(new BHexField(
+        addConfigLine(new BHexField(
                 config().aHexColor,
                 newVal -> config().aHexColor = newVal
         ));
 
         // here's how we would add an integer
-        addConfigOption(new BCenteredLabel(Component.translatable("boxlib.anInt")));
+        addConfigLine(new BCenteredLabel(Component.translatable("boxlib.anInt")));
 
-        addConfigOption(new BIntegerField(
+        addConfigLine(new BIntegerField(
                 config().anInt,
                 newVal -> config().anInt = newVal
         ));
 
         // here's how we would add a string
-        addConfigOption(new BCenteredLabel(Component.translatable("boxlib.aString")));
+        addConfigLine(new BCenteredLabel(Component.translatable("boxlib.aString")));
 
-        addConfigOption(new BStringField(
+        addConfigLine(new BStringField(
                 config().aString,
                 newVal -> config().aString = newVal
         ));

@@ -1,27 +1,37 @@
 package dev.boxadactle.boxlib.gui;
 
-import dev.boxadactle.boxlib.gui.widget.BWidgetContainer;
+import com.google.common.collect.ImmutableList;
 import dev.boxadactle.boxlib.util.ClientUtils;
 import dev.boxadactle.boxlib.util.RenderUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.components.Button;
-import net.minecraft.client.gui.components.EditBox;
-import net.minecraft.client.gui.components.ObjectSelectionList;
+import net.minecraft.client.gui.components.ContainerObjectSelectionList;
+import net.minecraft.client.gui.components.events.GuiEventListener;
+import net.minecraft.client.gui.narration.NarratableEntry;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
-import org.jetbrains.annotations.Nullable;
 
-import java.util.Objects;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+/**
+ * The BoxLib config class
+ * Extend this class to make basic config screens
+ * <p></p>
+ * Config values can be accessed/saved with config classes.
+ * You can use an external library such as Cloth Config, but BoxLib already handles config
+ * @see dev.boxadactle.boxlib.config.BConfig
+ * @see dev.boxadactle.boxlib.config.BConfigFile
+ */
 public abstract class BConfigScreen extends Screen implements BConfigHelper {
 
     protected Screen parent;
-    protected Button saveButton;
 
-    protected ConfigListWidget scrollingWidget;
+    ConfigList configList;
+
+    Button saveButton;
 
     protected BConfigScreen(Screen parent) {
         super(Component.literal("Config Screen"));
@@ -29,45 +39,28 @@ public abstract class BConfigScreen extends Screen implements BConfigHelper {
         this.parent = parent;
     }
 
-    protected abstract Component getName();
+    @Override
+    protected void init() {
+        configList = new ConfigList(ClientUtils.getClient());
 
-    protected abstract void initFooter(int startX, int startY);
-    protected abstract void initConfigButtons();
+        this.addWidget(configList);
 
-    protected BConfigEntry<?> addConfigOption(BConfigEntry<?> widget) {
-        scrollingWidget.addEntry(new ConfigListWidget.ConfigWidgetEntry(widget));
-
-        return widget;
-    }
-
-    protected void setWiki(Component label, String link) {
-        this.addRenderableWidget(new Button.Builder(label, b -> {
-            ClientUtils.openLinkConfirmScreen(link, this);
-        }).bounds(3, 3, BConfigHelper.buttonWidth(ButtonType.TINY), BConfigHelper.buttonHeight() - 3).build());
-    }
-
-    protected boolean shouldRenderScrollingWidget() {
-        return true;
+        initConfigButtons();
+        initFooter(this.width / 2 - BConfigHelper.padding() / 2 - BConfigHelper.buttonWidth(ButtonType.SMALL), this.height - getButtonHeight() - getPadding());
     }
 
     @Override
-    public void render(GuiGraphics p_96562_, int mouseX, int mouseY, float delta) {
-        if (shouldRenderScrollingWidget()) this.scrollingWidget.render(p_96562_, mouseX, mouseY, delta);
-
-        super.render(p_96562_, mouseX, mouseY, delta);
-
-        RenderUtils.drawTextCentered(p_96562_, this.getName(), this.width / 2, 5);
+    public void onClose() {
+        ClientUtils.getClient().setScreen(parent);
     }
 
     @Override
-    public void init() {
-        scrollingWidget = new ConfigListWidget(ClientUtils.getClient());
-        this.addWidget(scrollingWidget);
+    public void render(GuiGraphics guiGraphics, int i, int j, float f) {
+        if (shouldRenderScrollingWidget()) this.configList.render(guiGraphics, i, j, f);
 
-        this.initFooter(this.width / 2 - BConfigHelper.padding() / 2 - BConfigHelper.buttonWidth(ButtonType.SMALL), this.height - getButtonHeight() - getPadding());
-        this.initConfigButtons();
+        super.render(guiGraphics, i, j, f);
 
-        super.init();
+        RenderUtils.drawTextCentered(guiGraphics, this.getName(), this.width / 2, 5);
     }
 
     @Override
@@ -75,15 +68,84 @@ public abstract class BConfigScreen extends Screen implements BConfigHelper {
         super.tick();
 
         if (saveButton != null) {
-            boolean a = !scrollingWidget.hasInvalidEntry();
+            boolean a = !configList.hasInvalidEntry();
             if (saveButton.active != a) saveButton.active = a;
         }
-
-        scrollingWidget.tick();
     }
 
-    public void close() {
-        ClientUtils.getClient().setScreen(parent);
+    protected abstract Component getName();
+
+    protected abstract void initFooter(int startX, int startY);
+    protected abstract void initConfigButtons();
+
+    /**
+     * Override this method if you don't want the config
+     * widget to render on the screen
+     *
+     * @return Controls whether the widget should render
+     */
+    protected boolean shouldRenderScrollingWidget() {
+        return true;
+    }
+
+    @Deprecated
+    protected BConfigEntry<?> addConfigOption(BConfigEntry<?> entry) {
+        configList.addEntry(new ConfigList.SingleEntry(entry));
+
+        return entry;
+    }
+
+    /**
+     * Use this method to add a new line with 1 config option
+     * @param entry A config entry (either provided by BoxLib or created yourself)
+     *              To create your own entry, extend the {@link dev.boxadactle.boxlib.gui.BConfigEntry}
+     * @return Returns the passed-in entry
+     */
+    protected BConfigEntry<?> addConfigLine(BConfigEntry<?> entry) {
+        configList.addEntry(new ConfigList.SingleEntry(entry));
+
+        return entry;
+    }
+
+    /**
+     * Use this method to add new line with 2 config options
+     * @param entry A config entry (either provided by BoxLib or created yourself)
+     *              To create your own entry, extend the {@link dev.boxadactle.boxlib.gui.BConfigEntry}
+     * @return Returns the passed-in entry
+     */
+    protected BConfigEntry<?>[] addConfigLine(BConfigEntry<?> entry, BConfigEntry<?> entry2) {
+        configList.addEntry(new ConfigList.DoubleEntry(entry, entry2));
+
+        return new BConfigEntry[]{entry, entry2};
+    }
+
+    /**
+     * Use this method to set the wiki of the said page
+     * Don't run this method if you don't want a wiki button on the screem
+     * @param label Component that should be rendered as the button.
+     * @param link The link to the wiki that will open when the button is clicked.
+     */
+    protected void setWiki(Component label, String link) {
+        this.addRenderableWidget(new Button.Builder(label, b -> {
+            ClientUtils.openLinkConfirmScreen(link, this);
+        }).bounds(3, 3, BConfigHelper.buttonWidth(ButtonType.TINY), BConfigHelper.buttonHeight() - 3).build());
+    }
+
+    /**
+     * Make sure to run this method if you have a save button
+     * <p>
+     * This method will allow the save button to toggle on/of
+     * when the values passed in by the user are invalid/valid.
+     * <p>
+     * This will make sure that the values saved to the
+     * config file are always valid, and the user cannot save unless all values are correct
+     *
+     * @param saveButton The save button that should be recognized by the config class.
+     *                   You can use the methods from {@link dev.boxadactle.boxlib.gui.BConfigHelper} to create the save button
+     */
+    protected Button setSaveButton(Button saveButton) {
+        this.saveButton = saveButton;
+        return addRenderableWidget(saveButton);
     }
 
     public interface Provider<T extends Screen> {
@@ -92,47 +154,15 @@ public abstract class BConfigScreen extends Screen implements BConfigHelper {
 
     }
 
-    protected Button setSaveButton(Button saveButton) {
-        this.saveButton = saveButton;
-        return addRenderableWidget(saveButton);
-    }
+    public class ConfigList extends ContainerObjectSelectionList<ConfigList.ConfigEntry> {
 
-    public class ConfigListWidget extends ObjectSelectionList<ConfigListWidget.ConfigWidgetEntry> {
-
-        static ConfigListWidget instance;
-
-        public ConfigListWidget(Minecraft client) {
-            super(client, BConfigScreen.this.width, BConfigScreen.this.height, 20, BConfigScreen.this.height - 30, BConfigHelper.buttonHeight() + BConfigHelper.padding() * 2);
-
-            instance = this;
+        public ConfigList(Minecraft minecraft) {
+            super(minecraft, BConfigScreen.this.width, BConfigScreen.this.height, 20, BConfigScreen.this.height - 30, BConfigHelper.buttonHeight() + BConfigHelper.padding() * 2);
         }
 
-        protected int getScrollbarPosition() {
-            return super.getScrollbarPosition() + 60;
-        }
-
-        public int getRowWidth() {
-            return getButtonWidth(ButtonType.NORMAL) + getPadding();
-        }
-
-        public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
-            AtomicBoolean a = new AtomicBoolean(false);
-
-            children().forEach(configWidgetEntry -> {
-                if (configWidgetEntry.keyPressed(keyCode, scanCode, modifiers)) a.set(true);
-            });
-
-            return a.get();
-        }
-
-        public boolean keyReleased(int keyCode, int scanCode, int modifiers) {
-            AtomicBoolean a = new AtomicBoolean(false);
-
-            children().forEach(configWidgetEntry -> {
-                if (configWidgetEntry.keyReleased(keyCode, scanCode, modifiers)) a.set(true);
-            });
-
-            return a.get();
+        @Override
+        public int addEntry(ConfigEntry entry) {
+            return super.addEntry(entry);
         }
 
         public boolean hasInvalidEntry() {
@@ -145,164 +175,101 @@ public abstract class BConfigScreen extends Screen implements BConfigHelper {
             return a.get();
         }
 
-        @Override
-        public void setSelected(ConfigWidgetEntry entry) {
-            Objects.requireNonNull(entry).setFocused(true);
+        public static class SingleEntry extends ConfigEntry {
 
-            super.setSelected(entry);
-        }
+            BConfigEntry<?> widget;
 
-        public static void changeSelected(@Nullable BConfigScreen.ConfigListWidget.ConfigWidgetEntry entry) {
-            instance.setSelected(entry);
-        }
-
-
-        protected void renderBackground(GuiGraphics p_93442_) {
-            BConfigScreen.this.renderBackground(p_93442_);
-        }
-
-        public boolean isFocused() {
-            return BConfigScreen.this.getFocused() == this;
-        }
-
-        public int addEntry(ConfigWidgetEntry entry) {
-            return super.addEntry(entry);
-        }
-
-        public void tick() {
-            this.children().forEach(ConfigWidgetEntry::tick);
-        }
-
-        @Override
-        public boolean mouseClicked(double mouseX, double mouseY, int button) {
-            ConfigWidgetEntry e = this.getHovered();
-            ConfigWidgetEntry e2 = this.getSelected();
-
-            if (e == null) return false;
-
-            if (!e.equals(e2)) {
-                this.setSelected(e);
-                if (e2 != null) e2.setFocused(false);
-            } else return e.mouseClicked(mouseX, mouseY, button);
-
-            return super.mouseClicked(mouseX, mouseY, button);
-        }
-
-        @Override
-        protected void renderSelection(GuiGraphics p_283589_, int p_240142_, int p_240143_, int p_240144_, int p_240145_, int p_240146_) {
-        }
-
-        public static class ConfigWidgetEntry extends Entry<ConfigWidgetEntry> {
-            final BConfigEntry<?> widget;
-
-            int x;
-            int y;
-            int w;
-            int h;
-
-            public ConfigWidgetEntry(BConfigEntry<?> widget) {
+            public SingleEntry(BConfigEntry<?> widget) {
                 this.widget = widget;
             }
 
+            @Override
             public void render(GuiGraphics p_93523_, int index, int y, int x, int entryWidth, int entryHeight, int mouseX, int mouseY, boolean hovered, float tickDelta) {
-                ((AbstractWidget)widget).setX(x);
-                ((AbstractWidget)widget).setY(y);
-                ((AbstractWidget)widget).setWidth(entryWidth - BConfigHelper.padding() * 2);
+                AbstractWidget w = (AbstractWidget)widget;
 
-                this.x = x;
-                this.y = y;
-                this.w = entryWidth;
-                this.h = entryHeight;
+                w.setX(x);
+                w.setY(y);
+                w.setWidth(entryWidth - BConfigHelper.padding() * 2);
 
-                ((AbstractWidget)widget).render(p_93523_, mouseX, mouseY, tickDelta);
+                w.render(p_93523_, mouseX, mouseY, tickDelta);
             }
 
-            public void tick() {
-                widget.tick();
+            @Override
+            List<? extends AbstractWidget> getWidgets() {
+                return ImmutableList.of((AbstractWidget) widget);
             }
 
-            public boolean mouseClicked(double mouseX, double mouseY, int button) {
-                return ((AbstractWidget)widget).mouseClicked(mouseX, mouseY, button);
-            }
-
-            public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
-                if (widget instanceof EditBox) {
-                    EditBox f = (EditBox) widget;
-
-                    if(f.keyPressed(keyCode, scanCode, modifiers)) return true;
-                    else f.charTyped(ClientUtils.getTypedKey(keyCode, scanCode), modifiers);
-                } else if (widget instanceof BWidgetContainer) {
-                    BWidgetContainer d = (BWidgetContainer) widget;
-
-                    if (d.widget1 instanceof EditBox) {
-                        if (((EditBox) d.widget1).isFocused()) {
-
-                            if (((EditBox) d.widget1).keyPressed(keyCode, scanCode, modifiers)) return true;
-
-                            ((EditBox) d.widget1).charTyped(ClientUtils.getTypedKey(keyCode, scanCode), modifiers);
-                            return true;
-                        }
-                    }
-
-                    if (d.widget2 instanceof EditBox) {
-                        if (((EditBox) d.widget2).isFocused()) {
-
-                            if (((EditBox) d.widget2).keyPressed(keyCode, scanCode, modifiers)) return true;
-
-                            ((EditBox) d.widget2).charTyped(ClientUtils.getTypedKey(keyCode, scanCode), modifiers);
-                            return true;
-                        }
-                    }
-                }
-
-                return false;
-            }
-
-
+            @Override
             public boolean isInvalid() {
                 return widget.isInvalid();
             }
 
-            public boolean keyReleased(int keyCode, int scanCode, int modifiers) {
-                if (widget instanceof EditBox) {
-                    EditBox f = (EditBox) widget;
+        }
 
-                    return f.keyReleased(keyCode, scanCode, modifiers);
-                } else if (widget instanceof BWidgetContainer) {
-                    BWidgetContainer d = (BWidgetContainer) widget;
+        public static class DoubleEntry extends ConfigEntry {
 
-                    if (d.widget1 instanceof EditBox) {
-                        if (((EditBox) d.widget1).isFocused())
-                            return ((EditBox) d.widget1).keyReleased(keyCode, scanCode, modifiers);
-                    }
+            BConfigEntry<?> widget1;
+            BConfigEntry<?> widget2;
 
-                    if (d.widget2 instanceof EditBox) {
-                        if (((EditBox) d.widget2).isFocused())
-                            return ((EditBox) d.widget2).keyReleased(keyCode, scanCode, modifiers);
-                    }
-                }
-
-                return false;
+            public DoubleEntry(BConfigEntry<?> widget1, BConfigEntry<?> widget2) {
+                this.widget1 = widget1;
+                this.widget2 = widget2;
             }
 
-
-            public void setFocused(boolean focused) {
-                if (widget instanceof BConfigTextField<?>) {
-                    ((BConfigTextField<?>) widget).setFocused(focused);
-                }
-
-                if (focused) widget.onSelect();
-                else widget.onUnselect();
+            @Override
+            List<? extends AbstractWidget> getWidgets() {
+                return ImmutableList.of((AbstractWidget) widget1, (AbstractWidget)  widget2);
             }
 
-            public Component getNarration() {
-                return Component.translatable("narrator.select", ((AbstractWidget)widget).getMessage());
+            @Override
+            public boolean isInvalid() {
+                return widget1.isInvalid() || widget2.isInvalid();
+            }
+
+            @Override
+            public void render(GuiGraphics p_93523_, int index, int y, int x, int entryWidth, int entryHeight, int mouseX, int mouseY, boolean hovered, float tickDelta) {
+                AbstractWidget w1 = (AbstractWidget)widget1;
+                AbstractWidget w2 = (AbstractWidget)widget2;
+
+                int p1 = widget1 instanceof BConfigTextField<?>
+                        ? BConfigHelper.padding()
+                        : BConfigHelper.padding() / 2;
+
+                int p2 = widget2 instanceof BConfigTextField<?>
+                        ? BConfigHelper.padding()
+                        : BConfigHelper.padding() / 2;
+
+                w1.setX(x);
+                w1.setY(y);
+                w1.setWidth(entryWidth / 2 - p1);
+
+                w2.setX(x + entryWidth / 2 + p2);
+                w2.setY(y);
+                w2.setWidth(entryWidth / 2 - p2);
+
+                w1.render(p_93523_, mouseX, mouseY, tickDelta);
+                w2.render(p_93523_, mouseX, mouseY, tickDelta);
             }
         }
+
+        public abstract static class ConfigEntry extends ContainerObjectSelectionList.Entry<ConfigEntry> {
+
+            @Override
+            public List<? extends NarratableEntry> narratables() {
+                return getWidgets();
+            }
+
+            @Override
+            public List<? extends GuiEventListener> children() {
+                return getWidgets();
+            }
+
+            abstract List<? extends AbstractWidget> getWidgets();
+
+            public abstract boolean isInvalid();
+
+        }
+
     }
 
-    @Override
-    public boolean shouldCloseOnEsc() {
-        return false;
-    }
 }

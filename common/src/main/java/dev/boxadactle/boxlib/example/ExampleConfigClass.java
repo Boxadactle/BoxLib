@@ -4,6 +4,7 @@ import dev.boxadactle.boxlib.BoxLib;
 import dev.boxadactle.boxlib.ModConstants;
 import dev.boxadactle.boxlib.config.BConfig;
 import dev.boxadactle.boxlib.config.BConfigFile;
+import net.minecraft.client.KeyMapping;
 
 /**
  * Here is a super basic example config class.
@@ -30,6 +31,8 @@ public class ExampleConfigClass implements BConfig {
     public int anInt = 42;
 
     public String aString = "Basic string value";
+
+    public KeyMapping a = new KeyMapping("effect.duration.infinite", 23, "effect.minecraft.water_breathing");
 
     @Override
     public void onConfigLoadPre() {

@@ -16,8 +16,6 @@ public abstract class BConfigTextField<T> extends EditBox implements BConfigEntr
     protected T currentValue;
     protected Consumer<T> function;
 
-    protected boolean halfWidget = false;
-
     protected boolean hasInvalidValue = false;
 
     public BConfigTextField(T value, Consumer<T> function) {
@@ -59,16 +57,6 @@ public abstract class BConfigTextField<T> extends EditBox implements BConfigEntr
         return input;
     }
 
-    @Override
-    public void setHalfWidget(boolean halfButton) {
-        this.halfWidget = halfButton;
-    }
-
-    @Override
-    public boolean isHalfWidget() {
-        return halfWidget;
-    }
-
 
     @Override
     public void setX(int x) {
@@ -82,11 +70,7 @@ public abstract class BConfigTextField<T> extends EditBox implements BConfigEntr
 
     @Override
     public void setWidth(int width) {
-        if (!isHalfWidget()) {
-            super.setWidth(width);
-        } else {
-            super.setWidth(width / 2);
-        }
+        super.setWidth(width);
     }
 
     @Override

@@ -11,8 +11,6 @@ public abstract class BConfigButton<T> extends Button implements BConfigEntry<T>
     protected Consumer<T> function;
     protected T currentValue;
 
-    protected boolean halfButton = false;
-
     public BConfigButton(Component message, T value, Consumer<T> function) {
         super(0, 0, 10, BConfigHelper.buttonHeight(), message, b -> {}, DEFAULT_NARRATION);
 
@@ -25,16 +23,6 @@ public abstract class BConfigButton<T> extends Button implements BConfigEntry<T>
     @Override
     public T handleInput(T input) {
         return this.changeValue(input);
-    }
-
-    @Override
-    public void setHalfWidget(boolean halfButton) {
-        this.halfButton = halfButton;
-    }
-
-    @Override
-    public boolean isHalfWidget() {
-        return halfButton;
     }
 
     @Override
@@ -56,11 +44,7 @@ public abstract class BConfigButton<T> extends Button implements BConfigEntry<T>
 
     @Override
     public void setWidth(int width) {
-        if (!isHalfWidget()) {
-            super.setWidth(width);
-        } else {
-            super.setWidth(width / 2);
-        }
+        super.setWidth(width);
     }
 
     @Override

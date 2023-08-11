@@ -24,6 +24,18 @@ public class BConfigHandler {
         return new File(path.toString());
     }
 
+    /**
+     * The method that registers a config class.
+     * This method must be run in order to load/save
+     * a config class
+     *
+     * @param config The config class being registered.
+     *               This class MUST implement {@link dev.boxadactle.boxlib.config.BConfig} and annotate {@link dev.boxadactle.boxlib.config.BConfigFile}
+     * @return The registered config class
+     *
+     * @see dev.boxadactle.boxlib.config.BConfig
+     * @see dev.boxadactle.boxlib.config.BConfigFile
+     */
     public static <T extends BConfig> BConfigClass<T> registerConfig(Class<T> config) {
         Objects.requireNonNull(config);
 
