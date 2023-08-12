@@ -1,6 +1,6 @@
 package dev.boxadactle.boxlib.math;
 
-public class MathHelper {
+public class BMath {
 
     public static double lerp(double a, double b, double t) {
         return a + (b - a) * t;
@@ -108,5 +108,42 @@ public class MathHelper {
             return delta > 1.0F ? end : (float) lerp(delta, start, end);
         }
     }
+
+    public static int bounds(int i, int max) {
+        if (i < 0) return max + (i % max);
+        return i % max;
+    }
+
+    public static double bounds(double i, double max) {
+        if (i < 0) return max + (i % max);
+        return i % max;
+    }
+
+    public static float bounds(float i, float max) {
+        if (i < 0) return max + (i % max);
+        return i % max;
+    }
+
+    public static int bounds(int i, int min, int max) {
+        int j = i - min;
+        int k = max - min;
+        int l = bounds(j, k);
+        return l + min;
+    }
+
+    public static double bounds(double i, double min, double max) {
+        double j = i - min;
+        double k = max - min;
+        double l = bounds(j, k);
+        return l + min;
+    }
+
+    public static float bounds(float i, float min, float max) {
+        float j = i - min;
+        float k = max - min;
+        float l = bounds(j, k);
+        return l + min;
+    }
+
 
 }
