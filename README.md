@@ -14,7 +14,8 @@ The most basic client-side library mod
 Most of my mods embed this mod, here is the list:
 | Name      | Version |
 | ----------- | ----------- |
-| Coordinates Display | Since v3.0.0 |       |
+| Coordinates Display | Since v3.0.0 |
+| Debug Keybind | Since v1.0.0 |
 
 ### API
 
