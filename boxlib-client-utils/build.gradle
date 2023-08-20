@@ -1,0 +1,6 @@
+archivesBaseName = "boxlib-client-utils"
+version = rootProject.client_utils_version
+
+dependencies {
+    compileOnly(project(":boxlib-math"))
+}

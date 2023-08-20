@@ -1,0 +1,6 @@
+archivesBaseName = "boxlib-base"
+version = rootProject.mod_version
+
+dependencies {
+    compileOnly(project(":boxlib-client-utils"))
+}

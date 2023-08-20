@@ -10,3 +10,11 @@ pluginManagement {
 include("common")
 include("fabric")
 include("forge")
+
+include("boxlib-base")
+include("boxlib-scheduling")
+include("boxlib-config-file")
+include("boxlib-config-gui")
+include("boxlib-http")
+include("boxlib-math")
+include("boxlib-client-utils")

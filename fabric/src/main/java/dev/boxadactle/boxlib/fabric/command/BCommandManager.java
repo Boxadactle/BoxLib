@@ -3,7 +3,6 @@ package dev.boxadactle.boxlib.fabric.command;
 import com.mojang.brigadier.CommandDispatcher;
 import dev.boxadactle.boxlib.util.function.ClassProvider;
 import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
-import net.minecraft.commands.CommandSourceStack;
 
 import java.util.ArrayList;
 import java.util.HashMap;

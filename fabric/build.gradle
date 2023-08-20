@@ -25,6 +25,22 @@ dependencies {
     modImplementation("com.terraformersmc:modmenu:${rootProject.modmenu_version}") {
         transitive = false
     }
+
+    compileOnly(project(":boxlib-base"))
+    compileOnly(project(":boxlib-client-utils"))
+    compileOnly(project(":boxlib-config-file"))
+    compileOnly(project(":boxlib-config-gui"))
+    compileOnly(project(":boxlib-http"))
+    compileOnly(project(":boxlib-math"))
+    compileOnly(project(":boxlib-scheduling"))
+
+    include(project(":boxlib-base"))
+    include(project(":boxlib-client-utils"))
+    include(project(":boxlib-config-file"))
+    include(project(":boxlib-config-gui"))
+    include(project(":boxlib-http"))
+    include(project(":boxlib-math"))
+    include(project(":boxlib-scheduling"))
 }
 
 processResources {

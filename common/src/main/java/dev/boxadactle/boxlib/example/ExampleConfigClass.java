@@ -1,10 +1,10 @@
 package dev.boxadactle.boxlib.example;
 
-import dev.boxadactle.boxlib.BoxLib;
-import dev.boxadactle.boxlib.ModConstants;
+import dev.boxadactle.boxlib.BoxLibInitializer;
+import dev.boxadactle.boxlib.base.BoxLib;
+import dev.boxadactle.boxlib.base.ModConstants;
 import dev.boxadactle.boxlib.config.BConfig;
 import dev.boxadactle.boxlib.config.BConfigFile;
-import net.minecraft.client.KeyMapping;
 
 /**
  * Here is a super basic example config class.

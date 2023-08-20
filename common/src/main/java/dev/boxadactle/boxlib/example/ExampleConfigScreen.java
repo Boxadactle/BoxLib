@@ -1,9 +1,9 @@
 package dev.boxadactle.boxlib.example;
 
-import dev.boxadactle.boxlib.BoxLib;
-import dev.boxadactle.boxlib.ModConstants;
-import dev.boxadactle.boxlib.gui.BConfigScreen;
-import dev.boxadactle.boxlib.gui.widget.*;
+import dev.boxadactle.boxlib.BoxLibInitializer;
+import dev.boxadactle.boxlib.base.ModConstants;
+import dev.boxadactle.boxlib.config.gui.BConfigScreen;
+import dev.boxadactle.boxlib.config.gui.widget.*;
 import dev.boxadactle.boxlib.util.ClientUtils;
 import dev.boxadactle.boxlib.util.GuiUtils;
 import net.minecraft.client.gui.screens.Screen;
@@ -11,7 +11,7 @@ import net.minecraft.network.chat.Component;
 
 /**
  * Here is a super basic example config screen.
- * Config screens must extend {@link dev.boxadactle.boxlib.gui.BConfigScreen} to access the methods
+ * Config screens must extend {@link dev.boxadactle.boxlib.config.gui.BConfigScreen} to access the methods
  * Config values can be accessed/saved with config classes.
  * You can use an external library such as Cloth Config, but BoxLib already handles config
  * @see dev.boxadactle.boxlib.config.BConfig
@@ -23,12 +23,12 @@ public class ExampleConfigScreen extends BConfigScreen {
         super(parent);
 
         // this is required (you can also do this yourself if you want) for using a cancel button
-        BoxLib.CONFIG.cacheConfig();
+        BoxLibInitializer.CONFIG.cacheConfig();
     }
 
     // using this method because I'm too lazy
     private ExampleConfigClass config() {
-        return BoxLib.CONFIG.get();
+        return BoxLibInitializer.CONFIG.get();
     }
 
     @Override
@@ -42,14 +42,14 @@ public class ExampleConfigScreen extends BConfigScreen {
         // here is where we restore the reload the config to undo all the changes to the config
         addRenderableWidget(createHalfCancelButton(startX, startY, (b) -> {
             ClientUtils.setScreen(parent);
-            BoxLib.CONFIG.restoreCache();
+            BoxLibInitializer.CONFIG.restoreCache();
         }));
 
         // the half save button method will put the button next to the cancel button
         // make sure to add the save button like this, or the save button won't be disabled
         // when an incorrect value is entered
         setSaveButton(createHalfSaveButton(startX, startY, (b) -> {
-            BoxLib.CONFIG.save();
+            BoxLibInitializer.CONFIG.save();
             ClientUtils.setScreen(parent);
         }));
 

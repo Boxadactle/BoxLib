@@ -1,0 +1,7 @@
+archivesBaseName = "boxlib-http"
+version = rootProject.http_version
+
+dependencies {
+    compileOnly(project(":boxlib-base"))
+    compileOnly(project(":boxlib-client-utils"))
+}

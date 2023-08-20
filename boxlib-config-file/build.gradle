@@ -1,0 +1,7 @@
+archivesBaseName = "boxlib-config-file"
+version = rootProject.config_file_version
+
+dependencies {
+    compileOnly(project(":boxlib-base"))
+    compileOnly(project(":boxlib-client-utils"))
+}

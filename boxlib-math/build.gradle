@@ -1,0 +1,2 @@
+archivesBaseName = "boxlib-math"
+version = rootProject.math_version

@@ -1,0 +1,6 @@
+archivesBaseName = "boxlib-scheduling"
+version = rootProject.scheduling_version
+
+dependencies {
+    compileOnly(project(":boxlib-client-utils"))
+}
