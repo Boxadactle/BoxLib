@@ -44,73 +44,27 @@ public class Clamps {
         }
     }
 
-    public static Rect<Integer> clampRect(Rect<Integer> innerRect, Rect<Integer> outerRect) {
-        int innerX = innerRect.getX();
-        int innerY = innerRect.getY();
-        int innerWidth = innerRect.getWidth();
-        int innerHeight = innerRect.getHeight();
+    @SuppressWarnings("unchecked")
+    public static <T extends Number> Rect<T> clampRect(Rect<T> innerRect, Rect<T> outerRect) {
+        double innerX = (double) innerRect.getX();
+        double innerY = (double) innerRect.getY();
+        double innerWidth = (double) innerRect.getWidth();
+        double innerHeight = (double) innerRect.getHeight();
 
-        int outerX = outerRect.getX();
-        int outerY = outerRect.getY();
-        int outerWidth = outerRect.getWidth();
-        int outerHeight = outerRect.getHeight();
-
-        int clampedX = clamp(innerX, outerX, outerX + outerWidth - innerWidth);
-        int clampedY = clamp(innerY, outerY, outerY + outerHeight - innerHeight);
-
-        return new Rect<>(clampedX, clampedY, innerWidth, innerHeight);
-    }
-
-    public static Rect<Long> clampRect(Rect<Long> innerRect, Rect<Long> outerRect) {
-        long innerX = innerRect.getX();
-        long innerY = innerRect.getY();
-        long innerWidth = innerRect.getWidth();
-        long innerHeight = innerRect.getHeight();
-
-        long outerX = outerRect.getX();
-        long outerY = outerRect.getY();
-        long outerWidth = outerRect.getWidth();
-        long outerHeight = outerRect.getHeight();
-
-        long clampedX = clamp(innerX, outerX, outerX + outerWidth - innerWidth);
-        long clampedY = clamp(innerY, outerY, outerY + outerHeight - innerHeight);
-
-        return new Rect<>(clampedX, clampedY, innerWidth, innerHeight);
-    }
-
-    public static Rect<Float> clampRect(Rect<Float> innerRect, Rect<Float> outerRect) {
-        float innerX = innerRect.getX();
-        float innerY = innerRect.getY();
-        float innerWidth = innerRect.getWidth();
-        float innerHeight = innerRect.getHeight();
-
-        float outerX = outerRect.getX();
-        float outerY = outerRect.getY();
-        float outerWidth = outerRect.getWidth();
-        float outerHeight = outerRect.getHeight();
-
-        float clampedX = clamp(innerX, outerX, outerX + outerWidth - innerWidth);
-        float clampedY = clamp(innerY, outerY, outerY + outerHeight - innerHeight);
-
-        return new Rect<>(clampedX, clampedY, innerWidth, innerHeight);
-    }
-
-    public static Rect<Double> clampRect(Rect<Double> innerRect, Rect<Double> outerRect) {
-        double innerX = innerRect.getX();
-        double innerY = innerRect.getY();
-        double innerWidth = innerRect.getWidth();
-        double innerHeight = innerRect.getHeight();
-
-        double outerX = outerRect.getX();
-        double outerY = outerRect.getY();
-        double outerWidth = outerRect.getWidth();
-        double outerHeight = outerRect.getHeight();
+        double outerX = (double) outerRect.getX();
+        double outerY = (double) outerRect.getY();
+        double outerWidth = (double) outerRect.getWidth();
+        double outerHeight = (double) outerRect.getHeight();
 
         double clampedX = clamp(innerX, outerX, outerX + outerWidth - innerWidth);
         double clampedY = clamp(innerY, outerY, outerY + outerHeight - innerHeight);
 
-        return new Rect<>(clampedX, clampedY, innerWidth, innerHeight);
+        return new Rect<>(
+                (T) Double.valueOf(clampedX),
+                (T) Double.valueOf(clampedY),
+                (T) Double.valueOf(innerWidth),
+                (T) Double.valueOf(innerHeight)
+        );
     }
-
 
 }
