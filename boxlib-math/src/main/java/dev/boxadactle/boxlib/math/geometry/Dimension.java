@@ -1,9 +1,9 @@
-package dev.boxadactle.boxlib.math;
+package dev.boxadactle.boxlib.math.geometry;
 
 public class Dimension<T extends Number> {
 
-    T width;
-    T height;
+    private T width;
+    private T height;
 
     public Dimension(T width, T height) {
         this.width = width;
@@ -28,5 +28,10 @@ public class Dimension<T extends Number> {
 
     public double getArea() {
         return (double)width * (double)height;
+    }
+
+    @Override
+    public Dimension<T> clone() {
+        return new Dimension<>(width, height);
     }
 }

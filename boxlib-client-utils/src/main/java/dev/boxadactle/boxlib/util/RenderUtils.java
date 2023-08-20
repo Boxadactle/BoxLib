@@ -1,8 +1,8 @@
 package dev.boxadactle.boxlib.util;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import dev.boxadactle.boxlib.math.Rect;
-import dev.boxadactle.boxlib.math.Vec2;
+import dev.boxadactle.boxlib.math.geometry.Rect;
+import dev.boxadactle.boxlib.math.geometry.Vec2;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;

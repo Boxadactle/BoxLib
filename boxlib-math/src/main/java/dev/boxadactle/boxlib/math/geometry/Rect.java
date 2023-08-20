@@ -1,12 +1,13 @@
-package dev.boxadactle.boxlib.math;
+package dev.boxadactle.boxlib.math.geometry;
 
+@SuppressWarnings("unchecked")
 public class Rect<T extends Number> {
 
-    T x;
-    T y;
+    private T x;
+    private T y;
 
-    T width;
-    T height;
+    private T width;
+    private T height;
 
     public Rect(T x, T y, T width, T height) {
 
@@ -68,6 +69,31 @@ public class Rect<T extends Number> {
 
     public double calculateDiagonalLength() {
         return Math.sqrt((Double)width * (Double)width + (Double)height * (Double)height);
+    }
+
+    public T getPerimeter() {
+        T perimeter = (T) Double.valueOf(
+                (width.doubleValue() + height.doubleValue()) * 2.0
+        );
+        return perimeter;
+    }
+
+    public boolean containsPoint(Vec2<T> point) {
+        double pointX = point.getX().doubleValue();
+        double pointY = point.getY().doubleValue();
+
+        double rectMinX = x.doubleValue();
+        double rectMaxX = x.doubleValue() + width.doubleValue();
+        double rectMinY = y.doubleValue();
+        double rectMaxY = y.doubleValue() + height.doubleValue();
+
+        return pointX >= rectMinX && pointX <= rectMaxX &&
+                pointY >= rectMinY && pointY <= rectMaxY;
+    }
+
+    @Override
+    public Rect<T> clone() {
+        return new Rect<>(x, y, width, height);
     }
 
     @Override

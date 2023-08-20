@@ -1,15 +1,15 @@
-package dev.boxadactle.boxlib.math;
+package dev.boxadactle.boxlib.math.geometry;
 
-public class Vec2<T extends Number> {
+public class Vec3<T extends Number> {
 
-    T x;
-    T y;
+    private T x;
+    private T y;
+    private T z;
 
-    public Vec2(T x, T y) {
-
+    public Vec3(T x, T y, T z) {
         this.x = x;
         this.y = y;
-
+        this.z = z;
     }
 
     public T getX() {
@@ -20,6 +20,10 @@ public class Vec2<T extends Number> {
         return y;
     }
 
+    public T getZ() {
+        return z;
+    }
+
     public void setX(T x) {
         this.x = x;
     }
@@ -28,11 +32,16 @@ public class Vec2<T extends Number> {
         this.y = y;
     }
 
+    public void setZ(T z) {
+        this.z = z;
+    }
+
     @Override
     public String toString() {
-        return "Vec2{" +
+        return "Vec3{" +
                 "x=" + x +
                 ", y=" + y +
+                ", z=" + z +
                 '}';
     }
 }
