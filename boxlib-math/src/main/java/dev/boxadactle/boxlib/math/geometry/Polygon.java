@@ -71,4 +71,9 @@ public class Polygon<T extends Number> {
         double dy = p2.getY().doubleValue() - p1.getY().doubleValue();
         return (T) Double.valueOf(Math.sqrt(dx * dx + dy * dy));
     }
+
+    @Override
+    protected Polygon<T> clone() {
+        return new Polygon<>(vertices);
+    }
 }

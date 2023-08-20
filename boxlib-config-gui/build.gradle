@@ -6,3 +6,10 @@ dependencies {
     compileOnly(project(":boxlib-client-utils"))
     compileOnly(project(":boxlib-math"))
 }
+
+processResources {
+    filesMatching('fabric.mod.json') {
+        expand 'version': project.version
+    }
+    inputs.property "version", project.version
+}

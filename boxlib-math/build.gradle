@@ -1,2 +1,9 @@
 archivesBaseName = "boxlib-math"
 version = rootProject.math_version
+
+processResources {
+    filesMatching('fabric.mod.json') {
+        expand 'version': project.version
+    }
+    inputs.property "version", project.version
+}

@@ -3,13 +3,13 @@ dependencies {
     // Do NOT use other classes from fabric loader
     modImplementation "net.fabricmc:fabric-loader:${rootProject.fabric_loader_version}"
 
-    compileOnly(project(":boxlib-base"))
-    compileOnly(project(":boxlib-client-utils"))
-    compileOnly(project(":boxlib-config-file"))
-    compileOnly(project(":boxlib-config-gui"))
-    compileOnly(project(":boxlib-http"))
-    compileOnly(project(":boxlib-math"))
-    compileOnly(project(":boxlib-scheduling"))
+    compileOnly(project(path: ":boxlib-base", configuration: "namedElements"))
+    compileOnly(project(path: ":boxlib-client-utils", configuration: "namedElements"))
+    compileOnly(project(path: ":boxlib-config-file", configuration: "namedElements"))
+    compileOnly(project(path: ":boxlib-config-gui", configuration: "namedElements"))
+    compileOnly(project(path: ":boxlib-http", configuration: "namedElements"))
+    compileOnly(project(path: ":boxlib-math", configuration: "namedElements"))
+    compileOnly(project(path: ":boxlib-scheduling", configuration: "namedElements"))
 }
 
 architectury {

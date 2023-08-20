@@ -5,6 +5,7 @@ import com.google.common.collect.Lists;
 import java.util.List;
 import java.util.Random;
 
+@SuppressWarnings("unchecked")
 public class RandomUtil {
     private static final Random random = new Random();
 

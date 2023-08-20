@@ -52,4 +52,9 @@ public class Triangle<T extends Number> {
         double dy = p2.getY().doubleValue() - p1.getY().doubleValue();
         return (T) Double.valueOf(Math.sqrt(dx * dx + dy * dy));
     }
+
+    @Override
+    protected Triangle<T> clone() {
+        return new Triangle<>(vertex1, vertex2, vertex3);
+    }
 }

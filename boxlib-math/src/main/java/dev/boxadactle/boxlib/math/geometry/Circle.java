@@ -37,4 +37,9 @@ public class Circle<T extends Number> {
         double y2 = 0;
         return (T) Double.valueOf(Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1)));
     }
+
+    @Override
+    protected Circle<T> clone() {
+        return new Circle<>(radius);
+    }
 }

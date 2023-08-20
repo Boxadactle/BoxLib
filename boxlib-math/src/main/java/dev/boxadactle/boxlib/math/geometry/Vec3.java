@@ -44,4 +44,9 @@ public class Vec3<T extends Number> {
                 ", z=" + z +
                 '}';
     }
+
+    @Override
+    protected Vec3<T> clone() {
+        return new Vec3<>(x, y, z);
+    }
 }

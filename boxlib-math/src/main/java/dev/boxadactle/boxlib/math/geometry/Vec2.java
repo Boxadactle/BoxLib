@@ -35,4 +35,9 @@ public class Vec2<T extends Number> {
                 ", y=" + y +
                 '}';
     }
+
+    @Override
+    protected Vec2<T> clone() {
+        return new Vec2<>(x, y);
+    }
 }

@@ -20,21 +20,22 @@ dependencies {
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionForge")) { transitive = false }
 
-    compileOnly(project(":boxlib-base"))
-    compileOnly(project(":boxlib-client-utils"))
-    compileOnly(project(":boxlib-config-file"))
-    compileOnly(project(":boxlib-config-gui"))
-    compileOnly(project(":boxlib-http"))
-    compileOnly(project(":boxlib-math"))
-    compileOnly(project(":boxlib-scheduling"))
+    common(project(":boxlib-base"))
+    common(project(":boxlib-client-utils"))
+    common(project(":boxlib-config-file"))
+    common(project(":boxlib-config-gui"))
+    common(project(":boxlib-http"))
+    common(project(":boxlib-math"))
+    common(project(":boxlib-scheduling"))
 
-    include(project(":boxlib-base"))
-    include(project(":boxlib-client-utils"))
-    include(project(":boxlib-config-file"))
-    include(project(":boxlib-config-gui"))
-    include(project(":boxlib-http"))
-    include(project(":boxlib-math"))
-    include(project(":boxlib-scheduling"))
+    // must all have a gradle build for their most recent versions
+    include(project(path: ":boxlib-base"))
+    include(project(path: ":boxlib-client-utils"))
+    include(project(path: ":boxlib-config-file"))
+    include(project(path: ":boxlib-config-gui"))
+    include(project(path: ":boxlib-http"))
+    include(project(path: ":boxlib-math"))
+    include(project(path: ":boxlib-scheduling"))
 }
 
 processResources {

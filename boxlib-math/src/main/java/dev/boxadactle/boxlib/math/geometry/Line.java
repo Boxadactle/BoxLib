@@ -46,4 +46,9 @@ public class Line<T extends Number> {
                         (Double) this.yIntercept
         );
     }
+
+    @Override
+    protected Line<T> clone() {
+        return new Line<>(slope, yIntercept);
+    }
 }

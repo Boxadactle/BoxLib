@@ -4,3 +4,10 @@ version = rootProject.client_utils_version
 dependencies {
     compileOnly(project(":boxlib-math"))
 }
+
+processResources {
+    filesMatching('fabric.mod.json') {
+        expand 'version': project.version
+    }
+    inputs.property "version", project.version
+}
