@@ -12,3 +12,7 @@ processResources {
     }
     inputs.property "version", project.version
 }
+
+architectury {
+    common("fabric", "forge")
+}

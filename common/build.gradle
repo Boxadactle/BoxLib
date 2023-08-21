@@ -39,11 +39,10 @@ shadowJar {
 }
 
 remapJar {
-    dependsOn(shadowJar)
-    input.set(shadowJar.archiveFile)
-    archiveClassifier = null
+    inputFile.set shadowJar.archiveFile
+    dependsOn shadowJar
+    archiveClassifier.set(null)
 }
-
 
 publishing {
     publications {

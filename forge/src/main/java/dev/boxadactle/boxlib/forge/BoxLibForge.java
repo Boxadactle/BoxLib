@@ -2,7 +2,7 @@ package dev.boxadactle.boxlib.forge;
 
 import dev.boxadactle.boxlib.BoxLibInitializer;
 import dev.boxadactle.boxlib.base.ModConstants;
-import dev.boxadactle.boxlib.command.forge.BCommandManager;
+import dev.boxadactle.boxlib.forge.command.BCommandManager;
 import dev.boxadactle.boxlib.example.ExampleConfigScreen;
 import dev.boxadactle.boxlib.scheduling.Scheduling;
 import dev.boxadactle.boxlib.util.MouseUtils;

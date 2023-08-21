@@ -1,4 +1,4 @@
-package dev.boxadactle.boxlib.command.fabric;
+package dev.boxadactle.boxlib.fabric.command;
 
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;

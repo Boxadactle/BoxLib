@@ -1,7 +1,0 @@
-archivesBaseName = "boxlib-client-commands-forge"
-version = rootProject.client_commands_version
-
-dependencies {
-    compileOnly(project(":boxlib-base"))
-    compileOnly(project(":boxlib-client-utils"))
-}
