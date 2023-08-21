@@ -15,7 +15,7 @@ public class NumberFormatter<T extends Number> {
             throw new IllegalArgumentException("Decimal places must be at least zero.");
         }
         StringBuilder formatPattern = new StringBuilder("#");
-        if (decimalPlaces == 0) formatPattern.append(".");
+        if (decimalPlaces != 0) formatPattern.append(".");
         for (int i = 0; i < decimalPlaces; i++) {
             formatPattern.append("#");
         }
