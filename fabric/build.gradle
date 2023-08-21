@@ -28,20 +28,23 @@ dependencies {
 
     common(project(":boxlib-base"))
     common(project(":boxlib-client-utils"))
+    common(project(":boxlib-client-commands-fabric"))
     common(project(":boxlib-config-file"))
     common(project(":boxlib-config-gui"))
     common(project(":boxlib-http"))
     common(project(":boxlib-math"))
     common(project(":boxlib-scheduling"))
 
-    // must all have a gradle build for their most recent versions
-    include(project(path: ":boxlib-base"))
-    include(project(path: ":boxlib-client-utils"))
-    include(project(path: ":boxlib-config-file"))
-    include(project(path: ":boxlib-config-gui"))
-    include(project(path: ":boxlib-http"))
-    include(project(path: ":boxlib-math"))
-    include(project(path: ":boxlib-scheduling"))
+    shadowCommon(project(path: ":boxlib-base"))  { transitive false }
+    shadowCommon(project(path: ":boxlib-client-utils"))  { transitive false }
+    shadowCommon(project(path: ":boxlib-config-file"))  { transitive false }
+    shadowCommon(project(path: ":boxlib-config-gui"))  { transitive false }
+    shadowCommon(project(path: ":boxlib-http"))  { transitive false }
+    shadowCommon(project(path: ":boxlib-math"))  { transitive false }
+    shadowCommon(project(path: ":boxlib-scheduling"))  { transitive false }
+
+    // fabric specific modules
+    shadowCommon(project(path: ":boxlib-client-commands-fabric"))  { transitive false }
 }
 
 processResources {

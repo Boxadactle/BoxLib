@@ -1,0 +1,17 @@
+archivesBaseName = "boxlib-client-commands-fabric"
+version = rootProject.client_commands_version
+
+dependencies {
+    modImplementation "net.fabricmc:fabric-loader:${rootProject.fabric_loader_version}"
+    modApi "net.fabricmc.fabric-api:fabric-api:${rootProject.fabric_api_version}"
+
+    compileOnly(project(":boxlib-base"))
+    compileOnly(project(":boxlib-client-utils"))
+}
+
+processResources {
+    filesMatching('fabric.mod.json') {
+        expand 'version': project.version
+    }
+    inputs.property "version", project.version
+}
