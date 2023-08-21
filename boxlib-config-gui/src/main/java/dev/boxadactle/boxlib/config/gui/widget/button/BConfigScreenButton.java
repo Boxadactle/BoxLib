@@ -1,4 +1,4 @@
-package dev.boxadactle.boxlib.config.gui.widget;
+package dev.boxadactle.boxlib.config.gui.widget.button;
 
 import dev.boxadactle.boxlib.config.gui.BConfigButton;
 import dev.boxadactle.boxlib.config.gui.BConfigScreen;

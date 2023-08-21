@@ -3,7 +3,11 @@ package dev.boxadactle.boxlib.example;
 import dev.boxadactle.boxlib.BoxLibInitializer;
 import dev.boxadactle.boxlib.base.ModConstants;
 import dev.boxadactle.boxlib.config.gui.BConfigScreen;
-import dev.boxadactle.boxlib.config.gui.widget.*;
+import dev.boxadactle.boxlib.config.gui.widget.button.BBooleanButton;
+import dev.boxadactle.boxlib.config.gui.widget.button.BEnumButton;
+import dev.boxadactle.boxlib.config.gui.widget.field.*;
+import dev.boxadactle.boxlib.config.gui.widget.label.BCenteredLabel;
+import dev.boxadactle.boxlib.config.gui.widget.slider.*;
 import dev.boxadactle.boxlib.util.ClientUtils;
 import dev.boxadactle.boxlib.util.GuiUtils;
 import net.minecraft.client.gui.screens.Screen;
@@ -135,9 +139,76 @@ public class ExampleConfigScreen extends BConfigScreen {
                 newVal -> config().aString = newVal
         ));
 
+        // here's how we would add a long
+        addConfigLine(new BCenteredLabel(Component.translatable("boxlib.aLong")));
+
+        addConfigLine(new BLongField(
+                config().aLong,
+                newVal -> config().aLong = newVal
+        ));
+
+        // here's how we would add a long
+        addConfigLine(new BCenteredLabel(Component.translatable("boxlib.aLong")));
+
+        addConfigLine(new BLongField(
+                config().aLong,
+                newVal -> config().aLong = newVal
+        ));
+
+        // here's how we would add a short
+        addConfigLine(new BCenteredLabel(Component.translatable("boxlib.aShort")));
+
+        addConfigLine(new BShortField(
+                config().aShort,
+                newVal -> config().aShort = newVal
+        ));
+
+        // here is how we would add all of those values as sliders
+        addConfigLine(
+                new BDoubleSlider(
+                        "boxlib.anotherDouble",
+                        0.0D, 100.0D,
+                        config().anotherDouble, 5,
+                        newVal -> config().anotherDouble = newVal
+                ),
+                new BFloatSlider(
+                        "boxlib.anotherFloat",
+                        0.0F, 50.0F,
+                        config().anotherFloat, 3,
+                        newVal -> config().anotherFloat = newVal
+                )
+        );
+
+        addConfigLine(
+                new BIntegerSlider(
+                        "boxlib.anotherInt",
+                        0, 10,
+                        config().anotherInt,
+                        newVal -> config().anotherInt = newVal
+                )
+        );
+
+        addConfigLine(
+                new BLongSlider(
+                        "boxlib.anotherLong",
+                        100L, 5000L,
+                        config().anotherLong,
+                        newVal -> config().anotherLong = newVal
+                )
+        );
+
+        addConfigLine(
+                new BShortSlider(
+                        "boxlib.anotherShort",
+                        (short) 10, (short) 1000,
+                        config().anotherShort,
+                        newVal -> config().anotherShort = newVal
+                )
+        );
+
         /* remember that you can create your own config
-         * entries by extending the BConfigButton or
-         * BConfigTextField classes */
+         * entries by extending the BConfigButton,
+         * BConfigTextField, or BConfigSlider classes */
 
     }
 }

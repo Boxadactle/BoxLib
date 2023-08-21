@@ -39,5 +39,41 @@ public class Mappers {
     }
 
 
+    public static double map(double value, double min, double max) {
+        return ((max - min) * value) + min;
+    }
+
+    public static float map(float value, float min, float max) {
+        return ((max - min) * value) + min;
+    }
+
+    public static int map(double value, int min, int max) {
+        return (int) Math.round(((max - min) * value) + min);
+    }
+
+    public static int map(float value, int min, int max) {
+        return Math.round(((max - min) * value) + min);
+    }
+
+    public static long map(double value, long min, long max) {
+        return Math.round(((max - min) * value) + min);
+    }
+
+    public static long map(float value, long min, long max) {
+        return Math.round(((max - min) * value) + min);
+    }
+    
+    
+    public static double normalizeMap(double value, double min, double max) {
+        return value / (max - min);
+    }
+
+    public static float normalizeMap(float value, float min, float max) {
+        return value / (max - min);
+    }
+
+    public static double normalizeMap(int value, int min, int max) {
+        return (double) value / (max - min);
+    }
 
 }

@@ -30,7 +30,21 @@ public class ExampleConfigClass implements BConfig {
 
     public int anInt = 42;
 
+    public long aLong = 1938;
+
+    public short aShort = 10;
+
     public String aString = "Basic string value";
+
+    public double anotherDouble = 3.432;
+
+    public float anotherFloat = 1.02f;
+
+    public int anotherInt = 5;
+
+    public long anotherLong = 1938;
+
+    public short anotherShort = 25;
 
     @Override
     public void onConfigLoadPre() {

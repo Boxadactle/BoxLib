@@ -1,4 +1,4 @@
-package dev.boxadactle.boxlib.config.gui.widget;
+package dev.boxadactle.boxlib.config.gui.widget.button;
 
 import com.google.common.collect.ImmutableList;
 import dev.boxadactle.boxlib.util.GuiUtils;

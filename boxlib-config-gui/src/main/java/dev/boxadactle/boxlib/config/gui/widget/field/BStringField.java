@@ -1,4 +1,4 @@
-package dev.boxadactle.boxlib.config.gui.widget;
+package dev.boxadactle.boxlib.config.gui.widget.field;
 
 import dev.boxadactle.boxlib.config.gui.BConfigTextField;
 

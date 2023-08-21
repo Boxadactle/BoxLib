@@ -15,5 +15,12 @@
   "boxlib.anEnum.gigantic": "GIGANTIC",
   "boxlib.aHexColor": "A Hex Color",
   "boxlib.anInt": "An Integer",
-  "boxlib.aString": "A String"
+  "boxlib.aString": "A String",
+  "boxlib.aLong": "A Long",
+  "boxlib.aShort": "A Short",
+  "boxlib.anotherDouble": "Another Double: %s",
+  "boxlib.anotherFloat": "Another Float: %s",
+  "boxlib.anotherInt": "Another Integer: %s",
+  "boxlib.anotherLong": "Another Long: %s",
+  "boxlib.anotherShort": "Another Short: %s"
 }

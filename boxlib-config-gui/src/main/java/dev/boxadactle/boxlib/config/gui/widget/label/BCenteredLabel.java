@@ -1,4 +1,4 @@
-package dev.boxadactle.boxlib.config.gui.widget;
+package dev.boxadactle.boxlib.config.gui.widget.label;
 
 import dev.boxadactle.boxlib.util.RenderUtils;
 import net.minecraft.client.gui.GuiGraphics;

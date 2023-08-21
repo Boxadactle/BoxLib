@@ -1,5 +1,6 @@
-package dev.boxadactle.boxlib.config.gui.widget;
+package dev.boxadactle.boxlib.config.gui.widget.label;
 
+import dev.boxadactle.boxlib.config.gui.widget.label.BLabel;
 import dev.boxadactle.boxlib.util.GuiUtils;
 import dev.boxadactle.boxlib.util.RenderUtils;
 import net.minecraft.client.gui.GuiGraphics;

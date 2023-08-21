@@ -17,18 +17,6 @@ public class BMath {
         return (part / whole) * 100;
     }
 
-    public static int randomInt(int min, int max) {
-        return min + (int) (Math.random() * ((max - min) + 1));
-    }
-
-    public static double mapValue(double value, double inMin, double inMax, double outMin, double outMax) {
-        return (value - inMin) * (outMax - outMin) / (inMax - inMin) + outMin;
-    }
-
-    public static Object selectRandom(Object ...args) {
-        return args[(int) Math.round(Math.random() * (args.length - 1))];
-    }
-
     public static int aspectRatio(int int1, int int2, int int3) {
         int i1 = int3 / int1;
         return int2 * i1;
