@@ -1,7 +1,7 @@
 package dev.boxadactle.boxlib.forge;
 
-import dev.boxadactle.boxlib.BoxLibInitializer;
-import dev.boxadactle.boxlib.base.ModConstants;
+import dev.boxadactle.boxlib.core.BoxLib;
+import dev.boxadactle.boxlib.core.ModConstants;
 import dev.boxadactle.boxlib.forge.command.BCommandManager;
 import dev.boxadactle.boxlib.example.ExampleConfigScreen;
 import dev.boxadactle.boxlib.scheduling.Scheduling;
@@ -19,7 +19,7 @@ import net.minecraftforge.fml.common.Mod;
 public class BoxLibForge {
 
     public BoxLibForge() {
-        BoxLibInitializer.init();
+        BoxLib.init();
 
         ModLoadingContext.get().registerExtensionPoint(ConfigScreenHandler.ConfigScreenFactory.class, () ->
                 new ConfigScreenHandler.ConfigScreenFactory((minecraft, screen) -> new ExampleConfigScreen(screen))

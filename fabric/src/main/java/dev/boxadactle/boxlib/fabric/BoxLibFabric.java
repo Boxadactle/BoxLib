@@ -1,6 +1,6 @@
 package dev.boxadactle.boxlib.fabric;
 
-import dev.boxadactle.boxlib.BoxLibInitializer;
+import dev.boxadactle.boxlib.core.BoxLib;
 import dev.boxadactle.boxlib.fabric.command.BCommandManager;
 import dev.boxadactle.boxlib.scheduling.Scheduling;
 import net.fabricmc.api.ClientModInitializer;
@@ -11,7 +11,7 @@ public class BoxLibFabric implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
-        BoxLibInitializer.init();
+        BoxLib.init();
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             Scheduling.tick();

@@ -25,22 +25,6 @@ dependencies {
     modImplementation("com.terraformersmc:modmenu:${rootProject.modmenu_version}") {
         transitive = false
     }
-
-    common(project(path: ":boxlib-base", configuration: "namedElements"))
-    common(project(path: ":boxlib-client-utils", configuration: "namedElements"))
-    common(project(path: ":boxlib-config-file", configuration: "namedElements"))
-    common(project(path: ":boxlib-config-gui", configuration: "namedElements"))
-    common(project(path: ":boxlib-http", configuration: "namedElements"))
-    common(project(path: ":boxlib-math", configuration: "namedElements"))
-    common(project(path: ":boxlib-scheduling", configuration: "namedElements"))
-
-    shadowCommon(project(path: ":boxlib-base", configuration: "transformProductionFabric"))  { transitive false }
-    shadowCommon(project(path: ":boxlib-client-utils", configuration: "transformProductionFabric"))  { transitive false }
-    shadowCommon(project(path: ":boxlib-config-file", configuration: "transformProductionFabric"))  { transitive false }
-    shadowCommon(project(path: ":boxlib-config-gui", configuration: "transformProductionFabric"))  { transitive false }
-    shadowCommon(project(path: ":boxlib-http", configuration: "transformProductionFabric"))  { transitive false }
-    shadowCommon(project(path: ":boxlib-math", configuration: "transformProductionFabric"))  { transitive false }
-    shadowCommon(project(path: ":boxlib-scheduling", configuration: "transformProductionFabric"))  { transitive false }
 }
 
 processResources {

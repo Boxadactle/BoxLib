@@ -1,8 +1,7 @@
 package dev.boxadactle.boxlib.example;
 
-import dev.boxadactle.boxlib.BoxLibInitializer;
-import dev.boxadactle.boxlib.base.BoxLib;
-import dev.boxadactle.boxlib.base.ModConstants;
+import dev.boxadactle.boxlib.core.BoxLib;
+import dev.boxadactle.boxlib.core.ModConstants;
 import dev.boxadactle.boxlib.config.BConfig;
 import dev.boxadactle.boxlib.config.BConfigFile;
 

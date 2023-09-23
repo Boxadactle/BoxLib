@@ -1,7 +1,6 @@
 plugins {
     id "com.github.johnrengelman.shadow" version "7.1.2"
 }
-
 architectury {
     platformSetupLoomIde()
     forge()
@@ -20,22 +19,6 @@ dependencies {
 
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionForge")) { transitive = false }
-
-    common(project(path: ":boxlib-base", configuration: "namedElements"))  { transitive false }
-    common(project(path: ":boxlib-client-utils", configuration: "namedElements"))  { transitive false }
-    common(project(path: ":boxlib-config-file", configuration: "namedElements"))  { transitive false }
-    common(project(path: ":boxlib-config-gui", configuration: "namedElements"))  { transitive false }
-    common(project(path: ":boxlib-http", configuration: "namedElements"))  { transitive false }
-    common(project(path: ":boxlib-math", configuration: "namedElements"))  { transitive false }
-    common(project(path: ":boxlib-scheduling", configuration: "namedElements"))  { transitive false }
-
-    shadowCommon(project(path: ":boxlib-base", configuration: "transformProductionForge"))  { transitive false }
-    shadowCommon(project(path: ":boxlib-client-utils", configuration: "transformProductionForge"))  { transitive false }
-    shadowCommon(project(path: ":boxlib-config-file", configuration: "transformProductionForge"))  { transitive false }
-    shadowCommon(project(path: ":boxlib-config-gui", configuration: "transformProductionForge"))  { transitive false }
-    shadowCommon(project(path: ":boxlib-http", configuration: "transformProductionForge"))  { transitive false }
-    shadowCommon(project(path: ":boxlib-math", configuration: "transformProductionForge"))  { transitive false }
-    shadowCommon(project(path: ":boxlib-scheduling", configuration: "transformProductionForge"))  { transitive false }
 }
 
 processResources {

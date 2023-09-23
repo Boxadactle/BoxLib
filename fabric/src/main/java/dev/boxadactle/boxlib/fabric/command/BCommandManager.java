@@ -1,7 +1,7 @@
 package dev.boxadactle.boxlib.fabric.command;
 
 import com.mojang.brigadier.CommandDispatcher;
-import dev.boxadactle.boxlib.util.function.ClassProvider;
+import dev.boxadactle.boxlib.function.ClassProvider;
 import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
 
 import java.util.ArrayList;

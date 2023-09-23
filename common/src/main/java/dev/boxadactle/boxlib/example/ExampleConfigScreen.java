@@ -1,13 +1,12 @@
 package dev.boxadactle.boxlib.example;
 
-import dev.boxadactle.boxlib.BoxLibInitializer;
-import dev.boxadactle.boxlib.base.ModConstants;
-import dev.boxadactle.boxlib.config.gui.BConfigScreen;
-import dev.boxadactle.boxlib.config.gui.widget.button.BBooleanButton;
-import dev.boxadactle.boxlib.config.gui.widget.button.BEnumButton;
-import dev.boxadactle.boxlib.config.gui.widget.field.*;
-import dev.boxadactle.boxlib.config.gui.widget.label.BCenteredLabel;
-import dev.boxadactle.boxlib.config.gui.widget.slider.*;
+import dev.boxadactle.boxlib.core.BoxLib;
+import dev.boxadactle.boxlib.core.ModConstants;
+import dev.boxadactle.boxlib.gui.BOptionScreen;
+import dev.boxadactle.boxlib.gui.widget.button.*;
+import dev.boxadactle.boxlib.gui.widget.field.*;
+import dev.boxadactle.boxlib.gui.widget.label.*;
+import dev.boxadactle.boxlib.gui.widget.slider.*;
 import dev.boxadactle.boxlib.util.ClientUtils;
 import dev.boxadactle.boxlib.util.GuiUtils;
 import net.minecraft.client.gui.screens.Screen;
@@ -15,24 +14,24 @@ import net.minecraft.network.chat.Component;
 
 /**
  * Here is a super basic example config screen.
- * Config screens must extend {@link dev.boxadactle.boxlib.config.gui.BConfigScreen} to access the methods
+ * Config screens must extend {@link BOptionScreen} to access the methods
  * Config values can be accessed/saved with config classes.
  * You can use an external library such as Cloth Config, but BoxLib already handles config
  * @see dev.boxadactle.boxlib.config.BConfig
  * @see dev.boxadactle.boxlib.config.BConfigFile
  */
-public class ExampleConfigScreen extends BConfigScreen {
+public class ExampleConfigScreen extends BOptionScreen {
 
     public ExampleConfigScreen(Screen parent) {
         super(parent);
 
         // this is required (you can also do this yourself if you want) for using a cancel button
-        BoxLibInitializer.CONFIG.cacheConfig();
+        BoxLib.CONFIG.cacheConfig();
     }
 
     // using this method because I'm too lazy
     private ExampleConfigClass config() {
-        return BoxLibInitializer.CONFIG.get();
+        return BoxLib.CONFIG.get();
     }
 
     @Override
@@ -46,14 +45,14 @@ public class ExampleConfigScreen extends BConfigScreen {
         // here is where we restore the reload the config to undo all the changes to the config
         addRenderableWidget(createHalfCancelButton(startX, startY, (b) -> {
             ClientUtils.setScreen(parent);
-            BoxLibInitializer.CONFIG.restoreCache();
+            BoxLib.CONFIG.restoreCache();
         }));
 
         // the half save button method will put the button next to the cancel button
         // make sure to add the save button like this, or the save button won't be disabled
         // when an incorrect value is entered
         setSaveButton(createHalfSaveButton(startX, startY, (b) -> {
-            BoxLibInitializer.CONFIG.save();
+            BoxLib.CONFIG.save();
             ClientUtils.setScreen(parent);
         }));
 

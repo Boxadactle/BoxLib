@@ -1,7 +1,7 @@
 package dev.boxadactle.boxlib.forge.command;
 
 import com.mojang.brigadier.CommandDispatcher;
-import dev.boxadactle.boxlib.util.function.ClassProvider;
+import dev.boxadactle.boxlib.function.ClassProvider;
 import net.minecraft.commands.CommandSourceStack;
 
 import java.util.ArrayList;
