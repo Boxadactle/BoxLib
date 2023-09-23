@@ -20,9 +20,6 @@
       "dev.boxadactle.boxlib.fabric.ModMenuIntegration"
     ]
   },
-  "mixins": [
-    "boxlib.mixins.json"
-  ],
   "depends": {
     "fabricloader": ">=0.14.21",
     "minecraft": ">=1.20"
