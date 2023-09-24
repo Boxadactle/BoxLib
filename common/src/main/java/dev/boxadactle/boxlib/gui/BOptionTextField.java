@@ -91,13 +91,7 @@ public abstract class BOptionTextField<T> extends EditBox implements BOptionEntr
     @Override
     public void onClick(double mouseX, double mouseY) {
         if (!MouseUtils.isMouseHovering(new Rect<>(this.getX(), this.getY(), this.width, this.height))) super.setFocused(false);
-        BoxLib.LOGGER.info(!MouseUtils.isMouseHovering(new Rect<>(this.getX(), this.getY(), this.width, this.height)));
         super.onClick(mouseX, mouseY);
-    }
-
-    @Override
-    public void tick() {
-        super.tick();
     }
 
 }

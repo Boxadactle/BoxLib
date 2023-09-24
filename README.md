@@ -1,13 +1,19 @@
 # BoxLib
 The most basic client-side library mod
 
-### Embedding
-Most of my mods embed this mod, here is the list:
+### Version List
 
-| Name      | Version |
-| ----------- | ----------- |
-| Coordinates Display | Since v3.0.0 |
-| Debug Keybind | Since v1.0.0 |
+| MC Version | Mod Version   |
+|------------|---------------|
+| 1.18.2     | Not Supported |
+| 1.19       | v6.0.0        |
+| 1.19.1     | v6.0.0        |
+| 1.19.2     | v6.0.0        |
+| 1.19.3     | v7.0.0        |
+| 1.19.4     | v8.0.0        |
+| 1.20       | v9.0.0        |
+| 1.20.1     | v9.0.0        |
+| 1.20.2     | v10.0.0       |
 
 ### Library
 
