@@ -12,6 +12,6 @@ public class BLeftLabel extends BLabel {
 
     @Override
     public void render(PoseStack guiGraphics, int mouseX, int mouseY, float delta) {
-        RenderUtils.drawText(guiGraphics, message, this.x + this.getWidth() - GuiUtils.getTextRenderer().width(message), this.y + 5);
+        RenderUtils.drawText(guiGraphics, message, this.getX() + this.getWidth() - GuiUtils.getTextRenderer().width(message), this.getY() + 5);
     }
 }

@@ -14,15 +14,21 @@ public interface BOptionHelper {
     }
 
     default Button createCancelButton(int startX, int startY, Consumer<Button> ButtonConsumer) {
-        return new Button(startX, startY, getButtonWidth(ButtonType.NORMAL), getButtonHeight(), GuiUtils.CANCEL, ButtonConsumer::accept);
+        return new Button.Builder(GuiUtils.CANCEL, ButtonConsumer::accept)
+                .bounds(startX, startY, getButtonWidth(ButtonType.NORMAL), getButtonHeight())
+                .build();
     }
 
     default Button createBackButton(int startX, int startY, Screen parent) {
-        return new Button(startX, startY, getButtonWidth(ButtonType.NORMAL), getButtonHeight(), GuiUtils.BACK, b -> ClientUtils.setScreen(parent));
+        return new Button.Builder(GuiUtils.BACK, b -> ClientUtils.setScreen(parent))
+                .bounds(startX, startY, getButtonWidth(ButtonType.NORMAL), getButtonHeight())
+                .build();
     }
 
     default Button createSaveButton(int startX, int startY, Consumer<Button> saveConsumer) {
-        return new Button(startX, startY, getButtonWidth(ButtonType.NORMAL), getButtonHeight(), GuiUtils.SAVE, saveConsumer::accept);
+        return new Button.Builder(GuiUtils.SAVE, saveConsumer::accept)
+                .bounds(startX, startY, getButtonWidth(ButtonType.NORMAL), getButtonHeight())
+                .build();
     }
 
     default Button createHalfCancelButton(int startX, int startY, Screen parent) {
@@ -30,18 +36,26 @@ public interface BOptionHelper {
     }
 
     default Button createHalfCancelButton(int startX, int startY, Consumer<Button> ButtonConsumer) {
-        return new Button(startX, startY, getButtonWidth(ButtonType.SMALL), getButtonHeight(), GuiUtils.CANCEL, ButtonConsumer::accept);
+        return new Button.Builder(GuiUtils.CANCEL, ButtonConsumer::accept)
+                .bounds(startX, startY, getButtonWidth(ButtonType.SMALL), getButtonHeight())
+                .build();
     }
 
     default Button createHalfSaveButton(int startX, int startY, Consumer<Button> saveConsumer) {
-        return new Button(startX + getButtonWidth(ButtonType.SMALL) + getPadding(), startY, getButtonWidth(ButtonType.SMALL), getButtonHeight(), GuiUtils.SAVE, saveConsumer::accept);
+        return new Button.Builder(GuiUtils.SAVE, saveConsumer::accept)
+                .bounds(startX + getButtonWidth(ButtonType.SMALL) + getPadding(), startY, getButtonWidth(ButtonType.SMALL), getButtonHeight())
+                .build();
     }
 
     @Deprecated
     default Button[] createSaveAndCancelButton(int startX, int startY, Screen parent, Consumer<Button> saveConsumer) {
         return new Button[]{
-                new Button(startX, startY, getButtonWidth(ButtonType.SMALL), getButtonHeight(), GuiUtils.CANCEL, b -> ClientUtils.setScreen(parent)),
-                new Button(startX + getButtonWidth(ButtonType.SMALL) + getButtonHeight(), startY, getButtonWidth(ButtonType.SMALL), getButtonHeight(), GuiUtils.SAVE, saveConsumer::accept)
+                new Button.Builder(GuiUtils.CANCEL, b -> ClientUtils.setScreen(parent))
+                        .bounds(startX, startY, getButtonWidth(ButtonType.SMALL), getButtonHeight())
+                        .build(),
+                new Button.Builder(GuiUtils.SAVE, saveConsumer::accept)
+                        .bounds(startX + getButtonWidth(ButtonType.SMALL) + getButtonHeight(), startY, getButtonWidth(ButtonType.SMALL), getButtonHeight())
+                        .build()
         };
     }
 
@@ -73,7 +87,7 @@ public interface BOptionHelper {
     static int padding() {
         return 2;
     }
-    
+
     enum ButtonType {
         NORMAL,
         SMALL,

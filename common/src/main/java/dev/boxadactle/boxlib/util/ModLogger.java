@@ -116,7 +116,7 @@ public class ModLogger {
 
         public void publicChat(String msg) {
             if (this.client.player != null) {
-                ClientUtils.getClient().player.chatSigned(msg, null);
+                ClientUtils.getClient().player.connection.sendChat(msg);
             }
         }
     }

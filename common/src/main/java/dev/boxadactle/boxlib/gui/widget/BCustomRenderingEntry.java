@@ -17,7 +17,7 @@ public class BCustomRenderingEntry extends BOptionButton<Object> {
 
     @Override
     public void render(PoseStack p_93657_, int mouseX, int mouseY, float delta) {
-        function.accept(p_93657_, this.x, this.y, this.width, this.height, mouseX, mouseY, delta);
+        function.accept(p_93657_, this.getX(), this.getY(), this.width, this.height, mouseX, mouseY, delta);
     }
 
     @Override

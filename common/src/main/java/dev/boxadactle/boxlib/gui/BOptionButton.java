@@ -11,7 +11,7 @@ public abstract class BOptionButton<T> extends Button implements BOptionEntry<T>
     protected T currentValue;
 
     public BOptionButton(Component message, T value, Consumer<T> function) {
-        super(0, 0, 10, BOptionHelper.buttonHeight(), message, b -> {});
+        super(0, 0, 10, BOptionHelper.buttonHeight(), message, b -> {}, DEFAULT_NARRATION);
 
         this.function = function;
         this.currentValue = value;
