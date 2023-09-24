@@ -29,7 +29,7 @@ public class WorldUtils {
     }
 
     public static String getCurrentDimension() {
-        ResourceKey<Level> registry = getPlayer().level().dimension();
+        ResourceKey<Level> registry = getPlayer().level.dimension();
 
         return registry.location().toString();
     }

@@ -1,7 +1,7 @@
 package dev.boxadactle.boxlib.gui.widget;
 
+import com.mojang.blaze3d.vertex.PoseStack;
 import dev.boxadactle.boxlib.gui.BOptionButton;
-import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 
 public class BSpacingEntry extends BOptionButton<Object> {
@@ -10,7 +10,7 @@ public class BSpacingEntry extends BOptionButton<Object> {
     }
 
     @Override
-    public void render(GuiGraphics p_93657_, int mouseX, int mouseY, float delta) {
+    public void render(PoseStack p_93657_, int mouseX, int mouseY, float delta) {
     }
 
     @Override

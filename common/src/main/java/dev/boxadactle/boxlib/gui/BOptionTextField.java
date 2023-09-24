@@ -1,11 +1,11 @@
 package dev.boxadactle.boxlib.gui;
 
+import com.mojang.blaze3d.vertex.PoseStack;
 import dev.boxadactle.boxlib.core.BoxLib;
+import dev.boxadactle.boxlib.function.Converter;
 import dev.boxadactle.boxlib.math.geometry.Rect;
 import dev.boxadactle.boxlib.util.GuiUtils;
 import dev.boxadactle.boxlib.util.MouseUtils;
-import dev.boxadactle.boxlib.function.Converter;
-import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.network.chat.Component;
 
@@ -29,8 +29,8 @@ public abstract class BOptionTextField<T> extends EditBox implements BOptionEntr
     }
 
     @Override
-    public void render(GuiGraphics p_93657_, int mouseX, int mouseY, float delta) {
-        super.render(p_93657_, mouseX, mouseY, delta);
+    public void render(PoseStack poseStack, int i, int j, float f) {
+        super.render(poseStack, i, j, f);
 
         if (this.isInvalid()) this.setTextColor(GuiUtils.RED);
         else this.setTextColor(14737632);
@@ -57,32 +57,6 @@ public abstract class BOptionTextField<T> extends EditBox implements BOptionEntr
         return input;
     }
 
-
-    @Override
-    public void setX(int x) {
-        super.setX(x);
-    }
-
-    @Override
-    public void setY(int y) {
-        super.setY(y);
-    }
-
-    @Override
-    public void setWidth(int width) {
-        super.setWidth(width);
-    }
-
-    @Override
-    public boolean isHovered() {
-        return super.isHovered();
-    }
-
-    @Override
-    public boolean mouseClicked(double mouseX, double mouseY, int button) {
-        return super.mouseClicked(mouseX, mouseY, button);
-    }
-
     @Override
     public Component getMessage() {
         return super.getMessage();
@@ -90,8 +64,8 @@ public abstract class BOptionTextField<T> extends EditBox implements BOptionEntr
 
     @Override
     public void onClick(double mouseX, double mouseY) {
-        if (!MouseUtils.isMouseHovering(new Rect<>(this.getX(), this.getY(), this.width, this.height))) super.setFocused(false);
-        BoxLib.LOGGER.info(!MouseUtils.isMouseHovering(new Rect<>(this.getX(), this.getY(), this.width, this.height)));
+        if (!MouseUtils.isMouseHovering(new Rect<>(this.x, this.y, this.width, this.height))) super.setFocused(false);
+        BoxLib.LOGGER.info(!MouseUtils.isMouseHovering(new Rect<>(this.x, this.y, this.width, this.height)));
         super.onClick(mouseX, mouseY);
     }
 

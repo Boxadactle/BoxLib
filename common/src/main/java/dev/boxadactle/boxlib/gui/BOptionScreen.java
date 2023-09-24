@@ -1,10 +1,10 @@
 package dev.boxadactle.boxlib.gui;
 
 import com.google.common.collect.ImmutableList;
+import com.mojang.blaze3d.vertex.PoseStack;
 import dev.boxadactle.boxlib.util.ClientUtils;
 import dev.boxadactle.boxlib.util.RenderUtils;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.ContainerObjectSelectionList;
@@ -55,7 +55,7 @@ public abstract class BOptionScreen extends Screen implements BOptionHelper {
     }
 
     @Override
-    public void render(GuiGraphics guiGraphics, int i, int j, float f) {
+    public void render(PoseStack guiGraphics, int i, int j, float f) {
         if (shouldRenderScrollingWidget()) this.configList.render(guiGraphics, i, j, f);
 
         super.render(guiGraphics, i, j, f);
@@ -126,9 +126,9 @@ public abstract class BOptionScreen extends Screen implements BOptionHelper {
      * @param link The link to the wiki that will open when the button is clicked.
      */
     protected void setWiki(Component label, String link) {
-        this.addRenderableWidget(new Button.Builder(label, b -> {
+        this.addRenderableWidget(new Button(3, 3, BOptionHelper.buttonWidth(ButtonType.TINY), BOptionHelper.buttonHeight() - 3, label, b -> {
             ClientUtils.openLinkConfirmScreen(link, this);
-        }).bounds(3, 3, BOptionHelper.buttonWidth(ButtonType.TINY), BOptionHelper.buttonHeight() - 3).build());
+        }));
     }
 
     /**
@@ -184,14 +184,14 @@ public abstract class BOptionScreen extends Screen implements BOptionHelper {
             }
 
             @Override
-            public void render(GuiGraphics p_93523_, int index, int y, int x, int entryWidth, int entryHeight, int mouseX, int mouseY, boolean hovered, float tickDelta) {
+            public void render(PoseStack poseStack, int index, int y, int x, int entryWidth, int entryHeight, int mouseX, int mouseY, boolean hovered, float tickDelta) {
                 AbstractWidget w = (AbstractWidget)widget;
 
-                w.setX(x);
-                w.setY(y);
+                w.x = x;
+                w.y = y;
                 w.setWidth(entryWidth);
 
-                w.render(p_93523_, mouseX, mouseY, tickDelta);
+                w.render(poseStack, mouseX, mouseY, tickDelta);
             }
 
             @Override
@@ -227,7 +227,7 @@ public abstract class BOptionScreen extends Screen implements BOptionHelper {
             }
 
             @Override
-            public void render(GuiGraphics p_93523_, int index, int y, int x, int entryWidth, int entryHeight, int mouseX, int mouseY, boolean hovered, float tickDelta) {
+            public void render(PoseStack poseStack, int index, int y, int x, int entryWidth, int entryHeight, int mouseX, int mouseY, boolean hovered, float tickDelta) {
                 AbstractWidget w1 = (AbstractWidget)widget1;
                 AbstractWidget w2 = (AbstractWidget)widget2;
 
@@ -235,16 +235,16 @@ public abstract class BOptionScreen extends Screen implements BOptionHelper {
 
                 int p2 = BOptionHelper.padding() / 2;
 
-                w1.setX(x);
-                w1.setY(y);
+                w1.x = x;
+                w1.y = y;
                 w1.setWidth(entryWidth / 2 - p1);
 
-                w2.setX(x + entryWidth / 2 + p2);
-                w2.setY(y);
+                w2.x = (x + entryWidth / 2 + p2);
+                w2.y = (y);
                 w2.setWidth(entryWidth / 2 - p2);
 
-                w1.render(p_93523_, mouseX, mouseY, tickDelta);
-                w2.render(p_93523_, mouseX, mouseY, tickDelta);
+                w1.render(poseStack, mouseX, mouseY, tickDelta);
+                w2.render(poseStack, mouseX, mouseY, tickDelta);
             }
         }
 

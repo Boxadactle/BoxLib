@@ -1,8 +1,8 @@
 package dev.boxadactle.boxlib.gui.widget.label;
 
+import com.mojang.blaze3d.vertex.PoseStack;
 import dev.boxadactle.boxlib.util.GuiUtils;
 import dev.boxadactle.boxlib.util.RenderUtils;
-import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 
 public class BLeftLabel extends BLabel {
@@ -11,7 +11,7 @@ public class BLeftLabel extends BLabel {
     }
 
     @Override
-    public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float delta) {
-        RenderUtils.drawText(guiGraphics, message, this.getX() + this.getWidth() - GuiUtils.getTextRenderer().width(message), this.getY() + 5);
+    public void render(PoseStack guiGraphics, int mouseX, int mouseY, float delta) {
+        RenderUtils.drawText(guiGraphics, message, this.x + this.getWidth() - GuiUtils.getTextRenderer().width(message), this.y + 5);
     }
 }
