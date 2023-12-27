@@ -105,7 +105,7 @@ public class GuiUtils {
         return decimal;
     }
 
-    public static int getTextSize(Component text) {
+    public static int getTextLength(Component text) {
         return getTextRenderer().width(text);
     }
 

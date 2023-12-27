@@ -14,6 +14,8 @@ The most basic client-side library mod
 | 1.20       | v9.0.0        |
 | 1.20.1     | v9.0.0        |
 | 1.20.2     | v10.0.0       |
+| 1.20.3     | v11.0.0       |
+| 1.20.4     | v11.0.0       |
 
 ### Library
 

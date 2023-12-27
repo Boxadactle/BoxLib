@@ -2,11 +2,11 @@ package dev.boxadactle.boxlib.example;
 
 import dev.boxadactle.boxlib.core.BoxLib;
 import dev.boxadactle.boxlib.core.ModConstants;
-import dev.boxadactle.boxlib.gui.BOptionScreen;
-import dev.boxadactle.boxlib.gui.widget.button.*;
-import dev.boxadactle.boxlib.gui.widget.field.*;
-import dev.boxadactle.boxlib.gui.widget.label.*;
-import dev.boxadactle.boxlib.gui.widget.slider.*;
+import dev.boxadactle.boxlib.gui.config.BOptionScreen;
+import dev.boxadactle.boxlib.gui.config.widget.button.*;
+import dev.boxadactle.boxlib.gui.config.widget.field.*;
+import dev.boxadactle.boxlib.gui.config.widget.label.*;
+import dev.boxadactle.boxlib.gui.config.widget.slider.*;
 import dev.boxadactle.boxlib.util.ClientUtils;
 import dev.boxadactle.boxlib.util.GuiUtils;
 import net.minecraft.client.gui.screens.Screen;
