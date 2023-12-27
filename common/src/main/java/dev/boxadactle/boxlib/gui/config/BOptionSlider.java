@@ -8,12 +8,12 @@ import net.minecraft.network.chat.Component;
 import java.util.function.Consumer;
 
 public abstract class BOptionSlider<T extends Number> extends AbstractSliderButton implements BOptionEntry<T>, Converter<T, Double> {
-    T min;
-    T max;
+    protected T min;
+    protected T max;
 
-    String key;
+    protected String key;
 
-    Consumer<T> function;
+    protected Consumer<T> function;
 
     public BOptionSlider(String key, T min, T max, T value, Consumer<T> function) {
         super(
