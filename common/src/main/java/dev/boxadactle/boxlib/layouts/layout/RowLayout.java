@@ -17,6 +17,8 @@ public class RowLayout extends RenderingLayout {
             a += component.getWidth() + padding * 2;
         }
 
+        a -= padding * 2;
+
         return a;
     }
 
@@ -28,8 +30,7 @@ public class RowLayout extends RenderingLayout {
             a = Math.max(a, component.getHeight());
         }
 
-
-        return a + padding * 2;
+        return a;
     }
 
     @Override

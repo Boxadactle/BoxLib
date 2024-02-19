@@ -17,8 +17,10 @@ import dev.boxadactle.boxlib.layouts.component.ParagraphComponent;
 import dev.boxadactle.boxlib.layouts.layout.PaddingLayout;
 import dev.boxadactle.boxlib.layouts.layout.RowLayout;
 import dev.boxadactle.boxlib.layouts.layout.ColumnLayout;
+import dev.boxadactle.boxlib.math.geometry.Rect;
 import dev.boxadactle.boxlib.util.ClientUtils;
 import dev.boxadactle.boxlib.util.GuiUtils;
+import dev.boxadactle.boxlib.util.RenderUtils;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 
@@ -221,6 +223,10 @@ public class ExampleConfigScreen extends BOptionScreen {
                         (guiGraphics, x, y, width, height, mouseX, mouseY, tickDelta) -> {
                             layout.setPosition(x, y);
 
+                            Rect<Integer> r = layout.calculateRect();
+
+                            guiGraphics.fill(r.getX(), r.getY(), r.getX() + r.getWidth(), r.getY() + r.getHeight(), GuiUtils.BLUE);
+
                             layout.render(guiGraphics);
                         }
                 )
@@ -237,12 +243,12 @@ public class ExampleConfigScreen extends BOptionScreen {
     }
 
     private RenderingLayout createLayout() {
-        RowLayout layout = new RowLayout(0, 0, 2);
+        RowLayout layout = new RowLayout(0, 0, 0);
 
-        ColumnLayout column = new ColumnLayout(0, 0, 10);
+        ColumnLayout column = new ColumnLayout(0, 0, 0);
         column.addComponent(new CenteredParagraphComponent(
                 2,
-                Component.literal("This is a paragraph component. "),
+                Component.literal("This is a paragraph component."),
                 Component.literal("It's a simple way to add text to a layout."),
                 Component.literal("You can add as many components as you want."),
                 Component.literal("And it will render them all in a line.")
@@ -260,7 +266,7 @@ public class ExampleConfigScreen extends BOptionScreen {
         for (int i = 0; i < 5; i++) {
             columnLayout.addComponent(new ParagraphComponent(
                     2,
-                    Component.literal("This is a paragraph component. "),
+                    Component.literal("This is a paragraph component."),
                     Component.literal("It's a simple way to add text to a layout.")
             ));
         }
@@ -268,6 +274,6 @@ public class ExampleConfigScreen extends BOptionScreen {
         layout.addComponent(new LayoutContainerComponent(column));
         layout.addComponent(new LayoutContainerComponent(columnLayout));
 
-        return new PaddingLayout(0, 0, 10, layout);
+        return new PaddingLayout(0, 0, 1, layout);
     }
 }

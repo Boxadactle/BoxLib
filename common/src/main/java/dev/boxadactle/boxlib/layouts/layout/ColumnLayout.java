@@ -17,6 +17,8 @@ public class ColumnLayout extends RenderingLayout {
             a = Math.max(a, component.getWidth());
         }
 
+        a -= padding * 2;
+
         return a + padding * 2;
     }
 
@@ -27,6 +29,8 @@ public class ColumnLayout extends RenderingLayout {
         for (LayoutComponent<?> component : components) {
             a += component.getHeight() + padding * 2;
         }
+
+        a -= padding * 2;
 
         return a;
     }
