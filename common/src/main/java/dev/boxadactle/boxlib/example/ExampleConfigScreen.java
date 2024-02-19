@@ -10,10 +10,12 @@ import dev.boxadactle.boxlib.gui.config.widget.field.*;
 import dev.boxadactle.boxlib.gui.config.widget.label.*;
 import dev.boxadactle.boxlib.gui.config.widget.slider.*;
 import dev.boxadactle.boxlib.layouts.RenderingLayout;
+import dev.boxadactle.boxlib.layouts.component.CenteredParagraphComponent;
 import dev.boxadactle.boxlib.layouts.component.LayoutContainerComponent;
 import dev.boxadactle.boxlib.layouts.component.ParagraphComponent;
-import dev.boxadactle.boxlib.layouts.layout.HorizontalLayout;
-import dev.boxadactle.boxlib.layouts.layout.VerticalLayout;
+import dev.boxadactle.boxlib.layouts.layout.PaddingLayout;
+import dev.boxadactle.boxlib.layouts.layout.RowLayout;
+import dev.boxadactle.boxlib.layouts.layout.ColumnLayout;
 import dev.boxadactle.boxlib.util.ClientUtils;
 import dev.boxadactle.boxlib.util.GuiUtils;
 import net.minecraft.client.gui.screens.Screen;
@@ -234,9 +236,9 @@ public class ExampleConfigScreen extends BOptionScreen {
     }
 
     private RenderingLayout createLayout() {
-        HorizontalLayout layout = new HorizontalLayout(0, 0, 10);
+        RowLayout layout = new RowLayout(0, 0, 10);
 
-        layout.addComponent(new ParagraphComponent(
+        layout.addComponent(new CenteredParagraphComponent(
                 2,
                 Component.literal("This is a paragraph component. "),
                 Component.literal("It's a simple way to add text to a layout."),
@@ -244,18 +246,18 @@ public class ExampleConfigScreen extends BOptionScreen {
                 Component.literal("And it will render them all in a line.")
         ));
 
-        VerticalLayout verticalLayout = new VerticalLayout(0, 0, 10);
+        ColumnLayout columnLayout = new ColumnLayout(0, 0, 10);
 
         for (int i = 0; i < 5; i++) {
-            verticalLayout.addComponent(new ParagraphComponent(
+            columnLayout.addComponent(new ParagraphComponent(
                     2,
                     Component.literal("This is a paragraph component. "),
                     Component.literal("It's a simple way to add text to a layout.")
             ));
         }
 
-        layout.addComponent(new LayoutContainerComponent(verticalLayout));
+        layout.addComponent(new LayoutContainerComponent(columnLayout));
 
-        return layout;
+        return new PaddingLayout(0, 0, 10, layout);
     }
 }

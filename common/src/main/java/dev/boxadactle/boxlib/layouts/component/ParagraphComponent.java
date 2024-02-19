@@ -22,6 +22,14 @@ public class ParagraphComponent extends LayoutComponent<List<Component>> {
         this.component.addAll(Arrays.asList(components));
     }
 
+    public void add(Component component) {
+        this.component.add(component);
+    }
+
+    public void remove(Component component) {
+        this.component.remove(component);
+    }
+
     @Override
     public int getWidth() {
         return GuiUtils.getLongestLength(component.toArray(new Component[]{}));
