@@ -12,6 +12,7 @@ import dev.boxadactle.boxlib.gui.config.widget.slider.*;
 import dev.boxadactle.boxlib.layouts.RenderingLayout;
 import dev.boxadactle.boxlib.layouts.component.CenteredParagraphComponent;
 import dev.boxadactle.boxlib.layouts.component.LayoutContainerComponent;
+import dev.boxadactle.boxlib.layouts.component.LeftParagraphComponent;
 import dev.boxadactle.boxlib.layouts.component.ParagraphComponent;
 import dev.boxadactle.boxlib.layouts.layout.PaddingLayout;
 import dev.boxadactle.boxlib.layouts.layout.RowLayout;
@@ -236,9 +237,10 @@ public class ExampleConfigScreen extends BOptionScreen {
     }
 
     private RenderingLayout createLayout() {
-        RowLayout layout = new RowLayout(0, 0, 10);
+        RowLayout layout = new RowLayout(0, 0, 2);
 
-        layout.addComponent(new CenteredParagraphComponent(
+        ColumnLayout column = new ColumnLayout(0, 0, 10);
+        column.addComponent(new CenteredParagraphComponent(
                 2,
                 Component.literal("This is a paragraph component. "),
                 Component.literal("It's a simple way to add text to a layout."),
@@ -246,7 +248,14 @@ public class ExampleConfigScreen extends BOptionScreen {
                 Component.literal("And it will render them all in a line.")
         ));
 
-        ColumnLayout columnLayout = new ColumnLayout(0, 0, 10);
+        column.addComponent(new LeftParagraphComponent(
+                2,
+                Component.literal("You can also align text to the left. "),
+                Component.literal("It's a simple way to add text to a layout."),
+                Component.literal("You can add as many components as you want.")
+        ));
+
+        ColumnLayout columnLayout = new ColumnLayout(0, 0, 0);
 
         for (int i = 0; i < 5; i++) {
             columnLayout.addComponent(new ParagraphComponent(
@@ -256,6 +265,7 @@ public class ExampleConfigScreen extends BOptionScreen {
             ));
         }
 
+        layout.addComponent(new LayoutContainerComponent(column));
         layout.addComponent(new LayoutContainerComponent(columnLayout));
 
         return new PaddingLayout(0, 0, 10, layout);

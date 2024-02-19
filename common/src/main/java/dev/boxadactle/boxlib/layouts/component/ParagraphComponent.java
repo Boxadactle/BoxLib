@@ -37,7 +37,7 @@ public class ParagraphComponent extends LayoutComponent<List<Component>> {
 
     @Override
     public int getHeight() {
-        return component.size() * (GuiUtils.getTextHeight() + textPadding * 2);
+        return component.size() * (GuiUtils.getTextHeight() + textPadding * 2) - textPadding * 2;
     }
 
     @Override
