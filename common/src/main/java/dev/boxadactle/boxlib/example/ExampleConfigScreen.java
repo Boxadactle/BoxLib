@@ -3,10 +3,17 @@ package dev.boxadactle.boxlib.example;
 import dev.boxadactle.boxlib.core.BoxLib;
 import dev.boxadactle.boxlib.core.ModConstants;
 import dev.boxadactle.boxlib.gui.config.BOptionScreen;
+import dev.boxadactle.boxlib.gui.config.widget.BCustomEntry;
+import dev.boxadactle.boxlib.gui.config.widget.BSpacingEntry;
 import dev.boxadactle.boxlib.gui.config.widget.button.*;
 import dev.boxadactle.boxlib.gui.config.widget.field.*;
 import dev.boxadactle.boxlib.gui.config.widget.label.*;
 import dev.boxadactle.boxlib.gui.config.widget.slider.*;
+import dev.boxadactle.boxlib.layouts.RenderingLayout;
+import dev.boxadactle.boxlib.layouts.component.LayoutContainerComponent;
+import dev.boxadactle.boxlib.layouts.component.ParagraphComponent;
+import dev.boxadactle.boxlib.layouts.layout.HorizontalLayout;
+import dev.boxadactle.boxlib.layouts.layout.VerticalLayout;
 import dev.boxadactle.boxlib.util.ClientUtils;
 import dev.boxadactle.boxlib.util.GuiUtils;
 import net.minecraft.client.gui.screens.Screen;
@@ -205,9 +212,50 @@ public class ExampleConfigScreen extends BOptionScreen {
                 )
         );
 
+        RenderingLayout layout = createLayout();
+        addConfigLine(
+                new BCustomEntry(
+                        (guiGraphics, x, y, width, height, mouseX, mouseY, tickDelta) -> {
+                            layout.setPosition(x, y);
+
+                            layout.render(guiGraphics);
+                        }
+                )
+        );
+
+        for (int i = 0; i < 10; i++) {
+            addConfigLine(new BSpacingEntry());
+        }
+
         /* remember that you can create your own config
          * entries by extending the BConfigButton,
          * BConfigTextField, or BConfigSlider classes */
 
+    }
+
+    private RenderingLayout createLayout() {
+        HorizontalLayout layout = new HorizontalLayout(0, 0, 10);
+
+        layout.addComponent(new ParagraphComponent(
+                2,
+                Component.literal("This is a paragraph component. "),
+                Component.literal("It's a simple way to add text to a layout."),
+                Component.literal("You can add as many components as you want."),
+                Component.literal("And it will render them all in a line.")
+        ));
+
+        VerticalLayout verticalLayout = new VerticalLayout(0, 0, 10);
+
+        for (int i = 0; i < 5; i++) {
+            verticalLayout.addComponent(new ParagraphComponent(
+                    2,
+                    Component.literal("This is a paragraph component. "),
+                    Component.literal("It's a simple way to add text to a layout.")
+            ));
+        }
+
+        layout.addComponent(new LayoutContainerComponent(verticalLayout));
+
+        return layout;
     }
 }
