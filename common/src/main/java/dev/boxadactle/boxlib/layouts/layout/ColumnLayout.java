@@ -4,8 +4,8 @@ import dev.boxadactle.boxlib.layouts.LayoutComponent;
 import dev.boxadactle.boxlib.layouts.RenderingLayout;
 import net.minecraft.client.gui.GuiGraphics;
 
-public class VerticalLayout extends RenderingLayout {
-    public VerticalLayout(int x, int y, int padding) {
+public class ColumnLayout extends RenderingLayout {
+    public ColumnLayout(int x, int y, int padding) {
         super(x, y, padding);
     }
 
@@ -16,6 +16,8 @@ public class VerticalLayout extends RenderingLayout {
         for (LayoutComponent<?> component : components) {
             a = Math.max(a, component.getWidth());
         }
+
+        a -= padding * 2;
 
         return a + padding * 2;
     }
@@ -28,6 +30,8 @@ public class VerticalLayout extends RenderingLayout {
             a += component.getHeight() + padding * 2;
         }
 
+        a -= padding * 2;
+
         return a;
     }
 
@@ -35,10 +39,13 @@ public class VerticalLayout extends RenderingLayout {
     public void render(GuiGraphics graphics) {
         final int[] currentY = {y};
 
-        components.forEach(component -> {
+        for (int i = 0; i < components.size(); i++) {
+            LayoutComponent<?> component = components.get(i);
             component.render(graphics, x, currentY[0]);
 
-            currentY[0] += component.getHeight() + padding * 2;
-        });
+            if (i != components.size() - 1) {
+                currentY[0] += component.getHeight() + padding * 2;
+            }
+        }
     }
 }

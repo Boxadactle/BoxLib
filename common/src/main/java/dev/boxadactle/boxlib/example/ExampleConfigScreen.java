@@ -12,8 +12,8 @@ import dev.boxadactle.boxlib.gui.widget.slider.*;
 import dev.boxadactle.boxlib.layouts.RenderingLayout;
 import dev.boxadactle.boxlib.layouts.component.LayoutContainerComponent;
 import dev.boxadactle.boxlib.layouts.component.ParagraphComponent;
-import dev.boxadactle.boxlib.layouts.layout.HorizontalLayout;
-import dev.boxadactle.boxlib.layouts.layout.VerticalLayout;
+import dev.boxadactle.boxlib.layouts.layout.ColumnLayout;
+import dev.boxadactle.boxlib.layouts.layout.RowLayout;
 import dev.boxadactle.boxlib.util.ClientUtils;
 import dev.boxadactle.boxlib.util.GuiUtils;
 import net.minecraft.client.gui.screens.Screen;
@@ -234,7 +234,7 @@ public class ExampleConfigScreen extends BOptionScreen {
     }
 
     private RenderingLayout createLayout() {
-        HorizontalLayout layout = new HorizontalLayout(0, 0, 10);
+        RowLayout layout = new RowLayout(0, 0, 10);
 
         layout.addComponent(new ParagraphComponent(
                 2,
@@ -244,7 +244,7 @@ public class ExampleConfigScreen extends BOptionScreen {
                 Component.literal("And it will render them all in a line.")
         ));
 
-        VerticalLayout verticalLayout = new VerticalLayout(0, 0, 10);
+        ColumnLayout verticalLayout = new ColumnLayout(0, 0, 10);
 
         for (int i = 0; i < 5; i++) {
             verticalLayout.addComponent(new ParagraphComponent(
