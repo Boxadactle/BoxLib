@@ -8,7 +8,7 @@ import java.util.function.Consumer;
 
 public class BBooleanButton extends BOptionButton<Boolean> {
 
-    private final String key;
+    protected final String key;
 
     public BBooleanButton(String key, Boolean value, Consumer<Boolean> function) {
         super(Component.translatable(key, value ? GuiUtils.TRUE : GuiUtils.FALSE), value, function);

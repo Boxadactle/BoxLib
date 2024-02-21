@@ -9,9 +9,9 @@ import java.util.function.Consumer;
 
 public abstract class BToggleButton<T> extends BOptionButton<T> implements Converter<T, Component> {
 
-    List<T> list;
-    int index;
-    String key;
+    protected List<T> list;
+    protected int index;
+    protected String key;
 
     public BToggleButton(String key, T value, List<T> list, Consumer<T> function) {
         super(null, value, function);
