@@ -6,7 +6,7 @@ import net.minecraft.network.chat.Component;
 
 public class BLinkButton extends BOptionButton<Object> {
 
-    String link;
+    protected String link;
 
     public BLinkButton(Component message, String link) {
         super(message, null, null);

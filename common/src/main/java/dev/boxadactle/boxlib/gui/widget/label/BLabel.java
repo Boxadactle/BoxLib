@@ -7,7 +7,7 @@ import net.minecraft.network.chat.Component;
 
 public class BLabel extends BOptionButton<Object> {
 
-    Component message;
+    protected Component message;
 
     public BLabel(Component message) {
         super(message, null, null);
