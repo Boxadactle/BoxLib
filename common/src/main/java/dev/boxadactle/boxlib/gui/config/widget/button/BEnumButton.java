@@ -9,7 +9,7 @@ import java.util.function.Consumer;
 
 public class BEnumButton<T extends Enum<T>> extends BToggleButton<T> {
 
-    int valColor;
+    protected int valColor;
 
     public BEnumButton(String key, T value, Class<T> tEnum, Consumer<T> function, int valColor) {
         super(key, value, ImmutableList.copyOf(tEnum.getEnumConstants()), function);

@@ -8,7 +8,7 @@ import net.minecraft.network.chat.Component;
 
 public class BConfigScreenButton extends BOptionButton<Screen> {
 
-    BOptionScreen.Provider<?> function;
+    protected BOptionScreen.Provider<?> function;
 
     public BConfigScreenButton(Component message, Screen parent, BOptionScreen.Provider<?> function) {
         super(message, parent, s -> {});

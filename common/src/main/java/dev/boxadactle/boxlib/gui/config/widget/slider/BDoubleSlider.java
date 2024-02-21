@@ -6,7 +6,7 @@ import dev.boxadactle.boxlib.math.mathutils.NumberFormatter;
 import java.util.function.Consumer;
 
 public class BDoubleSlider extends BOptionSlider<Double> {
-    NumberFormatter<Double> formatter;
+    protected NumberFormatter<Double> formatter;
 
     public BDoubleSlider(String key, double min, double max, double value, int decimalPlaces, Consumer<Double> function) {
         super(key, min, max, value, function);

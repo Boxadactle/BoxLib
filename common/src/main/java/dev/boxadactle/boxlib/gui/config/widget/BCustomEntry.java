@@ -7,7 +7,7 @@ import net.minecraft.network.chat.Component;
 
 public class BCustomEntry extends BOptionButton<Object> {
 
-    Consumer8<GuiGraphics, Integer, Integer, Integer, Integer, Integer, Integer, Float> function;
+    protected Consumer8<GuiGraphics, Integer, Integer, Integer, Integer, Integer, Integer, Float> function;
 
     public BCustomEntry(Consumer8<GuiGraphics, Integer, Integer, Integer, Integer, Integer, Integer, Float> function) {
         super(Component.literal(""), null, null);
