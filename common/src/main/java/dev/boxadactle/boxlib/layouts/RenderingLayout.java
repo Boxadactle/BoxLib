@@ -1,5 +1,6 @@
 package dev.boxadactle.boxlib.layouts;
 
+import dev.boxadactle.boxlib.layouts.component.LayoutContainerComponent;
 import dev.boxadactle.boxlib.math.geometry.Rect;
 import dev.boxadactle.boxlib.math.geometry.Vec3;
 import net.minecraft.client.gui.GuiGraphics;
