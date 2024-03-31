@@ -7,6 +7,12 @@ import dev.boxadactle.boxlib.core.BoxLib;
 import java.io.*;
 import java.util.function.Supplier;
 
+/**
+ * This class is responsible for managing a configuration class that implements {@link BConfig}.
+ * It provides methods to load, save, cache, and reset the configuration.
+ *
+ * @param <T> the type of the configuration class
+ */
 public class BConfigClass<T extends BConfig> implements Supplier<T> {
 
     Class<T> configClass;
@@ -15,6 +21,12 @@ public class BConfigClass<T extends BConfig> implements Supplier<T> {
     T config;
     T cached;
 
+    /**
+     * Constructs a new BConfigClass with the specified configuration class and file.
+     *
+     * @param configClass the configuration class
+     * @param configFile the configuration file
+     */
     public BConfigClass(Class<T> configClass, File configFile) {
         this.configClass = configClass;
         filePath = configFile;
@@ -23,28 +35,51 @@ public class BConfigClass<T extends BConfig> implements Supplier<T> {
         config = BoxLib.initializeClass(configClass);
     }
 
+    /**
+     * Returns the current configuration.
+     *
+     * @return the current configuration
+     */
     public T get() {
         return config;
     }
 
+    /**
+     * Reloads the configuration from the file.
+     */
     public void reload() {
         load();
     }
 
+    /**
+     * Resets the configuration to its initial state and saves it to the file.
+     */
     public void resetConfig() {
         config = BoxLib.initializeClass(configClass);
 
         save();
     }
 
+    /**
+     * Caches the current configuration.
+     */
     public void cacheConfig() {
         cached = config;
     }
 
+
+    /**
+     * Clears the configuration cache.
+     */
     public void clearCache() {
         cached = null;
     }
 
+    /**
+     * Restores the configuration from the cache and saves it to the file.
+     *
+     * @throws NullPointerException if no configuration cache was found
+     */
     public void restoreCache() {
         if (cached == null) throw new NullPointerException("No config cache was found for class " + configClass.getName());
 
@@ -54,6 +89,10 @@ public class BConfigClass<T extends BConfig> implements Supplier<T> {
         save();
     }
 
+    /**
+     * Loads the configuration from the file.
+     * If the file does not exist, it initializes the configuration and saves it to the file.
+     */
     public void load() {
         try {
             config.onConfigLoadPre();
@@ -74,6 +113,9 @@ public class BConfigClass<T extends BConfig> implements Supplier<T> {
         }
     }
 
+    /**
+     * Saves the current configuration to the file.
+     */
     public void save() {
         try {
             config.onConfigSavePre();

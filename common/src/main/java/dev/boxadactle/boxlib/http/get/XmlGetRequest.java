@@ -8,6 +8,9 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.StringReader;
 
+/**
+ * Represents an HTTP GET request that expects an XML response.
+ */
 public interface XmlGetRequest extends HttpGetRequest {
 
     @Override

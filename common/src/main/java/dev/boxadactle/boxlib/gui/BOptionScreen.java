@@ -17,13 +17,56 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
- * The BoxLib config class
- * Extend this class to make basic config screens
- * <p></p>
- * Config values can be accessed/saved with config classes.
- * You can use an external library such as Cloth Config, but BoxLib already handles config
- * @see dev.boxadactle.boxlib.config.BConfig
- * @see dev.boxadactle.boxlib.config.BConfigFile
+ * The BOptionScreen class represents a screen for configuring options.
+ * It extends the Screen class and implements the BOptionHelper interface.
+ * This class provides methods for adding and managing configuration options,
+ * rendering the screen, and handling user input.
+ * <p>
+ * The BOptionScreen class is intended to be extended by specific configuration screens
+ * for different mods or features. It provides a framework for creating a consistent
+ * and user-friendly configuration experience.
+ * <p>
+ * To use the BOptionScreen class, create a subclass and implement the abstract methods
+ * to define the screen's name, footer, and configuration buttons. Use the provided
+ * methods to add configuration options to the screen. Override the shouldRenderScrollingWidget()
+ * method to control whether the configuration widget should be rendered on the screen.
+ * <p>
+ * The BOptionScreen class also provides methods for setting a wiki button and a save button.
+ * The wiki button opens a link to a wiki page when clicked, and the save button allows the user
+ * to save their configuration settings.
+ * <p>
+ * Example usage:
+ * ```
+ * public class MyConfigScreen extends BOptionScreen {
+ * <p>
+ *     public MyConfigScreen(Screen parent) {
+ *         super(parent);
+ *     }
+ *
+ *     @Override
+ *     protected Component getName() {
+ *         return Component.text("My Config Screen");
+ *     }
+ *
+ *     @Override
+ *     protected void initFooter(int startX, int startY) {
+ *         // Initialize footer buttons
+ *     }
+ *
+ *     @Override
+ *     protected void initConfigButtons() {
+ *         // Initialize configuration buttons
+ *     }
+ *
+ *     @Override
+ *     protected boolean shouldRenderScrollingWidget() {
+ *         return true;
+ *     }
+ * <p>
+ *     // Add additional methods and configuration options as needed
+ * <p>
+ * }
+ * ```
  */
 public abstract class BOptionScreen extends Screen implements BOptionHelper {
 
@@ -148,12 +191,27 @@ public abstract class BOptionScreen extends Screen implements BOptionHelper {
         return addRenderableWidget(saveButton);
     }
 
+    /**
+     * A functional interface for creating screens.
+     *
+     * @param <T> the type of the screen to be created
+     */
     public interface Provider<T extends Screen> {
 
+        /**
+         * Creates a new screen with the given parent screen.
+         *
+         * @param parent the parent screen
+         * @return the newly created screen
+         */
         T createScreen(Screen parent);
 
     }
 
+    /**
+     * Represents a list of configuration entries in a GUI screen.
+     * Extends the ContainerObjectSelectionList class.
+     */
     public class ConfigList extends ContainerObjectSelectionList<ConfigList.ConfigEntry> {
 
         public ConfigList(Minecraft minecraft) {
@@ -165,6 +223,10 @@ public abstract class BOptionScreen extends Screen implements BOptionHelper {
             return super.addEntry(entry);
         }
 
+        /**
+         * Checks if any of the entries in the list are invalid.
+         * @return true if any of the entries are invalid, false otherwise.
+         */
         public boolean hasInvalidEntry() {
             AtomicBoolean a = new AtomicBoolean(false);
 
@@ -175,14 +237,35 @@ public abstract class BOptionScreen extends Screen implements BOptionHelper {
             return a.get();
         }
 
+        /**
+         * Represents a single entry in the BOptionScreen.
+         * This class extends the ConfigEntry class.
+         */
         public static class SingleEntry extends ConfigEntry {
 
             BOptionEntry<?> widget;
 
+            /**
+             * Constructs a SingleEntry object with the specified BOptionEntry widget.
+             * @param widget The BOptionEntry widget associated with this entry.
+             */
             public SingleEntry(BOptionEntry<?> widget) {
                 this.widget = widget;
             }
 
+            /**
+             * Renders the entry on the screen.
+             * @param p_93523_ The GuiGraphics object used for rendering.
+             * @param index The index of the entry.
+             * @param y The y-coordinate of the entry.
+             * @param x The x-coordinate of the entry.
+             * @param entryWidth The width of the entry.
+             * @param entryHeight The height of the entry.
+             * @param mouseX The x-coordinate of the mouse.
+             * @param mouseY The y-coordinate of the mouse.
+             * @param hovered Whether the entry is being hovered over.
+             * @param tickDelta The tick delta value.
+             */
             @Override
             public void render(GuiGraphics p_93523_, int index, int y, int x, int entryWidth, int entryHeight, int mouseX, int mouseY, boolean hovered, float tickDelta) {
                 AbstractWidget w = (AbstractWidget)widget;
@@ -194,11 +277,19 @@ public abstract class BOptionScreen extends Screen implements BOptionHelper {
                 w.render(p_93523_, mouseX, mouseY, tickDelta);
             }
 
+            /**
+             * Returns a list of widgets associated with this entry.
+             * @return The list of widgets.
+             */
             @Override
-            List<? extends AbstractWidget> getWidgets() {
+            public List<? extends AbstractWidget> getWidgets() {
                 return ImmutableList.of((AbstractWidget) widget);
             }
 
+            /**
+             * Checks if the entry is invalid.
+             * @return true if the entry is invalid, false otherwise.
+             */
             @Override
             public boolean isInvalid() {
                 return widget.isInvalid();
@@ -206,33 +297,65 @@ public abstract class BOptionScreen extends Screen implements BOptionHelper {
 
         }
 
+        /**
+         * Represents a double entry in a configuration screen.
+         * This class extends the ConfigEntry class and provides functionality for managing two BOptionEntry widgets.
+         */
         public static class DoubleEntry extends ConfigEntry {
-
             BOptionEntry<?> widget1;
             BOptionEntry<?> widget2;
 
+            /**
+             * Constructs a new DoubleEntry with the specified BOptionEntry widgets.
+             *
+             * @param widget1 The first BOptionEntry widget.
+             * @param widget2 The second BOptionEntry widget.
+             */
             public DoubleEntry(BOptionEntry<?> widget1, BOptionEntry<?> widget2) {
                 this.widget1 = widget1;
                 this.widget2 = widget2;
             }
 
+            /**
+             * Returns a list of the BOptionEntry widgets contained in this DoubleEntry.
+             *
+             * @return A list of the BOptionEntry widgets.
+             */
             @Override
-            List<? extends AbstractWidget> getWidgets() {
-                return ImmutableList.of((AbstractWidget) widget1, (AbstractWidget)  widget2);
+            public List<? extends AbstractWidget> getWidgets() {
+                return ImmutableList.of((AbstractWidget) widget1, (AbstractWidget) widget2);
             }
 
+            /**
+             * Checks if either of the BOptionEntry widgets in this DoubleEntry is invalid.
+             *
+             * @return true if either of the widgets is invalid, false otherwise.
+             */
             @Override
             public boolean isInvalid() {
                 return widget1.isInvalid() || widget2.isInvalid();
             }
 
+            /**
+             * Renders the BOptionEntry widgets in this DoubleEntry.
+             *
+             * @param p_93523_     The GuiGraphics object used for rendering.
+             * @param index        The index of the entry.
+             * @param y            The y-coordinate of the entry.
+             * @param x            The x-coordinate of the entry.
+             * @param entryWidth   The width of the entry.
+             * @param entryHeight  The height of the entry.
+             * @param mouseX       The x-coordinate of the mouse.
+             * @param mouseY       The y-coordinate of the mouse.
+             * @param hovered      Whether the entry is being hovered over.
+             * @param tickDelta    The tick delta value.
+             */
             @Override
             public void render(GuiGraphics p_93523_, int index, int y, int x, int entryWidth, int entryHeight, int mouseX, int mouseY, boolean hovered, float tickDelta) {
-                AbstractWidget w1 = (AbstractWidget)widget1;
-                AbstractWidget w2 = (AbstractWidget)widget2;
+                AbstractWidget w1 = (AbstractWidget) widget1;
+                AbstractWidget w2 = (AbstractWidget) widget2;
 
                 int p1 = BOptionHelper.padding() / 2;
-
                 int p2 = BOptionHelper.padding() / 2;
 
                 w1.setX(x);
@@ -248,20 +371,41 @@ public abstract class BOptionScreen extends Screen implements BOptionHelper {
             }
         }
 
+        /**
+         * Represents a configuration entry in the BOptionScreen.
+         * This class is an abstract subclass of ContainerObjectSelectionList.Entry<ConfigEntry>.
+         * It provides methods for retrieving the list of widgets associated with the entry and checking if the entry is invalid.
+         */
         public abstract static class ConfigEntry extends ContainerObjectSelectionList.Entry<ConfigEntry> {
 
+            /**
+             * Returns a list of narratable entries associated with this configuration entry.
+             * @return The list of narratable entries.
+             */
             @Override
             public List<? extends NarratableEntry> narratables() {
                 return getWidgets();
             }
 
+            /**
+             * Returns a list of child GUI event listeners associated with this configuration entry.
+             * @return The list of child GUI event listeners.
+             */
             @Override
             public List<? extends GuiEventListener> children() {
                 return getWidgets();
             }
 
-            abstract List<? extends AbstractWidget> getWidgets();
+            /**
+             * Returns a list of abstract widgets associated with this configuration entry.
+             * @return The list of abstract widgets.
+             */
+            public abstract List<? extends AbstractWidget> getWidgets();
 
+            /**
+             * Checks if this configuration entry is invalid.
+             * @return true if the entry is invalid, false otherwise.
+             */
             public abstract boolean isInvalid();
 
         }
