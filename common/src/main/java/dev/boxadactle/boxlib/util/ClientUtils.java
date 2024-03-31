@@ -1,13 +1,18 @@
 package dev.boxadactle.boxlib.util;
 
 import com.mojang.blaze3d.platform.InputConstants;
+import dev.boxadactle.boxlib.function.EmptyMethod;
 import net.minecraft.SharedConstants;
 import net.minecraft.Util;
 import net.minecraft.client.KeyboardHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.Options;
+import net.minecraft.client.gui.components.toasts.SystemToast;
+import net.minecraft.client.gui.components.toasts.ToastComponent;
 import net.minecraft.client.gui.screens.ConfirmLinkScreen;
+import net.minecraft.client.gui.screens.ConfirmScreen;
 import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.network.chat.Component;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -217,6 +222,37 @@ public class ClientUtils {
             if (open) openUrl(link);
             setScreen(parent);
         }, link, true));
+    }
+
+    /**
+     * Opens a confirmation screen with a message and description.
+     *
+     * @param message     The message to display.
+     * @param description The description to display.
+     * @param yes         The method to run if the user confirms.
+     * @param no          The method to run if the user denies.
+     */
+    public static void confirm(Component message, Component description, EmptyMethod yes, EmptyMethod no) {
+        getClient().setScreen(new ConfirmScreen((b) -> {
+            if (b) yes.accept();
+            else no.accept();
+        }, message, description));
+    }
+
+    /**
+     * Displays a toast message with a description.
+     *
+     * @param message     The message to display.
+     * @param description The description to display.
+     */
+    public static void showToast(Component message, Component description) {
+        ToastComponent toastComponent = getClient().getToasts();
+        SystemToast.addOrUpdate(
+                toastComponent,
+                SystemToast.SystemToastIds.PERIODIC_NOTIFICATION,
+                message,
+                description
+        );
     }
 
     /**
