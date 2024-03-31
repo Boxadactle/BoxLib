@@ -131,6 +131,46 @@ public abstract class BOptionScreen extends Screen implements BOptionHelper {
         return true;
     }
 
+    /**
+     * Override this method to change the width of each row
+     * @return The width of each row
+     */
+    protected int getRowWidth() {
+        return 220;
+    }
+
+    /**
+     * Override this method to change the height of each row
+     * @return The height of each row
+     */
+    protected int getRowHeight() {
+        return BOptionHelper.buttonHeight() + BOptionHelper.padding() * 2;
+    }
+
+    /**
+     * Override this method to change the x position of the scrollbar
+     * @return The x position of the scrollbar
+     */
+    protected int getScrollbarPosition() {
+        return width / 2 + 124;
+    }
+
+    /**
+     * Override this method to change the start y value of the scrolling widget
+     * @return The height of the buttons
+     */
+    protected int getScrollingWidgetStart() {
+        return 20;
+    }
+
+    /**
+     * Override this method to change the end y value of the scrolling widget
+     * @return The height of the buttons
+     */
+    protected int getScrollingWidgetEnd() {
+        return this.height - 30;
+    }
+
     @Deprecated
     protected BOptionEntry<?> addConfigOption(BOptionEntry<?> entry) {
         configList.addEntry(new ConfigList.SingleEntry(entry));
@@ -144,7 +184,7 @@ public abstract class BOptionScreen extends Screen implements BOptionHelper {
      *              To create your own entry, extend the {@link BOptionEntry}
      * @return Returns the passed-in entry
      */
-    protected BOptionEntry<?> addConfigLine(BOptionEntry<?> entry) {
+    protected <T extends BOptionEntry<?>> T addConfigLine(T entry) {
         configList.addEntry(new ConfigList.SingleEntry(entry));
 
         return entry;
@@ -156,15 +196,27 @@ public abstract class BOptionScreen extends Screen implements BOptionHelper {
      *              To create your own entry, extend the {@link BOptionEntry}
      * @return Returns the passed-in entry
      */
-    protected BOptionEntry<?>[] addConfigLine(BOptionEntry<?> entry, BOptionEntry<?> entry2) {
+    protected <T extends BOptionEntry<?>> BOptionEntry<?>[] addConfigLine(T entry, T entry2) {
         configList.addEntry(new ConfigList.DoubleEntry(entry, entry2));
 
         return new BOptionEntry[]{entry, entry2};
     }
+    
+    /**
+     * Use this method to add a new line with your own config entry renderer
+     * @param entry A config entry renderer (either provided by BoxLib or created yourself)
+     *              To create your own entry, extend the {@link BOptionScreen.ConfigList.ConfigEntry}
+     * @return Returns the passed-in entry
+     */
+    protected <T extends ConfigList.ConfigEntry> T addConfigLine(T entry) {
+        configList.addEntry(entry);
+
+        return entry;
+    }
 
     /**
-     * Use this method to set the wiki of the said page
-     * Don't run this method if you don't want a wiki button on the screem
+     * Use this method to set the wiki link of the screen
+     * Don't run this method if you don't want a wiki button on the screen
      * @param label Component that should be rendered as the button.
      * @param link The link to the wiki that will open when the button is clicked.
      */
@@ -215,7 +267,24 @@ public abstract class BOptionScreen extends Screen implements BOptionHelper {
     public class ConfigList extends ContainerObjectSelectionList<ConfigList.ConfigEntry> {
 
         public ConfigList(Minecraft minecraft) {
-            super(minecraft, BOptionScreen.this.width, BOptionScreen.this.height, 20, BOptionScreen.this.height - 30, BOptionHelper.buttonHeight() + BOptionHelper.padding() * 2);
+            super(
+                    minecraft,
+                    BOptionScreen.this.width,
+                    BOptionScreen.this.height,
+                    BOptionScreen.this.getScrollingWidgetStart(),
+                    BOptionScreen.this.getScrollingWidgetEnd(),
+                    BOptionScreen.this.getRowHeight()
+            );
+        }
+
+        @Override
+        public int getRowWidth() {
+            return BOptionScreen.this.getRowWidth();
+        }
+
+        @Override
+        protected int getScrollbarPosition() {
+            return BOptionScreen.this.getScrollbarPosition();
         }
 
         @Override
