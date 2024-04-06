@@ -1,5 +1,6 @@
 package dev.boxadactle.boxlib.http.get;
 
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import dev.boxadactle.boxlib.http.HttpGetRequest;
 import net.minecraft.util.GsonHelper;
@@ -8,7 +9,7 @@ import net.minecraft.util.GsonHelper;
  * Represents a JSON GET request that extends the {@link HttpGetRequest} interface.
  * This interface provides a callback method to handle the JSON response.
  */
-public interface JsonGetRequest extends HttpGetRequest {
+public interface JsonGetRequest extends HttpGetRequest<JsonElement> {
 
     /**
      * Callback method that is called when a successful response is received.
@@ -17,16 +18,8 @@ public interface JsonGetRequest extends HttpGetRequest {
      * @param response the JSON response as a string
      */
     @Override
-    default void onOkResponse(String response) {
-        JsonObject res = GsonHelper.parse(response);
-        onJson(res);
+    default JsonElement handleResponse(String response) {
+        return GsonHelper.parse(response);
     }
-
-    /**
-     * Callback method to handle the parsed JSON response.
-     *
-     * @param json the parsed JSON response as a {@link JsonObject}
-     */
-    void onJson(JsonObject json);
 
 }

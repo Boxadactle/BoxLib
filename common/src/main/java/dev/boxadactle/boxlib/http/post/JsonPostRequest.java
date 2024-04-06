@@ -7,7 +7,7 @@ import dev.boxadactle.boxlib.http.HttpPostRequest;
  * This interface extends the {@link HttpPostRequest} interface and provides a default implementation for the
  * {@link #getContentType()} method, returning "application/json".
  */
-public interface JsonPostRequest extends HttpPostRequest {
+public interface JsonPostRequest extends HttpPostRequest<String> {
 
     /**
      * Returns the content type of the JSON POST request.

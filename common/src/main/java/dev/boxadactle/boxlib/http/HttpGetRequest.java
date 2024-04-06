@@ -7,7 +7,7 @@ import java.net.ProtocolException;
  * Represents an HTTP GET request.
  * This interface extends the {@link HttpRequest} interface and provides a default implementation for setting request headers.
  */
-public interface HttpGetRequest extends HttpRequest {
+public interface HttpGetRequest<T> extends HttpRequest<T> {
 
     /**
      * Sets the request headers for the HTTP GET request.

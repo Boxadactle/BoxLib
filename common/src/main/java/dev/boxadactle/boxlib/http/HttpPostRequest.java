@@ -9,7 +9,7 @@ import java.net.ProtocolException;
  * Represents an HTTP POST request.
  * Extends the {@link HttpRequest} interface.
  */
-public interface HttpPostRequest extends HttpRequest {
+public interface HttpPostRequest<T> extends HttpRequest<T> {
 
     /**
      * Sets the request headers for the HTTP POST request.
@@ -35,18 +35,6 @@ public interface HttpPostRequest extends HttpRequest {
             onException(e);
         }
     }
-
-    /**
-     * Callback method called when the response code is received for the HTTP POST request.
-     * Overrides the default implementation in the {@link HttpRequest} interface.
-     *
-     * @param c            The {@link HttpURLConnection} object representing the connection.
-     * @param responseCode The HTTP response code.
-     */
-    @Override
-    default void onResponseCode(HttpURLConnection c, int responseCode) {
-
-    };
 
     /**
      * Gets the content type for the HTTP POST request.

@@ -12,7 +12,7 @@ import java.net.URL;
  * The HttpRequest interface represents an HTTP request.
  * Implementations of this interface can be used to send HTTP requests and handle the responses.
  */
-public interface HttpRequest {
+public interface HttpRequest<T> {
 
     /**
      * Returns the URL of the HTTP request.
@@ -54,7 +54,7 @@ public interface HttpRequest {
      *
      * @param response the response content
      */
-    void onOkResponse(String response);
+    T handleResponse(String response);
 
     /**
      * Called when the HTTP response has an unexpected status code.
@@ -81,7 +81,7 @@ public interface HttpRequest {
      * @param c the HTTP connection
      * @param responseCode the response code
      */
-    default void onResponseCode(HttpURLConnection c, int responseCode) {
+    default T onResponseCode(HttpURLConnection c, int responseCode) {
         try {
             if (responseCode == 200) {
                 BufferedReader b = new BufferedReader(new InputStreamReader(c.getInputStream()));
@@ -94,12 +94,13 @@ public interface HttpRequest {
 
                 b.close();
 
-                onOkResponse(content.toString().trim());
+                return handleResponse(content.toString().trim());
             } else {
-                onOtherResponse(responseCode);
+                return null;
             }
         } catch (Exception e) {
             onException(e);
+            return null;
         }
     }
 
