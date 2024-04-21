@@ -11,6 +11,13 @@ import net.minecraft.network.chat.Component;
 
 import java.util.function.Consumer;
 
+/**
+ * Represents a text field option in a GUI.
+ * This class extends the EditBox class and implements the BOptionEntry, BOptionHelper, and Converter interfaces.
+ * It provides functionality for handling user input, rendering the text field, and validating the input value.
+ *
+ * @param <T> the type of the option value
+ */
 public abstract class BOptionTextField<T> extends EditBox implements BOptionEntry<T>, BOptionHelper, Converter<T, String> {
 
     protected T currentValue;

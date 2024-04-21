@@ -8,21 +8,21 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.StringReader;
 
-public interface XmlGetRequest extends HttpGetRequest {
+/**
+ * Represents an HTTP GET request that expects an XML response.
+ */
+public interface XmlGetRequest extends HttpGetRequest<Document> {
 
     @Override
-    default void onOkResponse(String response) {
+    default Document handleResponse(String response) {
         try {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
 
-            Document document = builder.parse(new InputSource(new StringReader(response)));
-
-            onXml(document);
+            return builder.parse(new InputSource(new StringReader(response)));
         } catch (Exception e) {
             onException(e);
+            return null;
         }
     }
-
-    void onXml(Document document);
 }

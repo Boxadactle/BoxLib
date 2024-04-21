@@ -36,6 +36,31 @@ public class ExampleConfigScreen extends BOptionScreen {
         BoxLib.CONFIG.cacheConfig();
     }
 
+    @Override
+    protected int getRowWidth() {
+        return super.getRowWidth() + 100;
+    }
+
+    @Override
+    protected int getRowHeight() {
+        return super.getRowHeight() + 20;
+    }
+
+    @Override
+    protected int getScrollbarPosition() {
+        return this.width - 15;
+    }
+
+    @Override
+    protected int getScrollingWidgetStart() {
+        return super.getScrollingWidgetStart() + 20;
+    }
+
+    @Override
+    protected int getScrollingWidgetEnd() {
+        return super.getScrollingWidgetEnd() - 20;
+    }
+
     // using this method because I'm too lazy
     private ExampleConfigClass config() {
         return BoxLib.CONFIG.get();

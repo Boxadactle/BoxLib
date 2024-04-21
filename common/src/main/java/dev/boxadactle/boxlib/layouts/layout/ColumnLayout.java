@@ -4,6 +4,10 @@ import dev.boxadactle.boxlib.layouts.LayoutComponent;
 import dev.boxadactle.boxlib.layouts.RenderingLayout;
 import net.minecraft.client.gui.GuiGraphics;
 
+/**
+ * Represents a layout that arranges components in a vertical column.
+ * The components are rendered one below the other, with optional padding between them.
+ */
 public class ColumnLayout extends RenderingLayout {
     public ColumnLayout(int x, int y, int padding) {
         super(x, y, padding);
