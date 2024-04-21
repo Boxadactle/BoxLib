@@ -13,7 +13,6 @@ import java.util.function.Consumer;
  *
  * @param <T> the type of the slider value, which must extend Number
  */
-@SuppressWarnings("unchecked")
 public abstract class BOptionSlider<T extends Number> extends AbstractSliderButton implements BOptionEntry<T>, Converter<T, Double> {
     protected T min;
     protected T max;

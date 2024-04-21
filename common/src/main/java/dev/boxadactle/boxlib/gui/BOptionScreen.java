@@ -84,7 +84,7 @@ public abstract class BOptionScreen extends Screen implements BOptionHelper {
 
     @Override
     protected void init() {
-        configList = new BOptionList(ClientUtils.getClient(), this);
+        configList = new ConfigList(ClientUtils.getClient());
         this.addWidget(configList);
 
         initConfigButtons();

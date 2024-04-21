@@ -101,6 +101,7 @@ public abstract class RenderingLayout {
      */
     public RenderingLayout(int x, int y, int padding) {
         this.x = x;
+        this.y = y;
         this.padding = padding;
 
         components = new ArrayList<>();

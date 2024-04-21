@@ -1,6 +1,5 @@
 package dev.boxadactle.boxlib.gui;
 
-import dev.boxadactle.boxlib.core.BoxLib;
 import dev.boxadactle.boxlib.math.geometry.Rect;
 import dev.boxadactle.boxlib.util.GuiUtils;
 import dev.boxadactle.boxlib.util.MouseUtils;
