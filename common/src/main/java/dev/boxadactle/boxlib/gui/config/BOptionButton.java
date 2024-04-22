@@ -133,8 +133,8 @@ public abstract class BOptionButton<T> extends Button implements BOptionEntry<T>
      * @param delta the time difference between the last and current frame
      */
     @Override
-    public void render(GuiGraphics p_93657_, int mouseX, int mouseY, float delta) {
-        super.render(p_93657_, mouseX, mouseY, delta);
+    public void renderWidget(GuiGraphics p_93657_, int mouseX, int mouseY, float delta) {
+        super.renderWidget(p_93657_, mouseX, mouseY, delta);
     }
 
     /**

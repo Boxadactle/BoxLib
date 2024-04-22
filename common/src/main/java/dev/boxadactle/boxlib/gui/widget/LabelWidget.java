@@ -11,7 +11,7 @@ public class LabelWidget extends AbstractWidget {
     int color;
 
     public LabelWidget(int i, int j, Component component, int color) {
-        super(i, j, GuiUtils.getTextLength(component), GuiUtils.getTextHeight(), component);
+        super(i, j, GuiUtils.getTextSize(component), GuiUtils.getTextHeight(), component);
         this.color = color;
     }
 

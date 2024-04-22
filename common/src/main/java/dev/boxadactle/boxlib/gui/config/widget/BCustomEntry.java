@@ -8,7 +8,7 @@ import net.minecraft.network.chat.Component;
 /**
  * A custom rendering entry for a GUI widget.
  */
-public class BCustomRenderingEntry extends BOptionButton<Object> {
+public class BCustomEntry extends BOptionButton<Object> {
 
     protected Consumer8<GuiGraphics, Integer, Integer, Integer, Integer, Integer, Integer, Float> function;
 
@@ -17,7 +17,7 @@ public class BCustomRenderingEntry extends BOptionButton<Object> {
      *
      * @param function the rendering function to be called when rendering the entry
      */
-    public BCustomRenderingEntry(Consumer8<GuiGraphics, Integer, Integer, Integer, Integer, Integer, Integer, Float> function) {
+    public BCustomEntry(Consumer8<GuiGraphics, Integer, Integer, Integer, Integer, Integer, Integer, Float> function) {
         super(Component.literal(""), null, null);
 
         this.function = function;

@@ -16,14 +16,6 @@ public class Translator {
 
     static String regex = "<div class=\"result-container\">([^<]+)</div>";
 
-    /**
-     * Constructs the URL for the translation request.
-     *
-     * @param text        The text to be translated.
-     * @param sourceLang  The source language of the text.
-     * @param targetLang  The target language for the translation.
-     * @return The URL for the translation request.
-     */
     private static String getUrl(String text, String sourceLang, String targetLang) {
         return "https://translate.google.com/m?hl=en&sl=" +
                 sourceLang + "&tl=" +

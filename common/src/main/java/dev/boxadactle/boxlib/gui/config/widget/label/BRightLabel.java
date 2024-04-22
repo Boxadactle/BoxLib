@@ -9,13 +9,13 @@ import net.minecraft.network.chat.Component;
  * The BLeftLabel class represents a left-aligned label widget in a graphical user interface.
  * It extends the BLabel class and provides a method to render the label on the screen.
  */
-public class BLeftLabel extends BLabel {
+public class BRightLabel extends BLabel {
     /**
      * Constructs a new BLeftLabel with the specified message.
      *
      * @param message the text to be displayed on the label
      */
-    public BLeftLabel(Component message) {
+    public BRightLabel(Component message) {
         super(message);
     }
 

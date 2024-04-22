@@ -269,9 +269,8 @@ public abstract class BOptionScreen extends Screen implements BOptionHelper {
             super(
                     minecraft,
                     BOptionScreen.this.width,
-                    BOptionScreen.this.height,
+                    BOptionScreen.this.getScrollingWidgetEnd() - BOptionScreen.this.getScrollingWidgetStart(),
                     BOptionScreen.this.getScrollingWidgetStart(),
-                    BOptionScreen.this.getScrollingWidgetEnd(),
                     BOptionScreen.this.getRowHeight()
             );
         }

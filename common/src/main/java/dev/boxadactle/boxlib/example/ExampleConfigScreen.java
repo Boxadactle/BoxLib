@@ -2,13 +2,13 @@ package dev.boxadactle.boxlib.example;
 
 import dev.boxadactle.boxlib.core.BoxLib;
 import dev.boxadactle.boxlib.core.ModConstants;
-import dev.boxadactle.boxlib.gui.BOptionScreen;
-import dev.boxadactle.boxlib.gui.widget.BCustomRenderingEntry;
-import dev.boxadactle.boxlib.gui.widget.BSpacingEntry;
-import dev.boxadactle.boxlib.gui.widget.button.*;
-import dev.boxadactle.boxlib.gui.widget.field.*;
-import dev.boxadactle.boxlib.gui.widget.label.*;
-import dev.boxadactle.boxlib.gui.widget.slider.*;
+import dev.boxadactle.boxlib.gui.config.BOptionScreen;
+import dev.boxadactle.boxlib.gui.config.widget.BCustomEntry;
+import dev.boxadactle.boxlib.gui.config.widget.BSpacingEntry;
+import dev.boxadactle.boxlib.gui.config.widget.button.*;
+import dev.boxadactle.boxlib.gui.config.widget.field.*;
+import dev.boxadactle.boxlib.gui.config.widget.label.*;
+import dev.boxadactle.boxlib.gui.config.widget.slider.*;
 import dev.boxadactle.boxlib.layouts.RenderingLayout;
 import dev.boxadactle.boxlib.layouts.component.LayoutContainerComponent;
 import dev.boxadactle.boxlib.layouts.component.ParagraphComponent;
@@ -16,7 +16,6 @@ import dev.boxadactle.boxlib.layouts.layout.ColumnLayout;
 import dev.boxadactle.boxlib.layouts.layout.RowLayout;
 import dev.boxadactle.boxlib.util.ClientUtils;
 import dev.boxadactle.boxlib.util.GuiUtils;
-import dev.boxadactle.boxlib.util.RenderUtils;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 
@@ -240,7 +239,7 @@ public class ExampleConfigScreen extends BOptionScreen {
 
         RenderingLayout layout = createLayout();
         addConfigLine(
-                new BCustomRenderingEntry(
+                new BCustomEntry(
                         (guiGraphics, x, y, width, height, mouseX, mouseY, tickDelta) -> {
                             layout.setPosition(x, y);
 
