@@ -3,6 +3,8 @@ package dev.boxadactle.boxlib.core;
 import dev.boxadactle.boxlib.config.BConfigClass;
 import dev.boxadactle.boxlib.config.BConfigHandler;
 import dev.boxadactle.boxlib.example.ExampleConfigClass;
+import dev.boxadactle.boxlib.translate.Language;
+import dev.boxadactle.boxlib.translate.Translator;
 import dev.boxadactle.boxlib.util.GuiUtils;
 import dev.boxadactle.boxlib.util.ModLogger;
 import dev.boxadactle.boxlib.util.RenderUtils;
@@ -21,6 +23,9 @@ public class BoxLib {
         CONFIG = BConfigHandler.registerConfig(ExampleConfigClass.class);
 
         BoxLib.LOGGER.info("Initialized %s", ModConstants.MOD_NAME + " v" + ModConstants.VERSION);
+
+        String holaMundo = Translator.translate("Hello, World!", Language.SPANISH);
+        BoxLib.LOGGER.info(holaMundo);
     }
 
     public static <T> T initializeClass(Class<T> tClass) {

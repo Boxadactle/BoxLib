@@ -4,11 +4,26 @@ import dev.boxadactle.boxlib.layouts.LayoutComponent;
 import dev.boxadactle.boxlib.layouts.RenderingLayout;
 import net.minecraft.client.gui.GuiGraphics;
 
+/**
+ * Represents a layout that arranges components in a row.
+ */
 public class RowLayout extends RenderingLayout {
+    /**
+     * Constructs a new RowLayout with the specified coordinates and padding.
+     *
+     * @param x       the x-coordinate of the layout
+     * @param y       the y-coordinate of the layout
+     * @param padding the padding between components
+     */
     public RowLayout(int x, int y, int padding) {
         super(x, y, padding);
     }
 
+    /**
+     * Calculates and returns the width of the layout.
+     *
+     * @return the width of the layout
+     */
     @Override
     protected int getWidth() {
         int a = 0;
@@ -22,6 +37,11 @@ public class RowLayout extends RenderingLayout {
         return a;
     }
 
+    /**
+     * Calculates and returns the height of the layout.
+     *
+     * @return the height of the layout
+     */
     @Override
     protected int getHeight() {
         int a = 0;
@@ -33,6 +53,11 @@ public class RowLayout extends RenderingLayout {
         return a;
     }
 
+    /**
+     * Renders the layout and its components on the specified graphics object.
+     *
+     * @param graphics the graphics object to render on
+     */
     @Override
     public void render(GuiGraphics graphics) {
         final int[] currentX = {x};

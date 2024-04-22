@@ -2,22 +2,18 @@ package dev.boxadactle.boxlib.example;
 
 import dev.boxadactle.boxlib.core.BoxLib;
 import dev.boxadactle.boxlib.core.ModConstants;
-import dev.boxadactle.boxlib.gui.config.BOptionScreen;
-import dev.boxadactle.boxlib.gui.config.widget.BCustomEntry;
-import dev.boxadactle.boxlib.gui.config.widget.BSpacingEntry;
-import dev.boxadactle.boxlib.gui.config.widget.button.*;
-import dev.boxadactle.boxlib.gui.config.widget.field.*;
-import dev.boxadactle.boxlib.gui.config.widget.label.*;
-import dev.boxadactle.boxlib.gui.config.widget.slider.*;
+import dev.boxadactle.boxlib.gui.BOptionScreen;
+import dev.boxadactle.boxlib.gui.widget.BCustomRenderingEntry;
+import dev.boxadactle.boxlib.gui.widget.BSpacingEntry;
+import dev.boxadactle.boxlib.gui.widget.button.*;
+import dev.boxadactle.boxlib.gui.widget.field.*;
+import dev.boxadactle.boxlib.gui.widget.label.*;
+import dev.boxadactle.boxlib.gui.widget.slider.*;
 import dev.boxadactle.boxlib.layouts.RenderingLayout;
-import dev.boxadactle.boxlib.layouts.component.CenteredParagraphComponent;
 import dev.boxadactle.boxlib.layouts.component.LayoutContainerComponent;
-import dev.boxadactle.boxlib.layouts.component.LeftParagraphComponent;
 import dev.boxadactle.boxlib.layouts.component.ParagraphComponent;
-import dev.boxadactle.boxlib.layouts.layout.PaddingLayout;
-import dev.boxadactle.boxlib.layouts.layout.RowLayout;
 import dev.boxadactle.boxlib.layouts.layout.ColumnLayout;
-import dev.boxadactle.boxlib.math.geometry.Rect;
+import dev.boxadactle.boxlib.layouts.layout.RowLayout;
 import dev.boxadactle.boxlib.util.ClientUtils;
 import dev.boxadactle.boxlib.util.GuiUtils;
 import dev.boxadactle.boxlib.util.RenderUtils;
@@ -39,6 +35,31 @@ public class ExampleConfigScreen extends BOptionScreen {
 
         // this is required (you can also do this yourself if you want) for using a cancel button
         BoxLib.CONFIG.cacheConfig();
+    }
+
+    @Override
+    protected int getRowWidth() {
+        return super.getRowWidth() + 100;
+    }
+
+    @Override
+    protected int getRowHeight() {
+        return super.getRowHeight() + 20;
+    }
+
+    @Override
+    protected int getScrollbarPosition() {
+        return this.width - 15;
+    }
+
+    @Override
+    protected int getScrollingWidgetStart() {
+        return super.getScrollingWidgetStart() + 20;
+    }
+
+    @Override
+    protected int getScrollingWidgetEnd() {
+        return super.getScrollingWidgetEnd() - 20;
     }
 
     // using this method because I'm too lazy
@@ -219,13 +240,9 @@ public class ExampleConfigScreen extends BOptionScreen {
 
         RenderingLayout layout = createLayout();
         addConfigLine(
-                new BCustomEntry(
+                new BCustomRenderingEntry(
                         (guiGraphics, x, y, width, height, mouseX, mouseY, tickDelta) -> {
                             layout.setPosition(x, y);
-
-                            Rect<Integer> r = layout.calculateRect();
-
-                            guiGraphics.fill(r.getX(), r.getY(), r.getX() + r.getWidth(), r.getY() + r.getHeight(), GuiUtils.BLUE);
 
                             layout.render(guiGraphics);
                         }
@@ -243,37 +260,28 @@ public class ExampleConfigScreen extends BOptionScreen {
     }
 
     private RenderingLayout createLayout() {
-        RowLayout layout = new RowLayout(0, 0, 0);
+        RowLayout layout = new RowLayout(0, 0, 10);
 
-        ColumnLayout column = new ColumnLayout(0, 0, 0);
-        column.addComponent(new CenteredParagraphComponent(
+        layout.addComponent(new ParagraphComponent(
                 2,
-                Component.literal("This is a paragraph component."),
+                Component.literal("This is a paragraph component. "),
                 Component.literal("It's a simple way to add text to a layout."),
                 Component.literal("You can add as many components as you want."),
                 Component.literal("And it will render them all in a line.")
         ));
 
-        column.addComponent(new LeftParagraphComponent(
-                2,
-                Component.literal("You can also align text to the left. "),
-                Component.literal("It's a simple way to add text to a layout."),
-                Component.literal("You can add as many components as you want.")
-        ));
-
-        ColumnLayout columnLayout = new ColumnLayout(0, 0, 0);
+        ColumnLayout verticalLayout = new ColumnLayout(0, 0, 10);
 
         for (int i = 0; i < 5; i++) {
-            columnLayout.addComponent(new ParagraphComponent(
+            verticalLayout.addComponent(new ParagraphComponent(
                     2,
-                    Component.literal("This is a paragraph component."),
+                    Component.literal("This is a paragraph component. "),
                     Component.literal("It's a simple way to add text to a layout.")
             ));
         }
 
-        layout.addComponent(new LayoutContainerComponent(column));
-        layout.addComponent(new LayoutContainerComponent(columnLayout));
+        layout.addComponent(new LayoutContainerComponent(verticalLayout));
 
-        return new PaddingLayout(0, 0, 1, layout);
+        return layout;
     }
 }

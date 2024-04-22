@@ -5,10 +5,18 @@ import dev.boxadactle.boxlib.util.RenderUtils;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 
+/**
+ * A custom label widget for GUIs.
+ */
 public class BLabel extends BOptionButton<Object> {
 
     protected Component message;
 
+    /**
+     * Constructs a new BLabel with the specified message.
+     *
+     * @param message the label's message
+     */
     public BLabel(Component message) {
         super(message, null, null);
 

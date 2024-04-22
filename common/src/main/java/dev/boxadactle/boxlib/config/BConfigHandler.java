@@ -8,6 +8,13 @@ import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Objects;
 
+/**
+ * This class is responsible for handling configuration files in the application.
+ * It provides methods to register a configuration class, verify file extensions, and get the path of a configuration file.
+ * It also maintains a map of registered configuration classes.
+ *
+ * @author Boxadactle
+ */
 @SuppressWarnings("unchecked")
 public class BConfigHandler {
 
@@ -56,6 +63,12 @@ public class BConfigHandler {
         return holder;
     }
 
+    /**
+     * Gets the configuration class for a given class.
+     *
+     * @param config The class to get the configuration for.
+     * @return The configuration class.
+     */
     public static <T extends BConfig> BConfigClass<T> getConfigClass(Class <T> config) {
         return (BConfigClass<T>) classes.get(config);
     }

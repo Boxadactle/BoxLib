@@ -7,6 +7,12 @@ import net.minecraft.network.chat.Component;
 
 import java.util.function.Consumer;
 
+/**
+ * Represents an abstract slider button that implements the BOptionEntry interface and Converter interface.
+ * This class provides functionality for creating a slider button with a specified range of values and a value converter.
+ *
+ * @param <T> the type of the slider value, which must extend Number
+ */
 public abstract class BOptionSlider<T extends Number> extends AbstractSliderButton implements BOptionEntry<T>, Converter<T, Double> {
     protected T min;
     protected T max;
