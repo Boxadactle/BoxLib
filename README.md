@@ -1,7 +1,7 @@
 # BoxLib
 The most basic client-side library mod.
 
-BoxLib is a library mod contained shared code used in Boxadactle's client mods. It is designed to be lightweight and easy to use, with a focus on providing utilities and tools that are commonly used in client-side mods.
+BoxLib is a library mod containing shared code used in Boxadactle's client mods. It is designed to be lightweight and easy to use, with a focus on providing utilities and tools that are commonly used in client-side mods.
 
 ### Library
 
