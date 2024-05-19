@@ -23,9 +23,6 @@ public class BoxLib {
         CONFIG = BConfigHandler.registerConfig(ExampleConfigClass.class);
 
         BoxLib.LOGGER.info("Initialized %s", ModConstants.MOD_NAME + " v" + ModConstants.VERSION);
-
-        String holaMundo = Translator.translate("Hello, World!", Language.SPANISH);
-        BoxLib.LOGGER.info(holaMundo);
     }
 
     public static <T> T initializeClass(Class<T> tClass) {

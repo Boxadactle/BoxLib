@@ -81,7 +81,7 @@ public class BConfigClass<T extends BConfig> implements Supplier<T> {
      * @throws NullPointerException if no configuration cache was found
      */
     public void restoreCache() {
-        if (cached == null) throw new NullPointerException("No config cache was found for class " + configClass.getName());
+        if (cached == null) throw new NullPointerException("No config cache was found for class " + configClass.getSimpleName());
 
         config = cached;
         clearCache();
@@ -101,11 +101,11 @@ public class BConfigClass<T extends BConfig> implements Supplier<T> {
 
             config = serializer.fromJson(r, configClass);
 
-            BoxLib.LOGGER.info("Successfully loaded config class %s" + configClass.getName());
+            BoxLib.LOGGER.info("Successfully loaded config class %s", configClass.getSimpleName());
 
             config.onConfigLoadPost();
         } catch (FileNotFoundException ignored) {
-            BoxLib.LOGGER.warn("Could not find file %s so creating it" + filePath.getName());
+            BoxLib.LOGGER.warn("Could not find file %s so creating it", filePath.getName());
 
             config = BoxLib.initializeClass(configClass);
 
@@ -126,11 +126,11 @@ public class BConfigClass<T extends BConfig> implements Supplier<T> {
             writer.flush();
             writer.close();
 
-            BoxLib.LOGGER.info("Successfully saved config for class %s", configClass.getName());
+            BoxLib.LOGGER.info("Successfully saved config for class %s", configClass.getSimpleName());
 
             config.onConfigSavePost();
         } catch (IOException e) {
-            BoxLib.LOGGER.error("Could not save config for class %s", configClass.getName());
+            BoxLib.LOGGER.error("Could not save config for class %s", configClass.getSimpleName());
             BoxLib.LOGGER.printStackTrace(e);
         }
     }

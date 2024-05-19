@@ -64,6 +64,16 @@ public class ModLogger {
     }
 
     /**
+     * Logs a debug message.
+     *
+     * @param msg  the debug message
+     * @param data additional data to be included in the log message
+     */
+    public void debug(Object msg, Object... data) {
+        logger.log(Level.DEBUG, prefix + msg, data);
+    }
+
+    /**
      * Prints the stack trace of an exception.
      *
      * @param e the exception
