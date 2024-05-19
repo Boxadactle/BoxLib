@@ -3,6 +3,7 @@ package dev.boxadactle.boxlib.http;
 import dev.boxadactle.boxlib.http.get.PlainGetRequest;
 
 import java.net.HttpURLConnection;
+import java.net.URI;
 import java.net.URL;
 
 /**
@@ -17,8 +18,8 @@ public class Request {
      */
     public static <T> T sendRequest(HttpRequest<T> request) {
         try {
-            URL url = request.getRequestURL();
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            URI uri = request.getRequestURI();
+            HttpURLConnection connection = (HttpURLConnection) uri.toURL().openConnection();
 
             request.setRequestHeaders(connection);
 

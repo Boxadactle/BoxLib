@@ -6,6 +6,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.ProtocolException;
+import java.net.URI;
 import java.net.URL;
 
 /**
@@ -20,9 +21,10 @@ public interface HttpRequest<T> {
      * @return the URL of the HTTP request
      * @throws InvalidHttpRequestException if the request URL is invalid
      */
-    default URL getRequestURL() throws InvalidHttpRequestException {
+    default URI getRequestURI() throws InvalidHttpRequestException {
         try {
-            return new URL(getRequestUrlString());
+            String url = getRequestUrlString();
+            return new URI(url);
         } catch(Exception e) {
             throw new InvalidHttpRequestException(e);
         }
