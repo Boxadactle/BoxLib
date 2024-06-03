@@ -8,10 +8,13 @@ architectury {
 }
 
 configurations {
-    common
+    common {
+        canBeResolved = true
+        canBeConsumed = false
+    }
     compileClasspath.extendsFrom common
     runtimeClasspath.extendsFrom common
-    developmentFabric.extendsFrom common
+    developmentNeoForge.extendsFrom common
 }
 
 repositories {

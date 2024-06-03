@@ -4,8 +4,8 @@ loaderVersion = "[2,)"
 license = "MIT"
 
 [[mods]]
-modId = "boxlib-testmod"
-version = "${version}"
+modId = "boxlibtestmod"
+version = "0.0.0"
 displayName = "Boxlib Test Mod"
 authors = "Boxadactle"
 description = '''
@@ -13,14 +13,14 @@ The most basic client-side mod
 '''
 logoFile = "icon.png"
 
-[[dependencies.boxlib-testmod]]
+[[dependencies.boxlibtestmod]]
 modId = "neoforge"
 type = "required"
 versionRange = "[20.5,)"
 ordering = "NONE"
 side = "BOTH"
 
-[[dependencies.boxlib-testmod]]
+[[dependencies.boxlibtestmod]]
 modId = "minecraft"
 type = "required"
 versionRange = "[1.20.5,)"

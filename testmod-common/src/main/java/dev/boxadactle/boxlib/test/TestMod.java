@@ -11,7 +11,7 @@ public class TestMod {
 
     public static final String MOD_NAME = "Boxlib Test Mod";
 
-    public static final String MOD_ID = "boxlib-testmod";
+    public static final String MOD_ID = "boxlibtestmod";
 
     public static final ModLogger LOGGER = new ModLogger(MOD_NAME);
 
