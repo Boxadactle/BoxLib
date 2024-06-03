@@ -15,9 +15,6 @@
   "entrypoints": {
     "client": [
       "dev.boxadactle.boxlib.fabric.BoxLibFabric"
-    ],
-    "modmenu": [
-      "dev.boxadactle.boxlib.fabric.ModMenuIntegration"
     ]
   },
   "depends": {
@@ -29,5 +26,8 @@
     "modmenu": {
       "badges": [ "library" ]
     }
-  }
+  },
+  "mixins": [
+    "fabric.boxlib.mixins.json"
+  ]
 }

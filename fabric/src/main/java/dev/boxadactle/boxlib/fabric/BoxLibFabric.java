@@ -1,7 +1,9 @@
 package dev.boxadactle.boxlib.fabric;
 
+import com.mojang.brigadier.CommandDispatcher;
+import dev.boxadactle.boxlib.command.BCommandImpl;
+import dev.boxadactle.boxlib.command.BCommandSourceStack;
 import dev.boxadactle.boxlib.core.BoxLib;
-import dev.boxadactle.boxlib.fabric.command.BCommandManager;
 import dev.boxadactle.boxlib.scheduling.Scheduling;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback;
@@ -10,6 +12,7 @@ import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 public class BoxLibFabric implements ClientModInitializer {
 
     @Override
+    @SuppressWarnings("unchecked")
     public void onInitializeClient() {
         BoxLib.init();
 
@@ -18,7 +21,7 @@ public class BoxLibFabric implements ClientModInitializer {
         });
 
         ClientCommandRegistrationCallback.EVENT.register((dispatcher, registryAccess) -> {
-            BCommandManager.registerToGame(dispatcher);
+            BCommandImpl.register((CommandDispatcher<BCommandSourceStack>) (CommandDispatcher<?>) dispatcher);
         });
     }
 

@@ -1,6 +1,5 @@
-package dev.boxadactle.boxlib.example;
+package dev.boxadactle.boxlib.test.config;
 
-import dev.boxadactle.boxlib.core.BoxLib;
 import dev.boxadactle.boxlib.core.ModConstants;
 import dev.boxadactle.boxlib.gui.config.BOptionScreen;
 import dev.boxadactle.boxlib.gui.config.widget.BCustomEntry;
@@ -14,6 +13,7 @@ import dev.boxadactle.boxlib.layouts.component.LayoutContainerComponent;
 import dev.boxadactle.boxlib.layouts.component.ParagraphComponent;
 import dev.boxadactle.boxlib.layouts.layout.ColumnLayout;
 import dev.boxadactle.boxlib.layouts.layout.RowLayout;
+import dev.boxadactle.boxlib.test.TestMod;
 import dev.boxadactle.boxlib.util.ClientUtils;
 import dev.boxadactle.boxlib.util.GuiUtils;
 import net.minecraft.client.gui.screens.Screen;
@@ -33,7 +33,7 @@ public class ExampleConfigScreen extends BOptionScreen {
         super(parent);
 
         // this is required (you can also do this yourself if you want) for using a cancel button
-        BoxLib.CONFIG.cacheConfig();
+        TestMod.CONFIG.cacheConfig();
     }
 
     @Override
@@ -63,7 +63,7 @@ public class ExampleConfigScreen extends BOptionScreen {
 
     // using this method because I'm too lazy
     private ExampleConfigClass config() {
-        return BoxLib.CONFIG.get();
+        return TestMod.CONFIG.get();
     }
 
     @Override
@@ -77,14 +77,14 @@ public class ExampleConfigScreen extends BOptionScreen {
         // here is where we restore the reload the config to undo all the changes to the config
         addRenderableWidget(createHalfCancelButton(startX, startY, (b) -> {
             ClientUtils.setScreen(parent);
-            BoxLib.CONFIG.restoreCache();
+            TestMod.CONFIG.restoreCache();
         }));
 
         // the half save button method will put the button next to the cancel button
         // make sure to add the save button like this, or the save button won't be disabled
         // when an incorrect value is entered
         setSaveButton(createHalfSaveButton(startX, startY, (b) -> {
-            BoxLib.CONFIG.save();
+            TestMod.CONFIG.save();
             ClientUtils.setScreen(parent);
         }));
 

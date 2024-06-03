@@ -1,4 +1,4 @@
-package dev.boxadactle.boxlib.example;
+package dev.boxadactle.boxlib.test.config;
 
 import dev.boxadactle.boxlib.core.BoxLib;
 import dev.boxadactle.boxlib.core.ModConstants;
