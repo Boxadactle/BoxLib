@@ -22,5 +22,12 @@
   "boxlib.anotherFloat": "Another Float: %s",
   "boxlib.anotherInt": "Another Integer: %s",
   "boxlib.anotherLong": "Another Long: %s",
-  "boxlib.anotherShort": "Another Short: %s"
+  "boxlib.anotherShort": "Another Short: %s",
+
+  "key.boxlibtestmod.test_keybind": "Test Keybind",
+  "key.boxlibtestmod.test_keybind2": "Test Keybind 2",
+  "key.boxlibtestmod.test_keybind3": "Test Keybind 3",
+  "key.boxlibtestmod.test_keybind4": "Test Keybind 4",
+  "key.boxlibtestmod.test_keybind5": "Test Keybind 5",
+  "key.categories.boxlibtestmod": "BoxLib Test Mod"
 }

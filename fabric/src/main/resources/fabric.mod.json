@@ -28,6 +28,7 @@
     }
   },
   "mixins": [
-    "fabric.boxlib.mixins.json"
+    "fabric.boxlib.mixins.json",
+    "boxlib.mixins.json"
   ]
 }

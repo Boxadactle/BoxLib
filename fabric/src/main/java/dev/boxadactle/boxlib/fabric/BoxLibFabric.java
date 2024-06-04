@@ -4,6 +4,8 @@ import com.mojang.brigadier.CommandDispatcher;
 import dev.boxadactle.boxlib.command.BCommandImpl;
 import dev.boxadactle.boxlib.command.BCommandSourceStack;
 import dev.boxadactle.boxlib.core.BoxLib;
+import dev.boxadactle.boxlib.keybind.KeybindHelper;
+import dev.boxadactle.boxlib.keybind.KeybindingImpl;
 import dev.boxadactle.boxlib.scheduling.Scheduling;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback;
@@ -15,6 +17,8 @@ public class BoxLibFabric implements ClientModInitializer {
     @SuppressWarnings("unchecked")
     public void onInitializeClient() {
         BoxLib.init();
+
+        KeybindingImpl.register(KeybindHelper::registerKey);
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             Scheduling.tick();

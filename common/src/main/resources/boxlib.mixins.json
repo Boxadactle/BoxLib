@@ -1,0 +1,11 @@
+{
+  "required": true,
+  "package": "dev.boxadactle.boxlib.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "client": [
+    "KeyMappingAccessor"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

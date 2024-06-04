@@ -1,9 +1,9 @@
 package dev.boxadactle.boxlib.test.config;
 
-import dev.boxadactle.boxlib.core.BoxLib;
 import dev.boxadactle.boxlib.core.ModConstants;
 import dev.boxadactle.boxlib.config.BConfig;
 import dev.boxadactle.boxlib.config.BConfigFile;
+import dev.boxadactle.boxlib.test.TestMod;
 
 /**
  * Here is a super basic example config class.
@@ -47,23 +47,23 @@ public class ExampleConfigClass implements BConfig {
 
     @Override
     public void onConfigLoadPre() {
-        BoxLib.LOGGER.info("This method will run before the config loads.");
+        TestMod.LOGGER.info("This method will run before the config loads.");
     }
 
     @Override
     public void onConfigLoadPost() {
-        BoxLib.LOGGER.info("This will be logged every time this config class successfully gets loaded with values.");
+        TestMod.LOGGER.info("This will be logged every time this config class successfully gets loaded with values.");
     }
 
     @Override
     public void onConfigSavePre() {
-        BoxLib.LOGGER.info("This will be logged every time this config class successfully gets saved.");
-        BoxLib.LOGGER.info("Might be a good idea to make some final config changes here.");
+        TestMod.LOGGER.info("This will be logged every time this config class successfully gets saved.");
+        TestMod.LOGGER.info("Might be a good idea to make some final config changes here.");
     }
 
     @Override
     public void onConfigSavePost() {
-        BoxLib.LOGGER.info("This method will run after the config saves.");
+        TestMod.LOGGER.info("This method will run after the config saves.");
     }
 
     public enum ExampleEnum {

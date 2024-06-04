@@ -29,3 +29,6 @@ side = "BOTH"
 
 [[mixins]]
 config = "neoforge.boxlib.mixins.json"
+
+[[mixins]]
+config = "boxlib.mixins.json"

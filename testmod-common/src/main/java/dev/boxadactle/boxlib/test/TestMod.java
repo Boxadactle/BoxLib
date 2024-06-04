@@ -3,8 +3,12 @@ package dev.boxadactle.boxlib.test;
 import dev.boxadactle.boxlib.command.BCommandManager;
 import dev.boxadactle.boxlib.config.BConfigClass;
 import dev.boxadactle.boxlib.config.BConfigHandler;
+import dev.boxadactle.boxlib.keybind.KeybindHelper;
 import dev.boxadactle.boxlib.test.command.FunnyClientCommand;
 import dev.boxadactle.boxlib.test.config.ExampleConfigClass;
+import dev.boxadactle.boxlib.test.keybind.Keybindings;
+import dev.boxadactle.boxlib.translate.Language;
+import dev.boxadactle.boxlib.translate.Translator;
 import dev.boxadactle.boxlib.util.ModLogger;
 
 public class TestMod {
@@ -25,6 +29,14 @@ public class TestMod {
 
         // make sure to register your client commands like this
         BCommandManager.register(FunnyClientCommand.create());
+
+        Keybindings.init();
+
+        String message = "Test keybind 1 is bound to " + KeybindHelper.getBoundKey(Keybindings.TEST_KEYBIND);
+
+        // you can use google translate to translate messages
+        String translated = Translator.translate(message, Language.SPANISH);
+        LOGGER.info(translated);
     }
 
 }
