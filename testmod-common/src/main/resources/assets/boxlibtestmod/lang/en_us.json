@@ -23,6 +23,7 @@
   "boxlib.anotherInt": "Another Integer: %s",
   "boxlib.anotherLong": "Another Long: %s",
   "boxlib.anotherShort": "Another Short: %s",
+  "boxlib.aConfigScreen": "A Config Screen",
 
   "key.boxlibtestmod.test_keybind": "Test Keybind",
   "key.boxlibtestmod.test_keybind2": "Test Keybind 2",

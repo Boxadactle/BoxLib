@@ -76,7 +76,7 @@ public abstract class BOptionScreen extends Screen implements BOptionHelper {
 
     protected Button saveButton;
 
-    protected BOptionScreen(Screen parent) {
+    public BOptionScreen(Screen parent) {
         super(Component.literal("Config Screen"));
 
         this.parent = parent;

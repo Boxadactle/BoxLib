@@ -14,6 +14,7 @@ import dev.boxadactle.boxlib.layouts.component.ParagraphComponent;
 import dev.boxadactle.boxlib.layouts.layout.ColumnLayout;
 import dev.boxadactle.boxlib.layouts.layout.RowLayout;
 import dev.boxadactle.boxlib.test.TestMod;
+import dev.boxadactle.boxlib.test.prompts.PromptTestingScreen;
 import dev.boxadactle.boxlib.util.ClientUtils;
 import dev.boxadactle.boxlib.util.GuiUtils;
 import net.minecraft.client.gui.screens.Screen;
@@ -237,6 +238,14 @@ public class ExampleConfigScreen extends BOptionScreen {
                 )
         );
 
+        // this is how we would change to another config screen
+        addConfigLine(new BConfigScreenButton(
+                Component.translatable("boxlib.aConfigScreen"),
+                this,
+                PromptTestingScreen::new
+        ));
+
+        // here is how we would render our own thing
         RenderingLayout layout = createLayout();
         addConfigLine(
                 new BCustomEntry(

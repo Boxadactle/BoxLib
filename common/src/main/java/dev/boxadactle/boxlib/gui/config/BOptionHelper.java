@@ -39,6 +39,32 @@ public interface BOptionHelper {
     }
 
     /**
+     * Creates a done button with the specified position and parent screen.
+     *
+     * @param startX The x-coordinate of the button's top-left corner.
+     * @param startY The y-coordinate of the button's top-left corner.
+     * @param parent The parent screen to return to when the button is clicked.
+     * @return The done button.
+     */
+    default Button createDoneButton(int startX, int startY, Screen parent) {
+        return createDoneButton(startX, startY, b -> ClientUtils.setScreen(parent));
+    }
+
+    /**
+     * Creates a done button with the specified position and button consumer.
+     *
+     * @param startX         The x-coordinate of the button's top-left corner.
+     * @param startY         The y-coordinate of the button's top-left corner.
+     * @param ButtonConsumer The consumer function to be called when the button is clicked.
+     * @return The cancel button.
+     */
+    default Button createDoneButton(int startX, int startY, Consumer<Button> ButtonConsumer) {
+        return new Button.Builder(GuiUtils.DONE, ButtonConsumer::accept)
+                .bounds(startX, startY, getButtonWidth(ButtonType.NORMAL), getButtonHeight())
+                .build();
+    }
+
+    /**
      * Creates a back button with the specified position and parent screen.
      *
      * @param startX The x-coordinate of the button's top-left corner.
@@ -93,6 +119,32 @@ public interface BOptionHelper {
     }
 
     /**
+     * Creates a half-sized done button with the specified position and parent screen.
+     *
+     * @param startX The x-coordinate of the button's top-left corner.
+     * @param startY The y-coordinate of the button's top-left corner.
+     * @param parent The parent screen to return to when the button is clicked.
+     * @return The half-sized done button.
+     */
+    default Button createHalfDoneButton(int startX, int startY, Screen parent) {
+        return createHalfDoneButton(startX, startY, b -> ClientUtils.setScreen(parent));
+    }
+
+    /**
+     * Creates a half-sized done button with the specified position and button consumer.
+     *
+     * @param startX         The x-coordinate of the button's top-left corner.
+     * @param startY         The y-coordinate of the button's top-left corner.
+     * @param ButtonConsumer The consumer function to be called when the button is clicked.
+     * @return The half-sized done button.
+     */
+    default Button createHalfDoneButton(int startX, int startY, Consumer<Button> ButtonConsumer) {
+        return new Button.Builder(GuiUtils.DONE, ButtonConsumer::accept)
+                .bounds(startX, startY, getButtonWidth(ButtonType.SMALL), getButtonHeight())
+                .build();
+    }
+
+    /**
      * Creates a half-sized save button with the specified position and save consumer.
      *
      * @param startX       The x-coordinate of the button's top-left corner.
@@ -102,6 +154,34 @@ public interface BOptionHelper {
      */
     default Button createHalfSaveButton(int startX, int startY, Consumer<Button> saveConsumer) {
         return new Button.Builder(GuiUtils.SAVE, saveConsumer::accept)
+                .bounds(startX + getButtonWidth(ButtonType.SMALL) + getPadding(), startY, getButtonWidth(ButtonType.SMALL), getButtonHeight())
+                .build();
+    }
+
+    /**
+     * Creates an ok button with the specified position and save consumer.
+     *
+     * @param startX       The x-coordinate of the button's top-left corner.
+     * @param startY       The y-coordinate of the button's top-left corner.
+     * @param saveConsumer The consumer function to be called when the button is clicked.
+     * @return The ok button.
+     */
+    default Button createOkButton(int startX, int startY, Consumer<Button> saveConsumer) {
+        return new Button.Builder(GuiUtils.OK, saveConsumer::accept)
+                .bounds(startX, startY, getButtonWidth(ButtonType.NORMAL), getButtonHeight())
+                .build();
+    }
+
+    /**
+     * Creates a half-sized ok button with the specified position and save consumer.
+     *
+     * @param startX       The x-coordinate of the button's top-left corner.
+     * @param startY       The y-coordinate of the button's top-left corner.
+     * @param saveConsumer The consumer function to be called when the button is clicked.
+     * @return The half-sized ok button.
+     */
+    default Button createHalfOkButton(int startX, int startY, Consumer<Button> saveConsumer) {
+        return new Button.Builder(GuiUtils.OK, saveConsumer::accept)
                 .bounds(startX + getButtonWidth(ButtonType.SMALL) + getPadding(), startY, getButtonWidth(ButtonType.SMALL), getButtonHeight())
                 .build();
     }
