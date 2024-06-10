@@ -18,6 +18,7 @@ BoxLib is a library mod containing shared code used in Boxadactle's client mods.
 - Google Translation Features
 - Rendering Layouts
 - Keybinding helpers
+- Prompt system
 
 ### Dependents
 
