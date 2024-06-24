@@ -35,10 +35,6 @@ dependencies {
 
     common(project(path: ':common', configuration: 'namedElements')) { transitive false }
     shadowBundle project(path: ':common', configuration: 'transformProductionFabric')
-
-    modImplementation("com.terraformersmc:modmenu:${rootProject.modmenu_version}") {
-        transitive = false
-    }
 }
 
 processResources {
@@ -56,4 +52,34 @@ shadowJar {
 
 remapJar {
     input.set shadowJar.archiveFile
+}
+
+unifiedPublishing {
+    project {
+        displayName = "[Fabric ${rootProject.minecraft_version}] v$rootProject.mod_version"
+        version = "$rootProject.version-fabric"
+        changelog = "A changelog can be found here: https://github.com/Boxadactle/BoxLib/releases/tag/$rootProject.mod_version"
+        releaseType = rootProject.release_type
+        gameVersions = Arrays.asList(rootProject.game_versions.split(","))
+        gameLoaders = [ "fabric", "quilt" ]
+
+        mainPublication tasks.remapJar
+
+        var cfToken = System.getenv("CURSEFORGE_TOKEN")
+        if (cfToken != null) {
+            curseforge {
+                token = cfToken
+                id = rootProject.project_id_curseforge
+            }
+        }
+
+        var modrinthToken = System.getenv("MODRINTH_TOKEN")
+        if (modrinthToken != null) {
+            modrinth {
+                token = modrinthToken
+                id = rootProject.project_id_modrinth
+                version = "${rootProject.mod_version}-${rootProject.name}"
+            }
+        }
+    }
 }

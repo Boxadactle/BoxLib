@@ -15,19 +15,20 @@
   "entrypoints": {
     "client": [
       "dev.boxadactle.boxlib.fabric.BoxLibFabric"
-    ],
-    "modmenu": [
-      "dev.boxadactle.boxlib.fabric.ModMenuIntegration"
     ]
   },
   "depends": {
-    "fabricloader": ">=0.15.3",
-    "minecraft": ">=1.20.5",
-    "fabric-api": ">=0.97.5"
+    "fabricloader": ">=0.15.11",
+    "minecraft": ">=1.21",
+    "fabric-api": ">=0.100.0"
   },
   "custom": {
     "modmenu": {
       "badges": [ "library" ]
     }
-  }
+  },
+  "mixins": [
+    "fabric.boxlib.mixins.json",
+    "boxlib.mixins.json"
+  ]
 }

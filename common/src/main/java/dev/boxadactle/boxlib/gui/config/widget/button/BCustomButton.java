@@ -10,6 +10,22 @@ import net.minecraft.network.chat.Component;
 public abstract class BCustomButton extends BOptionButton<Object> {
 
     /**
+     * Creates a new BCustomButton with the specified message and action to perform when clicked.
+     *
+     * @param message the component representing the message of the button
+     * @param onClick the action to perform when the button is clicked
+     * @return the created BCustomButton
+     */
+    public static BCustomButton create(Component message, Runnable onClick) {
+        return new BCustomButton(message) {
+            @Override
+            protected void buttonClicked(BOptionButton<?> button) {
+                onClick.run();
+            }
+        };
+    }
+
+    /**
      * Constructs a new BCustomButton with the specified message.
      *
      * @param message the component representing the message of the button

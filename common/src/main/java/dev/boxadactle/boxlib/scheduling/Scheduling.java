@@ -48,6 +48,16 @@ public class Scheduling {
     }
 
     /**
+     * Schedules an action to be executed after the next tick.
+     *
+     * @param method the method to be executed
+     * @return the scheduled action
+     */
+    public static ScheduleAction nextTick(EmptyMethod method) {
+        return schedule(1, method);
+    }
+
+    /**
      * Cancels a scheduled action.
      *
      * @param action the action to be canceled
