@@ -16,14 +16,14 @@ logoFile = "icon.png"
 [[dependencies.boxlib]]
 modId = "neoforge"
 type = "required"
-versionRange = "[20.5,)"
+versionRange = "[21.0,)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.boxlib]]
 modId = "minecraft"
 type = "required"
-versionRange = "[1.20.5,)"
+versionRange = "[1.21,)"
 ordering = "NONE"
 side = "BOTH"
 

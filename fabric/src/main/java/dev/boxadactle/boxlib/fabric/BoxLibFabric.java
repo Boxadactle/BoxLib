@@ -4,7 +4,6 @@ import com.mojang.brigadier.CommandDispatcher;
 import dev.boxadactle.boxlib.command.BCommandImpl;
 import dev.boxadactle.boxlib.command.BCommandSourceStack;
 import dev.boxadactle.boxlib.core.BoxLib;
-import dev.boxadactle.boxlib.fabric.command.BCommandManager;
 import dev.boxadactle.boxlib.keybind.KeybindingImpl;
 import dev.boxadactle.boxlib.scheduling.Scheduling;
 import net.fabricmc.api.ClientModInitializer;
@@ -27,9 +26,6 @@ public class BoxLibFabric implements ClientModInitializer {
 
         ClientCommandRegistrationCallback.EVENT.register((dispatcher, registryAccess) -> {
             BCommandImpl.register((CommandDispatcher<BCommandSourceStack>) (CommandDispatcher<?>) dispatcher);
-
-            // DEPRECATED
-            BCommandManager.registerToGame(dispatcher);
         });
     }
 

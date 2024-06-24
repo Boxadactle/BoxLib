@@ -6,7 +6,6 @@ import dev.boxadactle.boxlib.command.BCommandSourceStack;
 import dev.boxadactle.boxlib.core.BoxLib;
 import dev.boxadactle.boxlib.core.ModConstants;
 import dev.boxadactle.boxlib.keybind.KeybindingImpl;
-import dev.boxadactle.boxlib.neoforge.command.BCommandManager;
 import dev.boxadactle.boxlib.scheduling.Scheduling;
 import dev.boxadactle.boxlib.util.MouseUtils;
 import net.neoforged.api.distmarker.Dist;
@@ -32,9 +31,6 @@ public class BoxLibNeoforge {
         @SubscribeEvent
         public static void registerCommands(RegisterClientCommandsEvent event) {
             BCommandImpl.register((CommandDispatcher<BCommandSourceStack>) (CommandDispatcher<?>) event.getDispatcher());
-
-            // DEPRECATED
-            BCommandManager.registerToGame(event.getDispatcher());
         }
 
         @SubscribeEvent

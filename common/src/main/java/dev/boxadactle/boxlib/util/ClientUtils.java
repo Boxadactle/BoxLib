@@ -205,9 +205,9 @@ public class ClientUtils {
     public static void openUrl(String url) {
         try {
             URI uri = new URI(url);
-            Util.getPlatform().openUrl(uri.toURL());
-        } catch (URISyntaxException | MalformedURLException e) {
-            throw new RuntimeException(e);
+            Util.getPlatform().openUri(uri);
+        } catch (URISyntaxException e) {
+            throw new RuntimeException("Malformed URL: " + url, e);
         }
     }
 
