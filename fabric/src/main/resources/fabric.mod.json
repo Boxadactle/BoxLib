@@ -4,7 +4,7 @@
   "version": "${version}",
 
   "name": "BoxLib",
-  "description": "The most basic client-side library mod",
+  "description": "A client-side library mod with tons of features to do all the heavy lifting for all client-side mod developers.",
   "authors": [ "Boxadactle" ],
   "contact": {},
 
@@ -28,7 +28,6 @@
     }
   },
   "mixins": [
-    "fabric.boxlib.mixins.json",
     "boxlib.mixins.json"
   ]
 }

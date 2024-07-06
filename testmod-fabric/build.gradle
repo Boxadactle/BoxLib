@@ -26,3 +26,6 @@ dependencies {
         transitive = false
     }
 }
+
+shadowJar.enabled = false
+remapJar.enabled = false
