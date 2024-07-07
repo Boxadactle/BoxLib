@@ -1,12 +1,14 @@
 package dev.boxadactle.boxlib.test.config;
 
+import dev.boxadactle.boxlib.config.BConfig;
+import dev.boxadactle.boxlib.config.BConfigFile;
 import dev.boxadactle.boxlib.core.ModConstants;
 import dev.boxadactle.boxlib.gui.config.BOptionScreen;
 import dev.boxadactle.boxlib.gui.config.widget.BCustomEntry;
 import dev.boxadactle.boxlib.gui.config.widget.BSpacingEntry;
 import dev.boxadactle.boxlib.gui.config.widget.button.*;
 import dev.boxadactle.boxlib.gui.config.widget.field.*;
-import dev.boxadactle.boxlib.gui.config.widget.label.*;
+import dev.boxadactle.boxlib.gui.config.widget.label.BCenteredLabel;
 import dev.boxadactle.boxlib.gui.config.widget.slider.*;
 import dev.boxadactle.boxlib.layouts.RenderingLayout;
 import dev.boxadactle.boxlib.layouts.component.LayoutContainerComponent;
@@ -25,8 +27,8 @@ import net.minecraft.network.chat.Component;
  * Config screens must extend {@link BOptionScreen} to access the methods
  * Config values can be accessed/saved with config classes.
  * You can use an external library such as Cloth Config, but BoxLib already handles config
- * @see dev.boxadactle.boxlib.config.BConfig
- * @see dev.boxadactle.boxlib.config.BConfigFile
+ * @see BConfig
+ * @see BConfigFile
  */
 public class ExampleConfigScreen extends BOptionScreen {
 
