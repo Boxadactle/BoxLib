@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder;
 import dev.boxadactle.boxlib.core.BoxLib;
 
 import java.io.*;
+import java.lang.reflect.InvocationTargetException;
 import java.util.function.Supplier;
 
 /**
@@ -64,7 +65,13 @@ public class BConfigClass<T extends BConfig> implements Supplier<T> {
      * Caches the current configuration.
      */
     public void cacheConfig() {
-        cached = config;
+        try {
+            cached = BConfig.copy(config);
+            BoxLib.LOGGER.info("Cached config for class %s", configClass.getSimpleName());
+        } catch (Exception e) {
+            BoxLib.LOGGER.error("Could not cache config for class %s", configClass.getSimpleName());
+            BoxLib.LOGGER.printStackTrace(e);
+        }
     }
 
 
@@ -82,6 +89,8 @@ public class BConfigClass<T extends BConfig> implements Supplier<T> {
      */
     public void restoreCache() {
         if (cached == null) throw new NullPointerException("No config cache was found for class " + configClass.getSimpleName());
+
+        BoxLib.LOGGER.info("Restoring cached config for class %s", config.getClass().getSimpleName());
 
         config = cached;
         clearCache();
