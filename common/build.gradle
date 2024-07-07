@@ -1,5 +1,16 @@
+plugins {
+    id 'com.github.johnrengelman.shadow'
+}
+
 architectury {
     common rootProject.enabled_platforms.split(',')
+}
+
+configurations {
+    shadowBundle {
+        canBeResolved = true
+        canBeConsumed = false
+    }
 }
 
 dependencies {
@@ -8,7 +19,27 @@ dependencies {
     // Do NOT use other classes from Fabric Loader.
     modImplementation "net.fabricmc:fabric-loader:$rootProject.fabric_loader_version"
 
-    // Architectury API. This is optional, and you can comment it out if you don't need it.
-//    modImplementation "dev.architectury:architectury:$rootProject.architectury_api_version"
-    implementation("net.sf.jopt-simple:jopt-simple:5.0.4")
+    implementation project(path: ":boxlib-functions", configuration: "namedElements")
+    implementation project(path: ":boxlib-math", configuration: "namedElements")
+
+    shadowBundle project(path: ':boxlib-command', configuration: "namedElements")
+    shadowBundle project(path: ':boxlib-config', configuration: "namedElements")
+    shadowBundle project(path: ':boxlib-functions', configuration: "namedElements")
+    shadowBundle project(path: ':boxlib-gui', configuration: "namedElements")
+    shadowBundle project(path: ":boxlib-http", configuration: "namedElements")
+    shadowBundle project(path: ':boxlib-keybind', configuration: "namedElements")
+    shadowBundle project(path: ':boxlib-layouts', configuration: "namedElements")
+    shadowBundle project(path: ':boxlib-math', configuration: "namedElements")
+    shadowBundle project(path: ':boxlib-prompt', configuration: "namedElements")
+    shadowBundle project(path: ':boxlib-scheduling', configuration: "namedElements")
+    shadowBundle project(path: ':boxlib-translate', configuration: "namedElements")
+}
+
+shadowJar {
+    configurations = [project.configurations.shadowBundle]
+    archiveClassifier = 'dev-shadow'
+}
+
+remapJar {
+    input.set shadowJar.archiveFile
 }

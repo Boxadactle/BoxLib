@@ -19,9 +19,11 @@ subprojects {
     apply plugin: 'architectury-plugin'
     apply plugin: 'maven-publish'
 
-    base {
-        // Set up a suffixed format for the mod jar names, e.g. `example-fabric`.
-        archivesName = "$rootProject.archives_name-$project.name"
+    if (!project.name.contains("boxlib")) {
+        base {
+            // Set up a suffixed format for the mod jar names, e.g. `example-fabric`.
+            archivesName = "$rootProject.archives_name-$project.name"
+        }
     }
 
     repositories {
@@ -48,7 +50,7 @@ subprojects {
     }
 
     // Configure Maven publishing for non-testmods
-    if (!project.name.contains("testmod")) {
+    if (!project.name.contains("testmod") && !project.name.contains("boxlib")) {
         publishing {
             publications {
                 mavenJava(MavenPublication) {

@@ -1,6 +1,5 @@
 package dev.boxadactle.boxlib.test.prompts;
 
-import dev.boxadactle.boxlib.gui.config.BOptionButton;
 import dev.boxadactle.boxlib.gui.config.BOptionScreen;
 import dev.boxadactle.boxlib.gui.config.widget.button.BCustomButton;
 import dev.boxadactle.boxlib.prompt.Prompts;
