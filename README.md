@@ -1,21 +1,7 @@
 # BoxLib
-The most basic client-side library mod
+The most basic client-side library mod.
 
-### Version List
-
-| MC Version | Mod Version   |
-|------------|---------------|
-| 1.18.2     | Not Supported |
-| 1.19       | v6.0.0        |
-| 1.19.1     | v6.0.0        |
-| 1.19.2     | v6.0.0        |
-| 1.19.3     | v7.0.0        |
-| 1.19.4     | v8.0.0        |
-| 1.20       | v9.0.0        |
-| 1.20.1     | v9.0.0        |
-| 1.20.2     | v10.0.0       |
-| 1.20.3     | v11.0.0       |
-| 1.20.4     | v11.0.0       |
+BoxLib is a library mod containing shared code used in Boxadactle's client mods. It is designed to be lightweight and easy to use, with a focus on providing utilities and tools that are commonly used in client-side mods.
 
 ### Library
 
@@ -26,12 +12,24 @@ The most basic client-side library mod
 - Math
 - Client Utils
 - Gui Utils
-- Mouse Utils
 - Rendering Utils
 - World Utils
 - Mod Logger
-- Mod Constants Handler (name, version, mod id, etc)
+- Google Translation Features
+- Rendering Layouts
+- Keybinding helpers
+- Prompt system
 
+### Dependents
+
+BoxLib is required by all of the following mods:
+- [CoordinatesDisplay](https://www.curseforge.com/minecraft/mc-mods/coordinates-display) v10.0.0 and above
+- [DebugKeybind](https://www.curseforge.com/minecraft/mc-mods/debug-keybind) v8.0.0 and above
+- [MacroCraft](https://www.curseforge.com/minecraft/mc-mods/macrocraft) v4.0.0 and above
+
+<p style="color: red">If you have trouble finding the required version of BoxLib for a specific mod, just download the latest version of BoxLib for the Minecraft version you are using. </p>
+
+### Usage
 
 If you would like to use this library, it is published on my maven repository: `https://maven.boxadactle.dev`
 
@@ -47,14 +45,51 @@ repositories {
 dependencies {
     [...]
 
-    modApi("dev.boxadactle.boxlib:BoxLib-Fabric:VERSION")
-    include("dev.boxadactle.boxlib:BoxLib-Fabric:VERSION")
+    modImplementation("dev.boxadactle.boxlib:Boxlib-fabric:VERSION")
 }
 ```
 
 _Make sure to replace `VERSION` with the correct version of each mod_
 
-#### Setup with Forge
+#### Setup with NeoForge
+
+**`build.gradle`**
+```gradle
+repositories {
+    maven { url = "https://maven.boxadactle.dev/" }
+}
+
+dependencies {
+    [...]
+
+    modImplementation("dev.boxadactle.boxlib:Boxlib-neoforge:VERSION")
+}
+```
+
+_Make sure to replace `VERSION` with the correct version of each mod_
+
+#### Setup with Architectury
+
+**`build.gradle`**
+```gradle
+repositories {
+    maven { url = "https://maven.boxadactle.dev/" }
+}
+
+dependencies {
+    [...]
+    
+    modCompileOnlyApi("dev.boxadactle:Boxlib-common:VERSION")
+}
+```
+
+_Make sure to replace `VERSION` with the correct version of each mod_
+
+
+#### Setup with Forge (DEPRECATED)
+
+<p style="color: red">THE FORGE VERSION OF BOXLIB HAS BEEN DEPRECATED SINCE 1.20.6</p>
+
 **`build.gradle:`**
 ```gradle
 // For Forge, I recommend embedding the mod with the built-in jarJar
@@ -68,30 +103,6 @@ dependencies {
     [...]
 
     implementation fg.deobf("dev.boxadactle.boxlib:BoxLib-Forge:VERSION")
-    
-    // optional way of embedding the mod
-    jarJar(group: 'dev.boxadactle.boxlib', name: 'BoxLib-Forge', version: "[VERSION,)")
-}
-```
-
-_Make sure to replace `VERSION` with the correct version of each mod_
-
-#### Setup with Architectury
-
-For fabric and forge, it will be almost exactly the same as a standalone mod.
-
-**`build.gradle`**
-```gradle
-repositories {
-    maven { url = "https://maven.boxadactle.dev/" }
-}
-
-dependencies {
-    [...]
-    
-    // dont embed the jar into the common project,
-    // it's better to do it when building fabric/forge
-    modCompileOnlyApi("dev.boxadactle:BoxLib:VERSION")
 }
 ```
 

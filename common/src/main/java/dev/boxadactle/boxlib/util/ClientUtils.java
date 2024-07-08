@@ -14,8 +14,8 @@ import net.minecraft.client.gui.screens.ConfirmScreen;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 
-import java.net.MalformedURLException;
-import java.net.URL;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.nio.file.Path;
 import java.util.Locale;
 
@@ -125,22 +125,19 @@ public class ClientUtils {
                 // if this code is reached, that means that the key typed is a number
                 if (!Screen.hasShiftDown()) return ab.charAt(0);
 
-                switch (num) {
-
-                    case 1: return '!';
-                    case 2: return '@';
-                    case 3: return '#';
-                    case 4: return '$';
-                    case 5: return '%';
-                    case 6: return '^';
-                    case 7: return '&';
-                    case 8: return '*';
-                    case 9: return '(';
-                    case 0: return ')';
-
-                }
-
-                return Character.MIN_VALUE;
+                return switch (num) {
+                    case 1 -> '!';
+                    case 2 -> '@';
+                    case 3 -> '#';
+                    case 4 -> '$';
+                    case 5 -> '%';
+                    case 6 -> '^';
+                    case 7 -> '&';
+                    case 8 -> '*';
+                    case 9 -> '(';
+                    case 0 -> ')';
+                    default -> Character.MIN_VALUE;
+                };
 
             } catch (NumberFormatException ignored) {}
 
@@ -205,9 +202,10 @@ public class ClientUtils {
      */
     public static void openUrl(String url) {
         try {
-            Util.getPlatform().openUrl(new URL(url));
-        } catch (MalformedURLException e) {
-            throw new RuntimeException(e);
+            URI uri = new URI(url);
+            Util.getPlatform().openUri(uri);
+        } catch (URISyntaxException e) {
+            throw new RuntimeException("Malformed URL: " + url, e);
         }
     }
 

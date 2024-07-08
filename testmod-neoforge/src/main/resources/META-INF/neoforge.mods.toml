@@ -1,0 +1,28 @@
+modLoader = "javafml"
+loaderVersion = "[2,)"
+#issueTrackerURL = ""
+license = "MIT"
+
+[[mods]]
+modId = "boxlibtestmod"
+version = "0.0.0"
+displayName = "Boxlib Test Mod"
+authors = "Boxadactle"
+description = '''
+The most basic client-side mod
+'''
+logoFile = "icon.png"
+
+[[dependencies.boxlibtestmod]]
+modId = "neoforge"
+type = "required"
+versionRange = "[20.5,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.boxlibtestmod]]
+modId = "minecraft"
+type = "required"
+versionRange = "[0.0.0,)"
+ordering = "NONE"
+side = "BOTH"

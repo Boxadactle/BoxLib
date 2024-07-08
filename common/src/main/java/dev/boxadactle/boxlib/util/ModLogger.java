@@ -30,7 +30,7 @@ public class ModLogger {
                 GuiUtils.brackets(GuiUtils.colorize(Component.literal(modName), GuiUtils.AQUA)),
                 GuiUtils.BLUE
         );
-        player = new PlayerLogging(client);
+        player = new PlayerLogging(client, modName);
     }
 
     /**
@@ -61,6 +61,16 @@ public class ModLogger {
      */
     public void info(Object msg, Object... data) {
         logger.log(Level.INFO, prefix + msg, data);
+    }
+
+    /**
+     * Logs a debug message.
+     *
+     * @param msg  the debug message
+     * @param data additional data to be included in the log message
+     */
+    public void debug(Object msg, Object... data) {
+        logger.log(Level.DEBUG, prefix + msg, data);
     }
 
     /**
@@ -123,9 +133,7 @@ public class ModLogger {
      */
     public static class PlayerLogging {
 
-        private final Component prefix = GuiUtils.colorize(GuiUtils.brackets(
-                GuiUtils.colorize(Component.literal("Coordinates Display"), 5636095)
-        ), 43690).copy().append(" ");
+        private final Component prefix;
         private final Minecraft client;
 
         /**
@@ -133,8 +141,11 @@ public class ModLogger {
          *
          * @param client the Minecraft client
          */
-        public PlayerLogging(Minecraft client) {
+        public PlayerLogging(Minecraft client, String prefix) {
             this.client = client;
+            this.prefix = GuiUtils.colorize(GuiUtils.brackets(
+                    GuiUtils.colorize(Component.literal(prefix), 5636095)
+            ), 43690).copy().append(" ");
         }
 
         /**

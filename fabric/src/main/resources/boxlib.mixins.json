@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "package": "dev.boxadactle.boxlib.fabric.mixin",
+  "minVersion": "0.8",
+  "compatibilityLevel": "JAVA_21",
+  "client": [
+    "FabricClientCommandSourceMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

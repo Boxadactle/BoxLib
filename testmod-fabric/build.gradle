@@ -1,0 +1,44 @@
+plugins {
+    id "com.github.johnrengelman.shadow"
+}
+
+architectury {
+    platformSetupLoomIde()
+    fabric()
+}
+
+configurations {
+    common
+    compileClasspath.extendsFrom common
+    runtimeClasspath.extendsFrom common
+    developmentFabric.extendsFrom common
+}
+
+dependencies {
+    modImplementation "net.fabricmc:fabric-loader:${rootProject.fabric_loader_version}"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${rootProject.fabric_api_version}"
+
+    implementation project(path: ":fabric", configuration: "namedElements")
+
+    common(project(path: ":common", configuration: "namedElements")) { transitive false }
+    common(project(path: ":testmod-common", configuration: "namedElements")) { transitive false }
+
+    common project(path: ':boxlib-command', configuration: "namedElements")
+    common project(path: ':boxlib-config', configuration: "namedElements")
+    common project(path: ':boxlib-functions', configuration: "namedElements")
+    common project(path: ':boxlib-gui', configuration: "namedElements")
+    common project(path: ":boxlib-http", configuration: "namedElements")
+    common project(path: ':boxlib-keybind', configuration: "namedElements")
+    common project(path: ':boxlib-layouts', configuration: "namedElements")
+    common project(path: ':boxlib-math', configuration: "namedElements")
+    common project(path: ':boxlib-prompt', configuration: "namedElements")
+    common project(path: ':boxlib-scheduling', configuration: "namedElements")
+    common project(path: ':boxlib-translate', configuration: "namedElements")
+
+    modImplementation("com.terraformersmc:modmenu:${rootProject.modmenu_version}") {
+        transitive = false
+    }
+}
+
+shadowJar.enabled = false
+remapJar.enabled = false

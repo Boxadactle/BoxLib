@@ -1,0 +1,31 @@
+modLoader = "javafml"
+loaderVersion = "[2,)"
+#issueTrackerURL = ""
+license = "MIT"
+
+[[mods]]
+modId = "boxlib"
+version = "${version}"
+displayName = "BoxLib"
+authors = "Boxadactle"
+description = '''
+A client-side library mod with tons of features to do all the heavy lifting for all client-side mod developers.
+'''
+logoFile = "icon.png"
+
+[[dependencies.boxlib]]
+modId = "neoforge"
+type = "required"
+versionRange = "[20.5,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.boxlib]]
+modId = "minecraft"
+type = "required"
+versionRange = "[1.20.5,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[mixins]]
+config = "boxlib.mixins.json"
