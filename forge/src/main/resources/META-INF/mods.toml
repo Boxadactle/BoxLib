@@ -1,0 +1,25 @@
+modLoader="javafml"
+loaderVersion="[0,)"
+license="MIT"
+
+[[mods]]
+modId="boxlib"
+version="${version}"
+displayName="BoxLib"
+authors="Boxadactle"
+description='''A client-side library mod with tons of features to do all the heavy lifting for all client-side mod developers.'''
+logoFile='icon.png'
+
+[[dependencies.boxlib]]
+modId="forge"
+mandatory=true
+versionRange="[0,)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.boxlib]]
+modId="minecraft"
+mandatory=true
+versionRange="[1.20.4,)"
+ordering="NONE"
+side="BOTH"

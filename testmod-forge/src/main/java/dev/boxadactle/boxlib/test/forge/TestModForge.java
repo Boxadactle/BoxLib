@@ -1,15 +1,15 @@
-package dev.boxadactle.boxlib.test.neoforge;
+package dev.boxadactle.boxlib.test.forge;
 
 import dev.boxadactle.boxlib.test.TestMod;
 import dev.boxadactle.boxlib.test.config.ExampleConfigScreen;
-import net.neoforged.fml.ModLoadingContext;
-import net.neoforged.fml.common.Mod;
-import net.neoforged.neoforge.client.ConfigScreenHandler;
+import net.minecraftforge.client.ConfigScreenHandler;
+import net.minecraftforge.fml.ModLoadingContext;
+import net.minecraftforge.fml.common.Mod;
 
 @Mod(TestMod.MOD_ID)
-public class TestModNeoForge {
+public class TestModForge {
 
-    public TestModNeoForge() {
+    public TestModForge() {
         TestMod.init();
 
         ModLoadingContext.get().registerExtensionPoint(ConfigScreenHandler.ConfigScreenFactory.class, () ->

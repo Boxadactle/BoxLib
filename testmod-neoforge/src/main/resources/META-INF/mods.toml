@@ -16,7 +16,7 @@ logoFile = "icon.png"
 [[dependencies.boxlibtestmod]]
 modId = "neoforge"
 type = "required"
-versionRange = "[20.5,)"
+versionRange = "[20.0,)"
 ordering = "NONE"
 side = "BOTH"
 

@@ -1,6 +1,6 @@
 {
   "required": true,
-  "package": "dev.boxadactle.boxlib.neoforge.mixin",
+  "package": "dev.boxadactle.boxlib.forge.mixin",
   "minVersion": "0.8",
   "compatibilityLevel": "JAVA_18",
   "mixins": [

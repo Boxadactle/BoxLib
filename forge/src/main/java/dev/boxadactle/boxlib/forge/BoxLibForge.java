@@ -1,4 +1,4 @@
-package dev.boxadactle.boxlib.neoforge;
+package dev.boxadactle.boxlib.forge;
 
 import com.mojang.brigadier.CommandDispatcher;
 import dev.boxadactle.boxlib.command.BCommandImpl;
@@ -8,18 +8,18 @@ import dev.boxadactle.boxlib.core.ModConstants;
 import dev.boxadactle.boxlib.keybind.KeybindingImpl;
 import dev.boxadactle.boxlib.scheduling.Scheduling;
 import dev.boxadactle.boxlib.util.MouseUtils;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.Mod;
-import net.neoforged.neoforge.client.event.RegisterClientCommandsEvent;
-import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
-import net.neoforged.neoforge.client.event.ScreenEvent;
-import net.neoforged.neoforge.event.TickEvent;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.event.RegisterClientCommandsEvent;
+import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
+import net.minecraftforge.client.event.ScreenEvent;
+import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
 @Mod(ModConstants.MOD_ID)
-public class BoxLibNeoforge {
+public class BoxLibForge {
 
-    public BoxLibNeoforge() {
+    public BoxLibForge() {
         BoxLib.init();
     }
 
