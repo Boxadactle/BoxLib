@@ -54,5 +54,5 @@ dependencies {
     common project(path: ':boxlib-translate', configuration: "namedElements")
 }
 
-//shadowJar.enabled = false
-//remapJar.enabled = false
+shadowJar.enabled = false
+remapJar.enabled = false
