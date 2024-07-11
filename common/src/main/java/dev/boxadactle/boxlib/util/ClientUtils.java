@@ -247,7 +247,7 @@ public class ClientUtils {
         ToastComponent toastComponent = getClient().getToasts();
         SystemToast.addOrUpdate(
                 toastComponent,
-                SystemToast.SystemToastId.PERIODIC_NOTIFICATION,
+                SystemToast.SystemToastIds.PERIODIC_NOTIFICATION,
                 message,
                 description
         );

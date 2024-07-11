@@ -98,7 +98,7 @@ public abstract class BOptionScreen extends Screen implements BOptionHelper {
 
     @Override
     public void render(GuiGraphics guiGraphics, int i, int j, float f) {
-        renderBackground(guiGraphics, i, j, f);
+        renderDirtBackground(guiGraphics);
         super.render(guiGraphics, i, j, f);
 
         if (shouldRenderScrollingWidget()) this.configList.render(guiGraphics, i, j, f);
@@ -270,8 +270,9 @@ public abstract class BOptionScreen extends Screen implements BOptionHelper {
             super(
                     minecraft,
                     BOptionScreen.this.width,
-                    BOptionScreen.this.getScrollingWidgetEnd() - BOptionScreen.this.getScrollingWidgetStart(),
+                    BOptionScreen.this.height,
                     BOptionScreen.this.getScrollingWidgetStart(),
+                    BOptionScreen.this.getScrollingWidgetEnd(),
                     BOptionScreen.this.getRowHeight()
             );
         }
