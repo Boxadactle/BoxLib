@@ -21,7 +21,7 @@ public class CenteredLabelWidget extends AbstractWidget {
     }
 
     @Override
-    protected void renderWidget(GuiGraphics guiGraphics, int i, int j, float f) {
+    public void renderWidget(GuiGraphics guiGraphics, int i, int j, float f) {
         RenderUtils.drawTextCentered(guiGraphics, getMessage(), getX() + width / 2, getY());
     }
 

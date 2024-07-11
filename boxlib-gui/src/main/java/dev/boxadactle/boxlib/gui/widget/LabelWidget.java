@@ -20,7 +20,7 @@ public class LabelWidget extends AbstractWidget {
     }
 
     @Override
-    protected void renderWidget(GuiGraphics guiGraphics, int i, int j, float f) {
+    public void renderWidget(GuiGraphics guiGraphics, int i, int j, float f) {
         RenderUtils.drawText(guiGraphics, this.getMessage(), this.getX(), this.getY(), 14737632);
     }
 

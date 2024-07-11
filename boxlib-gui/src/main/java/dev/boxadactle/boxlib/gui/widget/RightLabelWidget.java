@@ -21,7 +21,7 @@ public class RightLabelWidget extends AbstractWidget {
     }
 
     @Override
-    protected void renderWidget(GuiGraphics guiGraphics, int i, int j, float f) {
+    public void renderWidget(GuiGraphics guiGraphics, int i, int j, float f) {
         RenderUtils.drawText(guiGraphics, getMessage(), getX() + getWidth() - GuiUtils.getTextRenderer().width(getMessage()), getY());
     }
 

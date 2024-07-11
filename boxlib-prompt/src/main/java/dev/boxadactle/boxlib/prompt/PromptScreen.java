@@ -3,6 +3,7 @@ package dev.boxadactle.boxlib.prompt;
 import dev.boxadactle.boxlib.function.Consumer2;
 import dev.boxadactle.boxlib.gui.config.BOptionHelper;
 import dev.boxadactle.boxlib.util.ClientUtils;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
@@ -18,6 +19,12 @@ public abstract class PromptScreen<T> extends Screen implements BOptionHelper {
         super(Component.literal("BoxLib prompt screen"));
 
         this.parent = parent;
+    }
+
+    @Override
+    public void render(GuiGraphics guiGraphics, int i, int j, float f) {
+        renderBackground(guiGraphics);
+        super.render(guiGraphics, i, j, f);
     }
 
     protected abstract T getData();
