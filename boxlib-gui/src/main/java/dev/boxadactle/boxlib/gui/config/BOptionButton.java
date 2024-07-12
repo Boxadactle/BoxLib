@@ -1,6 +1,6 @@
 package dev.boxadactle.boxlib.gui.config;
 
-import net.minecraft.client.gui.GuiGraphics;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.network.chat.Component;
 
@@ -133,7 +133,7 @@ public abstract class BOptionButton<T> extends Button implements BOptionEntry<T>
      * @param delta the time difference between the last and current frame
      */
     @Override
-    public void renderWidget(GuiGraphics p_93657_, int mouseX, int mouseY, float delta) {
+    public void renderWidget(PoseStack p_93657_, int mouseX, int mouseY, float delta) {
         super.renderWidget(p_93657_, mouseX, mouseY, delta);
     }
 

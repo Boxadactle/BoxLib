@@ -15,7 +15,7 @@ public abstract class CommandSourceStackMixin implements BCommandSourceStack {
 
     @Override
     public void boxlib$sendFeedback(Component message, boolean broadcastToOps) {
-        ((CommandSourceStack) (Object) this).sendSuccess(() -> message, broadcastToOps);
+        ((CommandSourceStack) (Object) this).sendSuccess(message, broadcastToOps);
     }
 
     @Override

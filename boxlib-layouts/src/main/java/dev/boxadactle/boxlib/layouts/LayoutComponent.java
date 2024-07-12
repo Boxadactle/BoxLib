@@ -1,7 +1,7 @@
 package dev.boxadactle.boxlib.layouts;
 
+import com.mojang.blaze3d.vertex.PoseStack;
 import dev.boxadactle.boxlib.math.geometry.Dimension;
-import net.minecraft.client.gui.GuiGraphics;
 
 /**
  * The abstract base class for layout components.
@@ -29,11 +29,11 @@ public abstract class LayoutComponent<T> {
     /**
      * Renders the layout component on the screen.
      *
-     * @param graphics the graphics object used for rendering
-     * @param x        the x-coordinate of the component's position
-     * @param y        the y-coordinate of the component's position
+     * @param poseStack   the pose stack
+     * @param x           the x-coordinate of the component's position
+     * @param y           the y-coordinate of the component's position
      */
-    public abstract void render(GuiGraphics graphics, int x, int y);
+    public abstract void render(PoseStack poseStack, int x, int y);
 
     /**
      * Sets the component for the layout component.

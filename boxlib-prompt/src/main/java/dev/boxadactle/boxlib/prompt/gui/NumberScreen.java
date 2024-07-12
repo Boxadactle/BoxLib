@@ -1,9 +1,9 @@
 package dev.boxadactle.boxlib.prompt.gui;
 
+import com.mojang.blaze3d.vertex.PoseStack;
 import dev.boxadactle.boxlib.prompt.PromptScreen;
 import dev.boxadactle.boxlib.util.GuiUtils;
 import dev.boxadactle.boxlib.util.RenderUtils;
-import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
@@ -65,9 +65,9 @@ public abstract class NumberScreen<T extends Number> extends PromptScreen<T> {
     }
 
     @Override
-    public void render(GuiGraphics guiGraphics, int i, int j, float f) {
-        super.render(guiGraphics, i, j, f);
+    public void render(PoseStack stack, int i, int j, float f) {
+        super.render(stack, i, j, f);
 
-        RenderUtils.drawTextCentered(guiGraphics, message, this.width / 2, this.height / 2 - 50);
+        RenderUtils.drawTextCentered(stack, message, this.width / 2, this.height / 2 - 50);
     }
 }

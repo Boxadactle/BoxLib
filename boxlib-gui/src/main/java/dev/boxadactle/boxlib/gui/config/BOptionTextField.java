@@ -1,10 +1,10 @@
 package dev.boxadactle.boxlib.gui.config;
 
+import com.mojang.blaze3d.vertex.PoseStack;
 import dev.boxadactle.boxlib.math.geometry.Rect;
 import dev.boxadactle.boxlib.util.GuiUtils;
 import dev.boxadactle.boxlib.util.MouseUtils;
 import dev.boxadactle.boxlib.function.Converter;
-import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.network.chat.Component;
 
@@ -35,7 +35,7 @@ public abstract class BOptionTextField<T> extends EditBox implements BOptionEntr
     }
 
     @Override
-    public void renderWidget(GuiGraphics p_93657_, int mouseX, int mouseY, float delta) {
+    public void renderWidget(PoseStack p_93657_, int mouseX, int mouseY, float delta) {
         super.renderWidget(p_93657_, mouseX, mouseY, delta);
 
         if (this.isInvalid()) this.setTextColor(GuiUtils.RED);

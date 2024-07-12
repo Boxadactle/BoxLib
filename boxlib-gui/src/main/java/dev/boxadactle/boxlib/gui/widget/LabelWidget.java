@@ -1,8 +1,8 @@
 package dev.boxadactle.boxlib.gui.widget;
 
+import com.mojang.blaze3d.vertex.PoseStack;
 import dev.boxadactle.boxlib.util.GuiUtils;
 import dev.boxadactle.boxlib.util.RenderUtils;
-import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.narration.NarrationElementOutput;
 import net.minecraft.network.chat.Component;
@@ -20,8 +20,8 @@ public class LabelWidget extends AbstractWidget {
     }
 
     @Override
-    public void renderWidget(GuiGraphics guiGraphics, int i, int j, float f) {
-        RenderUtils.drawText(guiGraphics, this.getMessage(), this.getX(), this.getY(), 14737632);
+    public void renderWidget(PoseStack stack, int i, int j, float f) {
+        RenderUtils.drawText(stack, this.getMessage(), this.getX(), this.getY(), 14737632);
     }
 
     @Override

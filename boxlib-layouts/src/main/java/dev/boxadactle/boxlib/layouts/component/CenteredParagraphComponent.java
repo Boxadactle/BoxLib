@@ -1,7 +1,8 @@
 package dev.boxadactle.boxlib.layouts.component;
 
+import com.mojang.blaze3d.vertex.PoseStack;
 import dev.boxadactle.boxlib.util.GuiUtils;
-import net.minecraft.client.gui.GuiGraphics;
+import dev.boxadactle.boxlib.util.RenderUtils;
 import net.minecraft.network.chat.Component;
 
 /**
@@ -22,17 +23,17 @@ public class CenteredParagraphComponent extends ParagraphComponent {
     /**
      * Renders the centered paragraph component on the screen.
      *
-     * @param graphics the graphics object used for rendering
-     * @param x        the x-coordinate of the top-left corner of the component
-     * @param y        the y-coordinate of the top-left corner of the component
+     * @param poseStack      the pose stack
+     * @param x              the x-coordinate of the top-left corner of the component
+     * @param y              the y-coordinate of the top-left corner of the component
      */
     @Override
-    public void render(GuiGraphics graphics, int x, int y) {
+    public void render(PoseStack poseStack, int x, int y) {
         int currentY = y;
         int calculatedWidth = this.getWidth();
 
         for (Component component : this.component) {
-            graphics.drawCenteredString(GuiUtils.getTextRenderer(), component, x + calculatedWidth / 2, currentY, GuiUtils.WHITE);
+            RenderUtils.drawTextCentered(poseStack, component, x + calculatedWidth / 2, currentY, GuiUtils.WHITE);
 
             currentY += GuiUtils.getTextHeight() + textPadding * 2;
         }

@@ -1,8 +1,8 @@
 package dev.boxadactle.boxlib.layouts.layout;
 
+import com.mojang.blaze3d.vertex.PoseStack;
 import dev.boxadactle.boxlib.layouts.LayoutComponent;
 import dev.boxadactle.boxlib.layouts.RenderingLayout;
-import net.minecraft.client.gui.GuiGraphics;
 
 /**
  * Represents a layout that arranges components in a vertical column.
@@ -40,12 +40,12 @@ public class ColumnLayout extends RenderingLayout {
     }
 
     @Override
-    public void render(GuiGraphics graphics) {
+    public void render(PoseStack poseStack) {
         final int[] currentY = {y};
 
         for (int i = 0; i < components.size(); i++) {
             LayoutComponent<?> component = components.get(i);
-            component.render(graphics, x, currentY[0]);
+            component.render(poseStack, x, currentY[0]);
 
             if (i != components.size() - 1) {
                 currentY[0] += component.getHeight() + padding * 2;

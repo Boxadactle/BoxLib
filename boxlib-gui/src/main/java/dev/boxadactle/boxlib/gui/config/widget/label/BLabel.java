@@ -1,8 +1,8 @@
 package dev.boxadactle.boxlib.gui.config.widget.label;
 
+import com.mojang.blaze3d.vertex.PoseStack;
 import dev.boxadactle.boxlib.gui.config.BOptionButton;
 import dev.boxadactle.boxlib.util.RenderUtils;
-import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 
 /**
@@ -24,7 +24,7 @@ public class BLabel extends BOptionButton<Object> {
     }
 
     @Override
-    public void renderWidget(GuiGraphics p_93657_, int mouseX, int mouseY, float delta) {
+    public void renderWidget(PoseStack p_93657_, int mouseX, int mouseY, float delta) {
         RenderUtils.drawText(p_93657_, message, this.getX(), this.getY() + 5);
     }
 

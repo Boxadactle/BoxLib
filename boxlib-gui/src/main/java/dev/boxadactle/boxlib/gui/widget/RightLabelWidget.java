@@ -1,8 +1,8 @@
 package dev.boxadactle.boxlib.gui.widget;
 
+import com.mojang.blaze3d.vertex.PoseStack;
 import dev.boxadactle.boxlib.util.GuiUtils;
 import dev.boxadactle.boxlib.util.RenderUtils;
-import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.narration.NarrationElementOutput;
 import net.minecraft.network.chat.Component;
@@ -21,8 +21,8 @@ public class RightLabelWidget extends AbstractWidget {
     }
 
     @Override
-    public void renderWidget(GuiGraphics guiGraphics, int i, int j, float f) {
-        RenderUtils.drawText(guiGraphics, getMessage(), getX() + getWidth() - GuiUtils.getTextRenderer().width(getMessage()), getY());
+    public void renderWidget(PoseStack stack, int i, int j, float f) {
+        RenderUtils.drawText(stack, getMessage(), getX() + getWidth() - GuiUtils.getTextRenderer().width(getMessage()), getY());
     }
 
     @Override

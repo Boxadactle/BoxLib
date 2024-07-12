@@ -1,8 +1,8 @@
 package dev.boxadactle.boxlib.gui.widget;
 
+import com.mojang.blaze3d.vertex.PoseStack;
 import dev.boxadactle.boxlib.util.GuiUtils;
 import dev.boxadactle.boxlib.util.RenderUtils;
-import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.narration.NarrationElementOutput;
 import net.minecraft.network.chat.Component;
@@ -21,8 +21,8 @@ public class CenteredLabelWidget extends AbstractWidget {
     }
 
     @Override
-    public void renderWidget(GuiGraphics guiGraphics, int i, int j, float f) {
-        RenderUtils.drawTextCentered(guiGraphics, getMessage(), getX() + width / 2, getY());
+    public void renderWidget(PoseStack graphics, int i, int j, float f) {
+        RenderUtils.drawTextCentered(graphics, getMessage(), getX() + width / 2, getY());
     }
 
     @Override

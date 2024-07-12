@@ -1,8 +1,8 @@
 package dev.boxadactle.boxlib.gui.config.widget;
 
-import dev.boxadactle.boxlib.gui.config.BOptionButton;
+import com.mojang.blaze3d.vertex.PoseStack;
 import dev.boxadactle.boxlib.function.Consumer8;
-import net.minecraft.client.gui.GuiGraphics;
+import dev.boxadactle.boxlib.gui.config.BOptionButton;
 import net.minecraft.network.chat.Component;
 
 /**
@@ -10,14 +10,14 @@ import net.minecraft.network.chat.Component;
  */
 public class BCustomEntry extends BOptionButton<Object> {
 
-    protected Consumer8<GuiGraphics, Integer, Integer, Integer, Integer, Integer, Integer, Float> function;
+    protected Consumer8<PoseStack, Integer, Integer, Integer, Integer, Integer, Integer, Float> function;
 
     /**
      * Constructs a BCustomRenderingEntry with the specified rendering function.
      *
      * @param function the rendering function to be called when rendering the entry
      */
-    public BCustomEntry(Consumer8<GuiGraphics, Integer, Integer, Integer, Integer, Integer, Integer, Float> function) {
+    public BCustomEntry(Consumer8<PoseStack, Integer, Integer, Integer, Integer, Integer, Integer, Float> function) {
         super(Component.literal(""), null, null);
 
         this.function = function;
@@ -32,7 +32,7 @@ public class BCustomEntry extends BOptionButton<Object> {
      * @param delta the delta value
      */
     @Override
-    public void renderWidget(GuiGraphics p_93657_, int mouseX, int mouseY, float delta) {
+    public void renderWidget(PoseStack p_93657_, int mouseX, int mouseY, float delta) {
         function.accept(p_93657_, this.getX(), this.getY(), this.width, this.height, mouseX, mouseY, delta);
     }
 

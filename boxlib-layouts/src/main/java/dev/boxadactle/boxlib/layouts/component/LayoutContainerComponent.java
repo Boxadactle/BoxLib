@@ -1,8 +1,8 @@
 package dev.boxadactle.boxlib.layouts.component;
 
+import com.mojang.blaze3d.vertex.PoseStack;
 import dev.boxadactle.boxlib.layouts.LayoutComponent;
 import dev.boxadactle.boxlib.layouts.RenderingLayout;
-import net.minecraft.client.gui.GuiGraphics;
 
 /**
  * Represents a layout container component that extends the LayoutComponent class.
@@ -46,7 +46,7 @@ public class LayoutContainerComponent extends LayoutComponent<RenderingLayout> {
      * @param y        the y-coordinate of the position to render the component
      */
     @Override
-    public void render(GuiGraphics graphics, int x, int y) {
+    public void render(PoseStack graphics, int x, int y) {
         component.setPosition(x, y);
         component.render(graphics);
     }

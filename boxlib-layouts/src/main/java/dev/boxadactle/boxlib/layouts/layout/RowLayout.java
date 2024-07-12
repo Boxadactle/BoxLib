@@ -1,8 +1,8 @@
 package dev.boxadactle.boxlib.layouts.layout;
 
+import com.mojang.blaze3d.vertex.PoseStack;
 import dev.boxadactle.boxlib.layouts.LayoutComponent;
 import dev.boxadactle.boxlib.layouts.RenderingLayout;
-import net.minecraft.client.gui.GuiGraphics;
 
 /**
  * Represents a layout that arranges components in a row.
@@ -56,15 +56,15 @@ public class RowLayout extends RenderingLayout {
     /**
      * Renders the layout and its components on the specified graphics object.
      *
-     * @param graphics the graphics object to render on
+     * @param poseStack the PoseStack object used for rendering
      */
     @Override
-    public void render(GuiGraphics graphics) {
+    public void render(PoseStack poseStack) {
         final int[] currentX = {x};
 
         for (int i = 0; i < components.size(); i++) {
             LayoutComponent<?> component = components.get(i);
-            component.render(graphics, currentX[0], y);
+            component.render(poseStack, currentX[0], y);
 
             if (i != components.size() - 1) {
                 currentX[0] += component.getWidth() + padding * 2;

@@ -1,8 +1,8 @@
 package dev.boxadactle.boxlib.gui.config.widget.label;
 
+import com.mojang.blaze3d.vertex.PoseStack;
 import dev.boxadactle.boxlib.util.GuiUtils;
 import dev.boxadactle.boxlib.util.RenderUtils;
-import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 
 /**
@@ -22,13 +22,13 @@ public class BRightLabel extends BLabel {
     /**
      * Renders the label on the screen.
      *
-     * @param guiGraphics the graphics object used for rendering
+     * @param stack       the PoseStack instance
      * @param mouseX      the x-coordinate of the mouse cursor
      * @param mouseY      the y-coordinate of the mouse cursor
      * @param delta       the time since the last frame update
      */
     @Override
-    public void renderWidget(GuiGraphics guiGraphics, int mouseX, int mouseY, float delta) {
-        RenderUtils.drawText(guiGraphics, message, this.getX() + this.getWidth() - GuiUtils.getTextRenderer().width(message), this.getY() + 5);
+    public void renderWidget(PoseStack stack, int mouseX, int mouseY, float delta) {
+        RenderUtils.drawText(stack, message, this.getX() + this.getWidth() - GuiUtils.getTextRenderer().width(message), this.getY() + 5);
     }
 }

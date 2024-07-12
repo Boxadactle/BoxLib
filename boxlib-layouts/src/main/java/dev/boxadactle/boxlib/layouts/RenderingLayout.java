@@ -1,8 +1,8 @@
 package dev.boxadactle.boxlib.layouts;
 
+import com.mojang.blaze3d.vertex.PoseStack;
 import dev.boxadactle.boxlib.math.geometry.Rect;
 import dev.boxadactle.boxlib.math.geometry.Vec3;
-import net.minecraft.client.gui.GuiGraphics;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,9 +36,9 @@ public abstract class RenderingLayout {
     /**
      * Renders the layout using the specified graphics object.
      *
-     * @param graphics The graphics object used for rendering.
+     * @param poseStack The PoseStack object used for rendering.
      */
-    public abstract void render(GuiGraphics graphics);
+    public abstract void render(PoseStack poseStack);
 
     /**
      * Orders the components within the layout.

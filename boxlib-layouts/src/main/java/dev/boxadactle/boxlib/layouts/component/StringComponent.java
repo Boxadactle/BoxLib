@@ -1,9 +1,9 @@
 package dev.boxadactle.boxlib.layouts.component;
 
+import com.mojang.blaze3d.vertex.PoseStack;
 import dev.boxadactle.boxlib.layouts.LayoutComponent;
 import dev.boxadactle.boxlib.util.GuiUtils;
 import dev.boxadactle.boxlib.util.RenderUtils;
-import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 
 /**
@@ -48,7 +48,7 @@ public class StringComponent extends LayoutComponent<String> {
      * @param y        the y-coordinate of the top-left corner of this component
      */
     @Override
-    public void render(GuiGraphics graphics, int x, int y) {
+    public void render(PoseStack graphics, int x, int y) {
         RenderUtils.drawText(graphics, Component.literal(this.component), x, y);
     }
 }

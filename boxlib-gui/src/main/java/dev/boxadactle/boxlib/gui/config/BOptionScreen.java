@@ -1,10 +1,10 @@
 package dev.boxadactle.boxlib.gui.config;
 
 import com.google.common.collect.ImmutableList;
+import com.mojang.blaze3d.vertex.PoseStack;
 import dev.boxadactle.boxlib.util.ClientUtils;
 import dev.boxadactle.boxlib.util.RenderUtils;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.ContainerObjectSelectionList;
@@ -97,13 +97,12 @@ public abstract class BOptionScreen extends Screen implements BOptionHelper {
     }
 
     @Override
-    public void render(GuiGraphics guiGraphics, int i, int j, float f) {
-        renderDirtBackground(guiGraphics);
-        super.render(guiGraphics, i, j, f);
+    public void render(PoseStack stack, int i, int j, float f) {
+        if (shouldRenderScrollingWidget()) this.configList.render(stack, i, j, f);
 
-        if (shouldRenderScrollingWidget()) this.configList.render(guiGraphics, i, j, f);
+        super.render(stack, i, j, f);
 
-        RenderUtils.drawTextCentered(guiGraphics, this.getName(), this.width / 2, 5);
+        RenderUtils.drawTextCentered(stack, this.getName(), this.width / 2, 5);
     }
 
     @Override
@@ -336,7 +335,7 @@ public abstract class BOptionScreen extends Screen implements BOptionHelper {
              * @param tickDelta The tick delta value.
              */
             @Override
-            public void render(GuiGraphics p_93523_, int index, int y, int x, int entryWidth, int entryHeight, int mouseX, int mouseY, boolean hovered, float tickDelta) {
+            public void render(PoseStack p_93523_, int index, int y, int x, int entryWidth, int entryHeight, int mouseX, int mouseY, boolean hovered, float tickDelta) {
                 AbstractWidget w = (AbstractWidget)widget;
 
                 w.setX(x);
@@ -420,7 +419,7 @@ public abstract class BOptionScreen extends Screen implements BOptionHelper {
              * @param tickDelta    The tick delta value.
              */
             @Override
-            public void render(GuiGraphics p_93523_, int index, int y, int x, int entryWidth, int entryHeight, int mouseX, int mouseY, boolean hovered, float tickDelta) {
+            public void render(PoseStack p_93523_, int index, int y, int x, int entryWidth, int entryHeight, int mouseX, int mouseY, boolean hovered, float tickDelta) {
                 AbstractWidget w1 = (AbstractWidget) widget1;
                 AbstractWidget w2 = (AbstractWidget) widget2;
 

@@ -157,7 +157,7 @@ public class ModLogger {
         public void error(String msg, Object... data) {
             if (this.client.player != null) {
                 this.client.player.sendSystemMessage(
-                        prefix.copy().append(GuiUtils.colorize(Component.literal(String.format(msg, data)), 0x2f2d2d))
+                        prefix.copy().append(GuiUtils.colorize(Component.literal(String.format(msg, data)), GuiUtils.RED))
                 );
             }
         }
@@ -171,7 +171,7 @@ public class ModLogger {
         public void warn(String msg, Object... data) {
             if (this.client.player != null) {
                 this.client.player.sendSystemMessage(
-                        prefix.copy().append(GuiUtils.colorize(Component.literal(String.format(msg, data)), 0xff9966))
+                        prefix.copy().append(GuiUtils.colorize(Component.literal(String.format(msg, data)), GuiUtils.YELLOW))
                 );
             }
         }
@@ -185,7 +185,7 @@ public class ModLogger {
         public void info(String msg, Object... data) {
             if (this.client.player != null) {
                 this.client.player.sendSystemMessage(
-                        prefix.copy().append(GuiUtils.colorize(Component.literal(String.format(msg, data)), 5635925))
+                        prefix.copy().append(Component.literal(String.format(msg, data)))
                 );
             }
         }
@@ -197,12 +197,12 @@ public class ModLogger {
          */
         public void chat(Component msg) {
             if (this.client.player != null) {
-                this.client.player.sendSystemMessage(msg);
+                this.client.player.sendSystemMessage(prefix.copy().append(msg));
             }
         }
 
         /**
-         * Sends a public chat message.
+         * Sends a public chat message from the player.
          *
          * @param msg the public chat message
          */

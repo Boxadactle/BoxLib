@@ -1,7 +1,7 @@
 package dev.boxadactle.boxlib.gui.config.widget;
 
+import com.mojang.blaze3d.vertex.PoseStack;
 import dev.boxadactle.boxlib.gui.config.BOptionButton;
-import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 
 /**
@@ -26,7 +26,7 @@ public class BSpacingEntry extends BOptionButton<Object> {
      * @param delta    The time since the last frame update.
      */
     @Override
-    public void renderWidget(GuiGraphics p_93657_, int mouseX, int mouseY, float delta) {
+    public void renderWidget(PoseStack p_93657_, int mouseX, int mouseY, float delta) {
     }
 
     /**
