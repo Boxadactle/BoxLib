@@ -26,7 +26,7 @@ public class BSpacingEntry extends BOptionButton<Object> {
      * @param delta    The time since the last frame update.
      */
     @Override
-    public void renderWidget(PoseStack p_93657_, int mouseX, int mouseY, float delta) {
+    public void renderButton(PoseStack p_93657_, int mouseX, int mouseY, float delta) {
     }
 
     /**

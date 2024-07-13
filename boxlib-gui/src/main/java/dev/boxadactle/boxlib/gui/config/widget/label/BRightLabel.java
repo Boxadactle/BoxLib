@@ -28,7 +28,7 @@ public class BRightLabel extends BLabel {
      * @param delta       the time since the last frame update
      */
     @Override
-    public void renderWidget(PoseStack stack, int mouseX, int mouseY, float delta) {
+    public void renderButton(PoseStack stack, int mouseX, int mouseY, float delta) {
         RenderUtils.drawText(stack, message, this.getX() + this.getWidth() - GuiUtils.getTextRenderer().width(message), this.getY() + 5);
     }
 }

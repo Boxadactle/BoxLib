@@ -102,16 +102,6 @@ public abstract class BOptionButton<T> extends Button implements BOptionEntry<T>
     }
 
     /**
-     * Checks if the button is hovered.
-     *
-     * @return true if the button is hovered, false otherwise
-     */
-    @Override
-    public boolean isHovered() {
-        return super.isHovered;
-    }
-
-    /**
      * Handles the mouse click event.
      *
      * @param mouseX the x-coordinate of the mouse click
@@ -133,8 +123,8 @@ public abstract class BOptionButton<T> extends Button implements BOptionEntry<T>
      * @param delta the time difference between the last and current frame
      */
     @Override
-    public void renderWidget(PoseStack p_93657_, int mouseX, int mouseY, float delta) {
-        super.renderWidget(p_93657_, mouseX, mouseY, delta);
+    public void renderButton(PoseStack p_93657_, int mouseX, int mouseY, float delta) {
+        super.renderButton(p_93657_, mouseX, mouseY, delta);
     }
 
     /**

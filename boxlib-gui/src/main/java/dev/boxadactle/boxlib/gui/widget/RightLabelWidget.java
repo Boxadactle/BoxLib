@@ -21,7 +21,7 @@ public class RightLabelWidget extends AbstractWidget {
     }
 
     @Override
-    public void renderWidget(PoseStack stack, int i, int j, float f) {
+    public void renderButton(PoseStack stack, int i, int j, float f) {
         RenderUtils.drawText(stack, getMessage(), getX() + getWidth() - GuiUtils.getTextRenderer().width(getMessage()), getY());
     }
 

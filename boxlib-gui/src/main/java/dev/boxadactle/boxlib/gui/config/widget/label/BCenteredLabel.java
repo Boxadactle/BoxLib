@@ -28,7 +28,7 @@ public class BCenteredLabel extends BLabel {
      * @param delta the time since the last tick
      */
     @Override
-    public void renderWidget(PoseStack p_93657_, int mouseX, int mouseY, float delta) {
+    public void renderButton(PoseStack p_93657_, int mouseX, int mouseY, float delta) {
         RenderUtils.drawTextCentered(p_93657_, message, this.getX() + this.width / 2, this.getY() + 5);
     }
 }

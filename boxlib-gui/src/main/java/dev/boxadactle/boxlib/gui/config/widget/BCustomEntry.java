@@ -32,7 +32,7 @@ public class BCustomEntry extends BOptionButton<Object> {
      * @param delta the delta value
      */
     @Override
-    public void renderWidget(PoseStack p_93657_, int mouseX, int mouseY, float delta) {
+    public void renderButton(PoseStack p_93657_, int mouseX, int mouseY, float delta) {
         function.accept(p_93657_, this.getX(), this.getY(), this.width, this.height, mouseX, mouseY, delta);
     }
 

@@ -20,7 +20,7 @@ public class LabelWidget extends AbstractWidget {
     }
 
     @Override
-    public void renderWidget(PoseStack stack, int i, int j, float f) {
+    public void renderButton(PoseStack stack, int i, int j, float f) {
         RenderUtils.drawText(stack, this.getMessage(), this.getX(), this.getY(), 14737632);
     }
 

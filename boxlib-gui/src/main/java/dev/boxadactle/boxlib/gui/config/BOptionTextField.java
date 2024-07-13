@@ -35,8 +35,8 @@ public abstract class BOptionTextField<T> extends EditBox implements BOptionEntr
     }
 
     @Override
-    public void renderWidget(PoseStack p_93657_, int mouseX, int mouseY, float delta) {
-        super.renderWidget(p_93657_, mouseX, mouseY, delta);
+    public void renderButton(PoseStack p_93657_, int mouseX, int mouseY, float delta) {
+        super.renderButton(p_93657_, mouseX, mouseY, delta);
 
         if (this.isInvalid()) this.setTextColor(GuiUtils.RED);
         else this.setTextColor(14737632);
@@ -77,11 +77,6 @@ public abstract class BOptionTextField<T> extends EditBox implements BOptionEntr
     @Override
     public void setWidth(int width) {
         super.setWidth(width);
-    }
-
-    @Override
-    public boolean isHovered() {
-        return super.isHovered();
     }
 
     @Override
