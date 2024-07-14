@@ -33,7 +33,7 @@ public abstract class BOptionButton<T> extends Button implements BOptionEntry<T>
      * @param function the function to consume the current value
      */
     public BOptionButton(Component message, T value, Consumer<T> function) {
-        super(0, 0, 10, BOptionHelper.buttonHeight(), message, b -> {}, DEFAULT_NARRATION);
+        super(0, 0, 10, BOptionHelper.buttonHeight(), message, b -> {});
 
         this.function = function;
         this.currentValue = value;
@@ -69,26 +69,6 @@ public abstract class BOptionButton<T> extends Button implements BOptionEntry<T>
         super.onClick(mouseX, mouseY);
 
         this.function.accept(this.handleInput(currentValue));
-    }
-
-/**
-     * Sets the x-coordinate of the button.
-     *
-     * @param x the new x-coordinate
-     */
-    @Override
-    public void setX(int x) {
-        super.setX(x);
-    }
-
-    /**
-     * Sets the y-coordinate of the button.
-     *
-     * @param y the new y-coordinate
-     */
-    @Override
-    public void setY(int y) {
-        super.setY(y);
     }
 
     /**

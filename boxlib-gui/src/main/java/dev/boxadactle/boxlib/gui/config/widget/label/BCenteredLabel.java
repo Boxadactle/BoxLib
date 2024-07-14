@@ -29,6 +29,6 @@ public class BCenteredLabel extends BLabel {
      */
     @Override
     public void renderButton(PoseStack p_93657_, int mouseX, int mouseY, float delta) {
-        RenderUtils.drawTextCentered(p_93657_, message, this.getX() + this.width / 2, this.getY() + 5);
+        RenderUtils.drawTextCentered(p_93657_, message, this.x + this.width / 2, this.y + 5);
     }
 }

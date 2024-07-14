@@ -22,11 +22,11 @@ public class CenteredLabelWidget extends AbstractWidget {
 
     @Override
     public void renderButton(PoseStack graphics, int i, int j, float f) {
-        RenderUtils.drawTextCentered(graphics, getMessage(), getX() + width / 2, getY());
+        RenderUtils.drawTextCentered(graphics, getMessage(), x + width / 2, y);
     }
 
     @Override
-    protected void updateWidgetNarration(NarrationElementOutput narrationElementOutput) {
+    public void updateNarration(NarrationElementOutput narrationElementOutput) {
         this.defaultButtonNarrationText(narrationElementOutput);
     }
 }

@@ -25,7 +25,7 @@ public class BLabel extends BOptionButton<Object> {
 
     @Override
     public void renderButton(PoseStack p_93657_, int mouseX, int mouseY, float delta) {
-        RenderUtils.drawText(p_93657_, message, this.getX(), this.getY() + 5);
+        RenderUtils.drawText(p_93657_, message, this.x, this.y + 5);
     }
 
     @Override

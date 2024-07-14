@@ -220,9 +220,9 @@ public abstract class BOptionScreen extends Screen implements BOptionHelper {
      * @param link The link to the wiki that will open when the button is clicked.
      */
     protected void setWiki(Component label, String link) {
-        this.addRenderableWidget(new Button.Builder(label, b -> {
+        this.addRenderableWidget(new Button(3, 3, BOptionHelper.buttonWidth(ButtonType.TINY), BOptionHelper.buttonHeight() - 3, label, b -> {
             ClientUtils.openLinkConfirmScreen(link, this);
-        }).bounds(3, 3, BOptionHelper.buttonWidth(ButtonType.TINY), BOptionHelper.buttonHeight() - 3).build());
+        }));
     }
 
     /**
@@ -338,8 +338,8 @@ public abstract class BOptionScreen extends Screen implements BOptionHelper {
             public void render(PoseStack p_93523_, int index, int y, int x, int entryWidth, int entryHeight, int mouseX, int mouseY, boolean hovered, float tickDelta) {
                 AbstractWidget w = (AbstractWidget)widget;
 
-                w.setX(x);
-                w.setY(y);
+                w.x = x;
+                w.y = y;
                 w.setWidth(entryWidth);
 
                 w.render(p_93523_, mouseX, mouseY, tickDelta);
@@ -426,12 +426,12 @@ public abstract class BOptionScreen extends Screen implements BOptionHelper {
                 int p1 = BOptionHelper.padding() / 2;
                 int p2 = BOptionHelper.padding() / 2;
 
-                w1.setX(x);
-                w1.setY(y);
+                w1.x = x;
+                w1.y = y;
                 w1.setWidth(entryWidth / 2 - p1);
 
-                w2.setX(x + entryWidth / 2 + p2);
-                w2.setY(y);
+                w2.x = x + entryWidth / 2 + p2;
+                w2.y = y;
                 w2.setWidth(entryWidth / 2 - p2);
 
                 w1.render(p_93523_, mouseX, mouseY, tickDelta);

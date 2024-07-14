@@ -21,11 +21,11 @@ public class LabelWidget extends AbstractWidget {
 
     @Override
     public void renderButton(PoseStack stack, int i, int j, float f) {
-        RenderUtils.drawText(stack, this.getMessage(), this.getX(), this.getY(), 14737632);
+        RenderUtils.drawText(stack, this.getMessage(), this.x, this.y, 14737632);
     }
 
     @Override
-    protected void updateWidgetNarration(NarrationElementOutput narrationElementOutput) {
+    public void updateNarration(NarrationElementOutput narrationElementOutput) {
         this.defaultButtonNarrationText(narrationElementOutput);
     }
 }

@@ -29,6 +29,6 @@ public class BRightLabel extends BLabel {
      */
     @Override
     public void renderButton(PoseStack stack, int mouseX, int mouseY, float delta) {
-        RenderUtils.drawText(stack, message, this.getX() + this.getWidth() - GuiUtils.getTextRenderer().width(message), this.getY() + 5);
+        RenderUtils.drawText(stack, message, this.x + this.getWidth() - GuiUtils.getTextRenderer().width(message), this.y + 5);
     }
 }

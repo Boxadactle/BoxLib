@@ -63,17 +63,6 @@ public abstract class BOptionTextField<T> extends EditBox implements BOptionEntr
         return input;
     }
 
-
-    @Override
-    public void setX(int x) {
-        super.setX(x);
-    }
-
-    @Override
-    public void setY(int y) {
-        super.setY(y);
-    }
-
     @Override
     public void setWidth(int width) {
         super.setWidth(width);
@@ -91,7 +80,7 @@ public abstract class BOptionTextField<T> extends EditBox implements BOptionEntr
 
     @Override
     public void onClick(double mouseX, double mouseY) {
-        if (!MouseUtils.isMouseHovering(new Rect<>(this.getX(), this.getY(), this.width, this.height))) super.setFocused(false);
+        if (!MouseUtils.isMouseHovering(new Rect<>(this.x, this.y, this.width, this.height))) super.setFocused(false);
         super.onClick(mouseX, mouseY);
     }
 
