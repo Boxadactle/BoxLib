@@ -2,6 +2,7 @@ package dev.boxadactle.boxlib.command;
 
 import com.mojang.brigadier.CommandDispatcher;
 import dev.boxadactle.boxlib.command.api.BClientCommand;
+import dev.boxadactle.boxlib.core.BoxLib;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +31,7 @@ public class BCommandImpl {
      */
     public static void register(CommandDispatcher<BCommandSourceStack> dispatcher) {
         commands.forEach(command -> command.register(dispatcher));
+        BoxLib.LOGGER.info("Registered " + commands.size() + " client commands!");
     }
 
 }

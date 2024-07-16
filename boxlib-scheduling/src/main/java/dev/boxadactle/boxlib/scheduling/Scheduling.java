@@ -1,7 +1,7 @@
 package dev.boxadactle.boxlib.scheduling;
 
+import com.google.common.collect.Lists;
 import dev.boxadactle.boxlib.function.EmptyMethod;
-import org.apache.commons.compress.utils.Lists;
 
 import java.util.List;
 

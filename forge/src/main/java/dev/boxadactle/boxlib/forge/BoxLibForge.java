@@ -9,13 +9,13 @@ import dev.boxadactle.boxlib.keybind.KeybindingImpl;
 import dev.boxadactle.boxlib.scheduling.Scheduling;
 import dev.boxadactle.boxlib.util.MouseUtils;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.ClientRegistry;
-import net.minecraftforge.client.event.RegisterClientCommandsEvent;
-import net.minecraftforge.client.event.ScreenEvent;
+import net.minecraftforge.client.event.GuiScreenEvent;
+import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.minecraftforge.fmlclient.registry.ClientRegistry;
 
 @Mod(ModConstants.MOD_ID)
 public class BoxLibForge {
@@ -29,17 +29,17 @@ public class BoxLibForge {
 
         @SuppressWarnings("unchecked")
         @SubscribeEvent
-        public static void registerCommands(RegisterClientCommandsEvent event) {
+        public static void registerCommands(RegisterCommandsEvent event) {
             BCommandImpl.register((CommandDispatcher<BCommandSourceStack>) (CommandDispatcher<?>) event.getDispatcher());
         }
 
         @SubscribeEvent
-        public static void mouseDown(ScreenEvent.MouseClickedEvent.Pre e) {
+        public static void mouseDown(GuiScreenEvent.MouseClickedEvent.Pre e) {
             MouseUtils.setMouseDown(e.getButton());
         }
 
         @SubscribeEvent
-        public static void mouseUp(ScreenEvent.MouseReleasedEvent.Pre ignored) {
+        public static void mouseUp(GuiScreenEvent.MouseReleasedEvent.Pre ignored) {
             MouseUtils.setMouseUp();
         }
 

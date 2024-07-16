@@ -2,6 +2,7 @@ package dev.boxadactle.boxlib.forge.mixin;
 
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import dev.boxadactle.boxlib.command.BCommandSourceStack;
+import dev.boxadactle.boxlib.util.WorldUtils;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.commands.CommandSourceStack;
@@ -44,7 +45,7 @@ public abstract class CommandSourceStackMixin implements BCommandSourceStack {
 
     @Override
     public ClientLevel boxlib$getWorld() {
-        return (ClientLevel) ((CommandSourceStack) (Object) this).getUnsidedLevel();
+        return (ClientLevel) WorldUtils.getWorld();
     }
 
 }
