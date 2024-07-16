@@ -1,7 +1,5 @@
 package dev.boxadactle.boxlib.util;
 
-import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.PoseStack;
 import dev.boxadactle.boxlib.math.geometry.Rect;
 import dev.boxadactle.boxlib.math.geometry.Vec2;
 import net.minecraft.client.gui.GuiComponent;

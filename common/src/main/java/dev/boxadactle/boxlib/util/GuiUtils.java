@@ -5,10 +5,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.resources.language.I18n;
-import net.minecraft.locale.Language;
 import net.minecraft.network.chat.*;
-
-import java.util.Locale;
 
 /**
  * The `GuiUtils` class provides utility methods and constants for GUI-related operations.
@@ -16,6 +13,7 @@ import java.util.Locale;
  * and calculating the longest and shortest lengths of text and widgets.
  * It also provides constants for various colors and common components used in GUIs.
  */
+@SuppressWarnings("unused")
 public class GuiUtils {
 
     /**
@@ -329,7 +327,7 @@ public class GuiUtils {
         int scale = ClientUtils.getOptions().guiScale;
         Minecraft client = ClientUtils.getClient();
         if (scale == 0) {
-            return (int) Math.max(1, Math.min(Math.floor(client.getWindow().getGuiScaledWidth() / 320), Math.floor(client.getWindow().getGuiScaledHeight() / 240)));
+            return (int) Math.max(1, Math.min(Math.floor((double) client.window.getGuiScaledWidth() / 320), Math.floor((double) client.window.getGuiScaledHeight() / 240)));
         } else {
             return scale;
         }

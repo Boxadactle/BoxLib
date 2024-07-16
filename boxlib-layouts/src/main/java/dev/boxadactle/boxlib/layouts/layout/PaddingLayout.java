@@ -1,6 +1,5 @@
 package dev.boxadactle.boxlib.layouts.layout;
 
-import com.mojang.blaze3d.vertex.PoseStack;
 import dev.boxadactle.boxlib.layouts.RenderingLayout;
 
 /**

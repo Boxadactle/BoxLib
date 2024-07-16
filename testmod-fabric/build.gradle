@@ -35,7 +35,7 @@ dependencies {
     common project(path: ':boxlib-scheduling', configuration: "namedElements")
     common project(path: ':boxlib-translate', configuration: "namedElements")
 
-    modImplementation("com.terraformersmc:modmenu:${rootProject.modmenu_version}") {
+    modImplementation("io.github.prospector:modmenu:${rootProject.modmenu_version}") {
         transitive = false
     }
 }

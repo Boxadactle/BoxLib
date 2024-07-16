@@ -1,6 +1,5 @@
 package dev.boxadactle.boxlib.gui.widget;
 
-import com.mojang.blaze3d.vertex.PoseStack;
 import dev.boxadactle.boxlib.util.GuiUtils;
 import dev.boxadactle.boxlib.util.RenderUtils;
 import net.minecraft.client.gui.components.AbstractWidget;

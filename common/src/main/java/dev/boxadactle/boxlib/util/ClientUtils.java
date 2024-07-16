@@ -71,7 +71,7 @@ public class ClientUtils {
      * @return the window ID of the client
      */
     public static long getWindow() {
-        return getClient().getWindow().getWindow();
+        return getClient().window.getWindow();
     }
 
     /**

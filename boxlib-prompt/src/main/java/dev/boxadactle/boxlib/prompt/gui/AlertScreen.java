@@ -1,6 +1,5 @@
 package dev.boxadactle.boxlib.prompt.gui;
 
-import com.mojang.blaze3d.vertex.PoseStack;
 import dev.boxadactle.boxlib.prompt.PromptScreen;
 import dev.boxadactle.boxlib.util.RenderUtils;
 import net.minecraft.client.gui.screens.Screen;

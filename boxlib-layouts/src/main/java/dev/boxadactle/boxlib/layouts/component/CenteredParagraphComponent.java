@@ -1,6 +1,5 @@
 package dev.boxadactle.boxlib.layouts.component;
 
-import com.mojang.blaze3d.vertex.PoseStack;
 import dev.boxadactle.boxlib.util.GuiUtils;
 import dev.boxadactle.boxlib.util.RenderUtils;
 import net.minecraft.network.chat.Component;
@@ -23,7 +22,6 @@ public class CenteredParagraphComponent extends ParagraphComponent {
     /**
      * Renders the centered paragraph component on the screen.
      *
-     * @param poseStack      the pose stack
      * @param x              the x-coordinate of the top-left corner of the component
      * @param y              the y-coordinate of the top-left corner of the component
      */

@@ -1,13 +1,10 @@
 package dev.boxadactle.boxlib.gui.config;
 
-import com.mojang.blaze3d.vertex.PoseStack;
 import dev.boxadactle.boxlib.math.geometry.Rect;
 import dev.boxadactle.boxlib.util.GuiUtils;
 import dev.boxadactle.boxlib.util.MouseUtils;
 import dev.boxadactle.boxlib.function.Converter;
 import net.minecraft.client.gui.components.EditBox;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
 
 import java.util.function.Consumer;
 

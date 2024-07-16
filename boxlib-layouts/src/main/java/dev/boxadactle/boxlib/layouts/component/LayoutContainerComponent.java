@@ -1,6 +1,5 @@
 package dev.boxadactle.boxlib.layouts.component;
 
-import com.mojang.blaze3d.vertex.PoseStack;
 import dev.boxadactle.boxlib.layouts.LayoutComponent;
 import dev.boxadactle.boxlib.layouts.RenderingLayout;
 
@@ -41,7 +40,6 @@ public class LayoutContainerComponent extends LayoutComponent<RenderingLayout> {
     /**
      * Renders the component on the specified GuiGraphics at the given position.
      *
-     * @param graphics the GuiGraphics object to render on
      * @param x        the x-coordinate of the position to render the component
      * @param y        the y-coordinate of the position to render the component
      */

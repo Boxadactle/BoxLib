@@ -1,9 +1,7 @@
 package dev.boxadactle.boxlib.gui.config.widget.label;
 
-import com.mojang.blaze3d.vertex.PoseStack;
 import dev.boxadactle.boxlib.util.GuiUtils;
 import dev.boxadactle.boxlib.util.RenderUtils;
-import net.minecraft.network.chat.Component;
 
 /**
  * The BLeftLabel class represents a left-aligned label widget in a graphical user interface.

@@ -1,12 +1,10 @@
 package dev.boxadactle.boxlib.prompt;
 
-import com.mojang.blaze3d.vertex.PoseStack;
 import dev.boxadactle.boxlib.function.Consumer2;
 import dev.boxadactle.boxlib.gui.config.BOptionHelper;
 import dev.boxadactle.boxlib.util.ClientUtils;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
 
 

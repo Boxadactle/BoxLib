@@ -1,8 +1,6 @@
 package dev.boxadactle.boxlib.gui.config.widget.label;
 
-import com.mojang.blaze3d.vertex.PoseStack;
 import dev.boxadactle.boxlib.util.RenderUtils;
-import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
 
 /**

@@ -1,11 +1,7 @@
 package dev.boxadactle.boxlib.gui.config.widget;
 
-import com.mojang.blaze3d.vertex.PoseStack;
 import dev.boxadactle.boxlib.function.Consumer7;
-import dev.boxadactle.boxlib.function.Consumer8;
 import dev.boxadactle.boxlib.gui.config.BOptionButton;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
 
 /**
  * A custom rendering entry for a GUI widget.
