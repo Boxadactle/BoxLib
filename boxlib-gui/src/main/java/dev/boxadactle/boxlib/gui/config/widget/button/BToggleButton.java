@@ -2,6 +2,7 @@ package dev.boxadactle.boxlib.gui.config.widget.button;
 
 import dev.boxadactle.boxlib.gui.config.BOptionButton;
 import dev.boxadactle.boxlib.function.Converter;
+import dev.boxadactle.boxlib.util.GuiUtils;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
@@ -42,14 +43,14 @@ public abstract class BToggleButton<T> extends BOptionButton<T> implements Conve
      * @throws RuntimeException if the provided value is not registered in the provided list
      */
     public BToggleButton(String key, T value, List<T> list, Consumer<T> function) {
-        super(new TextComponent("text field"), value, function);
+        super("text field", value, function);
 
         index = list.indexOf(value);
         this.list = list;
 
         if (index == -1) throw new RuntimeException("Provided value is not registered in provided list.");
 
-        super.setMessage(new TranslatableComponent(key, from(value)));
+        super.setMessage(GuiUtils.getTranslatable(key, from(value).getColoredString()));
 
         this.key = key;
     }
@@ -74,7 +75,7 @@ public abstract class BToggleButton<T> extends BOptionButton<T> implements Conve
     protected T changeValue(T input) {
         incrementIndex();
         T a = list.get(index);
-        super.setMessage(new TranslatableComponent(key, from(a)));
+        super.setMessage(GuiUtils.getTranslatable(key, from(a).getColoredString()));
         return a;
     }
 }

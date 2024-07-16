@@ -46,8 +46,8 @@ public class LayoutContainerComponent extends LayoutComponent<RenderingLayout> {
      * @param y        the y-coordinate of the position to render the component
      */
     @Override
-    public void render(PoseStack graphics, int x, int y) {
+    public void render(int x, int y) {
         component.setPosition(x, y);
-        component.render(graphics);
+        component.render();
     }
 }

@@ -61,14 +61,14 @@ public abstract class NumberScreen<T extends Number> extends PromptScreen<T> {
                 this.height / 2 - 10,
                 300,
                 20,
-                new TextComponent("Input box")
+                "Input box"
         ));
     }
 
     @Override
-    public void render(PoseStack stack, int i, int j, float f) {
-        super.render(stack, i, j, f);
+    public void render(int i, int j, float f) {
+        super.render(i, j, f);
 
-        RenderUtils.drawTextCentered(stack, message, this.width / 2, this.height / 2 - 50);
+        RenderUtils.drawTextCentered(message, this.width / 2, this.height / 2 - 50);
     }
 }

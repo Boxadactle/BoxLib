@@ -44,12 +44,11 @@ public class StringComponent extends LayoutComponent<String> {
     /**
      * Renders this component on the specified graphics context at the specified position.
      *
-     * @param graphics the graphics context to render on
      * @param x        the x-coordinate of the top-left corner of this component
      * @param y        the y-coordinate of the top-left corner of this component
      */
     @Override
-    public void render(PoseStack graphics, int x, int y) {
-        RenderUtils.drawText(graphics, new TextComponent(this.component), x, y);
+    public void render(int x, int y) {
+        RenderUtils.drawText(new TextComponent(this.component), x, y);
     }
 }

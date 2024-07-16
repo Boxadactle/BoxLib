@@ -4,6 +4,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.components.AbstractWidget;
+import net.minecraft.client.resources.language.I18n;
 import net.minecraft.locale.Language;
 import net.minecraft.network.chat.*;
 
@@ -202,8 +203,8 @@ public class GuiUtils {
         REJECT = new TranslatableComponent("mco.invites.button.reject");
         ERROR_OCCURED = new TranslatableComponent("selectWorld.futureworld.error.title");
 
-        TRUE = colorize(YES, GREEN);
-        FALSE = colorize(NO, RED);
+        TRUE = colorize(YES, ChatFormatting.GREEN);
+        FALSE = colorize(NO, ChatFormatting.RED);
     }
 
     /**
@@ -212,8 +213,8 @@ public class GuiUtils {
      * @param key The translation key.
      * @return The translated string.
      */
-    public static String getTranslatable(String key) {
-        return Language.getInstance().getOrDefault(key);
+    public static String getTranslatable(String key, Object ...args) {
+        return I18n.get(key, args);
     }
 
     /**
@@ -223,36 +224,8 @@ public class GuiUtils {
      * @param color The color to apply.
      * @return The colorized text.
      */
-    public static Component colorize(Component text, int color) {
-        return text.copy().withStyle(style -> style.withColor(TextColor.fromRgb(color)));
-    }
-
-    @Deprecated
-    public static int getColorDecimal(String color) {
-        int decimal;
-        String c = color.toLowerCase(Locale.ROOT);
-        switch (c) {
-            case "dark_red" -> decimal = DARK_RED;
-            case "red" -> decimal = RED;
-            case "gold" -> decimal = GOLD;
-            case "yellow" -> decimal = YELLOW;
-            case "dark_green" -> decimal = DARK_GREEN;
-            case "green" -> decimal = GREEN;
-            case "aqua" -> decimal = AQUA;
-            case "dark_aqua" -> decimal = DARK_AQUA;
-            case "dark_blue" -> decimal = DARK_BLUE;
-            case "blue" -> decimal = BLUE;
-            case "light_purple" -> decimal = LIGHT_PURPLE;
-            case "dark_purple" -> decimal = DARK_PURPLE;
-            case "white" -> decimal = WHITE;
-            case "gray" -> decimal = GRAY;
-            case "dark_gray" -> decimal = DARK_GRAY;
-            case "black" -> decimal = BLACK;
-            default -> {
-                decimal = WHITE;
-            }
-        }
-        return decimal;
+    public static Component colorize(Component text, ChatFormatting color) {
+        return text.copy().withStyle(style -> style.setColor(color));
     }
 
     /**
@@ -262,6 +235,16 @@ public class GuiUtils {
      * @return The width of the text.
      */
     public static int getTextSize(Component text) {
+        return getTextSize(text.getString());
+    }
+
+    /**
+     * Retrieves the width of the given text.
+     *
+     * @param text The text to measure.
+     * @return The width of the text.
+     */
+    public static int getTextSize(String text) {
         return getTextRenderer().width(text);
     }
 
@@ -284,7 +267,7 @@ public class GuiUtils {
         int largest = 0;
         Font textRenderer = GuiUtils.getTextRenderer();
         for (Component value : text) {
-            int t = textRenderer.width(value);
+            int t = textRenderer.width(value.getString());
             if (t > largest) largest = t;
         }
         return largest;
@@ -299,9 +282,9 @@ public class GuiUtils {
     public static int getShortestLength(Component... text) {
         int shortest = 0;
         Font textRenderer = GuiUtils.getTextRenderer();
-        shortest = textRenderer.width(text[0]);
+        shortest = textRenderer.width(text[0].getString());
         for (Component value : text) {
-            int t = textRenderer.width(value);
+            int t = textRenderer.width(value.getString());
             if (t < shortest) shortest = t;
         }
         return shortest;
@@ -332,25 +315,9 @@ public class GuiUtils {
      */
     public static Component createHyperLink(Component text, String link) {
         return text.copy().withStyle(ChatFormatting.UNDERLINE, ChatFormatting.BLUE).withStyle(a1 -> a1
-                .withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, link))
-                .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TranslatableComponent("chat.link.open")))
+                .setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, link))
+                .setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TranslatableComponent("chat.link.open")))
         );
-    }
-
-    /**
-     * Retrieves the height of the tallest widget among the given widgets.
-     *
-     * @param widgets The widgets to compare.
-     * @return The height of the tallest widget.
-     */
-    public static int getTallestWidget(AbstractWidget... widgets) {
-        int tallest = 0;
-        for (AbstractWidget widget : widgets) {
-            int t = widget.getHeight();
-            if (t > tallest) tallest = t;
-        }
-
-        return tallest;
     }
 
     /**

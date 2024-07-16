@@ -16,7 +16,7 @@ public abstract class BCustomButton extends BOptionButton<Object> {
      * @param onClick the action to perform when the button is clicked
      * @return the created BCustomButton
      */
-    public static BCustomButton create(Component message, Runnable onClick) {
+    public static BCustomButton create(String message, Runnable onClick) {
         return new BCustomButton(message) {
             @Override
             protected void buttonClicked(BOptionButton<?> button) {
@@ -30,7 +30,7 @@ public abstract class BCustomButton extends BOptionButton<Object> {
      *
      * @param message the component representing the message of the button
      */
-    public BCustomButton(Component message) {
+    public BCustomButton(String message) {
         super(message, null, null);
     }
 

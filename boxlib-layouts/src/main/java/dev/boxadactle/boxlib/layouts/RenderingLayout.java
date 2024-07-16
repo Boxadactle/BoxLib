@@ -1,6 +1,5 @@
 package dev.boxadactle.boxlib.layouts;
 
-import com.mojang.blaze3d.vertex.PoseStack;
 import dev.boxadactle.boxlib.math.geometry.Rect;
 import dev.boxadactle.boxlib.math.geometry.Vec3;
 
@@ -35,10 +34,8 @@ public abstract class RenderingLayout {
 
     /**
      * Renders the layout using the specified graphics object.
-     *
-     * @param poseStack The PoseStack object used for rendering.
      */
-    public abstract void render(PoseStack poseStack);
+    public abstract void render();
 
     /**
      * Orders the components within the layout.

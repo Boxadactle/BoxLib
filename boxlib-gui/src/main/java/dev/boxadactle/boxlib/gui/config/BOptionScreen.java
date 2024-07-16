@@ -85,7 +85,7 @@ public abstract class BOptionScreen extends Screen implements BOptionHelper {
     @Override
     protected void init() {
         configList = new ConfigList(ClientUtils.getClient());
-        this.addWidget(configList);
+        children.add(configList);
 
         initConfigButtons();
         initFooter(this.width / 2 - BOptionHelper.padding() / 2 - BOptionHelper.buttonWidth(ButtonType.SMALL), this.height - getButtonHeight() - getPadding());
@@ -97,12 +97,12 @@ public abstract class BOptionScreen extends Screen implements BOptionHelper {
     }
 
     @Override
-    public void render(PoseStack stack, int i, int j, float f) {
-        if (shouldRenderScrollingWidget()) this.configList.render(stack, i, j, f);
+    public void render(int i, int j, float f) {
+        if (shouldRenderScrollingWidget()) this.configList.render(i, j, f);
 
-        super.render(stack, i, j, f);
+        super.render(i, j, f);
 
-        RenderUtils.drawTextCentered(stack, this.getName(), this.width / 2, 5);
+        RenderUtils.drawTextCentered(new TextComponent(this.getName()), this.width / 2, 5);
     }
 
     @Override
@@ -115,7 +115,7 @@ public abstract class BOptionScreen extends Screen implements BOptionHelper {
         }
     }
 
-    protected abstract Component getName();
+    protected abstract String getName();
 
     protected abstract void initFooter(int startX, int startY);
 
@@ -220,7 +220,7 @@ public abstract class BOptionScreen extends Screen implements BOptionHelper {
      * @param label Component that should be rendered as the button.
      * @param link The link to the wiki that will open when the button is clicked.
      */
-    protected void setWiki(Component label, String link) {
+    protected void setWiki(String label, String link) {
         this.addButton(new Button(3, 3, BOptionHelper.buttonWidth(ButtonType.TINY), BOptionHelper.buttonHeight() - 3, label, b -> {
             ClientUtils.openLinkConfirmScreen(link, this);
         }));
@@ -324,7 +324,6 @@ public abstract class BOptionScreen extends Screen implements BOptionHelper {
 
             /**
              * Renders the entry on the screen.
-             * @param p_93523_ The GuiGraphics object used for rendering.
              * @param index The index of the entry.
              * @param y The y-coordinate of the entry.
              * @param x The x-coordinate of the entry.
@@ -336,14 +335,14 @@ public abstract class BOptionScreen extends Screen implements BOptionHelper {
              * @param tickDelta The tick delta value.
              */
             @Override
-            public void render(PoseStack p_93523_, int index, int y, int x, int entryWidth, int entryHeight, int mouseX, int mouseY, boolean hovered, float tickDelta) {
+            public void render(int index, int y, int x, int entryWidth, int entryHeight, int mouseX, int mouseY, boolean hovered, float tickDelta) {
                 AbstractWidget w = (AbstractWidget)widget;
 
                 w.x = x;
                 w.y = y;
                 w.setWidth(entryWidth);
 
-                w.render(p_93523_, mouseX, mouseY, tickDelta);
+                w.render(mouseX, mouseY, tickDelta);
             }
 
             /**
@@ -408,7 +407,6 @@ public abstract class BOptionScreen extends Screen implements BOptionHelper {
             /**
              * Renders the BOptionEntry widgets in this DoubleEntry.
              *
-             * @param p_93523_     The GuiGraphics object used for rendering.
              * @param index        The index of the entry.
              * @param y            The y-coordinate of the entry.
              * @param x            The x-coordinate of the entry.
@@ -420,7 +418,7 @@ public abstract class BOptionScreen extends Screen implements BOptionHelper {
              * @param tickDelta    The tick delta value.
              */
             @Override
-            public void render(PoseStack p_93523_, int index, int y, int x, int entryWidth, int entryHeight, int mouseX, int mouseY, boolean hovered, float tickDelta) {
+            public void render(int index, int y, int x, int entryWidth, int entryHeight, int mouseX, int mouseY, boolean hovered, float tickDelta) {
                 AbstractWidget w1 = (AbstractWidget) widget1;
                 AbstractWidget w2 = (AbstractWidget) widget2;
 
@@ -435,8 +433,8 @@ public abstract class BOptionScreen extends Screen implements BOptionHelper {
                 w2.y = y;
                 w2.setWidth(entryWidth / 2 - p2);
 
-                w1.render(p_93523_, mouseX, mouseY, tickDelta);
-                w2.render(p_93523_, mouseX, mouseY, tickDelta);
+                w1.render(mouseX, mouseY, tickDelta);
+                w2.render(mouseX, mouseY, tickDelta);
             }
         }
 

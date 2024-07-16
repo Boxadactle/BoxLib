@@ -32,7 +32,7 @@ public abstract class BOptionButton<T> extends Button implements BOptionEntry<T>
      * @param value the initial value of the button
      * @param function the function to consume the current value
      */
-    public BOptionButton(Component message, T value, Consumer<T> function) {
+    public BOptionButton(String message, T value, Consumer<T> function) {
         super(0, 0, 10, BOptionHelper.buttonHeight(), message, b -> {});
 
         this.function = function;
@@ -81,30 +81,14 @@ public abstract class BOptionButton<T> extends Button implements BOptionEntry<T>
         super.setWidth(width);
     }
 
-    /**
-     * Handles the mouse click event.
-     *
-     * @param mouseX the x-coordinate of the mouse click
-     * @param mouseY the y-coordinate of the mouse click
-     * @param button the mouse button that was clicked
-     * @return true if the event was handled, false otherwise
-     */
     @Override
     public boolean mouseClicked(double mouseX, double mouseY, int button) {
         return super.mouseClicked(mouseX, mouseY, button);
     }
 
-    /**
-     * Renders the button.
-     *
-     * @param p_93657_ the GuiGraphics object used for rendering
-     * @param mouseX the x-coordinate of the mouse
-     * @param mouseY the y-coordinate of the mouse
-     * @param delta the time difference between the last and current frame
-     */
     @Override
-    public void renderButton(PoseStack p_93657_, int mouseX, int mouseY, float delta) {
-        super.renderButton(p_93657_, mouseX, mouseY, delta);
+    public void renderButton(int mouseX, int mouseY, float delta) {
+        super.renderButton(mouseX, mouseY, delta);
     }
 
     /**

@@ -40,12 +40,12 @@ public class ColumnLayout extends RenderingLayout {
     }
 
     @Override
-    public void render(PoseStack poseStack) {
+    public void render() {
         final int[] currentY = {y};
 
         for (int i = 0; i < components.size(); i++) {
             LayoutComponent<?> component = components.get(i);
-            component.render(poseStack, x, currentY[0]);
+            component.render(x, currentY[0]);
 
             if (i != components.size() - 1) {
                 currentY[0] += component.getHeight() + padding * 2;

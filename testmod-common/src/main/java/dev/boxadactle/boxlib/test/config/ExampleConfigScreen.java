@@ -15,10 +15,13 @@ import dev.boxadactle.boxlib.layouts.component.LayoutContainerComponent;
 import dev.boxadactle.boxlib.layouts.component.ParagraphComponent;
 import dev.boxadactle.boxlib.layouts.layout.ColumnLayout;
 import dev.boxadactle.boxlib.layouts.layout.RowLayout;
+import dev.boxadactle.boxlib.scheduling.Scheduling;
 import dev.boxadactle.boxlib.test.TestMod;
 import dev.boxadactle.boxlib.test.prompts.PromptTestingScreen;
 import dev.boxadactle.boxlib.util.ClientUtils;
 import dev.boxadactle.boxlib.util.GuiUtils;
+import dev.boxadactle.boxlib.util.RenderUtils;
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
@@ -43,7 +46,7 @@ public class ExampleConfigScreen extends BOptionScreen {
 
     @Override
     protected int getRowWidth() {
-        return super.getRowWidth() + 100;
+        return super.getRowWidth() + 50;
     }
 
     @Override
@@ -72,8 +75,8 @@ public class ExampleConfigScreen extends BOptionScreen {
     }
 
     @Override
-    protected Component getName() {
-        return new TranslatableComponent("boxlib.exampleconfigscreen");
+    protected String getName() {
+        return GuiUtils.getTranslatable("boxlib.exampleconfigscreen");
     }
 
     // initialize the config screen save and cancel buttons like this
@@ -96,15 +99,15 @@ public class ExampleConfigScreen extends BOptionScreen {
         // here's how you would set the wiki
         // I don't have a wiki, so I'll just
         // be setting it to the BoxLib GitHub repo
-        setWiki(new TranslatableComponent("boxlib.wiki"), ModConstants.WIKI);
+        setWiki(GuiUtils.getTranslatable("boxlib.wiki"), ModConstants.WIKI);
     }
 
     @Override
     protected void initConfigButtons() {
 
         // here's how you would make an argb field
-        // since they don't initialize with a label, I recommend adding one
-        addConfigLine(new BCenteredLabel(new TranslatableComponent("boxlib.anArgbField")));
+        // since text fields don't initialize with labels, I recommend adding one
+        addConfigLine(new BCenteredLabel(GuiUtils.getTranslatable("boxlib.anArgbField")));
 
         addConfigLine(new BArgbField(
                 config().anArgbColor,
@@ -127,7 +130,7 @@ public class ExampleConfigScreen extends BOptionScreen {
                 config().anEnum,
                 ExampleConfigClass.ExampleEnum.class,
                 newVal -> config().anEnum = newVal,
-                GuiUtils.BLUE // this value will set the color of the generated text
+                ChatFormatting.BLUE // this value will set the color of the generated text
         ));
 
         // here's how we would create a "double widget" using a widget container
@@ -135,8 +138,8 @@ public class ExampleConfigScreen extends BOptionScreen {
 
         // add this first so the labels can be above the fields
         addConfigLine(
-                new BCenteredLabel(new TranslatableComponent("boxlib.aDouble")),
-                new BCenteredLabel(new TranslatableComponent("boxlib.aFloat"))
+                new BCenteredLabel(GuiUtils.getTranslatable("boxlib.aDouble")),
+                new BCenteredLabel(GuiUtils.getTranslatable("boxlib.aFloat"))
         );
 
         // add the two fields
@@ -152,7 +155,7 @@ public class ExampleConfigScreen extends BOptionScreen {
         );
 
         // the rest is pretty much the same as the previous
-        addConfigLine(new BCenteredLabel(new TranslatableComponent("boxlib.aHexColor")));
+        addConfigLine(new BCenteredLabel(GuiUtils.getTranslatable("boxlib.aHexColor")));
 
         addConfigLine(new BHexField(
                 config().aHexColor,
@@ -160,7 +163,7 @@ public class ExampleConfigScreen extends BOptionScreen {
         ));
 
         // here's how we would add an integer
-        addConfigLine(new BCenteredLabel(new TranslatableComponent("boxlib.anInt")));
+        addConfigLine(new BCenteredLabel(GuiUtils.getTranslatable("boxlib.anInt")));
 
         addConfigLine(new BIntegerField(
                 config().anInt,
@@ -168,7 +171,7 @@ public class ExampleConfigScreen extends BOptionScreen {
         ));
 
         // here's how we would add a string
-        addConfigLine(new BCenteredLabel(new TranslatableComponent("boxlib.aString")));
+        addConfigLine(new BCenteredLabel(GuiUtils.getTranslatable("boxlib.aString")));
 
         addConfigLine(new BStringField(
                 config().aString,
@@ -176,7 +179,7 @@ public class ExampleConfigScreen extends BOptionScreen {
         ));
 
         // here's how we would add a long
-        addConfigLine(new BCenteredLabel(new TranslatableComponent("boxlib.aLong")));
+        addConfigLine(new BCenteredLabel(GuiUtils.getTranslatable("boxlib.aLong")));
 
         addConfigLine(new BLongField(
                 config().aLong,
@@ -184,7 +187,7 @@ public class ExampleConfigScreen extends BOptionScreen {
         ));
 
         // here's how we would add a long
-        addConfigLine(new BCenteredLabel(new TranslatableComponent("boxlib.aLong")));
+        addConfigLine(new BCenteredLabel(GuiUtils.getTranslatable("boxlib.aLong")));
 
         addConfigLine(new BLongField(
                 config().aLong,
@@ -192,7 +195,7 @@ public class ExampleConfigScreen extends BOptionScreen {
         ));
 
         // here's how we would add a short
-        addConfigLine(new BCenteredLabel(new TranslatableComponent("boxlib.aShort")));
+        addConfigLine(new BCenteredLabel(GuiUtils.getTranslatable("boxlib.aShort")));
 
         addConfigLine(new BShortField(
                 config().aShort,
@@ -244,7 +247,7 @@ public class ExampleConfigScreen extends BOptionScreen {
 
         // this is how we would change to another config screen
         addConfigLine(new BConfigScreenButton(
-                new TranslatableComponent("boxlib.aConfigScreen"),
+                GuiUtils.getTranslatable("boxlib.aConfigScreen"),
                 this,
                 PromptTestingScreen::new
         ));
@@ -253,10 +256,10 @@ public class ExampleConfigScreen extends BOptionScreen {
         RenderingLayout layout = createLayout();
         addConfigLine(
                 new BCustomEntry(
-                        (guiGraphics, x, y, width, height, mouseX, mouseY, tickDelta) -> {
+                        (x, y, width, height, mouseX, mouseY, tickDelta) -> {
                             layout.setPosition(x, y);
 
-                            layout.render(guiGraphics);
+                            layout.render();
                         }
                 )
         );

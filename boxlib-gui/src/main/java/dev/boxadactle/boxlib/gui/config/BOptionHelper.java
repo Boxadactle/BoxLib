@@ -38,7 +38,7 @@ public interface BOptionHelper {
                 startY,
                 getButtonWidth(ButtonType.NORMAL),
                 getButtonHeight(),
-                GuiUtils.CANCEL,
+                GuiUtils.CANCEL.getString(),
                 ButtonConsumer::accept
         );
     }
@@ -69,7 +69,7 @@ public interface BOptionHelper {
                 startY,
                 getButtonWidth(ButtonType.NORMAL),
                 getButtonHeight(),
-                GuiUtils.DONE,
+                GuiUtils.DONE.getString(),
                 ButtonConsumer::accept
         );
     }
@@ -88,7 +88,7 @@ public interface BOptionHelper {
                 startY,
                 getButtonWidth(ButtonType.NORMAL),
                 getButtonHeight(),
-                GuiUtils.BACK,
+                GuiUtils.BACK.getString(),
                 b -> ClientUtils.setScreen(parent)
         );
     }
@@ -107,7 +107,7 @@ public interface BOptionHelper {
                 startY,
                 getButtonWidth(ButtonType.NORMAL),
                 getButtonHeight(),
-                GuiUtils.SAVE,
+                GuiUtils.SAVE.getString(),
                 saveConsumer::accept
         );
     }
@@ -138,7 +138,7 @@ public interface BOptionHelper {
                 startY,
                 getButtonWidth(ButtonType.SMALL),
                 getButtonHeight(),
-                GuiUtils.CANCEL,
+                GuiUtils.CANCEL.getString(),
                 ButtonConsumer::accept
         );
     }
@@ -169,7 +169,7 @@ public interface BOptionHelper {
                 startY,
                 getButtonWidth(ButtonType.SMALL),
                 getButtonHeight(),
-                GuiUtils.DONE,
+                GuiUtils.DONE.getString(),
                 ButtonConsumer::accept
         );
     }
@@ -188,7 +188,7 @@ public interface BOptionHelper {
                 startY,
                 getButtonWidth(ButtonType.SMALL),
                 getButtonHeight(),
-                GuiUtils.SAVE,
+                GuiUtils.SAVE.getString(),
                 saveConsumer::accept
         );
     }
@@ -207,7 +207,7 @@ public interface BOptionHelper {
                 startY,
                 getButtonWidth(ButtonType.NORMAL),
                 getButtonHeight(),
-                GuiUtils.OK,
+                GuiUtils.OK.getString(),
                 saveConsumer::accept
         );
     }
@@ -226,7 +226,7 @@ public interface BOptionHelper {
                 startY,
                 getButtonWidth(ButtonType.SMALL),
                 getButtonHeight(),
-                GuiUtils.OK,
+                GuiUtils.OK.getString(),
                 saveConsumer::accept
         );
     }
@@ -249,7 +249,7 @@ public interface BOptionHelper {
                         startY,
                         getButtonWidth(ButtonType.SMALL),
                         getButtonHeight(),
-                        GuiUtils.CANCEL,
+                        GuiUtils.CANCEL.getString(),
                         b -> ClientUtils.setScreen(parent)
                 ),
                 new Button(
@@ -257,7 +257,7 @@ public interface BOptionHelper {
                         startY,
                         getButtonWidth(ButtonType.SMALL),
                         getButtonHeight(),
-                        GuiUtils.SAVE,
+                        GuiUtils.SAVE.getString(),
                         saveConsumer::accept
                 )
         };

@@ -68,16 +68,15 @@ public class ParagraphComponent extends LayoutComponent<List<Component>> {
     /**
      * Renders the paragraph component on the screen.
      *
-     * @param poseStack the pose stack
      * @param x the x-coordinate of the top-left corner of the component
      * @param y the y-coordinate of the top-left corner of the component
      */
     @Override
-    public void render(PoseStack poseStack, int x, int y) {
+    public void render(int x, int y) {
         int currentY = y;
 
         for (Component component : this.component) {
-            RenderUtils.drawText(poseStack, component, x, currentY, GuiUtils.WHITE);
+            RenderUtils.drawText(component.getColoredString(), x, currentY, GuiUtils.WHITE);
 
             currentY += GuiUtils.getTextHeight() + textPadding * 2;
         }

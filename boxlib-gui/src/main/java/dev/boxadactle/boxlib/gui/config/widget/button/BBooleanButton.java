@@ -22,7 +22,7 @@ public class BBooleanButton extends BOptionButton<Boolean> {
      * @param function the function to be called when the button is clicked
      */
     public BBooleanButton(String key, Boolean value, Consumer<Boolean> function) {
-        super(new TranslatableComponent(key, value ? GuiUtils.TRUE : GuiUtils.FALSE), value, function);
+        super(GuiUtils.getTranslatable(key, value ? GuiUtils.TRUE.getColoredString() : GuiUtils.FALSE.getColoredString()), value, function);
 
         this.key = key;
     }
@@ -31,7 +31,7 @@ public class BBooleanButton extends BOptionButton<Boolean> {
     protected Boolean changeValue(Boolean input) {
 
         this.currentValue = !this.currentValue;
-        super.setMessage(new TranslatableComponent(key, currentValue ? GuiUtils.TRUE : GuiUtils.FALSE));
+        super.setMessage(GuiUtils.getTranslatable(key, currentValue ? GuiUtils.TRUE.getColoredString() : GuiUtils.FALSE.getColoredString()));
 
         return currentValue;
     }

@@ -23,9 +23,9 @@ public abstract class PromptScreen<T> extends Screen implements BOptionHelper {
     }
 
     @Override
-    public void render(PoseStack stack, int i, int j, float f) {
-        renderBackground(stack);
-        super.render(stack, i, j, f);
+    public void render(int i, int j, float f) {
+        renderBackground();
+        super.render(i, j, f);
     }
 
     protected abstract T getData();

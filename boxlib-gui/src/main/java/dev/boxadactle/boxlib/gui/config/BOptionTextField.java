@@ -26,7 +26,7 @@ public abstract class BOptionTextField<T> extends EditBox implements BOptionEntr
     protected boolean hasInvalidValue = false;
 
     public BOptionTextField(T value, Consumer<T> function) {
-        super(GuiUtils.getTextRenderer(), 0, 0, 200, 18, new TextComponent("ConfigWidget"));
+        super(GuiUtils.getTextRenderer(), 0, 0, 200, 18, "ConfigWidget");
 
         currentValue = value;
         this.function = function;
@@ -36,8 +36,8 @@ public abstract class BOptionTextField<T> extends EditBox implements BOptionEntr
     }
 
     @Override
-    public void renderButton(PoseStack p_93657_, int mouseX, int mouseY, float delta) {
-        super.renderButton(p_93657_, mouseX, mouseY, delta);
+    public void renderButton(int mouseX, int mouseY, float delta) {
+        super.renderButton(mouseX, mouseY, delta);
 
         if (this.isInvalid()) this.setTextColor(GuiUtils.RED);
         else this.setTextColor(14737632);
@@ -75,7 +75,7 @@ public abstract class BOptionTextField<T> extends EditBox implements BOptionEntr
     }
 
     @Override
-    public Component getMessage() {
+    public String getMessage() {
         return super.getMessage();
     }
 

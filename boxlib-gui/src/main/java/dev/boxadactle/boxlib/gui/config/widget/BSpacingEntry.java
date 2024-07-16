@@ -15,19 +15,18 @@ public class BSpacingEntry extends BOptionButton<Object> {
      * Constructs a new BSpacingEntry instance.
      */
     public BSpacingEntry() {
-        super(new TextComponent(""), null, a -> {});
+        super("", null, a -> {});
     }
 
     /**
      * Renders the spacing entry on the screen.
      *
-     * @param p_93657_ The GuiGraphics object used for rendering.
      * @param mouseX   The x-coordinate of the mouse cursor.
      * @param mouseY   The y-coordinate of the mouse cursor.
      * @param delta    The time since the last frame update.
      */
     @Override
-    public void renderButton(PoseStack p_93657_, int mouseX, int mouseY, float delta) {
+    public void renderButton(int mouseX, int mouseY, float delta) {
     }
 
     /**

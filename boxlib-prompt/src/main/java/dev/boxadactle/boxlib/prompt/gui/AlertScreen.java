@@ -43,9 +43,9 @@ public class AlertScreen extends PromptScreen<Void> {
     }
 
     @Override
-    public void render(PoseStack stack, int i, int j, float f) {
-        super.render(stack, i, j, f);
+    public void render(int i, int j, float f) {
+        super.render(i, j, f);
 
-        RenderUtils.drawTextCentered(stack, message, this.width / 2, textY);
+        RenderUtils.drawTextCentered(message, this.width / 2, textY);
     }
 }

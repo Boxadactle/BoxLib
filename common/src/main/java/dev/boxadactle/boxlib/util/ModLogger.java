@@ -1,5 +1,6 @@
 package dev.boxadactle.boxlib.util;
 
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
@@ -28,8 +29,8 @@ public class ModLogger {
         client = ClientUtils.getClient();
         prefix = "[" + modName + "]: ";
         chatPrefix = GuiUtils.colorize(
-                GuiUtils.brackets(GuiUtils.colorize(new TextComponent(modName), GuiUtils.AQUA)),
-                GuiUtils.BLUE
+                GuiUtils.brackets(GuiUtils.colorize(new TextComponent(modName), ChatFormatting.AQUA)),
+                ChatFormatting.BLUE
         );
         player = new PlayerLogging(client, modName);
     }
@@ -145,8 +146,8 @@ public class ModLogger {
         public PlayerLogging(Minecraft client, String prefix) {
             this.client = client;
             this.prefix = GuiUtils.colorize(GuiUtils.brackets(
-                    GuiUtils.colorize(new TextComponent(prefix), 5636095)
-            ), 43690).copy().append(" ");
+                    GuiUtils.colorize(new TextComponent(prefix), ChatFormatting.AQUA)
+            ), ChatFormatting.BLUE).copy().append(" ");
         }
 
         /**
@@ -158,7 +159,7 @@ public class ModLogger {
         public void error(String msg, Object... data) {
             if (this.client.player != null) {
                 ClientUtils.getClient().gui.getChat().addMessage(
-                        prefix.copy().append(GuiUtils.colorize(new TextComponent(String.format(msg, data)), GuiUtils.RED))
+                        prefix.copy().append(GuiUtils.colorize(new TextComponent(String.format(msg, data)), ChatFormatting.RED))
                 );
             }
         }
@@ -172,7 +173,7 @@ public class ModLogger {
         public void warn(String msg, Object... data) {
             if (this.client.player != null) {
                 ClientUtils.getClient().gui.getChat().addMessage(
-                        prefix.copy().append(GuiUtils.colorize(new TextComponent(String.format(msg, data)), GuiUtils.YELLOW))
+                        prefix.copy().append(GuiUtils.colorize(new TextComponent(String.format(msg, data)), ChatFormatting.YELLOW))
                 );
             }
         }

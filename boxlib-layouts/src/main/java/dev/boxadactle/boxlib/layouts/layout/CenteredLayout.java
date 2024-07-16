@@ -1,6 +1,5 @@
 package dev.boxadactle.boxlib.layouts.layout;
 
-import com.mojang.blaze3d.vertex.PoseStack;
 import dev.boxadactle.boxlib.layouts.RenderingLayout;
 
 /**
@@ -40,7 +39,7 @@ public class CenteredLayout extends RenderingLayout {
     }
 
     @Override
-    public void render(PoseStack poseStack) {
+    public void render() {
         int childWidth = layout.calculateRect().getWidth();
         int childHeight = layout.calculateRect().getHeight();
 
@@ -48,6 +47,6 @@ public class CenteredLayout extends RenderingLayout {
         int childY = y + (height - childHeight) / 2;
 
         layout.setPosition(childX, childY);
-        layout.render(poseStack);
+        layout.render();
     }
 }

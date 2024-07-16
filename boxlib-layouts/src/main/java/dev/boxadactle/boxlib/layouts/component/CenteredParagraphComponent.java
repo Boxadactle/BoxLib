@@ -28,12 +28,12 @@ public class CenteredParagraphComponent extends ParagraphComponent {
      * @param y              the y-coordinate of the top-left corner of the component
      */
     @Override
-    public void render(PoseStack poseStack, int x, int y) {
+    public void render(int x, int y) {
         int currentY = y;
         int calculatedWidth = this.getWidth();
 
         for (Component component : this.component) {
-            RenderUtils.drawTextCentered(poseStack, component, x + calculatedWidth / 2, currentY, GuiUtils.WHITE);
+            RenderUtils.drawTextCentered(component, x + calculatedWidth / 2, currentY, GuiUtils.WHITE);
 
             currentY += GuiUtils.getTextHeight() + textPadding * 2;
         }

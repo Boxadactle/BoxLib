@@ -23,18 +23,17 @@ public class LeftParagraphComponent extends ParagraphComponent {
     /**
      * Renders the LeftParagraphComponent on the screen.
      *
-     * @param graphics the graphics object used for rendering
      * @param x        the x-coordinate of the component's position
      * @param y        the y-coordinate of the component's position
      */
     @Override
-    public void render(PoseStack graphics, int x, int y) {
+    public void render(int x, int y) {
         int currentY = y;
         int thisWidth = getWidth();
 
         for (Component component : this.component) {
             int width = GuiUtils.getTextSize(component);
-            RenderUtils.drawText(graphics, component, x, currentY, GuiUtils.WHITE);
+            RenderUtils.drawText(component.getColoredString(), x, currentY, GuiUtils.WHITE);
 
             currentY += GuiUtils.getTextHeight() + textPadding * 2;
         }

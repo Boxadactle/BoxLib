@@ -15,20 +15,19 @@ public class BRightLabel extends BLabel {
      *
      * @param message the text to be displayed on the label
      */
-    public BRightLabel(Component message) {
+    public BRightLabel(String message) {
         super(message);
     }
 
     /**
      * Renders the label on the screen.
      *
-     * @param stack       the PoseStack instance
      * @param mouseX      the x-coordinate of the mouse cursor
      * @param mouseY      the y-coordinate of the mouse cursor
      * @param delta       the time since the last frame update
      */
     @Override
-    public void renderButton(PoseStack stack, int mouseX, int mouseY, float delta) {
-        RenderUtils.drawText(stack, message, this.x + this.getWidth() - GuiUtils.getTextRenderer().width(message), this.y + 5);
+    public void renderButton(int mouseX, int mouseY, float delta) {
+        RenderUtils.drawText(message, this.x + this.getWidth() - GuiUtils.getTextRenderer().width(message), this.y + 5);
     }
 }

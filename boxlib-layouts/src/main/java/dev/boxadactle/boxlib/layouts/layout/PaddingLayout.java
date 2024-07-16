@@ -53,9 +53,9 @@ public class PaddingLayout extends RenderingLayout {
     }
 
     @Override
-    public void render(PoseStack poseStack) {
+    public void render() {
         layout.setPosition(x + padding, y + padding);
 
-        layout.render(poseStack);
+        layout.render();
     }
 }

@@ -4,11 +4,12 @@ import com.google.common.collect.ComparisonChain;
 import com.google.common.collect.Ordering;
 import net.minecraft.client.multiplayer.ClientPacketListener;
 import net.minecraft.client.multiplayer.PlayerInfo;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.GameType;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.dimension.Dimension;
+import net.minecraft.world.level.dimension.DimensionType;
 import net.minecraft.world.scores.Team;
 
 import java.util.Comparator;
@@ -52,9 +53,9 @@ public class WorldUtils {
      * @return The dimension as a string.
      */
     public static String getCurrentDimension() {
-        ResourceKey<Level> registry = getPlayer().level.dimension();
+        Dimension dimension = getPlayer().level.dimension;
 
-        return registry.location().toString();
+        return DimensionType.getName(dimension.getType()).toString();
     }
 
     /**
