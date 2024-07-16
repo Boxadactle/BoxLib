@@ -7,6 +7,7 @@ import dev.boxadactle.boxlib.util.RenderUtils;
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
 import org.jetbrains.annotations.Nullable;
 
 public abstract class NumberScreen<T extends Number> extends PromptScreen<T> {
@@ -60,7 +61,7 @@ public abstract class NumberScreen<T extends Number> extends PromptScreen<T> {
                 this.height / 2 - 10,
                 300,
                 20,
-                Component.literal("Input box")
+                new TextComponent("Input box")
         ));
     }
 

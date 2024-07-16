@@ -14,6 +14,10 @@ public class FunnyClientCommand {
             TestMod.LOGGER.player.info("You are not funny!");
 
             return 0;
+        }).registerSubcommand("public", (context) -> {
+            TestMod.LOGGER.player.publicChat("I am funny!");
+
+            return 0;
         }).registerSubcommand(new AdverbSubcommand());
 
         return command;

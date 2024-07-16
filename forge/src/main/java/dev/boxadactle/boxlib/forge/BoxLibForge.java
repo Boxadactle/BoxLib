@@ -9,12 +9,13 @@ import dev.boxadactle.boxlib.keybind.KeybindingImpl;
 import dev.boxadactle.boxlib.scheduling.Scheduling;
 import dev.boxadactle.boxlib.util.MouseUtils;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.ClientRegistry;
 import net.minecraftforge.client.event.RegisterClientCommandsEvent;
-import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
 import net.minecraftforge.client.event.ScreenEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
 @Mod(ModConstants.MOD_ID)
 public class BoxLibForge {
@@ -24,7 +25,7 @@ public class BoxLibForge {
     }
 
     @Mod.EventBusSubscriber(modid = ModConstants.MOD_ID, value = Dist.CLIENT)
-    public static class ClientNeoforgeEvents {
+    public static class ClientForgeEvents {
 
         @SuppressWarnings("unchecked")
         @SubscribeEvent
@@ -33,12 +34,12 @@ public class BoxLibForge {
         }
 
         @SubscribeEvent
-        public static void mouseDown(ScreenEvent.MouseButtonPressed.Pre e) {
+        public static void mouseDown(ScreenEvent.MouseClickedEvent.Pre e) {
             MouseUtils.setMouseDown(e.getButton());
         }
 
         @SubscribeEvent
-        public static void mouseUp(ScreenEvent.MouseButtonReleased.Pre ignored) {
+        public static void mouseUp(ScreenEvent.MouseReleasedEvent.Pre ignored) {
             MouseUtils.setMouseUp();
         }
 
@@ -50,10 +51,10 @@ public class BoxLibForge {
     }
 
     @Mod.EventBusSubscriber(modid = ModConstants.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
-    public static class ModNeoforgeEvents {
+    public static class ModForgeEvents {
         @SubscribeEvent
-        public static void registerKeybinds(RegisterKeyMappingsEvent e) {
-            KeybindingImpl.register(e::register);
+        public static void clientSetup(FMLClientSetupEvent event) {
+            KeybindingImpl.register(ClientRegistry::registerKeyBinding);
         }
     }
 

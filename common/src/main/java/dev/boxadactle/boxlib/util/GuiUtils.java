@@ -5,9 +5,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.locale.Language;
-import net.minecraft.network.chat.ClickEvent;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.HoverEvent;
+import net.minecraft.network.chat.*;
 
 import java.util.Locale;
 
@@ -188,21 +186,21 @@ public class GuiUtils {
      * Initializes the static components used in the GUI.
      */
     public static void init() {
-        ON = Component.translatable("options.on");
-        OFF = Component.translatable("options.off");
-        DONE = Component.translatable("gui.done");
-        CANCEL = Component.translatable("gui.cancel");
-        YES = Component.translatable("gui.yes");
-        NO = Component.translatable("gui.no");
-        OK = Component.translatable("mco.gui.ok");
-        ALL = Component.translatable("gui.all");
-        BACK = Component.translatable("gui.back");
-        SAVE = Component.translatable("structure_block.mode.save");
-        LOAD = Component.translatable("structure_block.mode.load");
-        REFRESH = Component.translatable("selectServer.refresh");
-        ACCEPT = Component.translatable("mco.invites.button.accept");
-        REJECT = Component.translatable("mco.invites.button.reject");
-        ERROR_OCCURED = Component.translatable("selectWorld.futureworld.error.title");
+        ON = new TranslatableComponent("options.on");
+        OFF = new TranslatableComponent("options.off");
+        DONE = new TranslatableComponent("gui.done");
+        CANCEL = new TranslatableComponent("gui.cancel");
+        YES = new TranslatableComponent("gui.yes");
+        NO = new TranslatableComponent("gui.no");
+        OK = new TranslatableComponent("mco.gui.ok");
+        ALL = new TranslatableComponent("gui.all");
+        BACK = new TranslatableComponent("gui.back");
+        SAVE = new TranslatableComponent("structure_block.mode.save");
+        LOAD = new TranslatableComponent("structure_block.mode.load");
+        REFRESH = new TranslatableComponent("selectServer.refresh");
+        ACCEPT = new TranslatableComponent("mco.invites.button.accept");
+        REJECT = new TranslatableComponent("mco.invites.button.reject");
+        ERROR_OCCURED = new TranslatableComponent("selectWorld.futureworld.error.title");
 
         TRUE = colorize(YES, GREEN);
         FALSE = colorize(NO, RED);
@@ -335,7 +333,7 @@ public class GuiUtils {
     public static Component createHyperLink(Component text, String link) {
         return text.copy().withStyle(ChatFormatting.UNDERLINE, ChatFormatting.BLUE).withStyle(a1 -> a1
                 .withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, link))
-                .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Component.translatable("chat.link.open")))
+                .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TranslatableComponent("chat.link.open")))
         );
     }
 
@@ -361,7 +359,7 @@ public class GuiUtils {
      * @return The non-zero GUI scale.
      */
     public static int nonZeroGuiScale() {
-        int scale = ClientUtils.getOptions().guiScale().get();
+        int scale = ClientUtils.getOptions().guiScale;
         Minecraft client = ClientUtils.getClient();
         if (scale == 0) {
             return (int) Math.max(1, Math.min(Math.floor(client.getWindow().getGuiScaledWidth() / 320), Math.floor(client.getWindow().getGuiScaledHeight() / 240)));
@@ -379,7 +377,7 @@ public class GuiUtils {
      * @return The surrounded component.
      */
     public static Component surround(String str1, String str2, Component input) {
-        return Component.literal(str1).append(input).append(Component.literal(str2));
+        return new TextComponent(str1).append(input).append(new TextComponent(str2));
     }
 
     /**

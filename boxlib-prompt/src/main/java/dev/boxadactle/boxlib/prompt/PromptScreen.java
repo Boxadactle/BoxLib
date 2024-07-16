@@ -7,6 +7,7 @@ import dev.boxadactle.boxlib.util.ClientUtils;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
 
 
 public abstract class PromptScreen<T> extends Screen implements BOptionHelper {
@@ -16,7 +17,7 @@ public abstract class PromptScreen<T> extends Screen implements BOptionHelper {
     Button okButton;
 
     protected PromptScreen(Screen parent) {
-        super(Component.literal("BoxLib prompt screen"));
+        super(new TextComponent("BoxLib prompt screen"));
 
         this.parent = parent;
     }

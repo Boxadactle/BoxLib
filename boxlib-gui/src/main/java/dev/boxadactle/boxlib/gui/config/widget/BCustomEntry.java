@@ -4,6 +4,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import dev.boxadactle.boxlib.function.Consumer8;
 import dev.boxadactle.boxlib.gui.config.BOptionButton;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
 
 /**
  * A custom rendering entry for a GUI widget.
@@ -18,7 +19,7 @@ public class BCustomEntry extends BOptionButton<Object> {
      * @param function the rendering function to be called when rendering the entry
      */
     public BCustomEntry(Consumer8<PoseStack, Integer, Integer, Integer, Integer, Integer, Integer, Float> function) {
-        super(Component.literal(""), null, null);
+        super(new TextComponent(""), null, null);
 
         this.function = function;
     }

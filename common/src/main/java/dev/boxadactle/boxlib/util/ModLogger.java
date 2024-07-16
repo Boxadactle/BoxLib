@@ -2,6 +2,7 @@ package dev.boxadactle.boxlib.util;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -27,7 +28,7 @@ public class ModLogger {
         client = ClientUtils.getClient();
         prefix = "[" + modName + "]: ";
         chatPrefix = GuiUtils.colorize(
-                GuiUtils.brackets(GuiUtils.colorize(Component.literal(modName), GuiUtils.AQUA)),
+                GuiUtils.brackets(GuiUtils.colorize(new TextComponent(modName), GuiUtils.AQUA)),
                 GuiUtils.BLUE
         );
         player = new PlayerLogging(client, modName);
@@ -94,7 +95,7 @@ public class ModLogger {
      */
     public void chatError(String msg, Object... data) {
         if (this.client.player != null) {
-            this.client.player.sendSystemMessage(Component.literal(chatPrefix + "§4" + String.format(msg, data)));
+            ClientUtils.getClient().gui.getChat().addMessage(new TextComponent(chatPrefix + "§4" + String.format(msg, data)));
         }
     }
 
@@ -106,7 +107,7 @@ public class ModLogger {
      */
     public void chatWarn(String msg, Object... data) {
         if (this.client.player != null) {
-            this.client.player.sendSystemMessage(Component.literal(chatPrefix + "§3" + String.format(msg, data)));
+            ClientUtils.getClient().gui.getChat().addMessage(new TextComponent(chatPrefix + "§3" + String.format(msg, data)));
         }
     }
 
@@ -144,7 +145,7 @@ public class ModLogger {
         public PlayerLogging(Minecraft client, String prefix) {
             this.client = client;
             this.prefix = GuiUtils.colorize(GuiUtils.brackets(
-                    GuiUtils.colorize(Component.literal(prefix), 5636095)
+                    GuiUtils.colorize(new TextComponent(prefix), 5636095)
             ), 43690).copy().append(" ");
         }
 
@@ -156,8 +157,8 @@ public class ModLogger {
          */
         public void error(String msg, Object... data) {
             if (this.client.player != null) {
-                this.client.player.sendSystemMessage(
-                        prefix.copy().append(GuiUtils.colorize(Component.literal(String.format(msg, data)), GuiUtils.RED))
+                ClientUtils.getClient().gui.getChat().addMessage(
+                        prefix.copy().append(GuiUtils.colorize(new TextComponent(String.format(msg, data)), GuiUtils.RED))
                 );
             }
         }
@@ -170,8 +171,8 @@ public class ModLogger {
          */
         public void warn(String msg, Object... data) {
             if (this.client.player != null) {
-                this.client.player.sendSystemMessage(
-                        prefix.copy().append(GuiUtils.colorize(Component.literal(String.format(msg, data)), GuiUtils.YELLOW))
+                ClientUtils.getClient().gui.getChat().addMessage(
+                        prefix.copy().append(GuiUtils.colorize(new TextComponent(String.format(msg, data)), GuiUtils.YELLOW))
                 );
             }
         }
@@ -184,8 +185,8 @@ public class ModLogger {
          */
         public void info(String msg, Object... data) {
             if (this.client.player != null) {
-                this.client.player.sendSystemMessage(
-                        prefix.copy().append(Component.literal(String.format(msg, data)))
+                ClientUtils.getClient().gui.getChat().addMessage(
+                        prefix.copy().append(new TextComponent(String.format(msg, data)))
                 );
             }
         }
@@ -197,7 +198,7 @@ public class ModLogger {
          */
         public void chat(Component msg) {
             if (this.client.player != null) {
-                this.client.player.sendSystemMessage(prefix.copy().append(msg));
+                ClientUtils.getClient().gui.getChat().addMessage(prefix.copy().append(msg));
             }
         }
 
@@ -208,7 +209,7 @@ public class ModLogger {
          */
         public void publicChat(String msg) {
             if (this.client.player != null) {
-                this.client.player.chatSigned(msg, null);
+                this.client.player.chat(msg);
             }
         }
     }

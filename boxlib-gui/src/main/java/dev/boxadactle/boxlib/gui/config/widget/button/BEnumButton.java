@@ -3,6 +3,7 @@ package dev.boxadactle.boxlib.gui.config.widget.button;
 import com.google.common.collect.ImmutableList;
 import dev.boxadactle.boxlib.util.GuiUtils;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
 
 import java.util.Locale;
 import java.util.function.Consumer;
@@ -30,7 +31,7 @@ public class BEnumButton<T extends Enum<T>> extends BToggleButton<T> {
 
         this.valColor = valColor;
 
-        super.setMessage(Component.translatable(key, from(value)));
+        super.setMessage(new TranslatableComponent(key, from(value)));
     }
 
     /**
@@ -52,6 +53,6 @@ public class BEnumButton<T extends Enum<T>> extends BToggleButton<T> {
      */
     @Override
     public Component from(T input) {
-        return GuiUtils.colorize(Component.translatable(key + "." + input.name().toLowerCase(Locale.ROOT)), valColor);
+        return GuiUtils.colorize(new TranslatableComponent(key + "." + input.name().toLowerCase(Locale.ROOT)), valColor);
     }
 }

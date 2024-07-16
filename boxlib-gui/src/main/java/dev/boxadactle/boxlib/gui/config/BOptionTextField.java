@@ -7,6 +7,7 @@ import dev.boxadactle.boxlib.util.MouseUtils;
 import dev.boxadactle.boxlib.function.Converter;
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
 
 import java.util.function.Consumer;
 
@@ -25,7 +26,7 @@ public abstract class BOptionTextField<T> extends EditBox implements BOptionEntr
     protected boolean hasInvalidValue = false;
 
     public BOptionTextField(T value, Consumer<T> function) {
-        super(GuiUtils.getTextRenderer(), 0, 0, 200, 18, Component.literal("ConfigWidget"));
+        super(GuiUtils.getTextRenderer(), 0, 0, 200, 18, new TextComponent("ConfigWidget"));
 
         currentValue = value;
         this.function = function;

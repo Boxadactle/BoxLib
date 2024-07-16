@@ -3,6 +3,7 @@ package dev.boxadactle.boxlib.gui.config.widget.button;
 import dev.boxadactle.boxlib.gui.config.BOptionButton;
 import dev.boxadactle.boxlib.util.GuiUtils;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
 
 import java.util.function.Consumer;
 
@@ -21,7 +22,7 @@ public class BBooleanButton extends BOptionButton<Boolean> {
      * @param function the function to be called when the button is clicked
      */
     public BBooleanButton(String key, Boolean value, Consumer<Boolean> function) {
-        super(Component.translatable(key, value ? GuiUtils.TRUE : GuiUtils.FALSE), value, function);
+        super(new TranslatableComponent(key, value ? GuiUtils.TRUE : GuiUtils.FALSE), value, function);
 
         this.key = key;
     }
@@ -30,7 +31,7 @@ public class BBooleanButton extends BOptionButton<Boolean> {
     protected Boolean changeValue(Boolean input) {
 
         this.currentValue = !this.currentValue;
-        super.setMessage(Component.translatable(key, currentValue ? GuiUtils.TRUE : GuiUtils.FALSE));
+        super.setMessage(new TranslatableComponent(key, currentValue ? GuiUtils.TRUE : GuiUtils.FALSE));
 
         return currentValue;
     }

@@ -1,7 +1,7 @@
 package dev.boxadactle.boxlib.fabric.mixin;
 
 import dev.boxadactle.boxlib.command.BCommandSourceStack;
-import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
+import net.fabricmc.fabric.api.client.command.v1.FabricClientCommandSource;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.network.chat.Component;

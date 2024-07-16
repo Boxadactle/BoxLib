@@ -3,6 +3,7 @@ package dev.boxadactle.boxlib.gui.config.widget;
 import com.mojang.blaze3d.vertex.PoseStack;
 import dev.boxadactle.boxlib.gui.config.BOptionButton;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
 
 /**
  * Represents a spacing entry in a GUI widget.
@@ -14,7 +15,7 @@ public class BSpacingEntry extends BOptionButton<Object> {
      * Constructs a new BSpacingEntry instance.
      */
     public BSpacingEntry() {
-        super(Component.literal(""), null, a -> {});
+        super(new TextComponent(""), null, a -> {});
     }
 
     /**

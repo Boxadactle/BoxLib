@@ -5,6 +5,7 @@ import dev.boxadactle.boxlib.layouts.LayoutComponent;
 import dev.boxadactle.boxlib.util.GuiUtils;
 import dev.boxadactle.boxlib.util.RenderUtils;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
 
 /**
  * Represents a layout component that displays a string.
@@ -27,7 +28,7 @@ public class StringComponent extends LayoutComponent<String> {
      */
     @Override
     public int getWidth() {
-        return GuiUtils.getTextSize(Component.literal(this.component));
+        return GuiUtils.getTextSize(new TextComponent(this.component));
     }
 
     /**
@@ -49,6 +50,6 @@ public class StringComponent extends LayoutComponent<String> {
      */
     @Override
     public void render(PoseStack graphics, int x, int y) {
-        RenderUtils.drawText(graphics, Component.literal(this.component), x, y);
+        RenderUtils.drawText(graphics, new TextComponent(this.component), x, y);
     }
 }

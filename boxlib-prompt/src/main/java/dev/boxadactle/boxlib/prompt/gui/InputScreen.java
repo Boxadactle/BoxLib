@@ -6,6 +6,7 @@ import dev.boxadactle.boxlib.util.RenderUtils;
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
 
 public class InputScreen extends PromptScreen<String> {
 
@@ -39,7 +40,7 @@ public class InputScreen extends PromptScreen<String> {
                 this.height / 2 - 10,
                 300,
                 20,
-                Component.literal("Input box")
+                new TextComponent("Input box")
         ));
         inputBox.setMaxLength(100);
     }

@@ -12,6 +12,7 @@ import net.minecraft.client.gui.components.events.GuiEventListener;
 import net.minecraft.client.gui.narration.NarratableEntry;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
 
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -77,7 +78,7 @@ public abstract class BOptionScreen extends Screen implements BOptionHelper {
     protected Button saveButton;
 
     public BOptionScreen(Screen parent) {
-        super(Component.literal("Config Screen"));
+        super(new TextComponent("Config Screen"));
 
         this.parent = parent;
     }

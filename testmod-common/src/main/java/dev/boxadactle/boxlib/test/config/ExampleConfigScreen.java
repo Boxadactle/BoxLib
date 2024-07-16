@@ -21,6 +21,8 @@ import dev.boxadactle.boxlib.util.ClientUtils;
 import dev.boxadactle.boxlib.util.GuiUtils;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.TranslatableComponent;
 
 /**
  * Here is a super basic example config screen.
@@ -71,7 +73,7 @@ public class ExampleConfigScreen extends BOptionScreen {
 
     @Override
     protected Component getName() {
-        return Component.translatable("boxlib.exampleconfigscreen");
+        return new TranslatableComponent("boxlib.exampleconfigscreen");
     }
 
     // initialize the config screen save and cancel buttons like this
@@ -94,7 +96,7 @@ public class ExampleConfigScreen extends BOptionScreen {
         // here's how you would set the wiki
         // I don't have a wiki, so I'll just
         // be setting it to the BoxLib GitHub repo
-        setWiki(Component.translatable("boxlib.wiki"), ModConstants.WIKI);
+        setWiki(new TranslatableComponent("boxlib.wiki"), ModConstants.WIKI);
     }
 
     @Override
@@ -102,7 +104,7 @@ public class ExampleConfigScreen extends BOptionScreen {
 
         // here's how you would make an argb field
         // since they don't initialize with a label, I recommend adding one
-        addConfigLine(new BCenteredLabel(Component.translatable("boxlib.anArgbField")));
+        addConfigLine(new BCenteredLabel(new TranslatableComponent("boxlib.anArgbField")));
 
         addConfigLine(new BArgbField(
                 config().anArgbColor,
@@ -133,8 +135,8 @@ public class ExampleConfigScreen extends BOptionScreen {
 
         // add this first so the labels can be above the fields
         addConfigLine(
-                new BCenteredLabel(Component.translatable("boxlib.aDouble")),
-                new BCenteredLabel(Component.translatable("boxlib.aFloat"))
+                new BCenteredLabel(new TranslatableComponent("boxlib.aDouble")),
+                new BCenteredLabel(new TranslatableComponent("boxlib.aFloat"))
         );
 
         // add the two fields
@@ -150,7 +152,7 @@ public class ExampleConfigScreen extends BOptionScreen {
         );
 
         // the rest is pretty much the same as the previous
-        addConfigLine(new BCenteredLabel(Component.translatable("boxlib.aHexColor")));
+        addConfigLine(new BCenteredLabel(new TranslatableComponent("boxlib.aHexColor")));
 
         addConfigLine(new BHexField(
                 config().aHexColor,
@@ -158,7 +160,7 @@ public class ExampleConfigScreen extends BOptionScreen {
         ));
 
         // here's how we would add an integer
-        addConfigLine(new BCenteredLabel(Component.translatable("boxlib.anInt")));
+        addConfigLine(new BCenteredLabel(new TranslatableComponent("boxlib.anInt")));
 
         addConfigLine(new BIntegerField(
                 config().anInt,
@@ -166,7 +168,7 @@ public class ExampleConfigScreen extends BOptionScreen {
         ));
 
         // here's how we would add a string
-        addConfigLine(new BCenteredLabel(Component.translatable("boxlib.aString")));
+        addConfigLine(new BCenteredLabel(new TranslatableComponent("boxlib.aString")));
 
         addConfigLine(new BStringField(
                 config().aString,
@@ -174,7 +176,7 @@ public class ExampleConfigScreen extends BOptionScreen {
         ));
 
         // here's how we would add a long
-        addConfigLine(new BCenteredLabel(Component.translatable("boxlib.aLong")));
+        addConfigLine(new BCenteredLabel(new TranslatableComponent("boxlib.aLong")));
 
         addConfigLine(new BLongField(
                 config().aLong,
@@ -182,7 +184,7 @@ public class ExampleConfigScreen extends BOptionScreen {
         ));
 
         // here's how we would add a long
-        addConfigLine(new BCenteredLabel(Component.translatable("boxlib.aLong")));
+        addConfigLine(new BCenteredLabel(new TranslatableComponent("boxlib.aLong")));
 
         addConfigLine(new BLongField(
                 config().aLong,
@@ -190,7 +192,7 @@ public class ExampleConfigScreen extends BOptionScreen {
         ));
 
         // here's how we would add a short
-        addConfigLine(new BCenteredLabel(Component.translatable("boxlib.aShort")));
+        addConfigLine(new BCenteredLabel(new TranslatableComponent("boxlib.aShort")));
 
         addConfigLine(new BShortField(
                 config().aShort,
@@ -242,7 +244,7 @@ public class ExampleConfigScreen extends BOptionScreen {
 
         // this is how we would change to another config screen
         addConfigLine(new BConfigScreenButton(
-                Component.translatable("boxlib.aConfigScreen"),
+                new TranslatableComponent("boxlib.aConfigScreen"),
                 this,
                 PromptTestingScreen::new
         ));
@@ -274,10 +276,10 @@ public class ExampleConfigScreen extends BOptionScreen {
 
         layout.addComponent(new ParagraphComponent(
                 2,
-                Component.literal("This is a paragraph component. "),
-                Component.literal("It's a simple way to add text to a layout."),
-                Component.literal("You can add as many components as you want."),
-                Component.literal("And it will render them all in a line.")
+                new TextComponent("This is a paragraph component. "),
+                new TextComponent("It's a simple way to add text to a layout."),
+                new TextComponent("You can add as many components as you want."),
+                new TextComponent("And it will render them all in a line.")
         ));
 
         ColumnLayout verticalLayout = new ColumnLayout(0, 0, 10);
@@ -285,8 +287,8 @@ public class ExampleConfigScreen extends BOptionScreen {
         for (int i = 0; i < 5; i++) {
             verticalLayout.addComponent(new ParagraphComponent(
                     2,
-                    Component.literal("This is a paragraph component. "),
-                    Component.literal("It's a simple way to add text to a layout.")
+                    new TextComponent("This is a paragraph component. "),
+                    new TextComponent("It's a simple way to add text to a layout.")
             ));
         }
 
