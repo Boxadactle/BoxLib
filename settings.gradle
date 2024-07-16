@@ -18,7 +18,7 @@ include 'testmod-fabric'
 //include 'testmod-neoforge'
 include 'testmod-forge'
 
-include 'boxlib-command'
+//include 'boxlib-command'
 include 'boxlib-config'
 include 'boxlib-functions'
 include 'boxlib-gui'

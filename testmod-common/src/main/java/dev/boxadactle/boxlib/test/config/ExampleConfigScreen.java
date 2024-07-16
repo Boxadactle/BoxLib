@@ -80,7 +80,7 @@ public class ExampleConfigScreen extends BOptionScreen {
     @Override
     protected void initFooter(int startX, int startY) {
         // here is where we restore the reload the config to undo all the changes to the config
-        addRenderableWidget(createHalfCancelButton(startX, startY, (b) -> {
+        addButton(createHalfCancelButton(startX, startY, (b) -> {
             ClientUtils.setScreen(parent);
             TestMod.CONFIG.restoreCache();
         }));

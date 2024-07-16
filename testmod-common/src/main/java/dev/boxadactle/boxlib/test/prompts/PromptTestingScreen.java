@@ -20,7 +20,7 @@ public class PromptTestingScreen extends BOptionScreen {
 
     @Override
     protected void initFooter(int startX, int startY) {
-        addRenderableWidget(createDoneButton(startX, startY, parent));
+        addButton(createDoneButton(startX, startY, parent));
     }
 
     @Override

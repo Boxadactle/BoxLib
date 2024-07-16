@@ -72,10 +72,10 @@ public abstract class PromptScreen<T> extends Screen implements BOptionHelper {
             int startY = getStartY();
 
             // cancel button
-            addRenderableWidget(createHalfCancelButton(startX, startY, (b) -> closeScreen(false)));
+            addButton(createHalfCancelButton(startX, startY, (b) -> closeScreen(false)));
 
             // ok button
-            okButton = addRenderableWidget(createHalfOkButton(startX, startY, (b) -> closeScreen(true)));
+            okButton = addButton(createHalfOkButton(startX, startY, (b) -> closeScreen(true)));
         }
 
     }

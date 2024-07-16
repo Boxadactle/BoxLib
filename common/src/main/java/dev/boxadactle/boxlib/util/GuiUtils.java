@@ -224,7 +224,7 @@ public class GuiUtils {
      * @return The colorized text.
      */
     public static Component colorize(Component text, int color) {
-        return text.copy().withStyle(style -> style.withColor(color));
+        return text.copy().withStyle(style -> style.withColor(TextColor.fromRgb(color)));
     }
 
     @Deprecated

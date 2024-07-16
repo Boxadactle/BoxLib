@@ -74,7 +74,7 @@ public class RenderUtils {
      * @param v           The v-coordinate of the top-left corner of the texture.
      */
     public static void drawTexture(ResourceLocation texture, PoseStack poseStack, int x, int y, int width, int height, int u, int v) {
-        RenderSystem.setShaderTexture(0, texture);
+        ClientUtils.getClient().getTextureManager().bind(texture);
         GuiComponent.blit(poseStack, x, y, u, v, width, height, width, height);
     }
 

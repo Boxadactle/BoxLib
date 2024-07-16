@@ -23,7 +23,7 @@ dependencies {
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     common(project(path: ":testmod-common", configuration: "namedElements")) { transitive false }
 
-    common project(path: ':boxlib-command', configuration: "namedElements")
+//    common project(path: ':boxlib-command', configuration: "namedElements")
     common project(path: ':boxlib-config', configuration: "namedElements")
     common project(path: ':boxlib-functions', configuration: "namedElements")
     common project(path: ':boxlib-gui', configuration: "namedElements")

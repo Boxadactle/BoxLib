@@ -4,7 +4,6 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import dev.boxadactle.boxlib.util.GuiUtils;
 import dev.boxadactle.boxlib.util.RenderUtils;
 import net.minecraft.client.gui.components.AbstractWidget;
-import net.minecraft.client.gui.narration.NarrationElementOutput;
 import net.minecraft.network.chat.Component;
 
 public class CenteredLabelWidget extends AbstractWidget {
@@ -23,10 +22,5 @@ public class CenteredLabelWidget extends AbstractWidget {
     @Override
     public void renderButton(PoseStack graphics, int i, int j, float f) {
         RenderUtils.drawTextCentered(graphics, getMessage(), x + width / 2, y);
-    }
-
-    @Override
-    public void updateNarration(NarrationElementOutput narrationElementOutput) {
-        this.defaultButtonNarrationText(narrationElementOutput);
     }
 }

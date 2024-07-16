@@ -1,10 +1,8 @@
 package dev.boxadactle.boxlib.test;
 
-import dev.boxadactle.boxlib.command.BCommandManager;
 import dev.boxadactle.boxlib.config.BConfigClass;
 import dev.boxadactle.boxlib.config.BConfigHandler;
 import dev.boxadactle.boxlib.keybind.KeybindHelper;
-import dev.boxadactle.boxlib.test.command.FunnyClientCommand;
 import dev.boxadactle.boxlib.test.config.ExampleConfigClass;
 import dev.boxadactle.boxlib.test.keybind.Keybindings;
 import dev.boxadactle.boxlib.translate.Language;
@@ -26,9 +24,6 @@ public class TestMod {
 
         // make sure to register your config class like this
         CONFIG = BConfigHandler.registerConfig(ExampleConfigClass.class);
-
-        // make sure to register your client commands like this
-        BCommandManager.register(FunnyClientCommand.create());
 
         Keybindings.init();
 

@@ -39,7 +39,7 @@ public class AlertScreen extends PromptScreen<Void> {
 
         textY = this.height / 2 - 50;
 
-        addRenderableWidget(createOkButton(getStartX(), this.height / 2 + 30, (b) -> closeScreen(true)));
+        addButton(createOkButton(getStartX(), this.height / 2 + 30, (b) -> closeScreen(true)));
     }
 
     @Override

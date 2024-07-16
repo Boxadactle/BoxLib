@@ -1,8 +1,5 @@
 package dev.boxadactle.boxlib.forge;
 
-import com.mojang.brigadier.CommandDispatcher;
-import dev.boxadactle.boxlib.command.BCommandImpl;
-import dev.boxadactle.boxlib.command.BCommandSourceStack;
 import dev.boxadactle.boxlib.core.BoxLib;
 import dev.boxadactle.boxlib.core.ModConstants;
 import dev.boxadactle.boxlib.keybind.KeybindingImpl;
@@ -10,12 +7,11 @@ import dev.boxadactle.boxlib.scheduling.Scheduling;
 import dev.boxadactle.boxlib.util.MouseUtils;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.GuiScreenEvent;
-import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import net.minecraftforge.fmlclient.registry.ClientRegistry;
 
 @Mod(ModConstants.MOD_ID)
 public class BoxLibForge {
@@ -27,11 +23,11 @@ public class BoxLibForge {
     @Mod.EventBusSubscriber(modid = ModConstants.MOD_ID, value = Dist.CLIENT)
     public static class ClientForgeEvents {
 
-        @SuppressWarnings("unchecked")
-        @SubscribeEvent
-        public static void registerCommands(RegisterCommandsEvent event) {
-            BCommandImpl.register((CommandDispatcher<BCommandSourceStack>) (CommandDispatcher<?>) event.getDispatcher());
-        }
+//        @SuppressWarnings("unchecked")
+//        @SubscribeEvent
+//        public static void registerCommands(RegisterCommandsEvent event) {
+//            BCommandImpl.register((CommandDispatcher<BCommandSourceStack>) (CommandDispatcher<?>) event.getDispatcher());
+//        }
 
         @SubscribeEvent
         public static void mouseDown(GuiScreenEvent.MouseClickedEvent.Pre e) {

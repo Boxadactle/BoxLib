@@ -9,7 +9,6 @@ import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.ContainerObjectSelectionList;
 import net.minecraft.client.gui.components.events.GuiEventListener;
-import net.minecraft.client.gui.narration.NarratableEntry;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
@@ -119,6 +118,7 @@ public abstract class BOptionScreen extends Screen implements BOptionHelper {
     protected abstract Component getName();
 
     protected abstract void initFooter(int startX, int startY);
+
     protected abstract void initConfigButtons();
 
     /**
@@ -221,7 +221,7 @@ public abstract class BOptionScreen extends Screen implements BOptionHelper {
      * @param link The link to the wiki that will open when the button is clicked.
      */
     protected void setWiki(Component label, String link) {
-        this.addRenderableWidget(new Button(3, 3, BOptionHelper.buttonWidth(ButtonType.TINY), BOptionHelper.buttonHeight() - 3, label, b -> {
+        this.addButton(new Button(3, 3, BOptionHelper.buttonWidth(ButtonType.TINY), BOptionHelper.buttonHeight() - 3, label, b -> {
             ClientUtils.openLinkConfirmScreen(link, this);
         }));
     }
@@ -240,7 +240,7 @@ public abstract class BOptionScreen extends Screen implements BOptionHelper {
      */
     protected Button setSaveButton(Button saveButton) {
         this.saveButton = saveButton;
-        return addRenderableWidget(saveButton);
+        return addButton(saveButton);
     }
 
     /**
@@ -446,15 +446,6 @@ public abstract class BOptionScreen extends Screen implements BOptionHelper {
          * It provides methods for retrieving the list of widgets associated with the entry and checking if the entry is invalid.
          */
         public abstract static class ConfigEntry extends ContainerObjectSelectionList.Entry<ConfigEntry> {
-
-            /**
-             * Returns a list of narratable entries associated with this configuration entry.
-             * @return The list of narratable entries.
-             */
-            @Override
-            public List<? extends NarratableEntry> narratables() {
-                return getWidgets();
-            }
 
             /**
              * Returns a list of child GUI event listeners associated with this configuration entry.

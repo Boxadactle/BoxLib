@@ -34,7 +34,7 @@ public class InputScreen extends PromptScreen<String> {
     protected void init() {
         super.init();
 
-        inputBox = addRenderableWidget(new EditBox(
+        inputBox = addButton(new EditBox(
                 font,
                 this.width / 2 - 150,
                 this.height / 2 - 10,

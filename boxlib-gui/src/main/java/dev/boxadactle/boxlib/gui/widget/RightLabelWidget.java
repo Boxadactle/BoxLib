@@ -4,7 +4,6 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import dev.boxadactle.boxlib.util.GuiUtils;
 import dev.boxadactle.boxlib.util.RenderUtils;
 import net.minecraft.client.gui.components.AbstractWidget;
-import net.minecraft.client.gui.narration.NarrationElementOutput;
 import net.minecraft.network.chat.Component;
 
 public class RightLabelWidget extends AbstractWidget {
@@ -23,10 +22,5 @@ public class RightLabelWidget extends AbstractWidget {
     @Override
     public void renderButton(PoseStack stack, int i, int j, float f) {
         RenderUtils.drawText(stack, getMessage(), x + getWidth() - GuiUtils.getTextRenderer().width(getMessage()), y);
-    }
-
-    @Override
-    public void updateNarration(NarrationElementOutput narrationElementOutput) {
-
     }
 }

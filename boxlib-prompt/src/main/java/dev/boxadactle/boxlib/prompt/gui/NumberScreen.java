@@ -55,7 +55,7 @@ public abstract class NumberScreen<T extends Number> extends PromptScreen<T> {
     protected void init() {
         super.init();
 
-        inputBox = addRenderableWidget(new EditBox(
+        inputBox = addButton(new EditBox(
                 font,
                 this.width / 2 - 150,
                 this.height / 2 - 10,

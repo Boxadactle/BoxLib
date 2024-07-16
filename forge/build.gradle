@@ -8,11 +8,11 @@ architectury {
     forge {}
 }
 
-loom {
-    forge {
-        mixinConfig "boxlib.mixins.json"
-    }
-}
+//loom {
+//    forge {
+//        mixinConfig "boxlib.mixins.json"
+//    }
+//}
 
 configurations {
     common {
@@ -35,7 +35,7 @@ dependencies {
     forge "net.minecraftforge:forge:${rootProject.minecraft_version}-${rootProject.forge_version}"
 
     common(project(path: ':common', configuration: 'namedElements')) { transitive false }
-    common(project(path: ':boxlib-command', configuration: "namedElements")) { transitive false }
+//    common(project(path: ':boxlib-command', configuration: "namedElements")) { transitive false }
     common(project(path: ':boxlib-config', configuration: "namedElements")) { transitive false }
     common(project(path: ':boxlib-functions', configuration: "namedElements")) { transitive false }
     common(project(path: ':boxlib-gui', configuration: "namedElements")) { transitive false }
@@ -48,7 +48,7 @@ dependencies {
     common(project(path: ':boxlib-translate', configuration: "namedElements")) { transitive false }
 
     shadowBundle project(path: ':common', configuration: 'transformProductionForge')
-    shadowBundle project(path: ':boxlib-command', configuration: "transformProductionForge")
+//    shadowBundle project(path: ':boxlib-command', configuration: "transformProductionForge")
     shadowBundle project(path: ':boxlib-config', configuration: "transformProductionForge")
     shadowBundle project(path: ':boxlib-functions', configuration: "transformProductionForge")
     shadowBundle project(path: ':boxlib-gui', configuration: "transformProductionForge")
