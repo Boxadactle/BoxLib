@@ -12,11 +12,6 @@ import java.lang.reflect.InvocationTargetException;
 public interface BConfig {
 
     /**
-     * This method is called before the configuration is loaded.
-     */
-    default void onConfigLoadPre() {}
-
-    /**
      * This method is called after the configuration is loaded.
      */
     default void onConfigLoadPost() {}

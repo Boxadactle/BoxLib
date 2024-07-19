@@ -46,11 +46,6 @@ public class ExampleConfigClass implements BConfig {
     public short anotherShort = 25;
 
     @Override
-    public void onConfigLoadPre() {
-        TestMod.LOGGER.info("This method will run before the config loads.");
-    }
-
-    @Override
     public void onConfigLoadPost() {
         TestMod.LOGGER.info("This will be logged every time this config class successfully gets loaded with values.");
     }

@@ -103,8 +103,6 @@ public class BConfigClass<T extends BConfig> implements Supplier<T> {
      */
     public void load() {
         try {
-            config.onConfigLoadPre();
-
             BufferedReader r = new BufferedReader(new FileReader(filePath));
 
             config = serializer.fromJson(r, configClass);
