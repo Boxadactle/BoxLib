@@ -93,27 +93,4 @@ public class BClientCommand {
         return this;
     }
 
-    /**
-     * Registers a subcommand with the specified name and executor for the BClientCommand.
-     *
-     * @param name      the name of the subcommand
-     * @param executor  the executor to be executed when the subcommand is invoked
-     * @return the BClientCommand instance
-     */
-    public BClientCommand registerSubcommand(String name, Function<CommandContext<BCommandSourceStack>, Integer> executor) {
-        BClientSubcommand command = new BClientSubcommand() {
-            @Override
-            public ArgumentBuilder<BCommandSourceStack, ?> getSubcommand() {
-                return BCommandManager.literal(name);
-            }
-
-            @Override
-            public void build(ArgumentBuilder<BCommandSourceStack, ?> builder) {
-                builder.executes(executor::apply);
-            }
-        };
-
-        return registerSubcommand(command);
-    }
-
 }
