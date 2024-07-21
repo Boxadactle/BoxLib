@@ -4,9 +4,9 @@ import com.mojang.brigadier.Command;
 import com.mojang.brigadier.builder.ArgumentBuilder;
 import dev.boxadactle.boxlib.command.BCommandManager;
 import dev.boxadactle.boxlib.command.BCommandSourceStack;
-import dev.boxadactle.boxlib.command.api.BClientSubcommand;
+import dev.boxadactle.boxlib.command.api.BSubcommand;
 
-public class BasicSubcommand extends BClientSubcommand {
+public class BasicSubcommand extends BSubcommand {
     String name;
 
     Command<BCommandSourceStack> executor;

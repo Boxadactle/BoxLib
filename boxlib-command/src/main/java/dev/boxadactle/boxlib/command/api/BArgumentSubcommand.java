@@ -6,7 +6,7 @@ import com.mojang.brigadier.context.CommandContext;
 import dev.boxadactle.boxlib.command.BCommandManager;
 import dev.boxadactle.boxlib.command.BCommandSourceStack;
 
-public abstract class BArgumentSubcommand<T> extends BClientSubcommand {
+public abstract class BArgumentSubcommand<T> extends BSubcommand {
 
     @Override
     public ArgumentBuilder<BCommandSourceStack, ?> getSubcommand() {

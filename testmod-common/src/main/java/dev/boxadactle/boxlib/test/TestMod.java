@@ -2,7 +2,7 @@ package dev.boxadactle.boxlib.test;
 
 import dev.boxadactle.boxlib.command.BCommandManager;
 import dev.boxadactle.boxlib.command.api.subcommand.*;
-import dev.boxadactle.boxlib.command.api.BClientCommand;
+import dev.boxadactle.boxlib.command.api.BCommand;
 import dev.boxadactle.boxlib.config.BConfigClass;
 import dev.boxadactle.boxlib.config.BConfigHandler;
 import dev.boxadactle.boxlib.keybind.KeybindHelper;
@@ -29,7 +29,7 @@ public class TestMod {
         CONFIG = BConfigHandler.registerConfig(ExampleConfigClass.class);
 
         // make sure to register your client commands like this
-        BCommandManager.register(BClientCommand.create("funny", (context) -> {
+        BCommandManager.register(BCommand.create("funny", (context) -> {
                         TestMod.LOGGER.player.info("You are funny!");
 
                         return 0;

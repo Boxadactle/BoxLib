@@ -1,7 +1,7 @@
 package dev.boxadactle.boxlib.command;
 
 import com.mojang.brigadier.CommandDispatcher;
-import dev.boxadactle.boxlib.command.api.BClientCommand;
+import dev.boxadactle.boxlib.command.api.BCommand;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,14 +12,14 @@ import java.util.List;
  */
 public class BCommandImpl {
 
-    static List<BClientCommand> commands = new ArrayList<>();
+    static List<BCommand> commands = new ArrayList<>();
 
     /**
      * Adds a client command to the command manager.
      *
      * @param command The client command to add.
      */
-    public static void addCommand(BClientCommand command) {
+    public static void addCommand(BCommand command) {
         commands.add(command);
     }
 
