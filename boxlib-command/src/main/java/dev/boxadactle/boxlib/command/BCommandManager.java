@@ -4,6 +4,7 @@ import com.mojang.brigadier.arguments.ArgumentType;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.builder.RequiredArgumentBuilder;
 import dev.boxadactle.boxlib.command.api.BClientCommand;
+import dev.boxadactle.boxlib.command.api.BCommand;
 
 /**
  * The BCommandManager class is responsible for managing commands in the BoxLib mod.
@@ -16,8 +17,13 @@ public class BCommandManager {
      *
      * @param command the command to register
      */
-    public static void register(BClientCommand command) {
+    public static void register(BCommand command) {
         BCommandImpl.addCommand(command);
+    }
+
+    @Deprecated(forRemoval = true)
+    public static void register(BClientCommand command) {
+        //
     }
 
     /**

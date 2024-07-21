@@ -1,7 +1,6 @@
 package dev.boxadactle.boxlib.command.api;
 
 import com.mojang.brigadier.CommandDispatcher;
-import com.mojang.brigadier.builder.ArgumentBuilder;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
 import dev.boxadactle.boxlib.command.BCommandManager;
@@ -15,14 +14,13 @@ import java.util.function.Function;
  * The BClientCommand class represents a client-side command in the BoxLib mod.
  * It provides methods to create and register subcommands for the command.
  */
-@Deprecated(forRemoval = true)
-public class BClientCommand {
+public class BCommand {
 
     protected String commandName;
 
     protected Function<CommandContext<BCommandSourceStack>, Integer> rootCommand;
 
-    protected List<BClientSubcommand> subcommands;
+    protected List<BSubcommand> subcommands;
 
     /**
      * Creates a new BClientCommand with the specified command name and root command.
@@ -31,11 +29,11 @@ public class BClientCommand {
      * @param rootCommand  the root command to be executed when the command is invoked
      * @return a new BClientCommand instance
      */
-    public static BClientCommand create(
+    public static BCommand create(
             String commandName,
             Function<CommandContext<BCommandSourceStack>, Integer> rootCommand
     ) {
-        return new BClientCommand(commandName, rootCommand);
+        return new BCommand(commandName, rootCommand);
     }
 
     /**
@@ -45,10 +43,10 @@ public class BClientCommand {
      * @param commandName  the name of the command
      * @return a new BClientCommand instance
      */
-    public static BClientCommand create(
+    public static BCommand create(
             String commandName
     ) {
-        return new BClientCommand(commandName, (context) -> 0);
+        return new BCommand(commandName, (context) -> 0);
     }
 
     /**
@@ -57,7 +55,7 @@ public class BClientCommand {
      * @param commandName  the name of the command
      * @param rootCommand  the root command to be executed when the command is invoked
      */
-    protected BClientCommand(
+    protected BCommand(
             String commandName,
             Function<CommandContext<BCommandSourceStack>, Integer> rootCommand
     ) {
@@ -75,7 +73,7 @@ public class BClientCommand {
         LiteralArgumentBuilder<BCommandSourceStack> root = BCommandManager.literal(commandName)
                 .executes(rootCommand::apply);
 
-        for (BClientSubcommand subcommand : subcommands) {
+        for (BSubcommand subcommand : subcommands) {
             root.then(subcommand.buildSubcommand());
         }
 
@@ -88,33 +86,10 @@ public class BClientCommand {
      * @param subcommand  the subcommand to register
      * @return the BClientCommand instance
      */
-    public BClientCommand registerSubcommand(BClientSubcommand subcommand) {
+    public BCommand registerSubcommand(BSubcommand subcommand) {
         subcommands.add(subcommand);
 
         return this;
-    }
-
-    /**
-     * Registers a subcommand with the specified name and executor for the BClientCommand.
-     *
-     * @param name      the name of the subcommand
-     * @param executor  the executor to be executed when the subcommand is invoked
-     * @return the BClientCommand instance
-     */
-    public BClientCommand registerSubcommand(String name, Function<CommandContext<BCommandSourceStack>, Integer> executor) {
-        BClientSubcommand command = new BClientSubcommand() {
-            @Override
-            public ArgumentBuilder<BCommandSourceStack, ?> getSubcommand() {
-                return BCommandManager.literal(name);
-            }
-
-            @Override
-            public void build(ArgumentBuilder<BCommandSourceStack, ?> builder) {
-                builder.executes(executor::apply);
-            }
-        };
-
-        return registerSubcommand(command);
     }
 
 }
