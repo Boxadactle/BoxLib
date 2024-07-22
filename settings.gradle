@@ -11,9 +11,11 @@ rootProject.name = 'Boxlib'
 
 include 'common'
 include 'fabric'
+//include 'forge'
 include 'neoforge'
 include 'testmod-common'
 include 'testmod-fabric'
+//include 'testmod-forge'
 include 'testmod-neoforge'
 
 include 'boxlib-command'
