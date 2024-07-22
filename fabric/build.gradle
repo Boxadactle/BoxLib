@@ -47,18 +47,18 @@ dependencies {
     common(project(path: ':boxlib-scheduling', configuration: "namedElements")) { transitive false }
     common(project(path: ':boxlib-translate', configuration: "namedElements")) { transitive false }
 
-    shadowBundle project(path: ':common', configuration: 'namedElements')
-    shadowBundle project(path: ':boxlib-command', configuration: "namedElements")
-    shadowBundle project(path: ':boxlib-config', configuration: "namedElements")
-    shadowBundle project(path: ':boxlib-functions', configuration: "namedElements")
-    shadowBundle project(path: ':boxlib-gui', configuration: "namedElements")
-    shadowBundle project(path: ":boxlib-http", configuration: "namedElements")
-    shadowBundle project(path: ':boxlib-keybind', configuration: "namedElements")
-    shadowBundle project(path: ':boxlib-layouts', configuration: "namedElements")
-    shadowBundle project(path: ':boxlib-math', configuration: "namedElements")
-    shadowBundle project(path: ':boxlib-prompt', configuration: "namedElements")
-    shadowBundle project(path: ':boxlib-scheduling', configuration: "namedElements")
-    shadowBundle project(path: ':boxlib-translate', configuration: "namedElements")
+    shadowBundle project(path: ':common', configuration: 'transformProductionFabric')
+    shadowBundle project(path: ':boxlib-command', configuration: "transformProductionFabric")
+    shadowBundle project(path: ':boxlib-config', configuration: "transformProductionFabric")
+    shadowBundle project(path: ':boxlib-functions', configuration: "transformProductionFabric")
+    shadowBundle project(path: ':boxlib-gui', configuration: "transformProductionFabric")
+    shadowBundle project(path: ":boxlib-http", configuration: "transformProductionFabric")
+    shadowBundle project(path: ':boxlib-keybind', configuration: "transformProductionFabric")
+    shadowBundle project(path: ':boxlib-layouts', configuration: "transformProductionFabric")
+    shadowBundle project(path: ':boxlib-math', configuration: "transformProductionFabric")
+    shadowBundle project(path: ':boxlib-prompt', configuration: "transformProductionFabric")
+    shadowBundle project(path: ':boxlib-scheduling', configuration: "transformProductionFabric")
+    shadowBundle project(path: ':boxlib-translate', configuration: "transformProductionFabric")
 }
 
 processResources {
