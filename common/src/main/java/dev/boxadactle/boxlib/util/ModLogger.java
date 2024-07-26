@@ -157,9 +157,18 @@ public class ModLogger {
          * @param data additional data to be included in the log message
          */
         public void error(String msg, Object... data) {
+            error(new TextComponent(String.format(msg, data)));
+        }
+
+        /**
+         * Logs an error message for the player.
+         *
+         * @param msg  the error message
+         */
+        public void error(Component msg) {
             if (this.client.player != null) {
                 ClientUtils.getClient().gui.getChat().addMessage(
-                        prefix.copy().append(GuiUtils.colorize(new TextComponent(String.format(msg, data)), ChatFormatting.RED))
+                        prefix.copy().append(GuiUtils.colorize(msg, ChatFormatting.RED))
                 );
             }
         }
@@ -171,9 +180,18 @@ public class ModLogger {
          * @param data additional data to be included in the log message
          */
         public void warn(String msg, Object... data) {
+            warn(new TextComponent(String.format(msg, data)));
+        }
+
+        /**
+         * Logs a warning message for the player.
+         *
+         * @param msg  the warning message
+         */
+        public void warn(Component msg) {
             if (this.client.player != null) {
                 ClientUtils.getClient().gui.getChat().addMessage(
-                        prefix.copy().append(GuiUtils.colorize(new TextComponent(String.format(msg, data)), ChatFormatting.YELLOW))
+                        prefix.copy().append(GuiUtils.colorize(msg, ChatFormatting.YELLOW))
                 );
             }
         }
@@ -185,9 +203,18 @@ public class ModLogger {
          * @param data additional data to be included in the log message
          */
         public void info(String msg, Object... data) {
+            info(new TextComponent(String.format(msg, data)));
+        }
+
+        /**
+         * Logs an informational message for the player.
+         *
+         * @param msg  the informational message
+         */
+        public void info(Component msg) {
             if (this.client.player != null) {
                 ClientUtils.getClient().gui.getChat().addMessage(
-                        prefix.copy().append(new TextComponent(String.format(msg, data)))
+                        GuiUtils.colorize(prefix.copy().append(msg), ChatFormatting.WHITE)
                 );
             }
         }

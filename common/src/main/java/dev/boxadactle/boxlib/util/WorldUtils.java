@@ -14,6 +14,7 @@ import net.minecraft.world.scores.Team;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Utility class for interacting with the game world.
@@ -65,7 +66,7 @@ public class WorldUtils {
      */
     public static List<PlayerInfo> getTabListUnordered() {
         ClientPacketListener clientPlayNetworkHandler = ClientUtils.getClient().getConnection();
-        return clientPlayNetworkHandler.getOnlinePlayers().stream().toList();
+        return clientPlayNetworkHandler.getOnlinePlayers().stream().collect(Collectors.toList());
     }
 
     /**

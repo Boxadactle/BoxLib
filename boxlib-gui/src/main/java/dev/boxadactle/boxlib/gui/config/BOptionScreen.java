@@ -12,6 +12,7 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.TextComponent;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
@@ -169,13 +170,6 @@ public abstract class BOptionScreen extends Screen implements BOptionHelper {
         return this.height - 30;
     }
 
-    @Deprecated
-    protected BOptionEntry<?> addConfigOption(BOptionEntry<?> entry) {
-        configList.addEntry(new ConfigList.SingleEntry(entry));
-
-        return entry;
-    }
-
     /**
      * Use this method to add a new line with 1 config option
      * @param entry A config entry (either provided by BoxLib or created yourself)
@@ -183,7 +177,7 @@ public abstract class BOptionScreen extends Screen implements BOptionHelper {
      * @return Returns the passed-in entry
      */
     protected <T extends BOptionEntry<?>> T addConfigLine(T entry) {
-        configList.addEntry(new ConfigList.SingleEntry(entry));
+        configList.addEntry(new SingleEntry(entry));
 
         return entry;
     }
@@ -195,7 +189,7 @@ public abstract class BOptionScreen extends Screen implements BOptionHelper {
      * @return Returns the passed-in entry
      */
     protected <T extends BOptionEntry<?>> BOptionEntry<?>[] addConfigLine(T entry, T entry2) {
-        configList.addEntry(new ConfigList.DoubleEntry(entry, entry2));
+        configList.addEntry(new DoubleEntry(entry, entry2));
 
         return new BOptionEntry[]{entry, entry2};
     }
@@ -203,10 +197,10 @@ public abstract class BOptionScreen extends Screen implements BOptionHelper {
     /**
      * Use this method to add a new line with your own config entry renderer
      * @param entry A config entry renderer (either provided by BoxLib or created yourself)
-     *              To create your own entry, extend the {@link BOptionScreen.ConfigList.ConfigEntry}
+     *              To create your own entry, extend the {@link BOptionScreen.ConfigEntry}
      * @return Returns the passed-in entry
      */
-    protected <T extends ConfigList.ConfigEntry> T addConfigLine(T entry) {
+    protected <T extends ConfigEntry> T addConfigLine(T entry) {
         configList.addEntry(entry);
 
         return entry;
@@ -262,7 +256,7 @@ public abstract class BOptionScreen extends Screen implements BOptionHelper {
      * Represents a list of configuration entries in a GUI screen.
      * Extends the ContainerObjectSelectionList class.
      */
-    public class ConfigList extends ContainerObjectSelectionList<ConfigList.ConfigEntry> {
+    public class ConfigList extends ContainerObjectSelectionList<ConfigEntry> {
 
         public ConfigList(Minecraft minecraft) {
             super(
@@ -304,167 +298,167 @@ public abstract class BOptionScreen extends Screen implements BOptionHelper {
             return a.get();
         }
 
+    }
+
+    /**
+     * Represents a single entry in the BOptionScreen.
+     * This class extends the ConfigEntry class.
+     */
+    public class SingleEntry extends ConfigEntry {
+
+        BOptionEntry<?> widget;
+
         /**
-         * Represents a single entry in the BOptionScreen.
-         * This class extends the ConfigEntry class.
+         * Constructs a SingleEntry object with the specified BOptionEntry widget.
+         * @param widget The BOptionEntry widget associated with this entry.
          */
-        public static class SingleEntry extends ConfigEntry {
-
-            BOptionEntry<?> widget;
-
-            /**
-             * Constructs a SingleEntry object with the specified BOptionEntry widget.
-             * @param widget The BOptionEntry widget associated with this entry.
-             */
-            public SingleEntry(BOptionEntry<?> widget) {
-                this.widget = widget;
-            }
-
-            /**
-             * Renders the entry on the screen.
-             * @param index The index of the entry.
-             * @param y The y-coordinate of the entry.
-             * @param x The x-coordinate of the entry.
-             * @param entryWidth The width of the entry.
-             * @param entryHeight The height of the entry.
-             * @param mouseX The x-coordinate of the mouse.
-             * @param mouseY The y-coordinate of the mouse.
-             * @param hovered Whether the entry is being hovered over.
-             * @param tickDelta The tick delta value.
-             */
-            @Override
-            public void render(int index, int y, int x, int entryWidth, int entryHeight, int mouseX, int mouseY, boolean hovered, float tickDelta) {
-                AbstractWidget w = (AbstractWidget)widget;
-
-                w.x = x;
-                w.y = y;
-                w.setWidth(entryWidth);
-
-                w.render(mouseX, mouseY, tickDelta);
-            }
-
-            /**
-             * Returns a list of widgets associated with this entry.
-             * @return The list of widgets.
-             */
-            @Override
-            public List<? extends AbstractWidget> getWidgets() {
-                return ImmutableList.of((AbstractWidget) widget);
-            }
-
-            /**
-             * Checks if the entry is invalid.
-             * @return true if the entry is invalid, false otherwise.
-             */
-            @Override
-            public boolean isInvalid() {
-                return widget.isInvalid();
-            }
-
+        public SingleEntry(BOptionEntry<?> widget) {
+            this.widget = widget;
         }
 
         /**
-         * Represents a double entry in a configuration screen.
-         * This class extends the ConfigEntry class and provides functionality for managing two BOptionEntry widgets.
+         * Renders the entry on the screen.
+         * @param index The index of the entry.
+         * @param y The y-coordinate of the entry.
+         * @param x The x-coordinate of the entry.
+         * @param entryWidth The width of the entry.
+         * @param entryHeight The height of the entry.
+         * @param mouseX The x-coordinate of the mouse.
+         * @param mouseY The y-coordinate of the mouse.
+         * @param hovered Whether the entry is being hovered over.
+         * @param tickDelta The tick delta value.
          */
-        public static class DoubleEntry extends ConfigEntry {
-            BOptionEntry<?> widget1;
-            BOptionEntry<?> widget2;
+        @Override
+        public void render(int index, int y, int x, int entryWidth, int entryHeight, int mouseX, int mouseY, boolean hovered, float tickDelta) {
+            AbstractWidget w = (AbstractWidget)widget;
 
-            /**
-             * Constructs a new DoubleEntry with the specified BOptionEntry widgets.
-             *
-             * @param widget1 The first BOptionEntry widget.
-             * @param widget2 The second BOptionEntry widget.
-             */
-            public DoubleEntry(BOptionEntry<?> widget1, BOptionEntry<?> widget2) {
-                this.widget1 = widget1;
-                this.widget2 = widget2;
-            }
+            w.x = x;
+            w.y = y;
+            w.setWidth(entryWidth);
 
-            /**
-             * Returns a list of the BOptionEntry widgets contained in this DoubleEntry.
-             *
-             * @return A list of the BOptionEntry widgets.
-             */
-            @Override
-            public List<? extends AbstractWidget> getWidgets() {
-                return ImmutableList.of((AbstractWidget) widget1, (AbstractWidget) widget2);
-            }
-
-            /**
-             * Checks if either of the BOptionEntry widgets in this DoubleEntry is invalid.
-             *
-             * @return true if either of the widgets is invalid, false otherwise.
-             */
-            @Override
-            public boolean isInvalid() {
-                return widget1.isInvalid() || widget2.isInvalid();
-            }
-
-            /**
-             * Renders the BOptionEntry widgets in this DoubleEntry.
-             *
-             * @param index        The index of the entry.
-             * @param y            The y-coordinate of the entry.
-             * @param x            The x-coordinate of the entry.
-             * @param entryWidth   The width of the entry.
-             * @param entryHeight  The height of the entry.
-             * @param mouseX       The x-coordinate of the mouse.
-             * @param mouseY       The y-coordinate of the mouse.
-             * @param hovered      Whether the entry is being hovered over.
-             * @param tickDelta    The tick delta value.
-             */
-            @Override
-            public void render(int index, int y, int x, int entryWidth, int entryHeight, int mouseX, int mouseY, boolean hovered, float tickDelta) {
-                AbstractWidget w1 = (AbstractWidget) widget1;
-                AbstractWidget w2 = (AbstractWidget) widget2;
-
-                int p1 = BOptionHelper.padding() / 2;
-                int p2 = BOptionHelper.padding() / 2;
-
-                w1.x = x;
-                w1.y = y;
-                w1.setWidth(entryWidth / 2 - p1);
-
-                w2.x = x + entryWidth / 2 + p2;
-                w2.y = y;
-                w2.setWidth(entryWidth / 2 - p2);
-
-                w1.render(mouseX, mouseY, tickDelta);
-                w2.render(mouseX, mouseY, tickDelta);
-            }
+            w.render(mouseX, mouseY, tickDelta);
         }
 
         /**
-         * Represents a configuration entry in the BOptionScreen.
-         * This class is an abstract subclass of ContainerObjectSelectionList.Entry<ConfigEntry>.
-         * It provides methods for retrieving the list of widgets associated with the entry and checking if the entry is invalid.
+         * Returns a list of widgets associated with this entry.
+         * @return The list of widgets.
          */
-        public abstract static class ConfigEntry extends ContainerObjectSelectionList.Entry<ConfigEntry> {
-
-            /**
-             * Returns a list of child GUI event listeners associated with this configuration entry.
-             * @return The list of child GUI event listeners.
-             */
-            @Override
-            public List<? extends GuiEventListener> children() {
-                return getWidgets();
-            }
-
-            /**
-             * Returns a list of abstract widgets associated with this configuration entry.
-             * @return The list of abstract widgets.
-             */
-            public abstract List<? extends AbstractWidget> getWidgets();
-
-            /**
-             * Checks if this configuration entry is invalid.
-             * @return true if the entry is invalid, false otherwise.
-             */
-            public abstract boolean isInvalid();
-
+        @Override
+        public List<? extends AbstractWidget> getWidgets() {
+            return ImmutableList.of((AbstractWidget) widget);
         }
+
+        /**
+         * Checks if the entry is invalid.
+         * @return true if the entry is invalid, false otherwise.
+         */
+        @Override
+        public boolean isInvalid() {
+            return widget.isInvalid();
+        }
+
+    }
+
+    /**
+     * Represents a double entry in a configuration screen.
+     * This class extends the ConfigEntry class and provides functionality for managing two BOptionEntry widgets.
+     */
+    public class DoubleEntry extends ConfigEntry {
+        BOptionEntry<?> widget1;
+        BOptionEntry<?> widget2;
+
+        /**
+         * Constructs a new DoubleEntry with the specified BOptionEntry widgets.
+         *
+         * @param widget1 The first BOptionEntry widget.
+         * @param widget2 The second BOptionEntry widget.
+         */
+        public DoubleEntry(BOptionEntry<?> widget1, BOptionEntry<?> widget2) {
+            this.widget1 = widget1;
+            this.widget2 = widget2;
+        }
+
+        /**
+         * Returns a list of the BOptionEntry widgets contained in this DoubleEntry.
+         *
+         * @return A list of the BOptionEntry widgets.
+         */
+        @Override
+        public List<? extends AbstractWidget> getWidgets() {
+            return ImmutableList.of((AbstractWidget) widget1, (AbstractWidget) widget2);
+        }
+
+        /**
+         * Checks if either of the BOptionEntry widgets in this DoubleEntry is invalid.
+         *
+         * @return true if either of the widgets is invalid, false otherwise.
+         */
+        @Override
+        public boolean isInvalid() {
+            return widget1.isInvalid() || widget2.isInvalid();
+        }
+
+        /**
+         * Renders the BOptionEntry widgets in this DoubleEntry.
+         *
+         * @param index        The index of the entry.
+         * @param y            The y-coordinate of the entry.
+         * @param x            The x-coordinate of the entry.
+         * @param entryWidth   The width of the entry.
+         * @param entryHeight  The height of the entry.
+         * @param mouseX       The x-coordinate of the mouse.
+         * @param mouseY       The y-coordinate of the mouse.
+         * @param hovered      Whether the entry is being hovered over.
+         * @param tickDelta    The tick delta value.
+         */
+        @Override
+        public void render(int index, int y, int x, int entryWidth, int entryHeight, int mouseX, int mouseY, boolean hovered, float tickDelta) {
+            AbstractWidget w1 = (AbstractWidget) widget1;
+            AbstractWidget w2 = (AbstractWidget) widget2;
+
+            int p1 = BOptionHelper.padding() / 2;
+            int p2 = BOptionHelper.padding() / 2;
+
+            w1.x = x;
+            w1.y = y;
+            w1.setWidth(entryWidth / 2 - p1);
+
+            w2.x = x + entryWidth / 2 + p2;
+            w2.y = y;
+            w2.setWidth(entryWidth / 2 - p2);
+
+            w1.render(mouseX, mouseY, tickDelta);
+            w2.render(mouseX, mouseY, tickDelta);
+        }
+    }
+
+    /**
+     * Represents a configuration entry in the BOptionScreen.
+     * This class is an abstract subclass of ContainerObjectSelectionList.Entry<ConfigEntry>.
+     * It provides methods for retrieving the list of widgets associated with the entry and checking if the entry is invalid.
+     */
+    public abstract class ConfigEntry extends ContainerObjectSelectionList.Entry<ConfigEntry> {
+
+        /**
+         * Returns a list of child GUI event listeners associated with this configuration entry.
+         * @return The list of child GUI event listeners.
+         */
+        @Override
+        public List<? extends GuiEventListener> children() {
+            return getWidgets();
+        }
+
+        /**
+         * Returns a list of abstract widgets associated with this configuration entry.
+         * @return The list of abstract widgets.
+         */
+        public abstract List<? extends AbstractWidget> getWidgets();
+
+        /**
+         * Checks if this configuration entry is invalid.
+         * @return true if the entry is invalid, false otherwise.
+         */
+        public abstract boolean isInvalid();
 
     }
 
