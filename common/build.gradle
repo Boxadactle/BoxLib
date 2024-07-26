@@ -22,7 +22,7 @@ dependencies {
     compileOnly project(path: ":boxlib-functions", configuration: "namedElements")
     compileOnly project(path: ":boxlib-math", configuration: "namedElements")
 
-    shadowBundle project(path: ':boxlib-command', configuration: "namedElements")
+//    shadowBundle project(path: ':boxlib-command', configuration: "namedElements")
     shadowBundle project(path: ':boxlib-config', configuration: "namedElements")
     shadowBundle project(path: ':boxlib-functions', configuration: "namedElements")
     shadowBundle project(path: ':boxlib-gui', configuration: "namedElements")

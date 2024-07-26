@@ -23,6 +23,6 @@ public interface BOptionEntry<T> {
      */
     default boolean isInvalid() {
         return false;
-    };
+    }
 
 }

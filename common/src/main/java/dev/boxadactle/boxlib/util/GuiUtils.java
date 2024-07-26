@@ -4,12 +4,8 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.components.AbstractWidget;
-import net.minecraft.locale.Language;
-import net.minecraft.network.chat.ClickEvent;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.HoverEvent;
-
-import java.util.Locale;
+import net.minecraft.client.resources.language.I18n;
+import net.minecraft.network.chat.*;
 
 /**
  * The `GuiUtils` class provides utility methods and constants for GUI-related operations.
@@ -17,6 +13,7 @@ import java.util.Locale;
  * and calculating the longest and shortest lengths of text and widgets.
  * It also provides constants for various colors and common components used in GUIs.
  */
+@SuppressWarnings("unused")
 public class GuiUtils {
 
     /**
@@ -188,24 +185,24 @@ public class GuiUtils {
      * Initializes the static components used in the GUI.
      */
     public static void init() {
-        ON = Component.translatable("options.on");
-        OFF = Component.translatable("options.off");
-        DONE = Component.translatable("gui.done");
-        CANCEL = Component.translatable("gui.cancel");
-        YES = Component.translatable("gui.yes");
-        NO = Component.translatable("gui.no");
-        OK = Component.translatable("mco.gui.ok");
-        ALL = Component.translatable("gui.all");
-        BACK = Component.translatable("gui.back");
-        SAVE = Component.translatable("structure_block.mode.save");
-        LOAD = Component.translatable("structure_block.mode.load");
-        REFRESH = Component.translatable("selectServer.refresh");
-        ACCEPT = Component.translatable("mco.invites.button.accept");
-        REJECT = Component.translatable("mco.invites.button.reject");
-        ERROR_OCCURED = Component.translatable("selectWorld.futureworld.error.title");
+        ON = new TranslatableComponent("options.on");
+        OFF = new TranslatableComponent("options.off");
+        DONE = new TranslatableComponent("gui.done");
+        CANCEL = new TranslatableComponent("gui.cancel");
+        YES = new TranslatableComponent("gui.yes");
+        NO = new TranslatableComponent("gui.no");
+        OK = new TranslatableComponent("mco.gui.ok");
+        ALL = new TranslatableComponent("gui.all");
+        BACK = new TranslatableComponent("gui.back");
+        SAVE = new TranslatableComponent("structure_block.mode.save");
+        LOAD = new TranslatableComponent("structure_block.mode.load");
+        REFRESH = new TranslatableComponent("selectServer.refresh");
+        ACCEPT = new TranslatableComponent("mco.invites.button.accept");
+        REJECT = new TranslatableComponent("mco.invites.button.reject");
+        ERROR_OCCURED = new TranslatableComponent("selectWorld.futureworld.error.title");
 
-        TRUE = colorize(YES, GREEN);
-        FALSE = colorize(NO, RED);
+        TRUE = colorize(YES, ChatFormatting.GREEN);
+        FALSE = colorize(NO, ChatFormatting.RED);
     }
 
     /**
@@ -214,8 +211,8 @@ public class GuiUtils {
      * @param key The translation key.
      * @return The translated string.
      */
-    public static String getTranslatable(String key) {
-        return Language.getInstance().getOrDefault(key);
+    public static String getTranslatable(String key, Object ...args) {
+        return I18n.get(key, args);
     }
 
     /**
@@ -225,36 +222,8 @@ public class GuiUtils {
      * @param color The color to apply.
      * @return The colorized text.
      */
-    public static Component colorize(Component text, int color) {
-        return text.copy().withStyle(style -> style.withColor(color));
-    }
-
-    @Deprecated
-    public static int getColorDecimal(String color) {
-        int decimal;
-        String c = color.toLowerCase(Locale.ROOT);
-        switch (c) {
-            case "dark_red" -> decimal = DARK_RED;
-            case "red" -> decimal = RED;
-            case "gold" -> decimal = GOLD;
-            case "yellow" -> decimal = YELLOW;
-            case "dark_green" -> decimal = DARK_GREEN;
-            case "green" -> decimal = GREEN;
-            case "aqua" -> decimal = AQUA;
-            case "dark_aqua" -> decimal = DARK_AQUA;
-            case "dark_blue" -> decimal = DARK_BLUE;
-            case "blue" -> decimal = BLUE;
-            case "light_purple" -> decimal = LIGHT_PURPLE;
-            case "dark_purple" -> decimal = DARK_PURPLE;
-            case "white" -> decimal = WHITE;
-            case "gray" -> decimal = GRAY;
-            case "dark_gray" -> decimal = DARK_GRAY;
-            case "black" -> decimal = BLACK;
-            default -> {
-                decimal = WHITE;
-            }
-        }
-        return decimal;
+    public static Component colorize(Component text, ChatFormatting color) {
+        return text.copy().withStyle(style -> style.setColor(color));
     }
 
     /**
@@ -264,6 +233,16 @@ public class GuiUtils {
      * @return The width of the text.
      */
     public static int getTextSize(Component text) {
+        return getTextSize(text.getString());
+    }
+
+    /**
+     * Retrieves the width of the given text.
+     *
+     * @param text The text to measure.
+     * @return The width of the text.
+     */
+    public static int getTextSize(String text) {
         return getTextRenderer().width(text);
     }
 
@@ -286,7 +265,7 @@ public class GuiUtils {
         int largest = 0;
         Font textRenderer = GuiUtils.getTextRenderer();
         for (Component value : text) {
-            int t = textRenderer.width(value);
+            int t = textRenderer.width(value.getString());
             if (t > largest) largest = t;
         }
         return largest;
@@ -301,9 +280,9 @@ public class GuiUtils {
     public static int getShortestLength(Component... text) {
         int shortest = 0;
         Font textRenderer = GuiUtils.getTextRenderer();
-        shortest = textRenderer.width(text[0]);
+        shortest = textRenderer.width(text[0].getString());
         for (Component value : text) {
-            int t = textRenderer.width(value);
+            int t = textRenderer.width(value.getString());
             if (t < shortest) shortest = t;
         }
         return shortest;
@@ -334,25 +313,9 @@ public class GuiUtils {
      */
     public static Component createHyperLink(Component text, String link) {
         return text.copy().withStyle(ChatFormatting.UNDERLINE, ChatFormatting.BLUE).withStyle(a1 -> a1
-                .withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, link))
-                .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Component.translatable("chat.link.open")))
+                .setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, link))
+                .setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TranslatableComponent("chat.link.open")))
         );
-    }
-
-    /**
-     * Retrieves the height of the tallest widget among the given widgets.
-     *
-     * @param widgets The widgets to compare.
-     * @return The height of the tallest widget.
-     */
-    public static int getTallestWidget(AbstractWidget... widgets) {
-        int tallest = 0;
-        for (AbstractWidget widget : widgets) {
-            int t = widget.getHeight();
-            if (t > tallest) tallest = t;
-        }
-
-        return tallest;
     }
 
     /**
@@ -361,10 +324,10 @@ public class GuiUtils {
      * @return The non-zero GUI scale.
      */
     public static int nonZeroGuiScale() {
-        int scale = ClientUtils.getOptions().guiScale().get();
+        int scale = ClientUtils.getOptions().guiScale;
         Minecraft client = ClientUtils.getClient();
         if (scale == 0) {
-            return (int) Math.max(1, Math.min(Math.floor(client.getWindow().getGuiScaledWidth() / 320), Math.floor(client.getWindow().getGuiScaledHeight() / 240)));
+            return (int) Math.max(1, Math.min(Math.floor((double) client.window.getGuiScaledWidth() / 320), Math.floor((double) client.window.getGuiScaledHeight() / 240)));
         } else {
             return scale;
         }
@@ -379,7 +342,7 @@ public class GuiUtils {
      * @return The surrounded component.
      */
     public static Component surround(String str1, String str2, Component input) {
-        return Component.literal(str1).append(input).append(Component.literal(str2));
+        return new TextComponent(str1).append(input).append(new TextComponent(str2));
     }
 
     /**

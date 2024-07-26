@@ -2,8 +2,11 @@ package dev.boxadactle.boxlib.gui.config;
 
 import dev.boxadactle.boxlib.math.mathutils.Mappers;
 import dev.boxadactle.boxlib.function.Converter;
+import dev.boxadactle.boxlib.util.ClientUtils;
+import dev.boxadactle.boxlib.util.GuiUtils;
 import net.minecraft.client.gui.components.AbstractSliderButton;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
 
 import java.util.function.Consumer;
 
@@ -24,9 +27,10 @@ public abstract class BOptionSlider<T extends Number> extends AbstractSliderButt
     public BOptionSlider(String key, T min, T max, T value, Consumer<T> function) {
         super(
                 0, 0, 10, BOptionHelper.buttonHeight(),
-                Component.translatable(key, value),
                 0.0d
         );
+
+        setMessage(GuiUtils.getTranslatable(key, value));
 
         this.min = min;
         this.max = max;
@@ -65,7 +69,7 @@ public abstract class BOptionSlider<T extends Number> extends AbstractSliderButt
 
     @Override
     protected void updateMessage() {
-        setMessage(Component.translatable(key, roundNumber(to(calculateValue()))));
+        setMessage(GuiUtils.getTranslatable(key, roundNumber(to(calculateValue()))));
     }
 
     @Override

@@ -1,24 +1,22 @@
 package dev.boxadactle.boxlib.gui.config.widget;
 
+import dev.boxadactle.boxlib.function.Consumer7;
 import dev.boxadactle.boxlib.gui.config.BOptionButton;
-import dev.boxadactle.boxlib.function.Consumer8;
-import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.network.chat.Component;
 
 /**
  * A custom rendering entry for a GUI widget.
  */
 public class BCustomEntry extends BOptionButton<Object> {
 
-    protected Consumer8<GuiGraphics, Integer, Integer, Integer, Integer, Integer, Integer, Float> function;
+    protected Consumer7<Integer, Integer, Integer, Integer, Integer, Integer, Float> function;
 
     /**
      * Constructs a BCustomRenderingEntry with the specified rendering function.
      *
      * @param function the rendering function to be called when rendering the entry
      */
-    public BCustomEntry(Consumer8<GuiGraphics, Integer, Integer, Integer, Integer, Integer, Integer, Float> function) {
-        super(Component.literal(""), null, null);
+    public BCustomEntry(Consumer7<Integer, Integer, Integer, Integer, Integer, Integer, Float> function) {
+        super("", null, null);
 
         this.function = function;
     }
@@ -26,14 +24,13 @@ public class BCustomEntry extends BOptionButton<Object> {
     /**
      * Renders the entry using the specified graphics context, mouse coordinates, and delta value.
      *
-     * @param p_93657_ the graphics context
      * @param mouseX the x-coordinate of the mouse
      * @param mouseY the y-coordinate of the mouse
      * @param delta the delta value
      */
     @Override
-    public void renderWidget(GuiGraphics p_93657_, int mouseX, int mouseY, float delta) {
-        function.accept(p_93657_, this.getX(), this.getY(), this.width, this.height, mouseX, mouseY, delta);
+    public void renderButton(int mouseX, int mouseY, float delta) {
+        function.accept(this.x, this.y, this.width, this.height, mouseX, mouseY, delta);
     }
 
     /**

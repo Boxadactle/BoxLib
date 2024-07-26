@@ -1,7 +1,9 @@
 package dev.boxadactle.boxlib.util;
 
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -27,8 +29,8 @@ public class ModLogger {
         client = ClientUtils.getClient();
         prefix = "[" + modName + "]: ";
         chatPrefix = GuiUtils.colorize(
-                GuiUtils.brackets(GuiUtils.colorize(Component.literal(modName), GuiUtils.AQUA)),
-                GuiUtils.BLUE
+                GuiUtils.brackets(GuiUtils.colorize(new TextComponent(modName), ChatFormatting.AQUA)),
+                ChatFormatting.BLUE
         );
         player = new PlayerLogging(client, modName);
     }
@@ -94,7 +96,7 @@ public class ModLogger {
      */
     public void chatError(String msg, Object... data) {
         if (this.client.player != null) {
-            this.client.player.sendSystemMessage(Component.literal(chatPrefix + "§4" + String.format(msg, data)));
+            ClientUtils.getClient().gui.getChat().addMessage(new TextComponent(chatPrefix + "§4" + String.format(msg, data)));
         }
     }
 
@@ -106,7 +108,7 @@ public class ModLogger {
      */
     public void chatWarn(String msg, Object... data) {
         if (this.client.player != null) {
-            this.client.player.sendSystemMessage(Component.literal(chatPrefix + "§3" + String.format(msg, data)));
+            ClientUtils.getClient().gui.getChat().addMessage(new TextComponent(chatPrefix + "§3" + String.format(msg, data)));
         }
     }
 
@@ -144,8 +146,8 @@ public class ModLogger {
         public PlayerLogging(Minecraft client, String prefix) {
             this.client = client;
             this.prefix = GuiUtils.colorize(GuiUtils.brackets(
-                    GuiUtils.colorize(Component.literal(prefix), 5636095)
-            ), 43690).copy().append(" ");
+                    GuiUtils.colorize(new TextComponent(prefix), ChatFormatting.AQUA)
+            ), ChatFormatting.BLUE).copy().append(" ");
         }
 
         /**
@@ -155,9 +157,18 @@ public class ModLogger {
          * @param data additional data to be included in the log message
          */
         public void error(String msg, Object... data) {
+            error(new TextComponent(String.format(msg, data)));
+        }
+
+        /**
+         * Logs an error message for the player.
+         *
+         * @param msg  the error message
+         */
+        public void error(Component msg) {
             if (this.client.player != null) {
-                this.client.player.sendSystemMessage(
-                        prefix.copy().append(GuiUtils.colorize(Component.literal(String.format(msg, data)), GuiUtils.RED))
+                ClientUtils.getClient().gui.getChat().addMessage(
+                        prefix.copy().append(GuiUtils.colorize(msg, ChatFormatting.RED))
                 );
             }
         }
@@ -169,9 +180,18 @@ public class ModLogger {
          * @param data additional data to be included in the log message
          */
         public void warn(String msg, Object... data) {
+            warn(new TextComponent(String.format(msg, data)));
+        }
+
+        /**
+         * Logs a warning message for the player.
+         *
+         * @param msg  the warning message
+         */
+        public void warn(Component msg) {
             if (this.client.player != null) {
-                this.client.player.sendSystemMessage(
-                        prefix.copy().append(GuiUtils.colorize(Component.literal(String.format(msg, data)), GuiUtils.YELLOW))
+                ClientUtils.getClient().gui.getChat().addMessage(
+                        prefix.copy().append(GuiUtils.colorize(msg, ChatFormatting.YELLOW))
                 );
             }
         }
@@ -183,9 +203,18 @@ public class ModLogger {
          * @param data additional data to be included in the log message
          */
         public void info(String msg, Object... data) {
+            info(new TextComponent(String.format(msg, data)));
+        }
+
+        /**
+         * Logs an informational message for the player.
+         *
+         * @param msg  the informational message
+         */
+        public void info(Component msg) {
             if (this.client.player != null) {
-                this.client.player.sendSystemMessage(
-                        prefix.copy().append(Component.literal(String.format(msg, data)))
+                ClientUtils.getClient().gui.getChat().addMessage(
+                        GuiUtils.colorize(prefix.copy().append(msg), ChatFormatting.WHITE)
                 );
             }
         }
@@ -197,18 +226,18 @@ public class ModLogger {
          */
         public void chat(Component msg) {
             if (this.client.player != null) {
-                this.client.player.sendSystemMessage(prefix.copy().append(msg));
+                ClientUtils.getClient().gui.getChat().addMessage(prefix.copy().append(msg));
             }
         }
 
         /**
-         * Sends a public chat message.
+         * Sends a public chat message from the player.
          *
          * @param msg the public chat message
          */
         public void publicChat(String msg) {
             if (this.client.player != null) {
-                this.client.player.connection.sendChat(msg);
+                this.client.player.chat(msg);
             }
         }
     }

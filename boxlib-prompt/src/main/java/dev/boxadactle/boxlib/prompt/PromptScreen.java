@@ -5,7 +5,7 @@ import dev.boxadactle.boxlib.gui.config.BOptionHelper;
 import dev.boxadactle.boxlib.util.ClientUtils;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
 
 
 public abstract class PromptScreen<T> extends Screen implements BOptionHelper {
@@ -15,9 +15,15 @@ public abstract class PromptScreen<T> extends Screen implements BOptionHelper {
     Button okButton;
 
     protected PromptScreen(Screen parent) {
-        super(Component.literal("BoxLib prompt screen"));
+        super(new TextComponent("BoxLib prompt screen"));
 
         this.parent = parent;
+    }
+
+    @Override
+    public void render(int i, int j, float f) {
+        renderBackground();
+        super.render(i, j, f);
     }
 
     protected abstract T getData();
@@ -64,10 +70,10 @@ public abstract class PromptScreen<T> extends Screen implements BOptionHelper {
             int startY = getStartY();
 
             // cancel button
-            addRenderableWidget(createHalfCancelButton(startX, startY, (b) -> closeScreen(false)));
+            addButton(createHalfCancelButton(startX, startY, (b) -> closeScreen(false)));
 
             // ok button
-            okButton = addRenderableWidget(createHalfOkButton(startX, startY, (b) -> closeScreen(true)));
+            okButton = addButton(createHalfOkButton(startX, startY, (b) -> closeScreen(true)));
         }
 
     }

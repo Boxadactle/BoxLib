@@ -1,7 +1,7 @@
 package dev.boxadactle.boxlib.layouts.component;
 
 import dev.boxadactle.boxlib.util.GuiUtils;
-import net.minecraft.client.gui.GuiGraphics;
+import dev.boxadactle.boxlib.util.RenderUtils;
 import net.minecraft.network.chat.Component;
 
 /**
@@ -22,18 +22,17 @@ public class LeftParagraphComponent extends ParagraphComponent {
     /**
      * Renders the LeftParagraphComponent on the screen.
      *
-     * @param graphics the graphics object used for rendering
      * @param x        the x-coordinate of the component's position
      * @param y        the y-coordinate of the component's position
      */
     @Override
-    public void render(GuiGraphics graphics, int x, int y) {
+    public void render(int x, int y) {
         int currentY = y;
         int thisWidth = getWidth();
 
         for (Component component : this.component) {
             int width = GuiUtils.getTextSize(component);
-            graphics.drawString(GuiUtils.getTextRenderer(), component, x + thisWidth - width, currentY, GuiUtils.WHITE);
+            RenderUtils.drawText(component.getColoredString(), x, currentY, GuiUtils.WHITE);
 
             currentY += GuiUtils.getTextHeight() + textPadding * 2;
         }

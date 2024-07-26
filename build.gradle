@@ -42,12 +42,12 @@ subprojects {
         // If you remove this line, sources will not be generated.
         withSourcesJar()
 
-        sourceCompatibility = JavaVersion.VERSION_22
-        targetCompatibility = JavaVersion.VERSION_22
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 
     tasks.withType(JavaCompile).configureEach {
-        it.options.release = 21
+        it.options.release = 17
     }
 
     // Configure Maven publishing for non-testmods
@@ -74,7 +74,7 @@ subprojects {
 githubRelease {
     owner = "Boxadactle"
     repo = "BoxLib"
-    tagName = project.version
+    tagName = "$project.version"
     targetCommitish = "latest"
     releaseName = "BoxLib $project.version"
     generateReleaseNotes = true

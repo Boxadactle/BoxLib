@@ -17,7 +17,7 @@ public class BLinkButton extends BOptionButton<Object> {
      * @param message the message to display on the button
      * @param link the link to open when the button is clicked
      */
-    public BLinkButton(Component message, String link) {
+    public BLinkButton(String message, String link) {
         super(message, null, null);
 
         this.link = link;

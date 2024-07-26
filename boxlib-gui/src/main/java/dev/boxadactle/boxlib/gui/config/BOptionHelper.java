@@ -33,9 +33,14 @@ public interface BOptionHelper {
      * @return The cancel button.
      */
     default Button createCancelButton(int startX, int startY, Consumer<Button> ButtonConsumer) {
-        return new Button.Builder(GuiUtils.CANCEL, ButtonConsumer::accept)
-                .bounds(startX, startY, getButtonWidth(ButtonType.NORMAL), getButtonHeight())
-                .build();
+        return new Button(
+                startX,
+                startY,
+                getButtonWidth(ButtonType.NORMAL),
+                getButtonHeight(),
+                GuiUtils.CANCEL.getString(),
+                ButtonConsumer::accept
+        );
     }
 
     /**
@@ -59,9 +64,14 @@ public interface BOptionHelper {
      * @return The cancel button.
      */
     default Button createDoneButton(int startX, int startY, Consumer<Button> ButtonConsumer) {
-        return new Button.Builder(GuiUtils.DONE, ButtonConsumer::accept)
-                .bounds(startX, startY, getButtonWidth(ButtonType.NORMAL), getButtonHeight())
-                .build();
+        return new Button(
+                startX,
+                startY,
+                getButtonWidth(ButtonType.NORMAL),
+                getButtonHeight(),
+                GuiUtils.DONE.getString(),
+                ButtonConsumer::accept
+        );
     }
 
     /**
@@ -73,9 +83,14 @@ public interface BOptionHelper {
      * @return The back button.
      */
     default Button createBackButton(int startX, int startY, Screen parent) {
-        return new Button.Builder(GuiUtils.BACK, b -> ClientUtils.setScreen(parent))
-                .bounds(startX, startY, getButtonWidth(ButtonType.NORMAL), getButtonHeight())
-                .build();
+        return new Button(
+                startX,
+                startY,
+                getButtonWidth(ButtonType.NORMAL),
+                getButtonHeight(),
+                GuiUtils.BACK.getString(),
+                b -> ClientUtils.setScreen(parent)
+        );
     }
 
     /**
@@ -87,9 +102,14 @@ public interface BOptionHelper {
      * @return The save button.
      */
     default Button createSaveButton(int startX, int startY, Consumer<Button> saveConsumer) {
-        return new Button.Builder(GuiUtils.SAVE, saveConsumer::accept)
-                .bounds(startX, startY, getButtonWidth(ButtonType.NORMAL), getButtonHeight())
-                .build();
+        return new Button(
+                startX,
+                startY,
+                getButtonWidth(ButtonType.NORMAL),
+                getButtonHeight(),
+                GuiUtils.SAVE.getString(),
+                saveConsumer::accept
+        );
     }
 
     /**
@@ -113,9 +133,14 @@ public interface BOptionHelper {
      * @return The half-sized cancel button.
      */
     default Button createHalfCancelButton(int startX, int startY, Consumer<Button> ButtonConsumer) {
-        return new Button.Builder(GuiUtils.CANCEL, ButtonConsumer::accept)
-                .bounds(startX, startY, getButtonWidth(ButtonType.SMALL), getButtonHeight())
-                .build();
+        return new Button(
+                startX,
+                startY,
+                getButtonWidth(ButtonType.SMALL),
+                getButtonHeight(),
+                GuiUtils.CANCEL.getString(),
+                ButtonConsumer::accept
+        );
     }
 
     /**
@@ -139,9 +164,14 @@ public interface BOptionHelper {
      * @return The half-sized done button.
      */
     default Button createHalfDoneButton(int startX, int startY, Consumer<Button> ButtonConsumer) {
-        return new Button.Builder(GuiUtils.DONE, ButtonConsumer::accept)
-                .bounds(startX, startY, getButtonWidth(ButtonType.SMALL), getButtonHeight())
-                .build();
+        return new Button(
+                startX,
+                startY,
+                getButtonWidth(ButtonType.SMALL),
+                getButtonHeight(),
+                GuiUtils.DONE.getString(),
+                ButtonConsumer::accept
+        );
     }
 
     /**
@@ -153,9 +183,14 @@ public interface BOptionHelper {
      * @return The half-sized save button.
      */
     default Button createHalfSaveButton(int startX, int startY, Consumer<Button> saveConsumer) {
-        return new Button.Builder(GuiUtils.SAVE, saveConsumer::accept)
-                .bounds(startX + getButtonWidth(ButtonType.SMALL) + getPadding(), startY, getButtonWidth(ButtonType.SMALL), getButtonHeight())
-                .build();
+        return new Button(
+                startX + getButtonWidth(ButtonType.SMALL) + getPadding(),
+                startY,
+                getButtonWidth(ButtonType.SMALL),
+                getButtonHeight(),
+                GuiUtils.SAVE.getString(),
+                saveConsumer::accept
+        );
     }
 
     /**
@@ -167,9 +202,14 @@ public interface BOptionHelper {
      * @return The ok button.
      */
     default Button createOkButton(int startX, int startY, Consumer<Button> saveConsumer) {
-        return new Button.Builder(GuiUtils.OK, saveConsumer::accept)
-                .bounds(startX, startY, getButtonWidth(ButtonType.NORMAL), getButtonHeight())
-                .build();
+        return new Button(
+                startX,
+                startY,
+                getButtonWidth(ButtonType.NORMAL),
+                getButtonHeight(),
+                GuiUtils.OK.getString(),
+                saveConsumer::accept
+        );
     }
 
     /**
@@ -181,9 +221,14 @@ public interface BOptionHelper {
      * @return The half-sized ok button.
      */
     default Button createHalfOkButton(int startX, int startY, Consumer<Button> saveConsumer) {
-        return new Button.Builder(GuiUtils.OK, saveConsumer::accept)
-                .bounds(startX + getButtonWidth(ButtonType.SMALL) + getPadding(), startY, getButtonWidth(ButtonType.SMALL), getButtonHeight())
-                .build();
+        return new Button(
+                startX + getButtonWidth(ButtonType.SMALL) + getPadding(),
+                startY,
+                getButtonWidth(ButtonType.SMALL),
+                getButtonHeight(),
+                GuiUtils.OK.getString(),
+                saveConsumer::accept
+        );
     }
 
     /**
@@ -199,12 +244,22 @@ public interface BOptionHelper {
     @Deprecated
     default Button[] createSaveAndCancelButton(int startX, int startY, Screen parent, Consumer<Button> saveConsumer) {
         return new Button[]{
-                new Button.Builder(GuiUtils.CANCEL, b -> ClientUtils.setScreen(parent))
-                        .bounds(startX, startY, getButtonWidth(ButtonType.SMALL), getButtonHeight())
-                        .build(),
-                new Button.Builder(GuiUtils.SAVE, saveConsumer::accept)
-                        .bounds(startX + getButtonWidth(ButtonType.SMALL) + getButtonHeight(), startY, getButtonWidth(ButtonType.SMALL), getButtonHeight())
-                        .build()
+                new Button(
+                        startX,
+                        startY,
+                        getButtonWidth(ButtonType.SMALL),
+                        getButtonHeight(),
+                        GuiUtils.CANCEL.getString(),
+                        b -> ClientUtils.setScreen(parent)
+                ),
+                new Button(
+                        startX + getButtonWidth(ButtonType.SMALL) + getButtonHeight(),
+                        startY,
+                        getButtonWidth(ButtonType.SMALL),
+                        getButtonHeight(),
+                        GuiUtils.SAVE.getString(),
+                        saveConsumer::accept
+                )
         };
     }
 

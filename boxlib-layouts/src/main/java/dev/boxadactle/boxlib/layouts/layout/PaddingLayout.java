@@ -1,7 +1,6 @@
 package dev.boxadactle.boxlib.layouts.layout;
 
 import dev.boxadactle.boxlib.layouts.RenderingLayout;
-import net.minecraft.client.gui.GuiGraphics;
 
 /**
  * The `PaddingLayout` class represents a layout that adds padding around a child layout.
@@ -53,9 +52,9 @@ public class PaddingLayout extends RenderingLayout {
     }
 
     @Override
-    public void render(GuiGraphics graphics) {
+    public void render() {
         layout.setPosition(x + padding, y + padding);
 
-        layout.render(graphics);
+        layout.render();
     }
 }

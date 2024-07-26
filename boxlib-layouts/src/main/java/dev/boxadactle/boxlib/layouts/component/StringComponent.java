@@ -3,8 +3,7 @@ package dev.boxadactle.boxlib.layouts.component;
 import dev.boxadactle.boxlib.layouts.LayoutComponent;
 import dev.boxadactle.boxlib.util.GuiUtils;
 import dev.boxadactle.boxlib.util.RenderUtils;
-import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
 
 /**
  * Represents a layout component that displays a string.
@@ -27,7 +26,7 @@ public class StringComponent extends LayoutComponent<String> {
      */
     @Override
     public int getWidth() {
-        return GuiUtils.getTextSize(Component.literal(this.component));
+        return GuiUtils.getTextSize(new TextComponent(this.component));
     }
 
     /**
@@ -43,12 +42,11 @@ public class StringComponent extends LayoutComponent<String> {
     /**
      * Renders this component on the specified graphics context at the specified position.
      *
-     * @param graphics the graphics context to render on
      * @param x        the x-coordinate of the top-left corner of this component
      * @param y        the y-coordinate of the top-left corner of this component
      */
     @Override
-    public void render(GuiGraphics graphics, int x, int y) {
-        RenderUtils.drawText(graphics, Component.literal(this.component), x, y);
+    public void render(int x, int y) {
+        RenderUtils.drawText(new TextComponent(this.component), x, y);
     }
 }

@@ -71,7 +71,7 @@ public class ClientUtils {
      * @return the window ID of the client
      */
     public static long getWindow() {
-        return getClient().getWindow().getWindow();
+        return getClient().window.getWindow();
     }
 
     /**
@@ -108,90 +108,6 @@ public class ClientUtils {
         getClient().setScreen(newScreen);
 
         return newScreen;
-    }
-
-    @Deprecated
-    // i honestly cant find a built-in way to do this
-    public static char getTypedKey(int keycode, int scancode) {
-        InputConstants.Key a = InputConstants.getKey(keycode, scancode);
-
-        String ab = a.getName().substring("key.keyboard.".length());
-
-        if (ab.length() == 1) {
-            try {
-
-                int num = Integer.parseInt(ab);
-
-                // if this code is reached, that means that the key typed is a number
-                if (!Screen.hasShiftDown()) return ab.charAt(0);
-
-                return switch (num) {
-                    case 1 -> '!';
-                    case 2 -> '@';
-                    case 3 -> '#';
-                    case 4 -> '$';
-                    case 5 -> '%';
-                    case 6 -> '^';
-                    case 7 -> '&';
-                    case 8 -> '*';
-                    case 9 -> '(';
-                    case 0 -> ')';
-                    default -> Character.MIN_VALUE;
-                };
-
-            } catch (NumberFormatException ignored) {}
-
-            String capitalized = Screen.hasShiftDown() ? ab.toUpperCase(Locale.ROOT) : ab;
-
-            return capitalized.charAt(0);
-        } else {
-            boolean b = Screen.hasShiftDown();
-
-            switch (a.getValue()) {
-                case 45 -> {
-                    if (b) return '_';
-                    else return '-';
-                }
-                case 61 -> {
-                    if (b) return '+';
-                    else return '=';
-                }
-                case 91 -> {
-                    if (b) return '{';
-                    else return '[';
-                }
-                case 93 -> {
-                    if (b) return '}';
-                    else return ']';
-                }
-                case 96 -> {
-                    if (b) return '~';
-                    else return '`';
-                }
-                case 59 -> {
-                    if (b) return ':';
-                    else return ';';
-                }
-                case 39 -> {
-                    if (b) return '"';
-                    else return '\'';
-                }
-                case 44 -> {
-                    if (b) return '<';
-                    else return ',';
-                }
-                case 46 -> {
-                    if (b) return '>';
-                    else return '.';
-                }
-                case 32 -> {
-                    return ' ';
-                }
-            }
-
-            return Character.MIN_VALUE;
-        }
-
     }
 
     /**
@@ -247,7 +163,7 @@ public class ClientUtils {
         ToastComponent toastComponent = getClient().getToasts();
         SystemToast.addOrUpdate(
                 toastComponent,
-                SystemToast.SystemToastId.PERIODIC_NOTIFICATION,
+                SystemToast.SystemToastIds.NARRATOR_TOGGLE,
                 message,
                 description
         );

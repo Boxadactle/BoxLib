@@ -2,8 +2,6 @@ package dev.boxadactle.boxlib.gui.config.widget.label;
 
 import dev.boxadactle.boxlib.util.GuiUtils;
 import dev.boxadactle.boxlib.util.RenderUtils;
-import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.network.chat.Component;
 
 /**
  * The BLeftLabel class represents a left-aligned label widget in a graphical user interface.
@@ -15,20 +13,19 @@ public class BRightLabel extends BLabel {
      *
      * @param message the text to be displayed on the label
      */
-    public BRightLabel(Component message) {
+    public BRightLabel(String message) {
         super(message);
     }
 
     /**
      * Renders the label on the screen.
      *
-     * @param guiGraphics the graphics object used for rendering
      * @param mouseX      the x-coordinate of the mouse cursor
      * @param mouseY      the y-coordinate of the mouse cursor
      * @param delta       the time since the last frame update
      */
     @Override
-    public void renderWidget(GuiGraphics guiGraphics, int mouseX, int mouseY, float delta) {
-        RenderUtils.drawText(guiGraphics, message, this.getX() + this.getWidth() - GuiUtils.getTextRenderer().width(message), this.getY() + 5);
+    public void renderButton(int mouseX, int mouseY, float delta) {
+        RenderUtils.drawText(message, this.x + this.getWidth() - GuiUtils.getTextRenderer().width(message), this.y + 5);
     }
 }

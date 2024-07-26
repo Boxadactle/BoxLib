@@ -2,7 +2,9 @@ package dev.boxadactle.boxlib.gui.config.widget.button;
 
 import com.google.common.collect.ImmutableList;
 import dev.boxadactle.boxlib.util.GuiUtils;
+import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
 
 import java.util.Locale;
 import java.util.function.Consumer;
@@ -14,7 +16,7 @@ import java.util.function.Consumer;
  */
 public class BEnumButton<T extends Enum<T>> extends BToggleButton<T> {
 
-    protected int valColor;
+    protected ChatFormatting valColor;
 
     /**
      * Constructs a new BEnumButton.
@@ -25,12 +27,12 @@ public class BEnumButton<T extends Enum<T>> extends BToggleButton<T> {
      * @param function the consumer function to be called when the button is clicked
      * @param valColor the color of the enum value text
      */
-    public BEnumButton(String key, T value, Class<T> tEnum, Consumer<T> function, int valColor) {
+    public BEnumButton(String key, T value, Class<T> tEnum, Consumer<T> function, ChatFormatting valColor) {
         super(key, value, ImmutableList.copyOf(tEnum.getEnumConstants()), function);
 
         this.valColor = valColor;
 
-        super.setMessage(Component.translatable(key, from(value)));
+        super.setMessage(GuiUtils.getTranslatable(key, from(value).getColoredString()));
     }
 
     /**
@@ -52,6 +54,6 @@ public class BEnumButton<T extends Enum<T>> extends BToggleButton<T> {
      */
     @Override
     public Component from(T input) {
-        return GuiUtils.colorize(Component.translatable(key + "." + input.name().toLowerCase(Locale.ROOT)), valColor);
+        return GuiUtils.colorize(new TranslatableComponent(key + "." + input.name().toLowerCase(Locale.ROOT)), valColor);
     }
 }

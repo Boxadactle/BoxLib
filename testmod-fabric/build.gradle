@@ -23,7 +23,7 @@ dependencies {
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     common(project(path: ":testmod-common", configuration: "namedElements")) { transitive false }
 
-    common project(path: ':boxlib-command', configuration: "namedElements")
+//    common project(path: ':boxlib-command', configuration: "namedElements")
     common project(path: ':boxlib-config', configuration: "namedElements")
     common project(path: ':boxlib-functions', configuration: "namedElements")
     common project(path: ':boxlib-gui', configuration: "namedElements")
@@ -35,7 +35,7 @@ dependencies {
     common project(path: ':boxlib-scheduling', configuration: "namedElements")
     common project(path: ':boxlib-translate', configuration: "namedElements")
 
-    modImplementation("com.terraformersmc:modmenu:${rootProject.modmenu_version}") {
+    modImplementation("io.github.prospector:modmenu:${rootProject.modmenu_version}") {
         transitive = false
     }
 }

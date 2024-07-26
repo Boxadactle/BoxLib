@@ -3,7 +3,6 @@ package dev.boxadactle.boxlib.layouts.component;
 import dev.boxadactle.boxlib.layouts.LayoutComponent;
 import dev.boxadactle.boxlib.util.GuiUtils;
 import dev.boxadactle.boxlib.util.RenderUtils;
-import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 
 /**
@@ -44,12 +43,11 @@ public class TextComponent extends LayoutComponent<Component> {
     /**
      * Renders the text component on the specified graphics object at the given coordinates.
      *
-     * @param graphics the graphics object to render on
      * @param x        the x-coordinate of the top-left corner of the component
      * @param y        the y-coordinate of the top-left corner of the component
      */
     @Override
-    public void render(GuiGraphics graphics, int x, int y) {
-        RenderUtils.drawText(graphics, this.component, x, y);
+    public void render(int x, int y) {
+        RenderUtils.drawText(this.component, x, y);
     }
 }

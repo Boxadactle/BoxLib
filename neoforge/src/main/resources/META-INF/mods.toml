@@ -1,6 +1,5 @@
 modLoader = "javafml"
 loaderVersion = "[2,)"
-#issueTrackerURL = ""
 license = "MIT"
 
 [[mods]]
@@ -16,14 +15,14 @@ logoFile = "icon.png"
 [[dependencies.boxlib]]
 modId = "neoforge"
 type = "required"
-versionRange = "[21.0,)"
+versionRange = "[20.3,)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.boxlib]]
 modId = "minecraft"
 type = "required"
-versionRange = "[1.21,)"
+versionRange = "[1.20.3,)"
 ordering = "NONE"
 side = "BOTH"
 
