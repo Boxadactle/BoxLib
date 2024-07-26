@@ -23,12 +23,6 @@ public class BoxLibForge {
     @Mod.EventBusSubscriber(modid = ModConstants.MOD_ID, value = Dist.CLIENT)
     public static class ClientForgeEvents {
 
-//        @SuppressWarnings("unchecked")
-//        @SubscribeEvent
-//        public static void registerCommands(RegisterCommandsEvent event) {
-//            BCommandImpl.register((CommandDispatcher<BCommandSourceStack>) (CommandDispatcher<?>) event.getDispatcher());
-//        }
-
         @SubscribeEvent
         public static void mouseDown(GuiScreenEvent.MouseClickedEvent.Pre e) {
             MouseUtils.setMouseDown(e.getButton());
