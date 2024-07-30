@@ -69,3 +69,24 @@ subprojects {
         }
     }
 }
+
+githubRelease {
+    owner = "Boxadactle"
+    repo = "BoxLib"
+    tagName = "$project.version"
+    targetCommitish = "latest"
+    releaseName = "BoxLib $project.version"
+    generateReleaseNotes = true
+    body = "BoxLib $project.version for Minecraft $project.minecraft_version"
+    authorization = "Token ${System.getenv("GITHUB_TOKEN")}"
+
+    var files = []
+    for (String platform : project.enabled_platforms.split(',')) {
+        files += fileTree("$platform/build/libs") {
+            include "*$project.version*"
+        }
+    }
+    releaseAssets = files
+
+//    dryRun = true
+}
