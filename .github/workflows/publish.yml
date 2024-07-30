@@ -37,10 +37,15 @@ jobs:
         path: fabric/build/libs
         
     - name: Upload forge
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v3
       with:
         name: forge-build
         path: forge/build/libs
+
+    - name: Create GitHub release
+      run: ./gradlew githubRelease
+      env:
+        GITHUB_TOKEN: ${{ secrets.REPOSITORY_TOKEN }}
 
     - name: Create GitHub release
       run: ./gradlew githubRelease
