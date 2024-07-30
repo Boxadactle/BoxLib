@@ -10,7 +10,6 @@ import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 public class BoxLibFabric implements ClientModInitializer {
 
     @Override
-    @SuppressWarnings("unchecked")
     public void onInitializeClient() {
         BoxLib.init();
 
