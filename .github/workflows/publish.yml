@@ -44,6 +44,12 @@ jobs:
           name: neoforge-build
           path: neoforge/build/libs
 
+      - name: Upload forge
+        uses: actions/upload-artifact@v3
+        with:
+          name: forge-build
+          path: forge/build/libs
+
       - name: Publish
         run: ./gradlew publishUnified
         env:
