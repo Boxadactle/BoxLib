@@ -46,5 +46,4 @@ public abstract class CommandSourceStackMixin implements BCommandSourceStack {
     public ClientLevel boxlib$getWorld() {
         return (ClientLevel) ((CommandSourceStack) (Object) this).getUnsidedLevel();
     }
-
 }

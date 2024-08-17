@@ -43,7 +43,7 @@ public class BoxLibForge {
         }
 
         @SubscribeEvent
-        public static void tick(TickEvent.ClientTickEvent ignored) {
+        public static void tick(TickEvent.ClientTickEvent.Post ignored) {
             Scheduling.tick();
         }
 
