@@ -3,7 +3,6 @@ package dev.boxadactle.boxlib.command;
 import com.mojang.brigadier.arguments.ArgumentType;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.builder.RequiredArgumentBuilder;
-import dev.boxadactle.boxlib.command.api.BClientCommand;
 import dev.boxadactle.boxlib.command.api.BCommand;
 
 /**
@@ -19,11 +18,6 @@ public class BCommandManager {
      */
     public static void register(BCommand command) {
         BCommandImpl.addCommand(command);
-    }
-
-    @Deprecated(forRemoval = true)
-    public static void register(BClientCommand command) {
-        //
     }
 
     /**

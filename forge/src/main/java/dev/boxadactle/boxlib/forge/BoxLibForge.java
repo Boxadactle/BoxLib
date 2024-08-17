@@ -24,7 +24,7 @@ public class BoxLibForge {
     }
 
     @Mod.EventBusSubscriber(modid = ModConstants.MOD_ID, value = Dist.CLIENT)
-    public static class ClientNeoforgeEvents {
+    public static class ClientForgeEvents {
 
         @SuppressWarnings("unchecked")
         @SubscribeEvent
@@ -50,7 +50,7 @@ public class BoxLibForge {
     }
 
     @Mod.EventBusSubscriber(modid = ModConstants.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
-    public static class ModNeoforgeEvents {
+    public static class ModForgeEvents {
         @SubscribeEvent
         public static void registerKeybinds(RegisterKeyMappingsEvent e) {
             KeybindingImpl.register(e::register);
