@@ -98,10 +98,9 @@ public abstract class BOptionScreen extends Screen implements BOptionHelper {
 
     @Override
     public void render(GuiGraphics guiGraphics, int i, int j, float f) {
-        renderDirtBackground(guiGraphics);
-        super.render(guiGraphics, i, j, f);
-
         if (shouldRenderScrollingWidget()) this.configList.render(guiGraphics, i, j, f);
+
+        super.render(guiGraphics, i, j, f);
 
         RenderUtils.drawTextCentered(guiGraphics, this.getName(), this.width / 2, 5);
     }
