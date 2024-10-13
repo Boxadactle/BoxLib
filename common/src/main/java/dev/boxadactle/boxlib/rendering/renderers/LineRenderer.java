@@ -48,7 +48,7 @@ public class LineRenderer extends Renderer3D<LineRenderer> {
     }
 
     @Override
-    protected void render(PoseStack stack, MultiBufferSource buffer, double cameraX, double cameraY, double cameraZ) {
+    public void render(PoseStack stack, MultiBufferSource buffer, double cameraX, double cameraY, double cameraZ) {
         VertexConsumer vertexConsumer = buffer.getBuffer(RenderType.debugLineStrip(1.0));
 
         vertexConsumer
