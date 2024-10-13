@@ -51,7 +51,7 @@ subprojects {
     }
 
     // Configure Maven publishing for non-testmods
-    if (!project.name.contains("testmod") && !project.name.contains("boxlib")) {
+    if (!project.name.contains("testmod")) {
         publishing {
             publications {
                 mavenJava(MavenPublication) {

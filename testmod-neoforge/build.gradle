@@ -30,18 +30,6 @@ dependencies {
     implementation project(path: ":neoforge", configuration: "namedElements")
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     common(project(path: ":testmod-common", configuration: "namedElements")) { transitive false }
-
-    common project(path: ':boxlib-command', configuration: "namedElements")
-    common project(path: ':boxlib-config', configuration: "namedElements")
-    common project(path: ':boxlib-functions', configuration: "namedElements")
-    common project(path: ':boxlib-gui', configuration: "namedElements")
-    common project(path: ":boxlib-http", configuration: "namedElements")
-    common project(path: ':boxlib-keybind', configuration: "namedElements")
-    common project(path: ':boxlib-layouts', configuration: "namedElements")
-    common project(path: ':boxlib-math', configuration: "namedElements")
-    common project(path: ':boxlib-prompt', configuration: "namedElements")
-    common project(path: ':boxlib-scheduling', configuration: "namedElements")
-    common project(path: ':boxlib-translate', configuration: "namedElements")
 }
 
 shadowJar.enabled = false

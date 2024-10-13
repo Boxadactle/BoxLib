@@ -8,7 +8,7 @@ import dev.boxadactle.boxlib.gui.config.widget.BCustomEntry;
 import dev.boxadactle.boxlib.gui.config.widget.BSpacingEntry;
 import dev.boxadactle.boxlib.gui.config.widget.button.*;
 import dev.boxadactle.boxlib.gui.config.widget.field.*;
-import dev.boxadactle.boxlib.gui.config.widget.label.BCenteredLabel;
+import dev.boxadactle.boxlib.gui.config.widget.label.*;
 import dev.boxadactle.boxlib.gui.config.widget.slider.*;
 import dev.boxadactle.boxlib.layouts.RenderingLayout;
 import dev.boxadactle.boxlib.layouts.component.LayoutContainerComponent;

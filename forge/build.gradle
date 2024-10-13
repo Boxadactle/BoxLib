@@ -39,30 +39,7 @@ dependencies {
     forge "net.minecraftforge:forge:${rootProject.minecraft_version}-${rootProject.forge_version}"
 
     common(project(path: ':common', configuration: 'namedElements')) { transitive false }
-    common(project(path: ':boxlib-command', configuration: "namedElements")) { transitive false }
-    common(project(path: ':boxlib-config', configuration: "namedElements")) { transitive false }
-    common(project(path: ':boxlib-functions', configuration: "namedElements")) { transitive false }
-    common(project(path: ':boxlib-gui', configuration: "namedElements")) { transitive false }
-    common(project(path: ":boxlib-http", configuration: "namedElements")) { transitive false }
-    common(project(path: ':boxlib-keybind', configuration: "namedElements")) { transitive false }
-    common(project(path: ':boxlib-layouts', configuration: "namedElements")) { transitive false }
-    common(project(path: ':boxlib-math', configuration: "namedElements")) { transitive false }
-    common(project(path: ':boxlib-prompt', configuration: "namedElements")) { transitive false }
-    common(project(path: ':boxlib-scheduling', configuration: "namedElements")) { transitive false }
-    common(project(path: ':boxlib-translate', configuration: "namedElements")) { transitive false }
-
     shadowBundle project(path: ':common', configuration: 'namedElements')
-    shadowBundle project(path: ':boxlib-command', configuration: "namedElements")
-    shadowBundle project(path: ':boxlib-config', configuration: "namedElements")
-    shadowBundle project(path: ':boxlib-functions', configuration: "namedElements")
-    shadowBundle project(path: ':boxlib-gui', configuration: "namedElements")
-    shadowBundle project(path: ":boxlib-http", configuration: "namedElements")
-    shadowBundle project(path: ':boxlib-keybind', configuration: "namedElements")
-    shadowBundle project(path: ':boxlib-layouts', configuration: "namedElements")
-    shadowBundle project(path: ':boxlib-math', configuration: "namedElements")
-    shadowBundle project(path: ':boxlib-prompt', configuration: "namedElements")
-    shadowBundle project(path: ':boxlib-scheduling', configuration: "namedElements")
-    shadowBundle project(path: ':boxlib-translate', configuration: "namedElements")
 }
 
 processResources {

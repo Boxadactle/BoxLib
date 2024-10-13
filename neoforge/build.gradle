@@ -39,30 +39,7 @@ dependencies {
 //    modImplementation "dev.architectury:architectury-neoforge:$rootProject.architectury_api_version"
 
     common(project(path: ':common', configuration: 'namedElements')) { transitive false }
-    common(project(path: ':boxlib-command', configuration: "namedElements")) { transitive false }
-    common(project(path: ':boxlib-config', configuration: "namedElements")) { transitive false }
-    common(project(path: ':boxlib-functions', configuration: "namedElements")) { transitive false }
-    common(project(path: ':boxlib-gui', configuration: "namedElements")) { transitive false }
-    common(project(path: ":boxlib-http", configuration: "namedElements")) { transitive false }
-    common(project(path: ':boxlib-keybind', configuration: "namedElements")) { transitive false }
-    common(project(path: ':boxlib-layouts', configuration: "namedElements")) { transitive false }
-    common(project(path: ':boxlib-math', configuration: "namedElements")) { transitive false }
-    common(project(path: ':boxlib-prompt', configuration: "namedElements")) { transitive false }
-    common(project(path: ':boxlib-scheduling', configuration: "namedElements")) { transitive false }
-    common(project(path: ':boxlib-translate', configuration: "namedElements")) { transitive false }
-
     shadowBundle project(path: ':common', configuration: 'transformProductionNeoForge')
-    shadowBundle project(path: ':boxlib-command', configuration: "transformProductionNeoForge")
-    shadowBundle project(path: ':boxlib-config', configuration: "transformProductionNeoForge")
-    shadowBundle project(path: ':boxlib-functions', configuration: "transformProductionNeoForge")
-    shadowBundle project(path: ':boxlib-gui', configuration: "transformProductionNeoForge")
-    shadowBundle project(path: ":boxlib-http", configuration: "transformProductionNeoForge")
-    shadowBundle project(path: ':boxlib-keybind', configuration: "transformProductionNeoForge")
-    shadowBundle project(path: ':boxlib-layouts', configuration: "transformProductionNeoForge")
-    shadowBundle project(path: ':boxlib-math', configuration: "transformProductionNeoForge")
-    shadowBundle project(path: ':boxlib-prompt', configuration: "transformProductionNeoForge")
-    shadowBundle project(path: ':boxlib-scheduling', configuration: "transformProductionNeoForge")
-    shadowBundle project(path: ':boxlib-translate', configuration: "transformProductionNeoForge")
 }
 
 processResources {

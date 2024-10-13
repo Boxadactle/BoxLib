@@ -3,10 +3,11 @@
   "package": "dev.boxadactle.boxlib.neoforge.mixin",
   "minVersion": "0.8",
   "compatibilityLevel": "JAVA_21",
-  "mixins": [
-    "CommandSourceStackMixin"
-  ],
   "injectors": {
     "defaultRequire": 1
-  }
+  },
+  "client": [
+    "CommandSourceStackMixin",
+    "DebugRendererMixin"
+  ]
 }
