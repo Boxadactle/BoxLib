@@ -9,19 +9,19 @@ import dev.boxadactle.boxlib.keybind.KeybindHelper;
 import dev.boxadactle.boxlib.math.geometry.Box;
 import dev.boxadactle.boxlib.math.geometry.Vec3;
 import dev.boxadactle.boxlib.rendering.RenderQueue;
-import dev.boxadactle.boxlib.rendering.renderers.BoxRenderer;
-import dev.boxadactle.boxlib.rendering.renderers.TextRenderer;
-import dev.boxadactle.boxlib.rendering.renderers.OutlineRenderer;
-import dev.boxadactle.boxlib.rendering.renderers.PathRenderer;
+import dev.boxadactle.boxlib.rendering.renderers.*;
 import dev.boxadactle.boxlib.test.config.ExampleConfigClass;
 import dev.boxadactle.boxlib.test.keybind.Keybindings;
 import dev.boxadactle.boxlib.translate.Language;
 import dev.boxadactle.boxlib.translate.Translator;
 import dev.boxadactle.boxlib.util.GuiUtils;
 import dev.boxadactle.boxlib.util.ModLogger;
+import dev.boxadactle.boxlib.util.RenderUtils;
 import dev.boxadactle.boxlib.util.WorldUtils;
+import net.minecraft.client.gui.components.LogoRenderer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.phys.AABB;
 import oshi.util.tuples.Pair;
 
@@ -126,10 +126,26 @@ public class TestMod {
                 .setColor(GuiUtils.GOLD)
                 .setAlpha(0.3F);
 
+        GraphicRenderer graphicRenderer = new GraphicRenderer(false)
+                .setPos(new Vec3<>(0.0, 100.0, 0.0))
+                .setSize(0.1F)
+                .setWidth(256)
+                .setHeight(64)
+                .setCentered(true)
+                .setRenderer((graphics, x, y) -> {
+                    RenderUtils.drawTexture(
+                            ResourceLocation.withDefaultNamespace("textures/gui/title/minceraft.png"),
+                            graphics,
+                            x, y, 256, 64,
+                            0, 0
+                    );
+                });
+
         RenderQueue.addRenderer(renderer);
         RenderQueue.addRenderer(outlineRenderer);
         RenderQueue.addRenderer(pathRenderer);
         RenderQueue.addRenderer(boxRenderer);
+        RenderQueue.addRenderer(graphicRenderer);
         RenderQueue.addRenderer(() -> {
             net.minecraft.world.phys.Vec3 playerPos = WorldUtils.getCamera().position().add(10.0, 0.0, 0.0);
 

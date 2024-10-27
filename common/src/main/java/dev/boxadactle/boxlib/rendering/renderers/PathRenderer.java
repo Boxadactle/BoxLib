@@ -21,7 +21,7 @@ public class PathRenderer extends Renderer3D<PathRenderer> {
     }
 
     @Override
-    public void render(PoseStack stack, MultiBufferSource buffer, double cameraX, double cameraY, double cameraZ) {
+    public void render(PoseStack stack, MultiBufferSource.BufferSource buffer, double cameraX, double cameraY, double cameraZ) {
         VertexConsumer vertexConsumer = buffer.getBuffer(RenderType.debugLineStrip(1.0));
 
         for (Vec3<Double> d : points) {

@@ -37,7 +37,7 @@ public class BoxRenderer extends Renderer3D<BoxRenderer> {
     }
 
     @Override
-    public void render(PoseStack stack, MultiBufferSource buffer, double cameraX, double cameraY, double cameraZ) {
+    public void render(PoseStack stack, MultiBufferSource.BufferSource buffer, double cameraX, double cameraY, double cameraZ) {
         VertexConsumer consumer = buffer.getBuffer(RenderType.debugFilledBox());
 
         AABB box = this.box.move(getCamera().getPosition().reverse());

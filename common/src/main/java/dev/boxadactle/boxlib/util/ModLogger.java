@@ -1,6 +1,7 @@
 package dev.boxadactle.boxlib.util;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.components.ChatComponent;
 import net.minecraft.network.chat.Component;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
@@ -87,30 +88,6 @@ public class ModLogger {
     }
 
     /**
-     * Sends an error message to the chat.
-     *
-     * @param msg  the error message
-     * @param data additional data to be included in the message
-     */
-    public void chatError(String msg, Object... data) {
-        if (this.client.player != null) {
-            this.client.player.sendSystemMessage(Component.literal(chatPrefix + "§4" + String.format(msg, data)));
-        }
-    }
-
-    /**
-     * Sends a warning message to the chat.
-     *
-     * @param msg  the warning message
-     * @param data additional data to be included in the message
-     */
-    public void chatWarn(String msg, Object... data) {
-        if (this.client.player != null) {
-            this.client.player.sendSystemMessage(Component.literal(chatPrefix + "§3" + String.format(msg, data)));
-        }
-    }
-
-    /**
      * Returns the chat prefix.
      *
      * @return the chat prefix
@@ -156,7 +133,8 @@ public class ModLogger {
          */
         public void error(String msg, Object... data) {
             if (this.client.player != null) {
-                this.client.player.sendSystemMessage(
+                ChatComponent chat = ClientUtils.getClient().gui.getChat();
+                chat.addMessage(
                         prefix.copy().append(GuiUtils.colorize(Component.literal(String.format(msg, data)), GuiUtils.RED))
                 );
             }
@@ -170,7 +148,8 @@ public class ModLogger {
          */
         public void warn(String msg, Object... data) {
             if (this.client.player != null) {
-                this.client.player.sendSystemMessage(
+                ChatComponent chat = ClientUtils.getClient().gui.getChat();
+                chat.addMessage(
                         prefix.copy().append(GuiUtils.colorize(Component.literal(String.format(msg, data)), GuiUtils.YELLOW))
                 );
             }
@@ -184,7 +163,8 @@ public class ModLogger {
          */
         public void info(String msg, Object... data) {
             if (this.client.player != null) {
-                this.client.player.sendSystemMessage(
+                ChatComponent chat = ClientUtils.getClient().gui.getChat();
+                chat.addMessage(
                         prefix.copy().append(Component.literal(String.format(msg, data)))
                 );
             }
@@ -197,7 +177,8 @@ public class ModLogger {
          */
         public void chat(Component msg) {
             if (this.client.player != null) {
-                this.client.player.sendSystemMessage(prefix.copy().append(msg));
+                ChatComponent chat = ClientUtils.getClient().gui.getChat();
+                chat.addMessage(prefix.copy().append(msg));
             }
         }
 

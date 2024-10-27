@@ -194,7 +194,7 @@ public class GuiUtils {
         CANCEL = Component.translatable("gui.cancel");
         YES = Component.translatable("gui.yes");
         NO = Component.translatable("gui.no");
-        OK = Component.translatable("mco.gui.ok");
+        OK = Component.translatable("gui.ok");
         ALL = Component.translatable("gui.all");
         BACK = Component.translatable("gui.back");
         SAVE = Component.translatable("structure_block.mode.save");
