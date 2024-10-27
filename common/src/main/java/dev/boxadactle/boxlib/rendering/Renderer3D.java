@@ -20,7 +20,7 @@ public abstract class Renderer3D<T> {
         this.disposeNextFrame = disposeNextFrame;
     }
 
-    public abstract void render(PoseStack stack, MultiBufferSource buffer, double cameraX, double cameraY, double cameraZ);
+    public abstract void render(PoseStack stack, MultiBufferSource.BufferSource buffer, double cameraX, double cameraY, double cameraZ);
 
     public boolean disposeNextFrame() {
         return disposeNextFrame;

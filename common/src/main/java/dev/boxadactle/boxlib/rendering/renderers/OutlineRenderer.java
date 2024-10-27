@@ -49,7 +49,7 @@ public class OutlineRenderer extends Renderer3D<OutlineRenderer> {
     }
 
     @Override
-    public void render(PoseStack stack, MultiBufferSource buffer, double cameraX, double cameraY, double cameraZ) {
+    public void render(PoseStack stack, MultiBufferSource.BufferSource buffer, double cameraX, double cameraY, double cameraZ) {
         for (LineRenderer edge : edges) {
             edge.setColor(r, g, b, a);
             edge.render(stack, buffer, cameraX, cameraY, cameraZ);

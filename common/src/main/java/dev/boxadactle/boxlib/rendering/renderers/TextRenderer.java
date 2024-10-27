@@ -1,5 +1,6 @@
 package dev.boxadactle.boxlib.rendering.renderers;
 
+import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import dev.boxadactle.boxlib.math.geometry.Vec3;
 import dev.boxadactle.boxlib.rendering.Renderer3D;
@@ -65,20 +66,26 @@ public class TextRenderer extends Renderer3D<TextRenderer> {
     }
 
     @Override
-    public void render(PoseStack stack, MultiBufferSource buffer, double cameraX, double cameraY, double cameraZ) {
+    public void render(PoseStack stack, MultiBufferSource.BufferSource buffer, double cameraX, double cameraY, double cameraZ) {
         Camera camera = getCamera();
         if (camera.isInitialized()) {
+            if (xray) {
+                RenderSystem.disableDepthTest();
+            }
+
             stack.pushPose();
-            stack.translate((float)(pos.x - cameraX), (float)(pos.y - cameraY) + 0.07F, (float)(pos.z - cameraZ));
+            stack.translate((float) (pos.x - cameraX), (float) (pos.y - cameraY) + 0.07F, (float) (pos.z - cameraZ));
             stack.mulPose(camera.rotation());
             stack.scale(size, -size, size);
 
-            float f = centered ? (float)(-GuiUtils.getTextSize(text)) / 2.0F : 0.0F;
+            float f = centered ? (float) (-GuiUtils.getTextSize(text)) / 2.0F : 0.0F;
             f -= offset / size;
 
             ClientUtils.getClient().font.drawInBatch(text, f, 0.0F, getColor(), shadow, stack.last().pose(), buffer, xray ? Font.DisplayMode.SEE_THROUGH : Font.DisplayMode.NORMAL, 0, 15728880);
 
             stack.popPose();
+
+            RenderSystem.enableDepthTest();
         }
     }
 }

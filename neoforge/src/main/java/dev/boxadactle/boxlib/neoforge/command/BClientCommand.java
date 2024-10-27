@@ -4,6 +4,7 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.components.ChatComponent;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.locale.Language;
@@ -14,7 +15,8 @@ public abstract class BClientCommand {
 
     protected void sendFeedback(Component message) {
         try {
-            Minecraft.getInstance().player.sendSystemMessage(message);
+            ChatComponent chat = Minecraft.getInstance().gui.getChat();
+            chat.addMessage(message);
         } catch (Exception ignored) {
 
         }

@@ -10,7 +10,6 @@ public class BoxLib {
 
     public static void init() {
         GuiUtils.init();
-        RenderUtils.init();
 
         BoxLib.LOGGER.info("Initialized %s", ModConstants.MOD_NAME + " v" + ModConstants.VERSION);
     }

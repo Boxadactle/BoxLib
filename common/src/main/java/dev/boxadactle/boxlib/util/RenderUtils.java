@@ -4,6 +4,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import dev.boxadactle.boxlib.math.geometry.Rect;
 import dev.boxadactle.boxlib.math.geometry.Vec2;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 
@@ -11,15 +12,6 @@ import net.minecraft.resources.ResourceLocation;
  * Utility class for rendering graphics in a GUI.
  */
 public class RenderUtils {
-
-    static RenderHelper instance;
-
-    /**
-     * Initializes the RenderUtils class by creating an instance of RenderHelper.
-     */
-    public static void init() {
-        instance = new RenderHelper();
-    }
 
     /**
      * Draws a filled square on the GUI.
@@ -82,7 +74,7 @@ public class RenderUtils {
      * @param v           The v-coordinate of the top-left corner of the texture.
      */
     public static void drawTexture(ResourceLocation texture, GuiGraphics guiGraphics, int x, int y, int width, int height, int u, int v) {
-        instance.drawTexture(texture, guiGraphics, x, y, width, height, u, v, false);
+        guiGraphics.blit(RenderType::guiTextured, texture, x, y, u, v, width, height, width, height);
     }
 
     /**
@@ -223,29 +215,6 @@ public class RenderUtils {
      */
     public static void drawTextCentered(GuiGraphics guiGraphics, String text, int x, int y, int color) {
         guiGraphics.drawString(GuiUtils.getTextRenderer(), text, (x - GuiUtils.getTextRenderer().width(text) / 2), y, color, true);
-    }
-
-    private static class RenderHelper {
-
-        public RenderHelper() {}
-
-        /**
-         * Draws a textured rectangle on the GUI.
-         *
-         * @param texture     The resource location of the texture.
-         * @param guiGraphics The graphics object used for drawing.
-         * @param x           The x-coordinate of the top-left corner of the rectangle.
-         * @param y           The y-coordinate of the top-left corner of the rectangle.
-         * @param width       The width of the rectangle.
-         * @param height      The height of the rectangle.
-         * @param u           The u-coordinate of the top-left corner of the texture.
-         * @param v           The v-coordinate of the top-left corner of the texture.
-         * @param ignored     A boolean value indicating whether the parameter is ignored.
-         */
-        public void drawTexture(ResourceLocation texture, GuiGraphics guiGraphics, int x, int y, int width, int height, int u, int v, boolean ignored) {
-            RenderSystem.enableBlend();
-            guiGraphics.blit(texture, x, y, u, v, width, height);
-        }
     }
 
 }

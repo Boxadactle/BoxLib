@@ -8,7 +8,7 @@ import net.minecraft.client.KeyboardHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.Options;
 import net.minecraft.client.gui.components.toasts.SystemToast;
-import net.minecraft.client.gui.components.toasts.ToastComponent;
+import net.minecraft.client.gui.components.toasts.ToastManager;
 import net.minecraft.client.gui.screens.ConfirmLinkScreen;
 import net.minecraft.client.gui.screens.ConfirmScreen;
 import net.minecraft.client.gui.screens.Screen;
@@ -244,9 +244,8 @@ public class ClientUtils {
      * @param description The description to display.
      */
     public static void showToast(Component message, Component description) {
-        ToastComponent toastComponent = getClient().getToasts();
         SystemToast.addOrUpdate(
-                toastComponent,
+                getClient().getToastManager(),
                 SystemToast.SystemToastId.PERIODIC_NOTIFICATION,
                 message,
                 description

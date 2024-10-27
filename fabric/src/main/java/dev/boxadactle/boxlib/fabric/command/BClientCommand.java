@@ -3,9 +3,11 @@ package dev.boxadactle.boxlib.fabric.command;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
+import dev.boxadactle.boxlib.util.ClientUtils;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandManager;
 import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.components.ChatComponent;
 import net.minecraft.locale.Language;
 import net.minecraft.network.chat.Component;
 
@@ -14,7 +16,8 @@ public abstract class BClientCommand {
 
     protected void sendFeedback(Component message) {
         try {
-            Minecraft.getInstance().player.sendSystemMessage(message);
+            ChatComponent chat = ClientUtils.getClient().gui.getChat();
+            chat.addMessage(message);
         } catch (Exception ignored) {
 
         }
