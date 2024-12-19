@@ -50,7 +50,7 @@ public class ExampleConfigScreen extends BOptionScreen {
     }
 
     @Override
-    protected int getScrollbarPosition() {
+    protected int getScrollbarX() {
         return this.width - 15;
     }
 
