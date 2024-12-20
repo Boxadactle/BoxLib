@@ -150,7 +150,7 @@ public abstract class BOptionScreen extends Screen implements BOptionHelper {
      * Override this method to change the x position of the scrollbar
      * @return The x position of the scrollbar
      */
-    protected int getScrollbarPosition() {
+    protected int getScrollbarX() {
         return width / 2 + 124;
     }
 
@@ -281,8 +281,8 @@ public abstract class BOptionScreen extends Screen implements BOptionHelper {
         }
 
         @Override
-        protected int getScrollbarPosition() {
-            return BOptionScreen.this.getScrollbarPosition();
+        protected int scrollBarX() {
+            return BOptionScreen.this.getScrollbarX();
         }
 
         @Override
