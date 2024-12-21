@@ -2,6 +2,7 @@ package dev.boxadactle.boxlib.test.config;
 
 import dev.boxadactle.boxlib.config.BConfig;
 import dev.boxadactle.boxlib.config.BConfigFile;
+import dev.boxadactle.boxlib.config.ConfigGuiBuilder;
 import dev.boxadactle.boxlib.core.ModConstants;
 import dev.boxadactle.boxlib.gui.config.BOptionScreen;
 import dev.boxadactle.boxlib.gui.config.widget.BCustomEntry;
@@ -15,6 +16,7 @@ import dev.boxadactle.boxlib.layouts.component.LayoutContainerComponent;
 import dev.boxadactle.boxlib.layouts.component.ParagraphComponent;
 import dev.boxadactle.boxlib.layouts.layout.ColumnLayout;
 import dev.boxadactle.boxlib.layouts.layout.RowLayout;
+import dev.boxadactle.boxlib.prompt.Prompts;
 import dev.boxadactle.boxlib.test.TestMod;
 import dev.boxadactle.boxlib.test.prompts.PromptTestingScreen;
 import dev.boxadactle.boxlib.util.ClientUtils;
@@ -244,7 +246,7 @@ public class ExampleConfigScreen extends BOptionScreen {
         addConfigLine(new BConfigScreenButton(
                 Component.translatable("boxlib.aConfigScreen"),
                 this,
-                PromptTestingScreen::new
+                this::createPromptTestingScreen
         ));
 
         // here is how we would render our own thing
@@ -267,6 +269,38 @@ public class ExampleConfigScreen extends BOptionScreen {
          * entries by extending the BConfigButton,
          * BConfigTextField, or BConfigSlider classes */
 
+    }
+
+    public BOptionScreen createPromptTestingScreen(Screen parent) {
+        /* if you don't want to make a separate class for
+        * each config screen you make, you can make a basic
+        * one using the GuiBuilder */
+        return ConfigGuiBuilder.builder(parent, Component.literal("Prompt Testing"))
+                .addButton(Component.literal("Test Alert"), () -> Prompts.alert(this, Component.literal("This is a test alert!")))
+                .addButton(Component.literal("Test Confirm"), () ->
+                    Prompts.confirm(this, Component.literal("This is a test confirm!"), (b) ->
+                        ClientUtils.showToast(Component.literal("Response"), Component.literal("Confirmed: " + b))
+                    )
+                )
+                .addButton(Component.literal("Test Prompt"), () ->
+                    Prompts.prompt(this, Component.literal("This is a test prompt!"), (s) ->
+                        ClientUtils.showToast(Component.literal("Response"), Component.literal("Responded with: " + s))
+                    )
+                )
+                .addButton(Component.literal("Test Integer Prompt"), () ->
+                    Prompts.promptInteger(this, Component.literal("This is a test integer prompt!"), (i) ->
+                        ClientUtils.showToast(Component.literal("Response"), Component.literal("Responded with: " + i))
+                    )
+                )
+                .addEntry(new BSpacingEntry())
+                .addLabel(Component.literal("This is a label!"))
+                .addInput("This is a string field!", (s) -> ClientUtils.showToast(Component.literal("Response"), Component.literal("Responded with: " + s)))
+                .addDoubleEntry(
+                        new BStringField("This is a", (d) -> {}),
+                        new BStringField("double entry!", (f) -> {})
+                )
+                .setFooterProvider(this::createDoneButton)
+                .build();
     }
 
     private RenderingLayout createLayout() {
