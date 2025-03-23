@@ -140,7 +140,7 @@ public class RenderUtils {
      * @param color       The color of the text.
      */
     public static void drawText(PoseStack poseStack, Component text, int x, int y, int color) {
-        GuiComponent.drawString(poseStack, GuiUtils.getTextRenderer(), text, x, y, color);
+        GuiUtils.getTextRenderer().draw(poseStack, text, x, y, color);
     }
 
     /**
@@ -165,7 +165,7 @@ public class RenderUtils {
      * @param color       The color of the text.
      */
     public static void drawText(PoseStack poseStack, String text, int x, int y, int color) {
-        GuiComponent.drawString(poseStack, GuiUtils.getTextRenderer(), text, x, y, color);
+        GuiUtils.getTextRenderer().draw(poseStack, text, x, y, color);
     }
 
     /**
@@ -190,7 +190,7 @@ public class RenderUtils {
      * @param color       The color of the text.
      */
     public static void drawTextCentered(PoseStack poseStack, Component text, int x, int y, int color) {
-        GuiComponent.drawCenteredString(poseStack, GuiUtils.getTextRenderer(), text, x, y, color);
+        GuiUtils.getTextRenderer().draw(poseStack, text, x - (float) GuiUtils.getTextSize(text) / 2, y, color);
     }
 
     /**
@@ -215,7 +215,7 @@ public class RenderUtils {
      * @param color       The color of the text.
      */
     public static void drawTextCentered(PoseStack poseStack, String text, int x, int y, int color) {
-        GuiComponent.drawCenteredString(poseStack, GuiUtils.getTextRenderer(), text, x, y, color);
+        GuiUtils.getTextRenderer().draw(poseStack, text, x, y, color);
     }
 
 }

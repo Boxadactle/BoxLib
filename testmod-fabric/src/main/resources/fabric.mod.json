@@ -16,5 +16,8 @@
     "modmenu": [
       "dev.boxadactle.boxlib.test.fabric.ModMenuIntegration"
     ]
-  }
+  },
+  "mixins": [
+    "stupid.mixins.json"
+  ]
 }
