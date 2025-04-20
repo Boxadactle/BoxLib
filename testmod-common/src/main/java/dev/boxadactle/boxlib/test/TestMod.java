@@ -18,7 +18,6 @@ import dev.boxadactle.boxlib.util.GuiUtils;
 import dev.boxadactle.boxlib.util.ModLogger;
 import dev.boxadactle.boxlib.util.RenderUtils;
 import dev.boxadactle.boxlib.util.WorldUtils;
-import net.minecraft.client.gui.components.LogoRenderer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;

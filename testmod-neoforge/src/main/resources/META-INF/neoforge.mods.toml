@@ -14,15 +14,19 @@ The most basic client-side mod
 logoFile = "icon.png"
 
 [[dependencies.boxlibtestmod]]
+modId="boxlib"
+ordering="AFTER"
+
+[[dependencies.boxlibtestmod]]
 modId = "neoforge"
 type = "required"
 versionRange = "[20.5,)"
-ordering = "NONE"
+ordering = "AFTER"
 side = "BOTH"
 
 [[dependencies.boxlibtestmod]]
 modId = "minecraft"
 type = "required"
-versionRange = "[1.20.5,)"
-ordering = "NONE"
+versionRange = "[1.21.5,)"
+ordering = "AFTER"
 side = "BOTH"

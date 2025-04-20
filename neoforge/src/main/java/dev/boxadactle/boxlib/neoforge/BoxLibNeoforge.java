@@ -12,10 +12,8 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
-import net.neoforged.neoforge.client.event.ClientTickEvent;
-import net.neoforged.neoforge.client.event.RegisterClientCommandsEvent;
-import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
-import net.neoforged.neoforge.client.event.ScreenEvent;
+import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.neoforge.client.event.*;
 
 @Mod(ModConstants.MOD_ID)
 public class BoxLibNeoforge {
@@ -55,6 +53,11 @@ public class BoxLibNeoforge {
         @SubscribeEvent
         public static void registerKeybinds(RegisterKeyMappingsEvent e) {
             KeybindingImpl.register(e::register);
+        }
+
+        @SubscribeEvent
+        public static void init(FMLClientSetupEvent e) {
+
         }
     }
 

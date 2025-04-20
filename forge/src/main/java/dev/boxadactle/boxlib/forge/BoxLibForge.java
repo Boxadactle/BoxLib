@@ -8,6 +8,7 @@ import dev.boxadactle.boxlib.core.ModConstants;
 import dev.boxadactle.boxlib.keybind.KeybindingImpl;
 import dev.boxadactle.boxlib.scheduling.Scheduling;
 import dev.boxadactle.boxlib.util.MouseUtils;
+import net.minecraft.client.Minecraft;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RegisterClientCommandsEvent;
 import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
@@ -21,6 +22,8 @@ public class BoxLibForge {
 
     public BoxLibForge() {
         BoxLib.init();
+
+        Minecraft.getInstance().extraTelemetryAvailable();
     }
 
     @Mod.EventBusSubscriber(modid = ModConstants.MOD_ID, value = Dist.CLIENT)

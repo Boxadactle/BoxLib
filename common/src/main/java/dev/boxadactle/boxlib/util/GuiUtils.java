@@ -9,6 +9,8 @@ import net.minecraft.network.chat.ClickEvent;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.HoverEvent;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.Locale;
 
 /**
@@ -333,9 +335,15 @@ public class GuiUtils {
      * @return The created hyperlink component.
      */
     public static Component createHyperLink(Component text, String link) {
-        return text.copy().withStyle(ChatFormatting.UNDERLINE, ChatFormatting.BLUE).withStyle(a1 -> a1
-                .withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, link))
-                .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Component.translatable("chat.link.open")))
+        return text.copy().withStyle(ChatFormatting.UNDERLINE, ChatFormatting.BLUE).withStyle(a1 -> {
+                    try {
+                        return a1
+                                .withClickEvent(new ClickEvent.OpenUrl(new URI(link)))
+                                .withHoverEvent(new HoverEvent.ShowText(Component.translatable("chat.link.open")));
+                    } catch (URISyntaxException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
         );
     }
 
