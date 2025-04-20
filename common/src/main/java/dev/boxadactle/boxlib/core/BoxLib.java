@@ -3,6 +3,7 @@ package dev.boxadactle.boxlib.core;
 import dev.boxadactle.boxlib.util.GuiUtils;
 import dev.boxadactle.boxlib.util.ModLogger;
 import dev.boxadactle.boxlib.util.RenderUtils;
+import net.minecraft.client.Minecraft;
 
 public class BoxLib {
 
