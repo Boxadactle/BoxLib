@@ -29,3 +29,4 @@ side = "BOTH"
 
 [[mixins]]
 config = "boxlib.mixins.json"
+config = "boxlib-common.mixins.json"

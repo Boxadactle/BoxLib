@@ -2,6 +2,8 @@ package dev.boxadactle.boxlib.keybind;
 
 import com.mojang.blaze3d.platform.InputConstants;
 import dev.architectury.injectables.annotations.ExpectPlatform;
+import dev.boxadactle.boxlib.keybind.KeybindingImpl;
+import dev.boxadactle.boxlib.mixin.KeybindAccessor;
 import net.minecraft.client.KeyMapping;
 import org.apache.commons.lang3.NotImplementedException;
 
@@ -25,9 +27,8 @@ public class KeybindHelper {
      * @param key The keybinding to retrieve the bound key for.
      * @return The bound key.
      */
-    @ExpectPlatform
     public static InputConstants.Key getBoundKey(KeyMapping key) {
-        throw new NotImplementedException("KeybindHelper#getBoundKey");
+        return ((KeybindAccessor) key).getKey();
     }
 
 }
