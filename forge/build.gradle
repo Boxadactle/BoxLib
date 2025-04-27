@@ -10,7 +10,7 @@ architectury {
 
 loom {
     forge {
-        mixinConfig "boxlib.mixins.json"
+        mixinConfigs "boxlib.mixins.json", "boxlib-common.mixins.json"
     }
 }
 

@@ -28,6 +28,7 @@
     }
   },
   "mixins": [
-    "boxlib.mixins.json"
+    "boxlib.mixins.json",
+    "boxlib-common.mixins.json"
   ]
 }
