@@ -1,8 +1,11 @@
 package dev.boxadactle.boxlib.prompt.gui;
 
+import dev.boxadactle.boxlib.gui.config.BOptionHelper;
 import dev.boxadactle.boxlib.prompt.PromptScreen;
+import dev.boxadactle.boxlib.util.GuiUtils;
 import dev.boxadactle.boxlib.util.RenderUtils;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.layouts.LinearLayout;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 
@@ -35,17 +38,13 @@ public class AlertScreen extends PromptScreen<Void> {
 
     @Override
     protected void init() {
-        super.init();
-
         textY = this.height / 2 - 50;
 
-        addRenderableWidget(createOkButton(getStartX(), this.height / 2 + 30, (b) -> closeScreen(true)));
-    }
+        LinearLayout linearLayout = layout.addToFooter(LinearLayout.horizontal().spacing(BOptionHelper.padding()));
+        linearLayout.addChild(createOkButton((b) -> closeScreen(true)));
 
-    @Override
-    public void render(GuiGraphics guiGraphics, int i, int j, float f) {
-        super.render(guiGraphics, i, j, f);
+        layout.addTitleHeader(message, GuiUtils.getTextRenderer());
 
-        RenderUtils.drawTextCentered(guiGraphics, message, this.width / 2, textY);
+        super.init();
     }
 }

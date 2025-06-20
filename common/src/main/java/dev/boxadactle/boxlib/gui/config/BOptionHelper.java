@@ -15,198 +15,77 @@ public interface BOptionHelper {
     /**
      * Creates a cancel button with the specified position and parent screen.
      *
-     * @param startX The x-coordinate of the button's top-left corner.
-     * @param startY The y-coordinate of the button's top-left corner.
      * @param parent The parent screen to return to when the button is clicked.
      * @return The cancel button.
      */
-    default Button createCancelButton(int startX, int startY, Screen parent) {
-        return createCancelButton(startX, startY, b -> ClientUtils.setScreen(parent));
+    default Button createCancelButton(Screen parent) {
+        return createCancelButton(b -> ClientUtils.setScreen(parent));
     }
 
     /**
      * Creates a cancel button with the specified position and button consumer.
      *
-     * @param startX         The x-coordinate of the button's top-left corner.
-     * @param startY         The y-coordinate of the button's top-left corner.
      * @param ButtonConsumer The consumer function to be called when the button is clicked.
      * @return The cancel button.
      */
-    default Button createCancelButton(int startX, int startY, Consumer<Button> ButtonConsumer) {
+    default Button createCancelButton(Consumer<Button> ButtonConsumer) {
         return new Button.Builder(GuiUtils.CANCEL, ButtonConsumer::accept)
-                .bounds(startX, startY, getButtonWidth(ButtonType.NORMAL), getButtonHeight())
                 .build();
     }
 
     /**
      * Creates a done button with the specified position and parent screen.
      *
-     * @param startX The x-coordinate of the button's top-left corner.
-     * @param startY The y-coordinate of the button's top-left corner.
      * @param parent The parent screen to return to when the button is clicked.
      * @return The done button.
      */
-    default Button createDoneButton(int startX, int startY, Screen parent) {
-        return createDoneButton(startX, startY, b -> ClientUtils.setScreen(parent));
+    default Button createDoneButton(Screen parent) {
+        return createDoneButton(b -> ClientUtils.setScreen(parent));
     }
 
     /**
      * Creates a done button with the specified position and button consumer.
      *
-     * @param startX         The x-coordinate of the button's top-left corner.
-     * @param startY         The y-coordinate of the button's top-left corner.
      * @param ButtonConsumer The consumer function to be called when the button is clicked.
      * @return The cancel button.
      */
-    default Button createDoneButton(int startX, int startY, Consumer<Button> ButtonConsumer) {
-        return new Button.Builder(GuiUtils.DONE, ButtonConsumer::accept)
-                .bounds(startX, startY, getButtonWidth(ButtonType.NORMAL), getButtonHeight())
-                .build();
+    default Button createDoneButton(Consumer<Button> ButtonConsumer) {
+        return new Button.Builder(GuiUtils.DONE, ButtonConsumer::accept).build();
     }
 
     /**
      * Creates a back button with the specified position and parent screen.
      *
-     * @param startX The x-coordinate of the button's top-left corner.
-     * @param startY The y-coordinate of the button's top-left corner.
      * @param parent The parent screen to return to when the button is clicked.
      * @return The back button.
      */
-    default Button createBackButton(int startX, int startY, Screen parent) {
+    default Button createBackButton(Screen parent) {
         return new Button.Builder(GuiUtils.BACK, b -> ClientUtils.setScreen(parent))
-                .bounds(startX, startY, getButtonWidth(ButtonType.NORMAL), getButtonHeight())
                 .build();
     }
 
     /**
      * Creates a save button with the specified position and save consumer.
      *
-     * @param startX       The x-coordinate of the button's top-left corner.
-     * @param startY       The y-coordinate of the button's top-left corner.
      * @param saveConsumer The consumer function to be called when the button is clicked.
      * @return The save button.
      */
-    default Button createSaveButton(int startX, int startY, Consumer<Button> saveConsumer) {
+    default Button createSaveButton(Consumer<Button> saveConsumer) {
         return new Button.Builder(GuiUtils.SAVE, saveConsumer::accept)
-                .bounds(startX, startY, getButtonWidth(ButtonType.NORMAL), getButtonHeight())
-                .build();
-    }
-
-    /**
-     * Creates a half-sized cancel button with the specified position and parent screen.
-     *
-     * @param startX The x-coordinate of the button's top-left corner.
-     * @param startY The y-coordinate of the button's top-left corner.
-     * @param parent The parent screen to return to when the button is clicked.
-     * @return The half-sized cancel button.
-     */
-    default Button createHalfCancelButton(int startX, int startY, Screen parent) {
-        return createHalfCancelButton(startX, startY, b -> ClientUtils.setScreen(parent));
-    }
-
-    /**
-     * Creates a half-sized cancel button with the specified position and button consumer.
-     *
-     * @param startX         The x-coordinate of the button's top-left corner.
-     * @param startY         The y-coordinate of the button's top-left corner.
-     * @param ButtonConsumer The consumer function to be called when the button is clicked.
-     * @return The half-sized cancel button.
-     */
-    default Button createHalfCancelButton(int startX, int startY, Consumer<Button> ButtonConsumer) {
-        return new Button.Builder(GuiUtils.CANCEL, ButtonConsumer::accept)
-                .bounds(startX, startY, getButtonWidth(ButtonType.SMALL), getButtonHeight())
-                .build();
-    }
-
-    /**
-     * Creates a half-sized done button with the specified position and parent screen.
-     *
-     * @param startX The x-coordinate of the button's top-left corner.
-     * @param startY The y-coordinate of the button's top-left corner.
-     * @param parent The parent screen to return to when the button is clicked.
-     * @return The half-sized done button.
-     */
-    default Button createHalfDoneButton(int startX, int startY, Screen parent) {
-        return createHalfDoneButton(startX, startY, b -> ClientUtils.setScreen(parent));
-    }
-
-    /**
-     * Creates a half-sized done button with the specified position and button consumer.
-     *
-     * @param startX         The x-coordinate of the button's top-left corner.
-     * @param startY         The y-coordinate of the button's top-left corner.
-     * @param ButtonConsumer The consumer function to be called when the button is clicked.
-     * @return The half-sized done button.
-     */
-    default Button createHalfDoneButton(int startX, int startY, Consumer<Button> ButtonConsumer) {
-        return new Button.Builder(GuiUtils.DONE, ButtonConsumer::accept)
-                .bounds(startX, startY, getButtonWidth(ButtonType.SMALL), getButtonHeight())
-                .build();
-    }
-
-    /**
-     * Creates a half-sized save button with the specified position and save consumer.
-     *
-     * @param startX       The x-coordinate of the button's top-left corner.
-     * @param startY       The y-coordinate of the button's top-left corner.
-     * @param saveConsumer The consumer function to be called when the button is clicked.
-     * @return The half-sized save button.
-     */
-    default Button createHalfSaveButton(int startX, int startY, Consumer<Button> saveConsumer) {
-        return new Button.Builder(GuiUtils.SAVE, saveConsumer::accept)
-                .bounds(startX + getButtonWidth(ButtonType.SMALL) + getPadding(), startY, getButtonWidth(ButtonType.SMALL), getButtonHeight())
                 .build();
     }
 
     /**
      * Creates an ok button with the specified position and save consumer.
      *
-     * @param startX       The x-coordinate of the button's top-left corner.
-     * @param startY       The y-coordinate of the button's top-left corner.
      * @param saveConsumer The consumer function to be called when the button is clicked.
      * @return The ok button.
      */
-    default Button createOkButton(int startX, int startY, Consumer<Button> saveConsumer) {
+    default Button createOkButton(Consumer<Button> saveConsumer) {
         return new Button.Builder(GuiUtils.OK, saveConsumer::accept)
-                .bounds(startX, startY, getButtonWidth(ButtonType.NORMAL), getButtonHeight())
                 .build();
     }
 
-    /**
-     * Creates a half-sized ok button with the specified position and save consumer.
-     *
-     * @param startX       The x-coordinate of the button's top-left corner.
-     * @param startY       The y-coordinate of the button's top-left corner.
-     * @param saveConsumer The consumer function to be called when the button is clicked.
-     * @return The half-sized ok button.
-     */
-    default Button createHalfOkButton(int startX, int startY, Consumer<Button> saveConsumer) {
-        return new Button.Builder(GuiUtils.OK, saveConsumer::accept)
-                .bounds(startX + getButtonWidth(ButtonType.SMALL) + getPadding(), startY, getButtonWidth(ButtonType.SMALL), getButtonHeight())
-                .build();
-    }
-
-    /**
-     * Creates an array of save and cancel buttons with the specified position, parent screen, and save consumer.
-     *
-     * @param startX       The x-coordinate of the buttons' top-left corner.
-     * @param startY       The y-coordinate of the buttons' top-left corner.
-     * @param parent       The parent screen to return to when the cancel button is clicked.
-     * @param saveConsumer The consumer function to be called when the save button is clicked.
-     * @return The array of save and cancel buttons.
-     * @deprecated This method is deprecated and will be removed in a future release.
-     */
-    @Deprecated
-    default Button[] createSaveAndCancelButton(int startX, int startY, Screen parent, Consumer<Button> saveConsumer) {
-        return new Button[]{
-                new Button.Builder(GuiUtils.CANCEL, b -> ClientUtils.setScreen(parent))
-                        .bounds(startX, startY, getButtonWidth(ButtonType.SMALL), getButtonHeight())
-                        .build(),
-                new Button.Builder(GuiUtils.SAVE, saveConsumer::accept)
-                        .bounds(startX + getButtonWidth(ButtonType.SMALL) + getButtonHeight(), startY, getButtonWidth(ButtonType.SMALL), getButtonHeight())
-                        .build()
-        };
-    }
 
     /**
      * Returns the height of the buttons.

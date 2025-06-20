@@ -22,84 +22,88 @@ import java.util.Locale;
 public class GuiUtils {
 
     /**
+     * Represents the auto color value, which indicates that the color should be determined automatically.
+     */
+    public static final int AUTO = -1;
+    /**
      * Represents the color black.
      */
-    public static final int BLACK = 0;
+    public static final int BLACK = applyAlpha(0, 1.0f);
 
     /**
      * Represents the color dark blue.
      */
-    public static final int DARK_BLUE = 170;
+    public static final int DARK_BLUE = applyAlpha(170, 1.0f);
 
     /**
      * Represents the color dark green.
      */
-    public static final int DARK_GREEN = 43520;
+    public static final int DARK_GREEN = applyAlpha(43520, 1.0f);
 
     /**
      * Represents the color dark aqua.
      */
-    public static final int DARK_AQUA = 43690;
+    public static final int DARK_AQUA = applyAlpha(43690, 1.0f);
 
     /**
      * Represents the color dark red.
      */
-    public static final int DARK_RED = 11141120;
+    public static final int DARK_RED = applyAlpha(11141120, 1.0f);
 
     /**
      * Represents the color dark purple.
      */
-    public static final int DARK_PURPLE = 11141290;
+    public static final int DARK_PURPLE = applyAlpha(11141290, 1.0f);
 
     /**
      * Represents the color gold.
      */
-    public static final int GOLD = 16755200;
+    public static final int GOLD = applyAlpha(16755200, 1.0f);
 
     /**
      * Represents the color gray.
      */
-    public static final int GRAY = 11184810;
+    public static final int GRAY = applyAlpha(11184810, 1.0f);
 
     /**
      * Represents the color dark gray.
      */
-    public static final int DARK_GRAY = 5592405;
+    public static final int DARK_GRAY = applyAlpha(5592405, 1.0f);
 
     /**
      * Represents the color blue.
      */
-    public static final int BLUE = 5592575;
+    public static final int BLUE = applyAlpha(5592575, 1.0f);
 
     /**
      * Represents the color green.
      */
-    public static final int GREEN = 5635925;
+    public static final int GREEN = applyAlpha(5635925, 1.0f);
 
     /**
      * Represents the color aqua.
      */
-    public static final int AQUA = 5636095;
+    public static final int AQUA = applyAlpha(5636095, 1.0f);
 
     /**
      * Represents the color red.
      */
-    public static final int RED = 16733525;
+    public static final int RED = applyAlpha(16733525, 1.0f);
 
     /**
      * Represents the color light purple.
      */
-    public static final int LIGHT_PURPLE = 16733695;
+    public static final int LIGHT_PURPLE = applyAlpha(16733695, 1.0f);
 
     /**
      * Represents the color yellow.
      */
-    public static final int YELLOW = 16777045;
+    public static final int YELLOW = applyAlpha(16777045, 1.0f);
 
     /**
      * Represents the color white.
      */
-    public static final int WHITE = 16777215;
+    public static final int WHITE = applyAlpha(16777215, 1.0f);
 
     /**
      * Represents the "ON" component.
@@ -257,6 +261,11 @@ public class GuiUtils {
             }
         }
         return decimal;
+    }
+
+    public static int applyAlpha(int color, float alpha) {
+        int a = (int) (alpha * 255);
+        return (color & 0x00FFFFFF) | (a << 24);
     }
 
     /**

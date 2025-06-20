@@ -7,7 +7,6 @@
     "defaultRequire": 1
   },
   "client": [
-    "CommandSourceStackMixin",
-    "DebugRendererMixin"
+    "CommandSourceStackMixin"
   ]
 }

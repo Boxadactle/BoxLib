@@ -4,10 +4,13 @@ import dev.boxadactle.boxlib.math.geometry.Rect;
 import dev.boxadactle.boxlib.util.GuiUtils;
 import dev.boxadactle.boxlib.util.MouseUtils;
 import dev.boxadactle.boxlib.function.Converter;
+import dev.boxadactle.boxlib.util.RenderUtils;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.network.chat.Component;
+import net.minecraft.util.ARGB;
 
+import java.awt.*;
 import java.util.function.Consumer;
 
 /**
@@ -38,8 +41,9 @@ public abstract class BOptionTextField<T> extends EditBox implements BOptionEntr
     public void renderWidget(GuiGraphics p_93657_, int mouseX, int mouseY, float delta) {
         super.renderWidget(p_93657_, mouseX, mouseY, delta);
 
-        if (this.isInvalid()) this.setTextColor(GuiUtils.RED);
-        else this.setTextColor(14737632);
+        if (isInvalid()) {
+            RenderUtils.drawSquare(p_93657_, new Rect<>(this.getX(), this.getY(), this.width, this.height), GuiUtils.applyAlpha(GuiUtils.RED, 0.4f));
+        }
     }
 
     private void onInput(String input) {

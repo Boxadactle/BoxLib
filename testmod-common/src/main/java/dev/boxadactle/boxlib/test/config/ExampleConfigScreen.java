@@ -2,7 +2,7 @@ package dev.boxadactle.boxlib.test.config;
 
 import dev.boxadactle.boxlib.config.BConfig;
 import dev.boxadactle.boxlib.config.BConfigFile;
-import dev.boxadactle.boxlib.config.ConfigGuiBuilder;
+import dev.boxadactle.boxlib.gui.ConfigGuiBuilder;
 import dev.boxadactle.boxlib.core.ModConstants;
 import dev.boxadactle.boxlib.gui.config.BOptionScreen;
 import dev.boxadactle.boxlib.gui.config.widget.BCustomEntry;
@@ -18,9 +18,9 @@ import dev.boxadactle.boxlib.layouts.layout.ColumnLayout;
 import dev.boxadactle.boxlib.layouts.layout.RowLayout;
 import dev.boxadactle.boxlib.prompt.Prompts;
 import dev.boxadactle.boxlib.test.TestMod;
-import dev.boxadactle.boxlib.test.prompts.PromptTestingScreen;
 import dev.boxadactle.boxlib.util.ClientUtils;
 import dev.boxadactle.boxlib.util.GuiUtils;
+import net.minecraft.client.gui.layouts.LinearLayout;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 
@@ -35,7 +35,7 @@ import net.minecraft.network.chat.Component;
 public class ExampleConfigScreen extends BOptionScreen {
 
     public ExampleConfigScreen(Screen parent) {
-        super(parent);
+        super(parent, Component.translatable("boxlib.exampleconfigscreen"));
 
         // this is required (you can also do this yourself if you want) for using a cancel button
         TestMod.CONFIG.cacheConfig();
@@ -56,31 +56,16 @@ public class ExampleConfigScreen extends BOptionScreen {
         return this.width - 15;
     }
 
-    @Override
-    protected int getScrollingWidgetStart() {
-        return super.getScrollingWidgetStart() + 20;
-    }
-
-    @Override
-    protected int getScrollingWidgetEnd() {
-        return super.getScrollingWidgetEnd() - 20;
-    }
-
     // using this method because I'm too lazy
     private ExampleConfigClass config() {
         return TestMod.CONFIG.get();
     }
 
-    @Override
-    protected Component getName() {
-        return Component.translatable("boxlib.exampleconfigscreen");
-    }
-
     // initialize the config screen save and cancel buttons like this
     @Override
-    protected void initFooter(int startX, int startY) {
+    protected void initFooter(LinearLayout layout) {
         // here is where we restore the reload the config to undo all the changes to the config
-        addRenderableWidget(createHalfCancelButton(startX, startY, (b) -> {
+        layout.addChild(createCancelButton((b) -> {
             ClientUtils.setScreen(parent);
             TestMod.CONFIG.restoreCache();
         }));
@@ -88,10 +73,10 @@ public class ExampleConfigScreen extends BOptionScreen {
         // the half save button method will put the button next to the cancel button
         // make sure to add the save button like this, or the save button won't be disabled
         // when an incorrect value is entered
-        setSaveButton(createHalfSaveButton(startX, startY, (b) -> {
+        setSaveButton(layout.addChild(createSaveButton((b) -> {
             TestMod.CONFIG.save();
             ClientUtils.setScreen(parent);
-        }));
+        })));
 
         // here's how you would set the wiki
         // I don't have a wiki, so I'll just
@@ -100,8 +85,7 @@ public class ExampleConfigScreen extends BOptionScreen {
     }
 
     @Override
-    protected void initConfigButtons() {
-
+    protected void addOptions() {
         // here's how you would make an argb field
         // since they don't initialize with a label, I recommend adding one
         addConfigLine(new BCenteredLabel(Component.translatable("boxlib.anArgbField")));
@@ -109,6 +93,23 @@ public class ExampleConfigScreen extends BOptionScreen {
         addConfigLine(new BArgbField(
                 config().anArgbColor,
                 newVal -> config().anArgbColor = newVal
+        ));
+
+        // here's how you would make a color picker button
+        // this will open a color picker when clicked
+        addConfigLine(new BColorPickerButton(
+                "boxlib.colorpicker",
+                this, false,
+                config().aColorPicker,
+                newVal -> config().aColorPicker = newVal
+        ));
+
+        // here's how you would make a color picker button with alpha
+        addConfigLine(new BColorPickerButton(
+                "boxlib.colorpicker.alpha",
+                this, true,
+                config().aColorPickerwAlpha,
+                newVal -> config().aColorPickerwAlpha = newVal
         ));
 
         // you can add 2 entries in 1 line by passing 2 entries into the method
@@ -243,7 +244,7 @@ public class ExampleConfigScreen extends BOptionScreen {
         );
 
         // this is how we would change to another config screen
-        addConfigLine(new BConfigScreenButton(
+        addConfigLine(new BScreenButton(
                 Component.translatable("boxlib.aConfigScreen"),
                 this,
                 this::createPromptTestingScreen

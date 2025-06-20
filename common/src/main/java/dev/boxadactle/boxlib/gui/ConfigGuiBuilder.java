@@ -1,18 +1,21 @@
-package dev.boxadactle.boxlib.config;
+package dev.boxadactle.boxlib.gui;
 
-import dev.boxadactle.boxlib.function.Function3;
+import dev.boxadactle.boxlib.function.Function2;
+import dev.boxadactle.boxlib.gui.config.BConfigList;
 import dev.boxadactle.boxlib.gui.config.BOptionEntry;
 import dev.boxadactle.boxlib.gui.config.BOptionScreen;
 import dev.boxadactle.boxlib.gui.config.widget.button.BCustomButton;
 import dev.boxadactle.boxlib.gui.config.widget.field.BStringField;
 import dev.boxadactle.boxlib.gui.config.widget.label.BCenteredLabel;
 import net.minecraft.client.gui.components.Button;
+import net.minecraft.client.gui.layouts.LinearLayout;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
+import java.util.function.Function;
 
 public class ConfigGuiBuilder {
 
@@ -28,9 +31,9 @@ public class ConfigGuiBuilder {
         Component name;
         Screen parent;
 
-        List<BOptionScreen.ConfigList.ConfigEntry> entries = new ArrayList<>();
+        List<BConfigList.ConfigEntry> entries = new ArrayList<>();
 
-        Function3<Integer, Integer, Screen, Button> footerProvider;
+        Function2<LinearLayout, Screen, Button> footerProvider;
 
         public Builder(Screen parent, Component name) {
             this.parent = parent;
@@ -38,53 +41,52 @@ public class ConfigGuiBuilder {
         }
 
         public Builder addEntry(BOptionEntry<?> entry) {
-            this.entries.add(new BOptionScreen.ConfigList.SingleEntry(entry));
+            this.entries.add(new BConfigList.SingleEntry(entry));
             return this;
         }
 
         public Builder addDoubleEntry(BOptionEntry<?> entry1, BOptionEntry<?> entry2) {
-            this.entries.add(new BOptionScreen.ConfigList.DoubleEntry(entry1, entry2));
+            this.entries.add(new BConfigList.DoubleEntry(entry1, entry2));
             return this;
         }
 
         public Builder addButton(Component message, Runnable onClick) {
-            entries.add(new BOptionScreen.ConfigList.SingleEntry(BCustomButton.create(message, onClick)));
+            entries.add(new BConfigList.SingleEntry(BCustomButton.create(message, onClick)));
             return this;
         }
 
         public Builder addLabel(Component message) {
-            entries.add(new BOptionScreen.ConfigList.SingleEntry(new BCenteredLabel(message)));
+            entries.add(new BConfigList.SingleEntry(new BCenteredLabel(message)));
             return this;
         }
 
         public Builder addInput(String value, Consumer<String> consumer) {
-            entries.add(new BOptionScreen.ConfigList.SingleEntry(new BStringField(value, consumer)));
+            entries.add(new BConfigList.SingleEntry(new BStringField(value, consumer)));
             return this;
         }
 
-        public Builder setFooterProvider(Function3<Integer, Integer, Screen, Button> footerProvider) {
+        public Builder setFooterProvider(Function2<LinearLayout, Screen, Button> footerProvider) {
             this.footerProvider = footerProvider;
             return this;
         }
 
-        public BOptionScreen build() {
-            return new BOptionScreen(parent) {
-                @Override
-                protected Component getName() {
-                    return name;
-                }
+        public Builder setFooterProvider(Function<Screen, Button> footerProvider) {
+            return setFooterProvider((layout, screen) -> layout.addChild(footerProvider.apply(screen)));
+        }
 
+        public BOptionScreen build() {
+            return new BOptionScreen(parent, name) {
                 @Override
-                protected void initFooter(int startX, int startY) {
+                protected void initFooter(LinearLayout layout) {
                     if (footerProvider != null) {
-                        this.addRenderableWidget(footerProvider.accept(startX, startY, parent));
+                        footerProvider.accept(layout, parent);
                     } else {
-                        addRenderableWidget(createDoneButton(startX, startY, parent));
+                        layout.addChild(createDoneButton(parent));
                     }
                 }
 
                 @Override
-                protected void initConfigButtons() {
+                protected void addOptions() {
                     entries.forEach(this::addConfigLine);
                 }
             };

@@ -1,0 +1,6 @@
+{
+  "boxlib.color.red": "R: %s",
+  "boxlib.color.green": "G: %s",
+  "boxlib.color.blue": "B: %s",
+  "boxlib.color.alpha": "A: %s"
+}

@@ -1,6 +1,7 @@
 package dev.boxadactle.boxlib.gui.config.widget.field;
 
 import dev.boxadactle.boxlib.gui.config.BOptionTextField;
+import dev.boxadactle.boxlib.util.GuiUtils;
 
 import java.util.function.Consumer;
 
@@ -31,7 +32,7 @@ public class BHexField extends BOptionTextField<Integer> {
         try {
             Integer a = Integer.valueOf(input.replaceAll("#", ""), 16);
             this.setInvalid(false);
-            return a;
+            return GuiUtils.applyAlpha(a, 1.0f);
         } catch (NumberFormatException e) {
             this.setInvalid(true);
             return null;
