@@ -1,9 +1,11 @@
 package dev.boxadactle.boxlib.util;
 
+import com.mojang.blaze3d.pipeline.RenderPipeline;
 import com.mojang.blaze3d.systems.RenderSystem;
 import dev.boxadactle.boxlib.math.geometry.Rect;
 import dev.boxadactle.boxlib.math.geometry.Vec2;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -74,7 +76,7 @@ public class RenderUtils {
      * @param v           The v-coordinate of the top-left corner of the texture.
      */
     public static void drawTexture(ResourceLocation texture, GuiGraphics guiGraphics, int x, int y, int width, int height, int u, int v) {
-        guiGraphics.blit(RenderType::guiTextured, texture, x, y, u, v, width, height, width, height);
+        guiGraphics.blit(RenderPipelines.GUI_TEXTURED, texture, x, y, u, v, width, height, width, height);
     }
 
     /**
@@ -126,7 +128,7 @@ public class RenderUtils {
      * @param y           The y-coordinate of the starting position of the text.
      */
     public static void drawText(GuiGraphics guiGraphics, Component text, int x, int y) {
-        drawText(guiGraphics, text, x, y, GuiUtils.WHITE);
+        drawText(guiGraphics, text, x, y, GuiUtils.AUTO);
     }
 
     /**
@@ -139,7 +141,7 @@ public class RenderUtils {
      * @param color       The color of the text.
      */
     public static void drawText(GuiGraphics guiGraphics, Component text, int x, int y, int color) {
-        guiGraphics.drawString(GuiUtils.getTextRenderer(), text, x, y, color, true);
+        guiGraphics.drawString(GuiUtils.getTextRenderer(), text, x, y, color);
     }
 
     /**
@@ -151,7 +153,7 @@ public class RenderUtils {
      * @param y           The y-coordinate of the starting position of the text.
      */
     public static void drawText(GuiGraphics guiGraphics, String text, int x, int y) {
-        drawText(guiGraphics, text, x, y, GuiUtils.WHITE);
+        drawText(guiGraphics, text, x, y, GuiUtils.AUTO);
     }
 
     /**
@@ -164,7 +166,7 @@ public class RenderUtils {
      * @param color       The color of the text.
      */
     public static void drawText(GuiGraphics guiGraphics, String text, int x, int y, int color) {
-        guiGraphics.drawString(GuiUtils.getTextRenderer(), text, x, y, color, true);
+        guiGraphics.drawString(GuiUtils.getTextRenderer(), text, x, y, color);
     }
 
     /**
@@ -176,7 +178,7 @@ public class RenderUtils {
      * @param y           The y-coordinate of the center position of the text.
      */
     public static void drawTextCentered(GuiGraphics guiGraphics, Component text, int x, int y) {
-        drawTextCentered(guiGraphics, text, x, y, GuiUtils.WHITE);
+        drawTextCentered(guiGraphics, text, x, y, GuiUtils.AUTO);
     }
 
     /**
@@ -189,7 +191,7 @@ public class RenderUtils {
      * @param color       The color of the text.
      */
     public static void drawTextCentered(GuiGraphics guiGraphics, Component text, int x, int y, int color) {
-        guiGraphics.drawString(GuiUtils.getTextRenderer(), text, (x - GuiUtils.getTextRenderer().width(text) / 2), y, color, true);
+        guiGraphics.drawCenteredString(GuiUtils.getTextRenderer(), text, x, y, color);
     }
 
     /**
@@ -214,7 +216,7 @@ public class RenderUtils {
      * @param color       The color of the text.
      */
     public static void drawTextCentered(GuiGraphics guiGraphics, String text, int x, int y, int color) {
-        guiGraphics.drawString(GuiUtils.getTextRenderer(), text, (x - GuiUtils.getTextRenderer().width(text) / 2), y, color, true);
+        guiGraphics.drawCenteredString(GuiUtils.getTextRenderer(), text, x, y, color);
     }
 
 }

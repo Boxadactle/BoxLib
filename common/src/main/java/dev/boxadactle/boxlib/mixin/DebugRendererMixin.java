@@ -1,4 +1,4 @@
-package dev.boxadactle.boxlib.neoforge.mixin;
+package dev.boxadactle.boxlib.mixin;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import dev.boxadactle.boxlib.rendering.RenderImpl;
@@ -12,10 +12,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(DebugRenderer.class)
 public class DebugRendererMixin {
-
     @Inject(method = "render", at = @At("RETURN"))
-    public void render3D(PoseStack arg, Frustum arg2, MultiBufferSource.BufferSource arg3, double d, double e, double f, CallbackInfo ci) {
-        RenderImpl.renderAll(arg, arg3, d, e, f);
+    public void render3D(PoseStack poseStack, Frustum frustum, MultiBufferSource.BufferSource bufferSource, double d, double e, double f, CallbackInfo ci) {
+        RenderImpl.renderAll(poseStack, bufferSource, d, e, f);
     }
-
 }

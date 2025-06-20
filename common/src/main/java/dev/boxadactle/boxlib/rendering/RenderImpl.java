@@ -3,6 +3,7 @@ package dev.boxadactle.boxlib.rendering;
 import com.mojang.blaze3d.vertex.PoseStack;
 import dev.boxadactle.boxlib.function.Provider;
 import net.minecraft.client.renderer.MultiBufferSource;
+import org.joml.Matrix4f;
 import oshi.util.tuples.Pair;
 
 import java.util.ArrayList;
@@ -11,24 +12,27 @@ import java.util.List;
 
 public class RenderImpl {
 
-    static List<Renderer3D> renderers = new ArrayList<>();
-    static List<Provider<Pair<Renderer3D, Boolean>>> renderProviders = new ArrayList<>();
+    static List<Renderer3D<?>> renderers = new ArrayList<>();
+    static List<Provider<Pair<Renderer3D<?>, Boolean>>> renderProviders = new ArrayList<>();
+
+    Matrix4f projectionMatrix = new Matrix4f();
+    Matrix4f modelViewMatrix = new Matrix4f();
 
     public static void renderAll(PoseStack poseStack, MultiBufferSource.BufferSource bufferSource, double d, double e, double f) {
-        Iterator<Renderer3D> iterator = renderers.iterator();
+        Iterator<Renderer3D<?>> iterator = renderers.iterator();
         while (iterator.hasNext()) {
-            Renderer3D renderer3D = iterator.next();
+            Renderer3D<?> renderer3D = iterator.next();
             renderer3D.render(poseStack, bufferSource, d, e, f);
             if (renderer3D.disposeNextFrame()) {
                 iterator.remove();
             }
         }
 
-        Iterator<Provider<Pair<Renderer3D, Boolean>>> providerIterator = renderProviders.iterator();
+        Iterator<Provider<Pair<Renderer3D<?>, Boolean>>> providerIterator = renderProviders.iterator();
         while (providerIterator.hasNext()) {
-            Provider<Pair<Renderer3D, Boolean>> provider = providerIterator.next();
-            Pair<Renderer3D, Boolean> pair = provider.get();
-            Renderer3D renderer3D = pair.getA();
+            Provider<Pair<Renderer3D<?>, Boolean>> provider = providerIterator.next();
+            Pair<Renderer3D<?>, Boolean> pair = provider.get();
+            Renderer3D<?> renderer3D = pair.getA();
             renderer3D.render(poseStack, bufferSource, d, e, f);
             if (!pair.getB()) {
                 providerIterator.remove();

@@ -4,6 +4,8 @@
   "boxlib.wiki": "Wiki...",
 
   "boxlib.anArgbField": "An ARGB Field",
+  "boxlib.colorpicker": "Color Picker: %s",
+  "boxlib.colorpicker.alpha": "Color picker with alpha: %s",
   "boxlib.aBoolean": "Boolean: %s",
   "boxlib.aDouble": "A Double",
   "boxlib.aFloat": "A Float",

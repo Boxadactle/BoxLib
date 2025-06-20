@@ -4,6 +4,10 @@ import dev.boxadactle.boxlib.function.Consumer2;
 import dev.boxadactle.boxlib.gui.config.BOptionHelper;
 import dev.boxadactle.boxlib.util.ClientUtils;
 import net.minecraft.client.gui.components.Button;
+import net.minecraft.client.gui.layouts.FrameLayout;
+import net.minecraft.client.gui.layouts.HeaderAndFooterLayout;
+import net.minecraft.client.gui.layouts.LinearLayout;
+import net.minecraft.client.gui.navigation.ScreenRectangle;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 
@@ -13,6 +17,9 @@ public abstract class PromptScreen<T> extends Screen implements BOptionHelper {
     Consumer2<Boolean, T> dataConsumer;
 
     Button okButton;
+
+    protected HeaderAndFooterLayout layout = new HeaderAndFooterLayout(this);
+    protected FrameLayout frame;
 
     protected PromptScreen(Screen parent) {
         super(Component.literal("BoxLib prompt screen"));
@@ -59,17 +66,22 @@ public abstract class PromptScreen<T> extends Screen implements BOptionHelper {
 
     @Override
     protected void init() {
+        frame = new FrameLayout(width / 4, height / 4, width / 2, height / 2);
+
+        frame.addChild(layout);
+
         if (hasButtons()) {
-            int startX = getStartX();
-            int startY = getStartY();
+            LinearLayout linearLayout = layout.addToFooter(LinearLayout.horizontal().spacing(BOptionHelper.padding()));
 
             // cancel button
-            addRenderableWidget(createHalfCancelButton(startX, startY, (b) -> closeScreen(false)));
+            linearLayout.addChild(createCancelButton((b) -> closeScreen(false)));
 
             // ok button
-            okButton = addRenderableWidget(createHalfOkButton(startX, startY, (b) -> closeScreen(true)));
+            okButton = linearLayout.addChild(createOkButton((b) -> closeScreen(true)));
         }
 
+        frame.visitWidgets(this::addRenderableWidget);
+        frame.arrangeElements();
     }
 
     @Override

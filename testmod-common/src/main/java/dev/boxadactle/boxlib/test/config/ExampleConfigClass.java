@@ -17,6 +17,10 @@ public class ExampleConfigClass implements BConfig {
 
     public int anArgbColor = 0x405c5c5c;
 
+    public int aColorPicker = 0x6796c7;
+
+    public int aColorPickerwAlpha = 0x40c7c7c7;
+
     public boolean aBoolean = true;
 
     public double aDouble = 0.56;

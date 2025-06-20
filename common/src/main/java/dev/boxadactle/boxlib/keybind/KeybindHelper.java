@@ -17,8 +17,9 @@ public class KeybindHelper {
      *
      * @param key The keybinding to register.
      */
-    public static void registerKey(KeyMapping key) {
+    public static KeyMapping registerKey(KeyMapping key) {
         KeybindingImpl.addKeyMapping(key);
+        return key;
     }
 
     /**

@@ -125,26 +125,10 @@ public class TestMod {
                 .setColor(GuiUtils.GOLD)
                 .setAlpha(0.3F);
 
-        GraphicRenderer graphicRenderer = new GraphicRenderer(false)
-                .setPos(new Vec3<>(0.0, 100.0, 0.0))
-                .setSize(0.1F)
-                .setWidth(256)
-                .setHeight(64)
-                .setCentered(true)
-                .setRenderer((graphics, x, y) -> {
-                    RenderUtils.drawTexture(
-                            ResourceLocation.withDefaultNamespace("textures/gui/title/minceraft.png"),
-                            graphics,
-                            x, y, 256, 64,
-                            0, 0
-                    );
-                });
-
         RenderQueue.addRenderer(renderer);
         RenderQueue.addRenderer(outlineRenderer);
         RenderQueue.addRenderer(pathRenderer);
         RenderQueue.addRenderer(boxRenderer);
-        RenderQueue.addRenderer(graphicRenderer);
         RenderQueue.addRenderer(() -> {
             net.minecraft.world.phys.Vec3 playerPos = WorldUtils.getCamera().position().add(10.0, 0.0, 0.0);
 

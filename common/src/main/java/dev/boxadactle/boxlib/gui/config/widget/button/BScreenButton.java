@@ -9,7 +9,7 @@ import net.minecraft.network.chat.Component;
 /**
  * A button that opens a configuration screen when clicked.
  */
-public class BConfigScreenButton extends BOptionButton<Screen> {
+public class BScreenButton extends BOptionButton<Screen> {
 
     protected BOptionScreen.Provider<?> function;
 
@@ -20,7 +20,7 @@ public class BConfigScreenButton extends BOptionButton<Screen> {
      * @param parent   the parent screen
      * @param function the provider function that creates the configuration screen
      */
-    public BConfigScreenButton(Component message, Screen parent, BOptionScreen.Provider<?> function) {
+    public BScreenButton(Component message, Screen parent, BOptionScreen.Provider<?> function) {
         super(message, parent, s -> {});
 
         this.function = function;

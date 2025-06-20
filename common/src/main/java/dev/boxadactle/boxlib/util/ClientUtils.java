@@ -80,7 +80,7 @@ public class ClientUtils {
      * @return the current game version
      */
     public static String getGameVersion() {
-        return SharedConstants.getCurrentVersion().getName();
+        return SharedConstants.getCurrentVersion().name();
     }
 
     /**
