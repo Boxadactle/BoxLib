@@ -60,8 +60,6 @@ import net.minecraft.network.chat.Component;
  */
 public abstract class BOptionScreen extends OptionsSubScreen implements BOptionHelper {
 
-    protected Screen parent;
-
     protected BConfigList configList;
 
     protected Button saveButton;

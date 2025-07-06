@@ -66,7 +66,7 @@ public class ExampleConfigScreen extends BOptionScreen {
     protected void initFooter(LinearLayout layout) {
         // here is where we restore the reload the config to undo all the changes to the config
         layout.addChild(createCancelButton((b) -> {
-            ClientUtils.setScreen(parent);
+            ClientUtils.setScreen(lastScreen);
             TestMod.CONFIG.restoreCache();
         }));
 
@@ -75,7 +75,7 @@ public class ExampleConfigScreen extends BOptionScreen {
         // when an incorrect value is entered
         setSaveButton(layout.addChild(createSaveButton((b) -> {
             TestMod.CONFIG.save();
-            ClientUtils.setScreen(parent);
+            ClientUtils.setScreen(lastScreen);
         })));
 
         // here's how you would set the wiki
