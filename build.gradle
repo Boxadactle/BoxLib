@@ -105,7 +105,7 @@ githubRelease {
     owner = "Boxadactle"
     repo = "BoxLib"
     tagName = project.version
-    targetCommitish = "latest"
+    targetCommitish = "dev"
     releaseName = "BoxLib $project.version"
     generateReleaseNotes = true
     body = """BoxLib $project.version for Minecraft $project.minecraft_version
