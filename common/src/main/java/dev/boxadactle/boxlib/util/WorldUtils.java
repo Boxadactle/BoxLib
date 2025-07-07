@@ -2,6 +2,7 @@ package dev.boxadactle.boxlib.util;
 
 import com.google.common.collect.ComparisonChain;
 import com.google.common.collect.Ordering;
+import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.multiplayer.ClientPacketListener;
 import net.minecraft.client.multiplayer.PlayerInfo;
 import net.minecraft.resources.ResourceKey;
@@ -42,7 +43,7 @@ public class WorldUtils {
      *
      * @return The game world.
      */
-    public static Level getWorld() {
+    public static ClientLevel getWorld() {
         return ClientUtils.getClient().level;
     }
 

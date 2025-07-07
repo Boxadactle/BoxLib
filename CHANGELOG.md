@@ -1,2 +1,3 @@
 ## Changelog
-- Updated 1.21.7
+- fixed WorldUtils return type
+- added custom entries to ConfigScreenBuilder

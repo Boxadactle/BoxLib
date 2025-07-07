@@ -1,0 +1,45 @@
+name: Publish to Maven
+on: [ workflow_dispatch ]
+
+permissions:
+  contents: read
+
+jobs:
+  publishmaven:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up JDK 21
+        uses: actions/setup-java@v3
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+
+      - name: Set up gradlew
+        run: chmod +x
+
+      - name: Build and Publish with Gradle
+        run: ./gradlew build publish
+        env:
+          MAVEN_USER: ${{ secrets.MAVEN_USERNAME }}
+          MAVEN_PASS: ${{ secrets.MAVEN_PASSWORD }}
+
+      - name: Upload fabric
+        uses: actions/upload-artifact@v4
+        with:
+          name: fabric-build
+          path: fabric/build/libs
+
+      - name: Upload neoforge
+        uses: actions/upload-artifact@v4
+        with:
+          name: neoforge-build
+          path: neoforge/build/libs
+
+      - name: Upload forge
+        uses: actions/upload-artifact@v4
+        with:
+          name: forge-build
+          path: forge/build/libs

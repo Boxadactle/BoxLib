@@ -45,6 +45,11 @@ public class ConfigGuiBuilder {
             return this;
         }
 
+        public Builder addCustomEntry(BConfigList.ConfigEntry entry) {
+            this.entries.add(entry);
+            return this;
+        }
+
         public Builder addDoubleEntry(BOptionEntry<?> entry1, BOptionEntry<?> entry2) {
             this.entries.add(new BConfigList.DoubleEntry(entry1, entry2));
             return this;
