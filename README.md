@@ -40,7 +40,7 @@ Please DO NOT use BoxLib for server mods, it's been specifically written for Cli
 **`build.gradle:`**
 ```gradle
 repositories {
-    maven { url = "https://maven.boxadactle.dev/" }
+    maven { url = "https://maven.boxadactle.dev/releases" }
 }
 
 dependencies {
@@ -57,7 +57,7 @@ _Make sure to replace `VERSION` with the correct version of each mod_
 **`build.gradle`**
 ```gradle
 repositories {
-    maven { url = "https://maven.boxadactle.dev/" }
+    maven { url = "https://maven.boxadactle.dev/releases" }
 }
 
 dependencies {
@@ -74,7 +74,7 @@ _Make sure to replace `VERSION` with the correct version of each mod_
 **`build.gradle`**
 ```gradle
 repositories {
-    maven { url = "https://maven.boxadactle.dev/" }
+    maven { url = "https://maven.boxadactle.dev/releases" }
 }
 
 dependencies {
@@ -87,17 +87,13 @@ dependencies {
 _Make sure to replace `VERSION` with the correct version of each mod_
 
 
-#### Setup with Forge (DEPRECATED)
-
-<p style="color: red">THE FORGE VERSION OF BOXLIB HAS BEEN DEPRECATED SINCE 1.20.6</p>
-
+#### Setup with Forge
 **`build.gradle:`**
 ```gradle
-// For Forge, I recommend embedding the mod with the built-in jarJar
 jarJar.enable()
 
 repositories {
-    maven { url = "https://maven.boxadactle.dev/" }
+    maven { url = "https://maven.boxadactle.dev/releases" }
 }
 
 dependencies {
