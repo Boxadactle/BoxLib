@@ -22,7 +22,13 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public class BConfigList extends ContainerObjectSelectionList<BConfigList.ConfigEntry> implements LayoutElement {
 
     BOptionScreen screen;
-    
+
+    /**
+     * Constructs a BConfigList with the specified Minecraft instance and BOptionScreen.
+     *
+     * @param minecraft The Minecraft instance.
+     * @param screen The BOptionScreen that this list belongs to.
+     */
     public BConfigList(Minecraft minecraft, BOptionScreen screen) {
         super(
                 minecraft,
@@ -199,7 +205,7 @@ public class BConfigList extends ContainerObjectSelectionList<BConfigList.Config
 
     /**
      * Represents a configuration entry in the BOptionScreen.
-     * This class is an abstract subclass of ContainerObjectSelectionList.Entry<ConfigEntry>.
+     * This class is an abstract subclass of ContainerObjectSelectionList.Entry&lt;ConfigEntry&gt;.
      * It provides methods for retrieving the list of widgets associated with the entry and checking if the entry is invalid.
      */
     public abstract static class ConfigEntry extends ContainerObjectSelectionList.Entry<ConfigEntry> {

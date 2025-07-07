@@ -13,7 +13,7 @@ public interface JsonGetRequest extends HttpGetRequest<JsonElement> {
 
     /**
      * Callback method that is called when a successful response is received.
-     * Parses the response into a {@link JsonObject} and calls the {@link #onJson(JsonObject)} method.
+     * Parses the response into a {@link JsonObject}
      *
      * @param response the JSON response as a string
      */

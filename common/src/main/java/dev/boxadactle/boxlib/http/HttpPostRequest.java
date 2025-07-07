@@ -8,6 +8,7 @@ import java.net.ProtocolException;
 /**
  * Represents an HTTP POST request.
  * Extends the {@link HttpRequest} interface.
+ * @param <T> The type of the response expected from the HTTP POST request.
  */
 public interface HttpPostRequest<T> extends HttpRequest<T> {
 

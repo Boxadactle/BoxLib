@@ -11,6 +11,7 @@ import java.net.URI;
 /**
  * The HttpRequest interface represents an HTTP request.
  * Implementations of this interface can be used to send HTTP requests and handle the responses.
+ * @param <T> the type of the response expected from the HTTP request
  */
 public interface HttpRequest<T> {
 

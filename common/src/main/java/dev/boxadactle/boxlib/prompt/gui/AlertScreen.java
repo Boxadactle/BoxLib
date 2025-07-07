@@ -9,12 +9,23 @@ import net.minecraft.client.gui.layouts.LinearLayout;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 
+/**
+ * AlertScreen is a screen that displays an alert message to the user.
+ * It extends PromptScreen and provides a simple interface for displaying
+ * a message with an OK button to close the screen.
+ */
 public class AlertScreen extends PromptScreen<Void> {
 
     int textY;
 
     Component message;
 
+    /**
+     * Constructs an AlertScreen with the specified parent screen and message.
+     *
+     * @param parent  The parent screen.
+     * @param message The message to display in the alert.
+     */
     public AlertScreen(Screen parent, Component message) {
         super(parent);
 

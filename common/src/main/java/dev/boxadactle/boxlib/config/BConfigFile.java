@@ -19,14 +19,14 @@ public @interface BConfigFile {
     /**
      * The name of the file to be saved/loaded
      *
-     * @apiNote File extensions must not be included, as they will be appended by a different property
+     * <p>File extensions must not be included, as they will be appended by a different property</p>
      */
     String value() default "";
 
     /**
      * Only specify this value if you don't want to use the default .json extension
      *
-     * @apiNote "." is optional, it will be appended if you don't specify it
+     * <p>"." is optional, it will be appended if you don't specify it</p>
      */
     String filetype() default ".json";
 }
