@@ -104,13 +104,14 @@ publishMods {
 githubRelease {
     owner = "Boxadactle"
     repo = "BoxLib"
-    tagName = project.version
+    tagName = "$project.version"
     targetCommitish = "dev"
     releaseName = "BoxLib $project.version"
     generateReleaseNotes = true
     body = """BoxLib $project.version for Minecraft $project.minecraft_version
 
-${new File(rootProject.rootDir, project.changelog_file).text}"""
+${new File(rootProject.rootDir, project.changelog_file).text}
+"""
     authorization = "Token ${System.getenv("GITHUB_TOKEN")}"
 
     var files = []
@@ -120,4 +121,6 @@ ${new File(rootProject.rootDir, project.changelog_file).text}"""
         }
     }
     releaseAssets = files
+
+//    dryRun = true
 }
