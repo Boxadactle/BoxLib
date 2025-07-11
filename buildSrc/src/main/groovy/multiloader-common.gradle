@@ -120,14 +120,38 @@ processResources {
 
 publishing {
     publications {
-        register('mavenJava', MavenPublication) {
-            artifactId base.archivesName.get()
+        mavenJava(MavenPublication) {
             from components.java
+            groupId = rootProject.group
+            artifactId = "Boxlib-$project.name"
+            version = rootProject.version
         }
     }
-    repositories {
-        maven {
-            url System.getenv('local_maven_url')
+
+    def user = System.getenv("MAVEN_USER")
+    def pass = System.getenv("MAVEN_PASS")
+
+    if (user && pass) {
+        repositories {
+            maven {
+                name = "boxadactleReleases"
+                url = uri("https://maven.boxadactle.dev/releases")
+                credentials {
+                    username = user
+                    password = pass
+                }
+            }
+
+            maven {
+                name = "boxadactleSnapshots"
+                url = uri("https://maven.boxadactle.dev/snapshots")
+                credentials {
+                    username = user
+                    password = pass
+                }
+            }
         }
+    } else {
+        println "Skipping Maven repository upload, no credentials provided."
     }
 }

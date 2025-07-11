@@ -37,38 +37,3 @@ neoForge {
 }
 
 sourceSets.main.resources { srcDir 'src/generated/resources' }
-
-publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            groupId = rootProject.group
-            artifactId = "Boxlib-$project.name"
-            version = rootProject.version
-        }
-    }
-
-    def user = System.getenv("MAVEN_USER")
-    def pass = System.getenv("MAVEN_PASS")
-
-    if (user && pass) {
-        repositories {
-            maven {
-                url = uri("https://maven.boxadactle.dev/releases")
-                credentials {
-                    username = user
-                    password = pass
-                }
-            }
-
-            maven {
-                url = uri("https://maven.boxadactle.dev/snapshots")
-                credentials {
-                    username = user
-                    password = pass
-                }
-            }
-        }
-    } else {
-        println "Skipping Maven repository upload, no credentials provided."
-    }
-}
