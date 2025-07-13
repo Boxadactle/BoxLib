@@ -10,14 +10,14 @@ authors="${mod_author}"
 description='''${description}'''
 logoFile='icon.png'
 
-[[dependencies.${modid}]]
+[[dependencies.${mod_id}]]
 modId="forge"
 mandatory=true
 versionRange="${forge_loader_version_range}"
 ordering="NONE"
 side="BOTH"
 
-[[dependencies.${modid}]]
+[[dependencies.${mod_id}]]
 modId="minecraft"
 mandatory=true
 versionRange="${minecraft_version_range}"
