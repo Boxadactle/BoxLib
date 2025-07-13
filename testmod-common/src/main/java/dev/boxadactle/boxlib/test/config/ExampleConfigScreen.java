@@ -4,6 +4,7 @@ import dev.boxadactle.boxlib.config.BConfig;
 import dev.boxadactle.boxlib.config.BConfigFile;
 import dev.boxadactle.boxlib.gui.ConfigGuiBuilder;
 import dev.boxadactle.boxlib.core.ModConstants;
+import dev.boxadactle.boxlib.gui.auto.AutoConfigGui;
 import dev.boxadactle.boxlib.gui.config.BOptionScreen;
 import dev.boxadactle.boxlib.gui.config.widget.BCustomEntry;
 import dev.boxadactle.boxlib.gui.config.widget.BSpacingEntry;
@@ -248,6 +249,10 @@ public class ExampleConfigScreen extends BOptionScreen {
                 Component.translatable("boxlib.aConfigScreen"),
                 this,
                 this::createPromptTestingScreen
+        ), new BScreenButton(
+                Component.translatable("boxlib.autoconfigscreen"),
+                this,
+                this::createAutoGui
         ));
 
         // here is how we would render our own thing
@@ -270,6 +275,19 @@ public class ExampleConfigScreen extends BOptionScreen {
          * entries by extending the BConfigButton,
          * BConfigTextField, or BConfigSlider classes */
 
+    }
+
+    // this is how you would create an auto config screen
+    // from a specified class with the @Gui annotation
+    public BOptionScreen createAutoGui(Screen parent) {
+        return AutoConfigGui.start(TestMod.CONFIG2.get(), parent)
+                .setFooterProvider((layout, s) ->
+                    layout.addChild(setSaveButton(createSaveButton(b -> {
+                        TestMod.CONFIG2.save();
+                        ClientUtils.setScreen(s);
+                    })))
+                )
+                .build();
     }
 
     public BOptionScreen createPromptTestingScreen(Screen parent) {

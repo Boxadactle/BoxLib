@@ -1,5 +1,7 @@
 package dev.boxadactle.boxlib.gui.config;
 
+import net.minecraft.client.gui.components.Tooltip;
+
 /**
  * The BOptionEntry interface represents an entry for a GUI option in the BoxLib library.
  * It provides a method to handle user input and a default method to check if the input is invalid.
@@ -23,6 +25,8 @@ public interface BOptionEntry<T> {
      */
     default boolean isInvalid() {
         return false;
-    };
+    }
+
+    default void tooltip(Tooltip t) {}
 
 }

@@ -3,6 +3,7 @@ package dev.boxadactle.boxlib.gui.config;
 import dev.boxadactle.boxlib.math.mathutils.Mappers;
 import dev.boxadactle.boxlib.function.Converter;
 import net.minecraft.client.gui.components.AbstractSliderButton;
+import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.network.chat.Component;
 
 import java.util.function.Consumer;
@@ -71,5 +72,10 @@ public abstract class BOptionSlider<T extends Number> extends AbstractSliderButt
     @Override
     protected void applyValue() {
         handleInput(to(value));
+    }
+
+    @Override
+    public void tooltip(Tooltip t) {
+        setTooltip(t);
     }
 }

@@ -8,7 +8,7 @@ import java.util.function.Consumer;
  * A custom text field widget for integer values.
  * Extends the BOptionTextField class.
  */
-public class BIntegerField extends BOptionTextField<Integer> {
+public class  BIntegerField extends BOptionTextField<Integer> {
 
     /**
      * Constructs a BIntegerField with the specified initial value and function.

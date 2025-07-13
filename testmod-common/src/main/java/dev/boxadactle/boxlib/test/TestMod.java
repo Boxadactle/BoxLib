@@ -11,6 +11,7 @@ import dev.boxadactle.boxlib.math.geometry.Vec3;
 import dev.boxadactle.boxlib.rendering.RenderQueue;
 import dev.boxadactle.boxlib.rendering.renderers.*;
 import dev.boxadactle.boxlib.test.config.ExampleConfigClass;
+import dev.boxadactle.boxlib.test.config.ExampleConfigClass2;
 import dev.boxadactle.boxlib.test.keybind.Keybindings;
 import dev.boxadactle.boxlib.translate.Language;
 import dev.boxadactle.boxlib.translate.Translator;
@@ -33,12 +34,14 @@ public class TestMod {
     public static final ModLogger LOGGER = new ModLogger(MOD_NAME);
 
     public static BConfigClass<ExampleConfigClass> CONFIG;
+    public static BConfigClass<ExampleConfigClass2> CONFIG2;
 
     public static void init() {
         LOGGER.info("Initializing " + MOD_NAME + "...");
 
         // make sure to register your config class like this
         CONFIG = BConfigHandler.registerConfig(ExampleConfigClass.class);
+        CONFIG2 = BConfigHandler.registerConfig(ExampleConfigClass2.class);
 
         // make sure to register your client commands like this
         BCommandManager.register(BCommand.create("funny", (context) -> {

@@ -1,5 +1,6 @@
 package dev.boxadactle.boxlib.gui.config.widget.button;
 
+import dev.boxadactle.boxlib.core.BoxLib;
 import dev.boxadactle.boxlib.gui.config.BOptionButton;
 import dev.boxadactle.boxlib.gui.config.BOptionScreen;
 import dev.boxadactle.boxlib.util.ClientUtils;
@@ -28,6 +29,12 @@ public class BScreenButton extends BOptionButton<Screen> {
 
     @Override
     protected Screen changeValue(Screen input) {
-        return ClientUtils.setScreen(function.createScreen(input));
+        try {
+            return ClientUtils.setScreen(function.createScreen(input));
+        } catch (Exception e) {
+            BoxLib.LOGGER.error("Failed to open configuration screen: " + e.getMessage());
+            BoxLib.LOGGER.printStackTrace(e);
+            return null; // Handle the exception appropriately, maybe show an error message
+        }
     }
 }

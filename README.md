@@ -7,6 +7,7 @@ BoxLib is a library mod containing shared code used in Boxadactle's client mods.
 
 #### Features
 - Config GUI Handler
+- Automatic config gui creation
 - Config file loader/saver
 - Client Command Handler
 - Math

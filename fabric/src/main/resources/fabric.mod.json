@@ -1,14 +1,14 @@
 {
   "schemaVersion": 1,
-  "id": "boxlib",
+  "id": "${mod_id}",
   "version": "${version}",
 
-  "name": "BoxLib",
-  "description": "A client-side library mod with tons of features to do all the heavy lifting for all client-side mod developers.",
-  "authors": [ "Boxadactle" ],
+  "name": "${mod_name}",
+  "description": "${description}",
+  "authors": [ "${mod_author}" ],
   "contact": {},
 
-  "license": "MIT",
+  "license": "${license}",
   "icon": "icon.png",
 
   "environment": "*",
@@ -19,7 +19,7 @@
   },
   "depends": {
     "fabricloader": "*",
-    "minecraft": ">=1.21.6",
+    "minecraft": "${minecraft_version_range_fabric}",
     "fabric-api": "*"
   },
   "custom": {

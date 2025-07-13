@@ -252,7 +252,7 @@ public abstract class BOptionScreen extends OptionsSubScreen implements BOptionH
          * @param parent the parent screen
          * @return the newly created screen
          */
-        T createScreen(Screen parent);
+        T createScreen(Screen parent) throws IllegalAccessException;
 
     }
 

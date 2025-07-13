@@ -36,6 +36,8 @@ dependencies {
 
     common(project(path: ':common', configuration: 'namedElements')) { transitive false }
     shadowBundle project(path: ':common', configuration: 'transformProductionFabric')
+
+    modImplementation("com.terraformersmc:modmenu:${rootProject.modmenu_version}") { transitive = false }
 }
 
 shadowJar {

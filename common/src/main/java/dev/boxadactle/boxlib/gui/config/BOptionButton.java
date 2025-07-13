@@ -2,6 +2,7 @@ package dev.boxadactle.boxlib.gui.config;
 
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
+import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.network.chat.Component;
 
 import java.util.function.Consumer;
@@ -145,5 +146,10 @@ public abstract class BOptionButton<T> extends Button implements BOptionEntry<T>
     @Override
     public boolean isInvalid() {
         return false;
+    }
+
+    @Override
+    public void tooltip(Tooltip t) {
+        setTooltip(t);
     }
 }
