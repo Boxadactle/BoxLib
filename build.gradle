@@ -93,10 +93,10 @@ subprojects {
             publications {
                 mavenJava(MavenPublication) {
                     groupId = rootProject.group
-                    version = rootProject.version
+                    artifactId = "Boxlib-$project.name"
 
-                    if (snapshotRepo) artifactId = "Boxlib-$project.name-snapshot"
-                    else artifactId = "Boxlib-$project.name"
+                    if (snapshotRepo) version = "${rootProject.version}-snapshot"
+                    else version = rootProject.version
                 }
             }
 
