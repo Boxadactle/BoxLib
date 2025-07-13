@@ -97,6 +97,8 @@ subprojects {
 
                     if (snapshotRepo) version = "${rootProject.version}-snapshot"
                     else version = rootProject.version
+
+                    from components.java
                 }
             }
 
