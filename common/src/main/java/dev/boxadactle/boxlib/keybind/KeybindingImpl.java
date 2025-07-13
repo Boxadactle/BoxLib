@@ -15,7 +15,6 @@ public class KeybindingImpl {
      * A list of all registered key mappings.
      */
     static List<KeyMapping> keyMappings = new ArrayList<>();
-    static Consumer<KeyMapping> keyMappingConsumer;
 
     /**
      * Adds a new key mapping to the list of registered key mappings.
@@ -23,11 +22,7 @@ public class KeybindingImpl {
      * @param keyMapping The key mapping to add.
      */
     public static void addKeyMapping(KeyMapping keyMapping) {
-        if (keyMappingConsumer == null) {
-            keyMappings.add(keyMapping);
-        } else {
-            keyMappingConsumer.accept(keyMapping);
-        }
+        keyMappings.add(keyMapping);
     }
 
     /**
@@ -37,7 +32,6 @@ public class KeybindingImpl {
      */
     public static void register(Consumer<KeyMapping> consumer) {
         keyMappings.forEach(consumer);
-        keyMappingConsumer = consumer;
     }
 
 }

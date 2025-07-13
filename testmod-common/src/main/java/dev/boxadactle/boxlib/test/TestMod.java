@@ -16,15 +16,19 @@ import dev.boxadactle.boxlib.translate.Language;
 import dev.boxadactle.boxlib.translate.Translator;
 import dev.boxadactle.boxlib.util.GuiUtils;
 import dev.boxadactle.boxlib.util.ModLogger;
+import dev.boxadactle.boxlib.util.RenderUtils;
 import dev.boxadactle.boxlib.util.WorldUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.phys.AABB;
 import oshi.util.tuples.Pair;
 
 public class TestMod {
 
-    public static final String MOD_NAME = "Boxlib Testing";
+    public static final String MOD_NAME = "Boxlib Test Mod";
+
+    public static final String MOD_ID = "boxlibtestmod";
 
     public static final ModLogger LOGGER = new ModLogger(MOD_NAME);
 
@@ -86,8 +90,10 @@ public class TestMod {
 
         Keybindings.init();
 
+        String message = "Test keybind 1 is bound to " + KeybindHelper.getBoundKey(Keybindings.TEST_KEYBIND);
+
         // you can use google translate to translate messages
-        String translated = Translator.translate("The keybind is bound to " + KeybindHelper.getBoundKey(Keybindings.TEST_KEYBIND_5).getName(), Language.DANISH);
+        String translated = Translator.translate(message, Language.SPANISH);
         LOGGER.info(translated);
 
         // render in 3 dimensions like this

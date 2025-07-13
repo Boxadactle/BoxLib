@@ -2,8 +2,6 @@ package dev.boxadactle.boxlib.core;
 
 public class ModConstants {
 
-    public static boolean IS_TEST_ENVIRONMENT = false;
-
     public static final String MOD_NAME = "BoxLib";
 
     public static final String MOD_ID = "boxlib";

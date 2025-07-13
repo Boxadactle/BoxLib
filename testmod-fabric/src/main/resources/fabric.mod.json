@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "id": "boxlibtestmod",
+  "version": "0.0.0",
+  "name": "BoxLib Test",
+  "description": "The most basic client-side library mod",
+  "authors": [
+    "boxadactle"
+  ],
+  "license": "LGPL-3",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "dev.boxadactle.boxlib.test.fabric.TestModFabric"
+    ],
+    "modmenu": [
+      "dev.boxadactle.boxlib.test.fabric.ModMenuIntegration"
+    ]
+  }
+}

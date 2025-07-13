@@ -27,16 +27,8 @@ jobs:
       - name: Set up gradlew
         run: chmod +x ./gradlew
 
-      - name: Build and Publish with Gradle
-        run: ./gradlew build publishMods
-        env:
-          CURSEFORGE_TOKEN: ${{ secrets.CURSEFORGE_TOKEN }}
-          MODRINTH_TOKEN: ${{ secrets.MODRINTH_TOKEN }}
-
-      - name: Create GitHub release
-        run: ./gradlew githubRelease
-        env:
-          GITHUB_TOKEN: ${{ secrets.REPOSITORY_TOKEN }}
+      - name: Build with Gradle
+        run: ./gradlew build
 
       - name: Upload fabric
         uses: actions/upload-artifact@v4
@@ -55,3 +47,14 @@ jobs:
         with:
           name: forge-build
           path: forge/build/libs
+
+      - name: Publish
+        run: ./gradlew publishUnified
+        env:
+          CURSEFORGE_TOKEN: ${{ secrets.CURSEFORGE_TOKEN }}
+          MODRINTH_TOKEN: ${{ secrets.MODRINTH_TOKEN }}
+
+      - name: Create GitHub release
+        run: ./gradlew githubRelease
+        env:
+          GITHUB_TOKEN: ${{ secrets.REPOSITORY_TOKEN }}
