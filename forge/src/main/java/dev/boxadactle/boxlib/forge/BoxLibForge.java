@@ -16,6 +16,7 @@ import net.minecraftforge.client.event.ScreenEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.listener.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.loading.FMLLoader;
 
 @Mod(ModConstants.MOD_ID)
 public class BoxLibForge {
@@ -23,7 +24,7 @@ public class BoxLibForge {
     public BoxLibForge() {
         BoxLib.init();
 
-        Minecraft.getInstance().extraTelemetryAvailable();
+        ModConstants.IS_DEVELOPMENT = !FMLLoader.isProduction();
     }
 
     @Mod.EventBusSubscriber(modid = ModConstants.MOD_ID, value = Dist.CLIENT)

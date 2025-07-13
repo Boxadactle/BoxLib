@@ -25,6 +25,7 @@ jobs:
         env:
           MAVEN_USER: ${{ secrets.MAVEN_USERNAME }}
           MAVEN_PASS: ${{ secrets.MAVEN_PASSWORD }}
+          IS_SNAPSHOT_PUBLISH: true
 
       - name: Upload fabric
         uses: actions/upload-artifact@v4

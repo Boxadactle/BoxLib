@@ -20,7 +20,7 @@ public class TestModNeoForge {
         );
     }
 
-    @EventBusSubscriber(modid = TestMod.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
+    @EventBusSubscriber(modid = TestMod.MOD_ID)
     public static class Skibidi {
         @SubscribeEvent
         public static void init(FMLClientSetupEvent e) {

@@ -1,6 +1,5 @@
 plugins {
     id 'com.github.johnrengelman.shadow'
-    id "me.shedaniel.unified-publishing"
 }
 
 architectury {
@@ -39,14 +38,6 @@ dependencies {
     shadowBundle project(path: ':common', configuration: 'transformProductionFabric')
 }
 
-processResources {
-    inputs.property 'version', project.version
-
-    filesMatching('fabric.mod.json') {
-        expand version: project.version
-    }
-}
-
 shadowJar {
     configurations = [project.configurations.shadowBundle]
     archiveClassifier = 'dev-shadow'
@@ -54,34 +45,4 @@ shadowJar {
 
 remapJar {
     input.set shadowJar.archiveFile
-}
-
-unifiedPublishing {
-    project {
-        displayName = "[Fabric ${rootProject.minecraft_version}] v$rootProject.mod_version"
-        version = "$rootProject.version-fabric"
-        changelog = "A changelog can be found here: https://github.com/Boxadactle/BoxLib/releases/tag/$rootProject.mod_version"
-        releaseType = rootProject.release_type
-        gameVersions = Arrays.asList(rootProject.game_versions.split(","))
-        gameLoaders = [ "fabric", "quilt" ]
-
-        mainPublication tasks.remapJar
-
-        var cfToken = System.getenv("CURSEFORGE_TOKEN")
-        if (cfToken != null) {
-            curseforge {
-                token = cfToken
-                id = rootProject.project_id_curseforge
-            }
-        }
-
-        var modrinthToken = System.getenv("MODRINTH_TOKEN")
-        if (modrinthToken != null) {
-            modrinth {
-                token = modrinthToken
-                id = rootProject.project_id_modrinth
-                version = "${rootProject.mod_version}-${rootProject.name}"
-            }
-        }
-    }
 }
