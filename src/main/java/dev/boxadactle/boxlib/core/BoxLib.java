@@ -15,7 +15,7 @@ public class BoxLib {
 
         BoxLib.LOGGER.info("Initialized %s", ModConstants.MOD_NAME + " v" + ModConstants.VERSION);
 
-//        if (FabricLoader.getInstance().isDevelopmentEnvironment())
+        if (FabricLoader.getInstance().isDevelopmentEnvironment())
             TestMod.init();
     }
 
