@@ -60,6 +60,9 @@ jar {
 }
 
 // configure the maven publication
+def snapshotenv = System.getenv("IS_SNAPSHOT_PUBLISH")
+def snapshotRepo = snapshotenv ? snapshotenv.toBoolean() : true
+
 publishing {
 	publications {
 		create("mavenJava", MavenPublication) {
