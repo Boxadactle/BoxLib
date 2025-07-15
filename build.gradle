@@ -111,7 +111,7 @@ publishMods {
 	type = STABLE
 	modLoaders.add("fabric")
 	displayName = "${mod_version}-fabric"
-	changelog = "Changelog"
+	changelog = "Boots correctly on Java 8"
 
 	curseforge {
 		accessToken = providers.environmentVariable("CURSEFORGE_TOKEN")
