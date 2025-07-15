@@ -105,6 +105,7 @@ publishMods {
 	file = remapJar.archiveFile
 	type = STABLE
 	modLoaders.add("fabric")
+	displayName = "${mod_version}-fabric"
 
 	curseforge {
 		accessToken = providers.environmentVariable("CURSEFORGE_TOKEN")
