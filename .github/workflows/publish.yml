@@ -32,6 +32,7 @@ jobs:
         env:
           CURSEFORGE_TOKEN: ${{ secrets.CURSEFORGE_TOKEN }}
           MODRINTH_TOKEN: ${{ secrets.MODRINTH_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.REPOSITORY_TOKEN }}
 
       - name: Build and Publish with Gradle
         run: ./gradlew publish
@@ -40,25 +41,8 @@ jobs:
           MAVEN_PASS: ${{ secrets.MAVEN_PASSWORD }}
           IS_SNAPSHOT_PUBLISH: false
 
-      - name: Create GitHub release
-        run: ./gradlew githubRelease
-        env:
-          GITHUB_TOKEN: ${{ secrets.REPOSITORY_TOKEN }}
-
-      - name: Upload fabric
+      - name: Upload
         uses: actions/upload-artifact@v4
         with:
-          name: fabric-build
-          path: fabric/build/libs
-
-      - name: Upload neoforge
-        uses: actions/upload-artifact@v4
-        with:
-          name: neoforge-build
-          path: neoforge/build/libs
-
-      - name: Upload forge
-        uses: actions/upload-artifact@v4
-        with:
-          name: forge-build
-          path: forge/build/libs
+          name: build
+          path: build/libs
