@@ -30,17 +30,6 @@ public class BSpacingEntry extends BOptionButton<Object> {
     }
 
     /**
-     * Handles the click event on the spacing entry.
-     *
-     * @param mouseX The x-coordinate of the mouse cursor.
-     * @param mouseY The y-coordinate of the mouse cursor.
-     */
-    @Override
-    public void onClick(double mouseX, double mouseY) {
-        // Implementation details
-    }
-
-    /**
      * Changes the value of the spacing entry.
      *
      * @param input The new value for the spacing entry.

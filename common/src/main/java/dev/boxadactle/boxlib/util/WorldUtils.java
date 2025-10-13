@@ -90,7 +90,7 @@ public class WorldUtils {
             return ComparisonChain.start()
                     .compareTrueFirst(playerListEntry.getGameMode() != GameType.SPECTATOR, playerListEntry2.getGameMode() != GameType.SPECTATOR)
                     .compare(team != null ? team.getName() : "", team2 != null ? team2.getName() : "")
-                    .compare(playerListEntry.getProfile().getName(), playerListEntry2.getProfile().getName(), String::compareToIgnoreCase)
+                    .compare(playerListEntry.getProfile().name(), playerListEntry2.getProfile().name(), String::compareToIgnoreCase)
                     .result();
         }
     }

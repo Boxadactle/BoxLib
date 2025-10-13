@@ -29,11 +29,6 @@ public class BLabel extends BOptionButton<Object> {
     }
 
     @Override
-    public void onClick(double mouseX, double mouseY) {
-
-    }
-
-    @Override
     protected Object changeValue(Object input) {
         return null;
     }

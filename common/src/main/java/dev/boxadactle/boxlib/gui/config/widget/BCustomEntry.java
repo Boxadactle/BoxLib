@@ -37,16 +37,6 @@ public class BCustomEntry extends BOptionButton<Object> {
     }
 
     /**
-     * Handles the click event at the specified mouse coordinates.
-     *
-     * @param mouseX the x-coordinate of the mouse
-     * @param mouseY the y-coordinate of the mouse
-     */
-    @Override
-    public void onClick(double mouseX, double mouseY) {
-    }
-
-    /**
      * Changes the value of the entry.
      *
      * @param input the new value

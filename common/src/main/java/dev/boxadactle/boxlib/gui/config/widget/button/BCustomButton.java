@@ -1,6 +1,7 @@
 package dev.boxadactle.boxlib.gui.config.widget.button;
 
 import dev.boxadactle.boxlib.gui.config.BOptionButton;
+import net.minecraft.client.input.MouseButtonEvent;
 import net.minecraft.network.chat.Component;
 
 /**
@@ -42,8 +43,8 @@ public abstract class BCustomButton extends BOptionButton<Object> {
     protected abstract void buttonClicked(BOptionButton<?> button);
 
     @Override
-    public void onClick(double mouseX, double mouseY) {
-        this.buttonClicked(this);
+    public void onClick(MouseButtonEvent mouseButtonEvent, boolean bl) {
+        buttonClicked(this);
     }
 
     @Override

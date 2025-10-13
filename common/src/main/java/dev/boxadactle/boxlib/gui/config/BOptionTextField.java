@@ -8,6 +8,7 @@ import dev.boxadactle.boxlib.util.RenderUtils;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.components.Tooltip;
+import net.minecraft.client.input.MouseButtonEvent;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.ARGB;
 
@@ -90,11 +91,6 @@ public abstract class BOptionTextField<T> extends EditBox implements BOptionEntr
     }
 
     @Override
-    public boolean mouseClicked(double mouseX, double mouseY, int button) {
-        return super.mouseClicked(mouseX, mouseY, button);
-    }
-
-    @Override
     public void tooltip(Tooltip t) {
         setTooltip(t);
     }
@@ -105,9 +101,9 @@ public abstract class BOptionTextField<T> extends EditBox implements BOptionEntr
     }
 
     @Override
-    public void onClick(double mouseX, double mouseY) {
+    public void onClick(MouseButtonEvent mouseButtonEvent, boolean bl) {
         if (!MouseUtils.isMouseHovering(new Rect<>(this.getX(), this.getY(), this.width, this.height))) super.setFocused(false);
-        super.onClick(mouseX, mouseY);
+        super.onClick(mouseButtonEvent, bl);
     }
 
 }

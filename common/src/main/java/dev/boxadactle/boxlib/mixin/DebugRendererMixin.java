@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(DebugRenderer.class)
 public class DebugRendererMixin {
     @Inject(method = "render", at = @At("RETURN"))
-    public void render3D(PoseStack poseStack, Frustum frustum, MultiBufferSource.BufferSource bufferSource, double d, double e, double f, CallbackInfo ci) {
+    public void render3D(PoseStack poseStack, Frustum frustum, MultiBufferSource.BufferSource bufferSource, double d, double e, double f, boolean bl, CallbackInfo ci) {
         RenderImpl.renderAll(poseStack, bufferSource, d, e, f);
     }
 }

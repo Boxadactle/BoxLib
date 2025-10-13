@@ -1,3 +1,2 @@
 ## Changelog
-- used arch
-- added auto config system
+- update for newer minecraft versions

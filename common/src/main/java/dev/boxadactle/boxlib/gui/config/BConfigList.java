@@ -85,28 +85,15 @@ public class BConfigList extends ContainerObjectSelectionList<BConfigList.Config
             this.widget = widget;
         }
 
-        /**
-         * Renders the entry on the screen.
-         * @param p_93523_ The GuiGraphics object used for rendering.
-         * @param index The index of the entry.
-         * @param y The y-coordinate of the entry.
-         * @param x The x-coordinate of the entry.
-         * @param entryWidth The width of the entry.
-         * @param entryHeight The height of the entry.
-         * @param mouseX The x-coordinate of the mouse.
-         * @param mouseY The y-coordinate of the mouse.
-         * @param hovered Whether the entry is being hovered over.
-         * @param tickDelta The tick delta value.
-         */
         @Override
-        public void render(GuiGraphics p_93523_, int index, int y, int x, int entryWidth, int entryHeight, int mouseX, int mouseY, boolean hovered, float tickDelta) {
+        public void renderContent(GuiGraphics guiGraphics, int i, int j, boolean bl, float f) {
             AbstractWidget w = (AbstractWidget)widget;
 
-            w.setX(x);
-            w.setY(y);
-            w.setWidth(entryWidth);
+            w.setX(getX());
+            w.setY(getY());
+            w.setWidth(getWidth());
 
-            w.render(p_93523_, mouseX, mouseY, tickDelta);
+            w.render(guiGraphics, i, j, f);
         }
 
         /**
@@ -168,38 +155,24 @@ public class BConfigList extends ContainerObjectSelectionList<BConfigList.Config
             return widget1.isInvalid() || widget2.isInvalid();
         }
 
-        /**
-         * Renders the BOptionEntry widgets in this DoubleEntry.
-         *
-         * @param p_93523_     The GuiGraphics object used for rendering.
-         * @param index        The index of the entry.
-         * @param y            The y-coordinate of the entry.
-         * @param x            The x-coordinate of the entry.
-         * @param entryWidth   The width of the entry.
-         * @param entryHeight  The height of the entry.
-         * @param mouseX       The x-coordinate of the mouse.
-         * @param mouseY       The y-coordinate of the mouse.
-         * @param hovered      Whether the entry is being hovered over.
-         * @param tickDelta    The tick delta value.
-         */
         @Override
-        public void render(GuiGraphics p_93523_, int index, int y, int x, int entryWidth, int entryHeight, int mouseX, int mouseY, boolean hovered, float tickDelta) {
+        public void renderContent(GuiGraphics guiGraphics, int i, int j, boolean bl, float f) {
             AbstractWidget w1 = (AbstractWidget) widget1;
             AbstractWidget w2 = (AbstractWidget) widget2;
 
             int p1 = BOptionHelper.padding() / 2;
             int p2 = BOptionHelper.padding() / 2;
 
-            w1.setX(x);
-            w1.setY(y);
-            w1.setWidth(entryWidth / 2 - p1);
+            w1.setX(getX());
+            w1.setY(getY());
+            w1.setWidth(getWidth() / 2 - p1);
 
-            w2.setX(x + entryWidth / 2 + p2);
-            w2.setY(y);
-            w2.setWidth(entryWidth / 2 - p2);
+            w2.setX(getX() + getWidth() / 2 + p2);
+            w2.setY(getY());
+            w2.setWidth(getWidth() / 2 - p2);
 
-            w1.render(p_93523_, mouseX, mouseY, tickDelta);
-            w2.render(p_93523_, mouseX, mouseY, tickDelta);
+            w1.render(guiGraphics, i, j, f);
+            w2.render(guiGraphics, i, j, f);
         }
     }
 

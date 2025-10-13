@@ -3,6 +3,7 @@ package dev.boxadactle.boxlib.gui.config;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.Tooltip;
+import net.minecraft.client.input.MouseButtonEvent;
 import net.minecraft.network.chat.Component;
 
 import java.util.function.Consumer;
@@ -59,20 +60,14 @@ public abstract class BOptionButton<T> extends Button implements BOptionEntry<T>
         return this.changeValue(input);
     }
 
-    /**
-     * Handles the click event for the button.
-     *
-     * @param mouseX the x-coordinate of the mouse click
-     * @param mouseY the y-coordinate of the mouse click
-     */
     @Override
-    public void onClick(double mouseX, double mouseY) {
-        super.onClick(mouseX, mouseY);
+    public void onClick(MouseButtonEvent mouseButtonEvent, boolean bl) {
+        super.onClick(mouseButtonEvent, bl);
 
         this.function.accept(this.handleInput(currentValue));
     }
 
-/**
+    /**
      * Sets the x-coordinate of the button.
      *
      * @param x the new x-coordinate
@@ -110,19 +105,6 @@ public abstract class BOptionButton<T> extends Button implements BOptionEntry<T>
     @Override
     public boolean isHovered() {
         return super.isHovered;
-    }
-
-    /**
-     * Handles the mouse click event.
-     *
-     * @param mouseX the x-coordinate of the mouse click
-     * @param mouseY the y-coordinate of the mouse click
-     * @param button the mouse button that was clicked
-     * @return true if the event was handled, false otherwise
-     */
-    @Override
-    public boolean mouseClicked(double mouseX, double mouseY, int button) {
-        return super.mouseClicked(mouseX, mouseY, button);
     }
 
     /**

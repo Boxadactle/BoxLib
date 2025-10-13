@@ -22,7 +22,7 @@ import net.neoforged.neoforge.client.event.ScreenEvent;
 public class BoxLibNeoforge {
 
     public BoxLibNeoforge() {
-        ModConstants.IS_DEVELOPMENT = !FMLLoader.isProduction();
+        ModConstants.IS_DEVELOPMENT = !FMLLoader.getCurrent().isProduction();
 
         BoxLib.init();
     }

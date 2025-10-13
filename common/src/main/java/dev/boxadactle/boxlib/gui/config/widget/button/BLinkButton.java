@@ -2,6 +2,7 @@ package dev.boxadactle.boxlib.gui.config.widget.button;
 
 import dev.boxadactle.boxlib.gui.config.BOptionButton;
 import dev.boxadactle.boxlib.util.ClientUtils;
+import net.minecraft.client.input.MouseButtonEvent;
 import net.minecraft.network.chat.Component;
 
 /**
@@ -23,14 +24,8 @@ public class BLinkButton extends BOptionButton<Object> {
         this.link = link;
     }
 
-    /**
-     * Opens the link when the button is clicked.
-     *
-     * @param mouseX the x-coordinate of the mouse when clicked
-     * @param mouseY the y-coordinate of the mouse when clicked
-     */
     @Override
-    public void onClick(double mouseX, double mouseY) {
+    public void onClick(MouseButtonEvent mouseButtonEvent, boolean bl) {
         ClientUtils.openLinkConfirmScreen(link, ClientUtils.getCurrentScreen());
     }
 
