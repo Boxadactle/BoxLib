@@ -7,16 +7,21 @@ import dev.boxadactle.boxlib.core.BoxLib;
 import dev.boxadactle.boxlib.core.ModConstants;
 import dev.boxadactle.boxlib.keybind.KeybindingImpl;
 import dev.boxadactle.boxlib.scheduling.Scheduling;
+import dev.boxadactle.boxlib.test.TestMod;
+import dev.boxadactle.boxlib.test.config.ExampleConfigScreen;
 import dev.boxadactle.boxlib.util.MouseUtils;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.ModLoadingContext;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.loading.FMLLoader;
 import net.neoforged.neoforge.client.event.ClientTickEvent;
 import net.neoforged.neoforge.client.event.RegisterClientCommandsEvent;
 import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
 import net.neoforged.neoforge.client.event.ScreenEvent;
+import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 
 @Mod(ModConstants.MOD_ID)
 public class BoxLibNeoforge {
@@ -51,6 +56,16 @@ public class BoxLibNeoforge {
             Scheduling.tick();
         }
 
+        @SubscribeEvent
+        public static void load(FMLClientSetupEvent e) {
+            if (ModConstants.IS_DEVELOPMENT) {
+                TestMod.init();
+
+                ModLoadingContext.get().registerExtensionPoint(IConfigScreenFactory.class, () ->
+                        (minecraft, screen) -> new ExampleConfigScreen(screen)
+                );
+            }
+        }
 
         @SubscribeEvent
         public static void registerKeybinds(RegisterKeyMappingsEvent e) {

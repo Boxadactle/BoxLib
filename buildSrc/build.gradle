@@ -1,0 +1,9 @@
+plugins {
+    id 'groovy-gradle-plugin'
+}
+
+repositories {
+    gradlePluginPortal()
+    maven { url = "https://maven.boxadactle.dev/releases"; name = "Boxadactle Releases" }
+    maven { url = "https://maven.boxadactle.dev/snapshots"; name = "Boxadactle Snapshots" }
+}

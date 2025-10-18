@@ -156,11 +156,6 @@ public class ExampleConfigScreen extends BOptionScreen {
         // the rest is pretty much the same as the previous
         addConfigLine(new BCenteredLabel(Component.translatable("boxlib.aHexColor")));
 
-        addConfigLine(new BHexField(
-                config().aHexColor,
-                newVal -> config().aHexColor = newVal
-        ));
-
         // here's how we would add an integer
         addConfigLine(new BCenteredLabel(Component.translatable("boxlib.anInt")));
 

@@ -2,18 +2,13 @@ package dev.boxadactle.boxlib.gui.config.widget.button;
 
 import dev.boxadactle.boxlib.gui.config.BOptionButton;
 import dev.boxadactle.boxlib.gui.config.BOptionTextField;
-import dev.boxadactle.boxlib.gui.config.widget.field.BArgbField;
-import dev.boxadactle.boxlib.gui.config.widget.field.BHexField;
 import dev.boxadactle.boxlib.gui.config.widget.slider.BIntegerSlider;
 import dev.boxadactle.boxlib.util.ClientUtils;
 import dev.boxadactle.boxlib.util.GuiUtils;
 import dev.boxadactle.boxlib.util.RenderUtils;
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.gui.components.AbstractButton;
-import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.layouts.*;
-import net.minecraft.client.gui.narration.NarrationElementOutput;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.input.MouseButtonEvent;
 import net.minecraft.network.chat.Component;
@@ -147,6 +142,11 @@ public class BColorPickerButton extends BOptionButton<Integer> {
         private void close(Button b) {
             updateColor(getColor());
             ClientUtils.setScreen(BColorPickerButton.this.parent);
+        }
+
+        @Override
+        public boolean shouldCloseOnEsc() {
+            return false;
         }
     }
 }

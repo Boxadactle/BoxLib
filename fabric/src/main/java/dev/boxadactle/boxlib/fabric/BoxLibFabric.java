@@ -7,6 +7,7 @@ import dev.boxadactle.boxlib.core.BoxLib;
 import dev.boxadactle.boxlib.core.ModConstants;
 import dev.boxadactle.boxlib.keybind.KeybindingImpl;
 import dev.boxadactle.boxlib.scheduling.Scheduling;
+import dev.boxadactle.boxlib.test.TestMod;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
@@ -31,6 +32,8 @@ public class BoxLibFabric implements ClientModInitializer {
         });
 
         ModConstants.IS_DEVELOPMENT = FabricLoader.getInstance().isDevelopmentEnvironment();
+
+        if (ModConstants.IS_DEVELOPMENT) TestMod.init();
     }
 
 }

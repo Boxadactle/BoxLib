@@ -115,16 +115,7 @@ public class AutoConfigGui {
             } else {
                 consumer.apply(new BCenteredLabel(Component.translatable(getKey(field))));
                 if (bl) {
-                    Color color = field.getAnnotation(Color.class);
-
-                    if (color.value()) consumer.apply(new BArgbField(field.getInt(config), v -> {
-                        try {
-                            field.set(config, v);
-                        } catch (IllegalAccessException e) {
-                            throw new RuntimeException(e);
-                        }
-                    })).tooltip(getTooltip(field));
-                    else consumer.apply(new BHexField(field.getInt(config), v -> {
+                    consumer.apply(new BArgbField(field.getInt(config), v -> {
                         try {
                             field.set(config, v);
                         } catch (IllegalAccessException e) {
