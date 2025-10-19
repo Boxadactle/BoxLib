@@ -3,6 +3,9 @@ plugins {
     id 'fabric-loom' version '1.11-SNAPSHOT' apply false
     // see https://projects.neoforged.net/neoforged/moddevgradle for new versions
     id 'net.neoforged.moddev' version '2.0.115' apply false
+
+    id "me.modmuss50.mod-publish-plugin" version "0.8.4"
+    id "com.github.breadmoirai.github-release" version "2.5.2"
 }
 
 subprojects {
@@ -27,4 +30,95 @@ subprojects {
         maven { url "https://jitpack.io" }
         maven { url = "https://maven.terraformersmc.com/releases/" }
     }
+}
+
+publishMods {
+    changelog = new File(rootProject.rootDir, project.changelog_file).text
+    type = STABLE
+
+    def cfOptions = curseforgeOptions {
+        accessToken = System.getenv("CURSEFORGE_TOKEN")
+        projectId = project.project_id_curseforge
+        minecraftVersions.addAll(project.game_versions.split(","))
+        changelogType = "markdown"
+        javaVersions.add(JavaVersion.current())
+    }
+
+    def mrOptions = modrinthOptions {
+        accessToken = System.getenv("MODRINTH_TOKEN")
+        projectId = project.project_id_modrinth
+        minecraftVersions.addAll(project.game_versions.split(","))
+    }
+
+    curseforge("curseforgeFabric") {
+        from cfOptions
+        file project(":fabric")
+        modLoaders.addAll("fabric", "quilt")
+        requires {
+            slug = "fabric-api"
+        }
+        displayName = "[Fabric ${project.minecraft_version}] v${project.version}"
+    }
+
+    curseforge("curseforgeForge") {
+        from cfOptions
+        file project(":forge")
+        modLoaders.add("forge")
+        displayName = "[Forge ${project.minecraft_version}] v${project.version}"
+    }
+
+    curseforge("curseforgeNeoforge") {
+        from cfOptions
+        file project(":neoforge")
+        modLoaders.add("neoforge")
+        displayName = "[Neoforge ${project.minecraft_version}] v${project.version}"
+    }
+
+    modrinth("modrinthFabric") {
+        from mrOptions
+        file project(":fabric")
+        modLoaders.addAll("fabric", "quilt")
+        requires {
+            slug = "fabric-api"
+        }
+        displayName = "[Fabric ${project.minecraft_version}] v${project.version}"
+    }
+
+    modrinth("modrinthForge") {
+        from mrOptions
+        file project(":forge")
+        modLoaders.add("forge")
+        displayName = "[Forge ${project.minecraft_version}] v${project.version}"
+    }
+
+    modrinth("modrinthNeoforge") {
+        from mrOptions
+        file project(":neoforge")
+        modLoaders.add("neoforge")
+        displayName = "[Neoforge ${project.minecraft_version}] v${project.version}"
+    }
+}
+
+githubRelease {
+    owner = "Boxadactle"
+    repo = "BoxLib"
+    tagName = "$project.version"
+    targetCommitish = "dev"
+    releaseName = "BoxLib $project.version"
+    generateReleaseNotes = true
+    body = """BoxLib $project.version for Minecraft $project.minecraft_version
+
+${new File(rootProject.rootDir, project.changelog_file).text}
+"""
+    authorization = "Token ${System.getenv("GITHUB_TOKEN")}"
+
+    var files = []
+    for (String platform : project.enabled_platforms.split(',')) {
+        files += fileTree("$platform/build/libs") {
+            include "*$project.version*"
+        }
+    }
+    releaseAssets = files
+
+//    dryRun = true
 }
