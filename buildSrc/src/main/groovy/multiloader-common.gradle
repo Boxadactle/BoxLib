@@ -124,7 +124,12 @@ publishing {
     publishing {
         publications {
             mavenJava(MavenPublication) {
-                artifactId base.archivesName.get()
+                groupId = rootProject.group
+                artifactId = "Boxlib-$project.name"
+
+                if (snapshotRepo) version = "${rootProject.version}-snapshot"
+                else version = rootProject.version
+
                 from components.java
             }
         }
