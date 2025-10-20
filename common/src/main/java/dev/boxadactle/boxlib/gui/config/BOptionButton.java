@@ -64,7 +64,7 @@ public abstract class BOptionButton<T> extends Button implements BOptionEntry<T>
     public void onClick(MouseButtonEvent mouseButtonEvent, boolean bl) {
         super.onClick(mouseButtonEvent, bl);
 
-        this.function.accept(this.handleInput(currentValue));
+        if (function != null) this.function.accept(this.handleInput(currentValue));
     }
 
     /**
