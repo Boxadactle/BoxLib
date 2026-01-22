@@ -15,7 +15,7 @@ import java.util.function.Consumer;
  *
  * @param <T> the type of the value that this button handles
  */
-public abstract class BOptionButton<T> extends Button implements BOptionEntry<T>, BOptionHelper {
+public abstract class BOptionButton<T> extends Button.Plain implements BOptionEntry<T>, BOptionHelper {
 
     /**
      * A function that consumes the current value.
@@ -35,7 +35,7 @@ public abstract class BOptionButton<T> extends Button implements BOptionEntry<T>
      * @param function the function to consume the current value
      */
     public BOptionButton(Component message, T value, Consumer<T> function) {
-        super(0, 0, 10, BOptionHelper.buttonHeight(), message, b -> {}, DEFAULT_NARRATION);
+        super(0, 0, 10, BOptionHelper.buttonHeight(), message != null ? message : Component.empty(), b -> {}, DEFAULT_NARRATION);
 
         this.function = function;
         this.currentValue = value;
@@ -105,19 +105,6 @@ public abstract class BOptionButton<T> extends Button implements BOptionEntry<T>
     @Override
     public boolean isHovered() {
         return super.isHovered;
-    }
-
-    /**
-     * Renders the button.
-     *
-     * @param p_93657_ the GuiGraphics object used for rendering
-     * @param mouseX the x-coordinate of the mouse
-     * @param mouseY the y-coordinate of the mouse
-     * @param delta the time difference between the last and current frame
-     */
-    @Override
-    public void renderWidget(GuiGraphics p_93657_, int mouseX, int mouseY, float delta) {
-        super.renderWidget(p_93657_, mouseX, mouseY, delta);
     }
 
     /**

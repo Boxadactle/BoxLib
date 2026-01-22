@@ -23,17 +23,9 @@ public class BCustomEntry extends BOptionButton<Object> {
         this.function = function;
     }
 
-    /**
-     * Renders the entry using the specified graphics context, mouse coordinates, and delta value.
-     *
-     * @param p_93657_ the graphics context
-     * @param mouseX the x-coordinate of the mouse
-     * @param mouseY the y-coordinate of the mouse
-     * @param delta the delta value
-     */
     @Override
-    public void renderWidget(GuiGraphics p_93657_, int mouseX, int mouseY, float delta) {
-        function.accept(p_93657_, this.getX(), this.getY(), this.width, this.height, mouseX, mouseY, delta);
+    protected void renderContents(GuiGraphics guiGraphics, int mouseX, int mouseY, float delta) {
+        function.accept(guiGraphics, this.getX(), this.getY(), this.width, this.height, mouseX, mouseY, delta);
     }
 
     /**

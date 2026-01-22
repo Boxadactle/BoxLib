@@ -1,14 +1,11 @@
 package dev.boxadactle.boxlib.util;
 
-import com.mojang.blaze3d.pipeline.RenderPipeline;
-import com.mojang.blaze3d.systems.RenderSystem;
 import dev.boxadactle.boxlib.math.geometry.Rect;
 import dev.boxadactle.boxlib.math.geometry.Vec2;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.renderer.RenderPipelines;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 
 /**
  * Utility class for rendering graphics in a GUI.
@@ -75,7 +72,7 @@ public class RenderUtils {
      * @param u           The u-coordinate of the top-left corner of the texture.
      * @param v           The v-coordinate of the top-left corner of the texture.
      */
-    public static void drawTexture(ResourceLocation texture, GuiGraphics guiGraphics, int x, int y, int width, int height, int u, int v) {
+    public static void drawTexture(Identifier texture, GuiGraphics guiGraphics, int x, int y, int width, int height, int u, int v) {
         guiGraphics.blit(RenderPipelines.GUI_TEXTURED, texture, x, y, u, v, width, height, width, height);
     }
 
@@ -88,7 +85,7 @@ public class RenderUtils {
      * @param u           The u-coordinate of the top-left corner of the texture.
      * @param v           The v-coordinate of the top-left corner of the texture.
      */
-    public static void drawTexture(ResourceLocation texture, GuiGraphics guiGraphics, Rect<Integer> rect, int u, int v) {
+    public static void drawTexture(Identifier texture, GuiGraphics guiGraphics, Rect<Integer> rect, int u, int v) {
         drawTexture(texture, guiGraphics, rect.getX(), rect.getY(), rect.getWidth(), rect.getHeight(), u, v);
     }
 
@@ -100,7 +97,7 @@ public class RenderUtils {
      * @param rect        The rectangle defining the position and size of the rectangle.
      * @param uv          The vector containing the u and v coordinates of the top-left corner of the texture.
      */
-    public static void drawTexture(ResourceLocation texture, GuiGraphics guiGraphics, Rect<Integer> rect, Vec2<Integer> uv) {
+    public static void drawTexture(Identifier texture, GuiGraphics guiGraphics, Rect<Integer> rect, Vec2<Integer> uv) {
         drawTexture(texture, guiGraphics, rect, uv.getX(), uv.getY());
     }
 
@@ -115,7 +112,7 @@ public class RenderUtils {
      * @param height      The height of the rectangle.
      * @param uv          The vector containing the u and v coordinates of the top-left corner of the texture.
      */
-    public static void drawTexture(ResourceLocation texture, GuiGraphics guiGraphics, int x, int y, int width, int height, Vec2<Integer> uv) {
+    public static void drawTexture(Identifier texture, GuiGraphics guiGraphics, int x, int y, int width, int height, Vec2<Integer> uv) {
         drawTexture(texture, guiGraphics, new Rect<>(x, y, width, height), uv);
     }
 

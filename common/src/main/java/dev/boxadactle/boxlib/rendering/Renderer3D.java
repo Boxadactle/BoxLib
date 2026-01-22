@@ -4,61 +4,46 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.culling.Frustum;
+import net.minecraft.util.debug.DebugValueAccess;
 
 @SuppressWarnings("unchecked")
 public abstract class Renderer3D<T> {
 
     protected boolean disposeNextFrame;
 
-    protected float r;
-    protected float g;
-    protected float b;
-    protected float a;
+    protected int rgba;
+
+    protected boolean xray = false;
 
 
     public Renderer3D(boolean disposeNextFrame) {
         this.disposeNextFrame = disposeNextFrame;
     }
 
-    public abstract void render(PoseStack stack, MultiBufferSource.BufferSource buffer, double cameraX, double cameraY, double cameraZ);
+    public abstract void render(double var1, double var3, double var5, DebugValueAccess debugValueAccess, Frustum frustum, float delta);
 
     public boolean disposeNextFrame() {
         return disposeNextFrame;
     }
 
     public T setColor(float r, float g, float b, float a) {
-        this.r = r;
-        this.g = g;
-        this.b = b;
-        this.a = a;
+        rgba =
+                ((int)(a * 255) << 24) |
+                ((int)(b * 255) << 16) |
+                ((int)(g * 255) << 8)  |
+                ((int)(r * 255));
         return (T) this;
     }
 
-    public T setColor(float r, float g, float b) {
-        return setColor(r, g, b, 1.0F);
-    }
 
-    public T setColor(int rgb) {
-        return setColor((rgb >> 16 & 0xFF) / 255.0F, (rgb >> 8 & 0xFF) / 255.0F, (rgb & 0xFF) / 255.0F, 1.0F);
-    }
-
-    public T setRed(float r) {
-        this.r = r;
+    public T setColor(int rgba) {
+        this.rgba = rgba;
         return (T) this;
     }
 
-    public T setGreen(float g) {
-        this.g = g;
-        return (T) this;
-    }
-
-    public T setBlue(float b) {
-        this.b = b;
-        return (T) this;
-    }
-
-    public T setAlpha(float a) {
-        this.a = a;
+    public T setXRay(boolean xray) {
+        this.xray = xray;
         return (T) this;
     }
 

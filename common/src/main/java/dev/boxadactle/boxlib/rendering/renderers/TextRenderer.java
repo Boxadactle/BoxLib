@@ -1,16 +1,12 @@
 package dev.boxadactle.boxlib.rendering.renderers;
 
-import com.mojang.blaze3d.platform.DepthTestFunction;
-import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.PoseStack;
 import dev.boxadactle.boxlib.math.geometry.Vec3;
 import dev.boxadactle.boxlib.rendering.Renderer3D;
-import dev.boxadactle.boxlib.util.ClientUtils;
-import dev.boxadactle.boxlib.util.GuiUtils;
-import net.minecraft.client.Camera;
-import net.minecraft.client.gui.Font;
-import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.culling.Frustum;
+import net.minecraft.gizmos.Gizmos;
+import net.minecraft.gizmos.TextGizmo;
 import net.minecraft.network.chat.Component;
+import net.minecraft.util.debug.DebugValueAccess;
 
 import java.awt.*;
 
@@ -20,9 +16,6 @@ public class TextRenderer extends Renderer3D<TextRenderer> {
     float size = 0.02F;
     boolean centered = true;
     float offset = 0.0F;
-    boolean xray = false;
-    boolean shadow = false;
-
     public TextRenderer(boolean disposeNextFrame) {
         super(disposeNextFrame);
     }
@@ -47,41 +40,27 @@ public class TextRenderer extends Renderer3D<TextRenderer> {
         return this;
     }
 
+    /**
+     * Sets a vertical offset in pixels. Any value that isn't zero will result in left aligned text
+     * @param offset offset in pixels
+     * @return this object
+     */
     public TextRenderer setOffset(float offset) {
         this.offset = offset;
         return this;
     }
 
-    public TextRenderer setXray(boolean xray) {
-        this.xray = xray;
-        return this;
-    }
-
-    public TextRenderer setShadow(boolean shadow) {
-        this.shadow = shadow;
-        return this;
-    }
-
-    private int getColor() {
-        return new Color(r, g, b).getRGB();
-    }
-
     @Override
-    public void render(PoseStack stack, MultiBufferSource.BufferSource buffer, double cameraX, double cameraY, double cameraZ) {
-        Camera camera = getCamera();
-        if (camera.isInitialized()) {
+    public void render(double var1, double var3, double var5, DebugValueAccess debugValueAccess, Frustum frustum, float delta) {
+        var style = TextGizmo.Style.forColor(rgba).withScale(size * 10);
+        if (offset != 0.0F) style.withLeftAlignment(offset);
+        var gizmos = Gizmos.billboardText(
+                text.getString(),
+                new net.minecraft.world.phys.Vec3(pos.x, pos.y, pos.z),
+                style);
 
-            stack.pushPose();
-            stack.translate((float) (pos.x - cameraX), (float) (pos.y - cameraY) + 0.07F, (float) (pos.z - cameraZ));
-            stack.mulPose(camera.rotation());
-            stack.scale(size, -size, size);
-
-            float f = centered ? (float) (-GuiUtils.getTextSize(text)) / 2.0F : 0.0F;
-            f -= offset / size;
-
-            ClientUtils.getClient().font.drawInBatch(text, f, 0.0F, getColor(), shadow, stack.last().pose(), buffer, xray ? Font.DisplayMode.SEE_THROUGH : Font.DisplayMode.NORMAL, 0, 15728880);
-
-            stack.popPose();
+        if (xray) {
+            gizmos.setAlwaysOnTop();
         }
     }
 }

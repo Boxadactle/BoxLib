@@ -102,12 +102,14 @@ public class TestMod {
                 .setSize(0.3F)
                 .setColor(GuiUtils.BLUE)
                 .setCentered(true)
-                .setXray(false);
+                .setXRay(false);
 
-        OutlineRenderer outlineRenderer = new OutlineRenderer(false)
+        BoxRenderer outlineRenderer = new BoxRenderer(false)
                 .setCube(new Box<>(-1.0, 105.0, -1.0, 1.0, 2.0, 1.0))
-                .setColor(GuiUtils.YELLOW)
-                .setAlpha(0.5F);
+                .setColor(GuiUtils.applyAlpha(GuiUtils.YELLOW, 0.5F))
+                .setOutline(true)
+                .setOutlineWidth(5.0F)
+                .setXRay(true);
 
         PathRenderer pathRenderer = new PathRenderer(false)
                 .setPoints(
@@ -117,12 +119,13 @@ public class TestMod {
                         new Vec3<>(-1.0, 112.0, 1.0),
                         new Vec3<>(-1.0, 114.0, -1.0)
                 )
-                .setColor(GuiUtils.RED);
+                .setColor(GuiUtils.RED)
+                .setWidth(8.0F);
 
         BoxRenderer boxRenderer = new BoxRenderer(false)
                 .setCube(new BlockPos(10, 100, 0))
-                .setColor(GuiUtils.GOLD)
-                .setAlpha(0.3F);
+                .setColor(GuiUtils.applyAlpha(GuiUtils.GOLD, 0.4F))
+                .setXRay(true);
 
         RenderQueue.addRenderer(renderer);
         RenderQueue.addRenderer(outlineRenderer);
@@ -133,8 +136,7 @@ public class TestMod {
 
             BoxRenderer awayRenderer = new BoxRenderer(false)
                     .setCube(new AABB(new BlockPos((int) playerPos.x, (int) playerPos.y, (int) playerPos.z)))
-                    .setColor(GuiUtils.GOLD)
-                    .setAlpha(0.3F);
+                    .setColor(GuiUtils.applyAlpha(GuiUtils.GOLD, 0.3F));
 
             return new Pair<>(awayRenderer, true);
         });
@@ -148,7 +150,7 @@ public class TestMod {
                     .setSize(0.3F)
                     .setColor(GuiUtils.RED)
                     .setCentered(true)
-                    .setXray(true);
+                    .setXRay(true);
 
             return new Pair<>(north, true);
         });
@@ -162,7 +164,7 @@ public class TestMod {
                     .setSize(0.3F)
                     .setColor(GuiUtils.GREEN)
                     .setCentered(true)
-                    .setXray(true);
+                    .setXRay(true);
 
             return new Pair<>(east, true);
         });
@@ -176,7 +178,7 @@ public class TestMod {
                     .setSize(0.3F)
                     .setColor(GuiUtils.BLUE)
                     .setCentered(true)
-                    .setXray(true);
+                    .setXRay(true);
 
             return new Pair<>(south, true);
         });
@@ -190,7 +192,7 @@ public class TestMod {
                     .setSize(0.3F)
                     .setColor(GuiUtils.YELLOW)
                     .setCentered(true)
-                    .setXray(true);
+                    .setXRay(true);
 
             return new Pair<>(west, true);
         });

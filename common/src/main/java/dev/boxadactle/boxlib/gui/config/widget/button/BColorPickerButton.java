@@ -45,8 +45,8 @@ public class BColorPickerButton extends BOptionButton<Integer> {
     }
 
     @Override
-    public void renderWidget(GuiGraphics p_93657_, int mouseX, int mouseY, float delta) {
-        super.renderWidget(p_93657_, mouseX, mouseY, delta);
+    public void renderContents(GuiGraphics p_93657_, int mouseX, int mouseY, float delta) {
+        super.renderContents(p_93657_, mouseX, mouseY, delta);
 
         int textWidth = GuiUtils.getTextRenderer().width(getMessage());
         int r = getWidth() / 2 + textWidth / 2;

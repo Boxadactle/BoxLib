@@ -3,7 +3,6 @@ package dev.boxadactle.boxlib.util;
 import com.mojang.blaze3d.platform.InputConstants;
 import dev.boxadactle.boxlib.function.EmptyMethod;
 import net.minecraft.SharedConstants;
-import net.minecraft.Util;
 import net.minecraft.client.KeyboardHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.Options;
@@ -13,6 +12,7 @@ import net.minecraft.client.gui.screens.ConfirmLinkScreen;
 import net.minecraft.client.gui.screens.ConfirmScreen;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
+import net.minecraft.util.Util;
 
 import java.net.URI;
 import java.net.URISyntaxException;

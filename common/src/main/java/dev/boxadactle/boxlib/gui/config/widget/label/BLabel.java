@@ -24,7 +24,7 @@ public class BLabel extends BOptionButton<Object> {
     }
 
     @Override
-    public void renderWidget(GuiGraphics p_93657_, int mouseX, int mouseY, float delta) {
+    public void renderContents(GuiGraphics p_93657_, int mouseX, int mouseY, float delta) {
         RenderUtils.drawText(p_93657_, message, this.getX(), this.getY() + 5);
     }
 

@@ -1,14 +1,15 @@
 package dev.boxadactle.boxlib.rendering.renderers;
 
-import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
 import dev.boxadactle.boxlib.math.geometry.Vec3;
 import dev.boxadactle.boxlib.rendering.Renderer3D;
-import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.culling.Frustum;
+import net.minecraft.gizmos.Gizmos;
+import net.minecraft.util.debug.DebugValueAccess;
 
 public class PathRenderer extends Renderer3D<PathRenderer> {
     Vec3<Double>[] points;
+
+    float width = 3.0F;
 
     public PathRenderer(boolean disposeNextFrame) {
         super(disposeNextFrame);
@@ -20,14 +21,25 @@ public class PathRenderer extends Renderer3D<PathRenderer> {
         return this;
     }
 
-    @Override
-    public void render(PoseStack stack, MultiBufferSource.BufferSource buffer, double cameraX, double cameraY, double cameraZ) {
-        VertexConsumer vertexConsumer = buffer.getBuffer(RenderType.debugLineStrip(1.0));
+    public PathRenderer setWidth(float width) {
+        this.width = width;
+        return this;
+    }
 
-        for (Vec3<Double> d : points) {
-            vertexConsumer
-                    .addVertex(stack.last(), (float) (d.x - cameraX), (float) (d.y - cameraY), (float) (d.z - cameraZ))
-                    .setColor(r, g, b, a);
+    @Override
+    public void render(double var1, double var3, double var5, DebugValueAccess debugValueAccess, Frustum frustum, float delta) {
+        for (int i = 1; i < points.length; i++) {
+            var gizmos = Gizmos.line(
+                    new net.minecraft.world.phys.Vec3(points[i - 1].x, points[i - 1].y, points[i - 1].z),
+                    new net.minecraft.world.phys.Vec3(points[i].x, points[i].y, points[i].z),
+                    rgba,
+                    width
+            );
+
+            if (xray) {
+                gizmos.setAlwaysOnTop();
+            }
+
         }
     }
 }

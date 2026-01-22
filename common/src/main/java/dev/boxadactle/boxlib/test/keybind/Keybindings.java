@@ -3,11 +3,11 @@ package dev.boxadactle.boxlib.test.keybind;
 import com.mojang.blaze3d.platform.InputConstants;
 import dev.boxadactle.boxlib.keybind.KeybindHelper;
 import net.minecraft.client.KeyMapping;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 
 public class Keybindings {
 
-    public static final KeyMapping.Category BOXLIBTESTMOD = KeyMapping.Category.register(ResourceLocation.fromNamespaceAndPath("boxlib", "testmod"));
+    public static final KeyMapping.Category BOXLIBTESTMOD = KeyMapping.Category.register(Identifier.fromNamespaceAndPath("boxlib", "testmod"));
 
     public static final KeyMapping TEST_KEYBIND = new KeyMapping("key.boxlibtestmod.test_keybind", InputConstants.Type.KEYSYM, 81, BOXLIBTESTMOD);
     public static final KeyMapping TEST_KEYBIND_2 = new KeyMapping("key.boxlibtestmod.test_keybind2", InputConstants.Type.KEYSYM, 82, BOXLIBTESTMOD);

@@ -5,15 +5,16 @@ import com.mojang.blaze3d.vertex.VertexConsumer;
 import dev.boxadactle.boxlib.math.geometry.Vec3;
 import dev.boxadactle.boxlib.rendering.Renderer3D;
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.culling.Frustum;
+import net.minecraft.client.renderer.rendertype.RenderType;
+import net.minecraft.gizmos.Gizmos;
+import net.minecraft.util.debug.DebugValueAccess;
 
 public class LineRenderer extends Renderer3D<LineRenderer> {
     Vec3<Double> start;
     Vec3<Double> end;
-    float r;
-    float g;
-    float b;
-    float a;
+
+    float width = 3.0F;
 
     public LineRenderer(boolean disposeNextFrame) {
         super(disposeNextFrame);
@@ -39,24 +40,22 @@ public class LineRenderer extends Renderer3D<LineRenderer> {
         return setPos(new Vec3<>(startX, startY, startZ), new Vec3<>(endX, endY, endZ));
     }
 
-    public LineRenderer setColor(float r, float g, float b, float a) {
-        this.r = r;
-        this.g = g;
-        this.b = b;
-        this.a = a;
+    public LineRenderer setWidth(float width) {
+        this.width = width;
         return this;
     }
 
     @Override
-    public void render(PoseStack stack, MultiBufferSource.BufferSource buffer, double cameraX, double cameraY, double cameraZ) {
-        VertexConsumer vertexConsumer = buffer.getBuffer(RenderType.debugLineStrip(1.0));
+    public void render(double var1, double var3, double var5, DebugValueAccess debugValueAccess, Frustum frustum, float delta) {
+        var gizmos = Gizmos.line(
+                new net.minecraft.world.phys.Vec3(start.x, start.y, start.z),
+                new net.minecraft.world.phys.Vec3(end.x, end.y, end.z),
+                rgba,
+                width
+        );
 
-        vertexConsumer
-                .addVertex(stack.last(), (float) (start.x - cameraX), (float) (start.y - cameraY), (float) (start.z - cameraZ))
-                .setColor(r, g, b, a);
-
-        vertexConsumer
-                .addVertex(stack.last(), (float) (end.x - cameraX), (float) (end.y - cameraY), (float) (end.z - cameraZ))
-                .setColor(r, g, b, a);
+        if (xray) {
+            gizmos.setAlwaysOnTop();
+        }
     }
 }

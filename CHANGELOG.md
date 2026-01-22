@@ -1,2 +1,2 @@
 ## Changelog
-- Fixed crash when button was clicked
+- Update to 1.21.11
