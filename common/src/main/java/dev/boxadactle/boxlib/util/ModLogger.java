@@ -134,7 +134,7 @@ public class ModLogger {
         public void error(String msg, Object... data) {
             if (this.client.player != null) {
                 ChatComponent chat = ClientUtils.getClient().gui.getChat();
-                chat.addMessage(
+                chat.addClientSystemMessage(
                         prefix.copy().append(GuiUtils.colorize(Component.literal(String.format(msg, data)), GuiUtils.RED))
                 );
             }
@@ -149,7 +149,7 @@ public class ModLogger {
         public void warn(String msg, Object... data) {
             if (this.client.player != null) {
                 ChatComponent chat = ClientUtils.getClient().gui.getChat();
-                chat.addMessage(
+                chat.addClientSystemMessage(
                         prefix.copy().append(GuiUtils.colorize(Component.literal(String.format(msg, data)), GuiUtils.YELLOW))
                 );
             }
@@ -164,7 +164,7 @@ public class ModLogger {
         public void info(String msg, Object... data) {
             if (this.client.player != null) {
                 ChatComponent chat = ClientUtils.getClient().gui.getChat();
-                chat.addMessage(
+                chat.addClientSystemMessage(
                         prefix.copy().append(Component.literal(String.format(msg, data)))
                 );
             }
@@ -178,7 +178,7 @@ public class ModLogger {
         public void chat(Component msg) {
             if (this.client.player != null) {
                 ChatComponent chat = ClientUtils.getClient().gui.getChat();
-                chat.addMessage(prefix.copy().append(msg));
+                chat.addClientSystemMessage(prefix.copy().append(msg));
             }
         }
 

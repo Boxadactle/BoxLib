@@ -2,7 +2,7 @@ package dev.boxadactle.boxlib.layouts.layout;
 
 import dev.boxadactle.boxlib.layouts.LayoutComponent;
 import dev.boxadactle.boxlib.layouts.RenderingLayout;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 
 /**
  * Represents a layout that arranges components in a row.
@@ -59,7 +59,7 @@ public class RowLayout extends RenderingLayout {
      * @param graphics the graphics object to render on
      */
     @Override
-    public void render(GuiGraphics graphics) {
+    public void render(GuiGraphicsExtractor graphics) {
         final int[] currentX = {x};
 
         for (int i = 0; i < components.size(); i++) {

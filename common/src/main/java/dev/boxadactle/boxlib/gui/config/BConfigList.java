@@ -1,10 +1,8 @@
 package dev.boxadactle.boxlib.gui.config;
 
 import com.google.common.collect.ImmutableList;
-import dev.boxadactle.boxlib.util.GuiUtils;
-import dev.boxadactle.boxlib.util.RenderUtils;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.components.ContainerObjectSelectionList;
 import net.minecraft.client.gui.components.events.GuiEventListener;
@@ -85,17 +83,6 @@ public class BConfigList extends ContainerObjectSelectionList<BConfigList.Config
             this.widget = widget;
         }
 
-        @Override
-        public void renderContent(GuiGraphics guiGraphics, int i, int j, boolean bl, float f) {
-            AbstractWidget w = (AbstractWidget)widget;
-
-            w.setX(getX());
-            w.setY(getY());
-            w.setWidth(getWidth());
-
-            w.render(guiGraphics, i, j, f);
-        }
-
         /**
          * Returns a list of widgets associated with this entry.
          * @return The list of widgets.
@@ -114,6 +101,16 @@ public class BConfigList extends ContainerObjectSelectionList<BConfigList.Config
             return widget.isInvalid();
         }
 
+        @Override
+        public void extractContent(GuiGraphicsExtractor guiGraphics, int i, int i1, boolean b, float v) {
+            AbstractWidget w = (AbstractWidget)widget;
+
+            w.setX(getX());
+            w.setY(getY());
+            w.setWidth(getWidth());
+
+            w.extractRenderState(guiGraphics, i, i1, v);
+        }
     }
 
     /**
@@ -156,7 +153,7 @@ public class BConfigList extends ContainerObjectSelectionList<BConfigList.Config
         }
 
         @Override
-        public void renderContent(GuiGraphics guiGraphics, int i, int j, boolean bl, float f) {
+        public void extractContent(GuiGraphicsExtractor guiGraphics, int i, int j, boolean bl, float f) {
             AbstractWidget w1 = (AbstractWidget) widget1;
             AbstractWidget w2 = (AbstractWidget) widget2;
 
@@ -171,8 +168,8 @@ public class BConfigList extends ContainerObjectSelectionList<BConfigList.Config
             w2.setY(getY());
             w2.setWidth(getWidth() / 2 - p2);
 
-            w1.render(guiGraphics, i, j, f);
-            w2.render(guiGraphics, i, j, f);
+            w1.extractRenderState(guiGraphics, i, j, f);
+            w2.extractRenderState(guiGraphics, i, j, f);
         }
     }
 

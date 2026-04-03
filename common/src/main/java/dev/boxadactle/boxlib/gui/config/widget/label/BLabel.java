@@ -2,7 +2,7 @@ package dev.boxadactle.boxlib.gui.config.widget.label;
 
 import dev.boxadactle.boxlib.gui.config.BOptionButton;
 import dev.boxadactle.boxlib.util.RenderUtils;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.network.chat.Component;
 
 /**
@@ -24,7 +24,7 @@ public class BLabel extends BOptionButton<Object> {
     }
 
     @Override
-    public void renderContents(GuiGraphics p_93657_, int mouseX, int mouseY, float delta) {
+    public void extractContents(GuiGraphicsExtractor p_93657_, int mouseX, int mouseY, float delta) {
         RenderUtils.drawText(p_93657_, message, this.getX(), this.getY() + 5);
     }
 

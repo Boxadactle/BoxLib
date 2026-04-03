@@ -12,9 +12,9 @@ import dev.boxadactle.boxlib.rendering.RenderQueue;
 import dev.boxadactle.boxlib.rendering.renderers.*;
 import dev.boxadactle.boxlib.test.config.ExampleConfigClass;
 import dev.boxadactle.boxlib.test.config.ExampleConfigClass2;
-import dev.boxadactle.boxlib.test.keybind.Keybindings;
 import dev.boxadactle.boxlib.translate.Language;
 import dev.boxadactle.boxlib.translate.Translator;
+import dev.boxadactle.boxlib.util.ClientUtils;
 import dev.boxadactle.boxlib.util.GuiUtils;
 import dev.boxadactle.boxlib.util.ModLogger;
 import dev.boxadactle.boxlib.util.WorldUtils;
@@ -87,12 +87,8 @@ public class TestMod {
                 })))
         );
 
-        Keybindings.init();
-
-        String message = "Test keybind 1 is bound to " + KeybindHelper.getBoundKey(Keybindings.TEST_KEYBIND);
-
         // you can use google translate to translate messages
-        String translated = Translator.translate(message, Language.SPANISH);
+        String translated = Translator.translate("This message is going to be in spanish!", Language.SPANISH);
         LOGGER.info(translated);
 
         // render in 3 dimensions like this

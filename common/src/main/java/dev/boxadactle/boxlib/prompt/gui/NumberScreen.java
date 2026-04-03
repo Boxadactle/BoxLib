@@ -4,7 +4,7 @@ import dev.boxadactle.boxlib.math.geometry.Rect;
 import dev.boxadactle.boxlib.prompt.PromptScreen;
 import dev.boxadactle.boxlib.util.GuiUtils;
 import dev.boxadactle.boxlib.util.RenderUtils;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
@@ -55,8 +55,8 @@ public abstract class NumberScreen<T extends Number> extends PromptScreen<T> {
     }
 
     @Override
-    public void render(GuiGraphics guiGraphics, int i, int j, float f) {
-        super.render(guiGraphics, i, j, f);
+    public void extractRenderState(GuiGraphicsExtractor guiGraphics, int i, int j, float f) {
+        super.extractRenderState(guiGraphics, i, j, f);
 
         if (inputBox != null) {
             if (!allowContinue()) {

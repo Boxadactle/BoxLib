@@ -25,19 +25,6 @@ repositories {
         }
         filter { includeGroupAndSubgroups('org.spongepowered') }
     }
-    exclusiveContent {
-        forRepositories(
-                maven {
-                    name = 'ParchmentMC'
-                    url = 'https://maven.parchmentmc.org/'
-                },
-                maven {
-                    name = "NeoForge"
-                    url = 'https://maven.neoforged.net/releases'
-                }
-        )
-        filter { includeGroup('org.parchmentmc.data') }
-    }
     maven {
         name = 'BlameJared'
         url = 'https://maven.blamejared.com'
@@ -60,13 +47,13 @@ repositories {
 }
 
 sourcesJar {
-    from(file('LICENSE')) {
+    from(rootProject.file('LICENSE')) {
         rename { "${it}_${mod_name}" }
     }
 }
 
 jar {
-    from(file('LICENSE')) {
+    from(rootProject.file('LICENSE')) {
         rename { "${it}_${mod_name}" }
     }
 
@@ -84,7 +71,6 @@ jar {
 }
 
 processResources {
-
     var expandProps = [
             'version'                       : version,
             'minecraft_version'             : minecraft_version,
@@ -98,10 +84,9 @@ processResources {
             'license'                       : license,
             'description'                   : description,
             'neoforge_version'              : neoforge_version,
-            'neoforge_loader_version_range' : neoforge_loader_version_range,
-            "forge_version"                 : forge_version,
-            "forge_loader_version_range"    : forge_loader_version_range,
+            'neoforge_loader_version_range' : neoforge_loader_version_range
     ]
+
     var jsonExpandProps = expandProps.collectEntries {
         key, value -> [(key): value instanceof String ? value.replace("\n", "\\\\n") : value]
     }

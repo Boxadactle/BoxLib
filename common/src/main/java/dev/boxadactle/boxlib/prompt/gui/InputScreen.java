@@ -2,8 +2,6 @@ package dev.boxadactle.boxlib.prompt.gui;
 
 import dev.boxadactle.boxlib.prompt.PromptScreen;
 import dev.boxadactle.boxlib.util.GuiUtils;
-import dev.boxadactle.boxlib.util.RenderUtils;
-import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;

@@ -2,7 +2,7 @@ package dev.boxadactle.boxlib.gui.widget;
 
 import dev.boxadactle.boxlib.util.GuiUtils;
 import dev.boxadactle.boxlib.util.RenderUtils;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.narration.NarrationElementOutput;
 import net.minecraft.network.chat.Component;
@@ -21,7 +21,7 @@ public class CenteredLabelWidget extends AbstractWidget {
     }
 
     @Override
-    protected void renderWidget(GuiGraphics guiGraphics, int i, int j, float f) {
+    protected void extractWidgetRenderState(GuiGraphicsExtractor guiGraphics, int i, int j, float f) {
         RenderUtils.drawTextCentered(guiGraphics, getMessage(), getX() + width / 2, getY());
     }
 

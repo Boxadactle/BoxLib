@@ -1,7 +1,7 @@
 package dev.boxadactle.boxlib.layouts.layout;
 
 import dev.boxadactle.boxlib.layouts.RenderingLayout;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 
 /**
  * A layout that centers its child layout within a specified width and height.
@@ -40,7 +40,7 @@ public class CenteredLayout extends RenderingLayout {
     }
 
     @Override
-    public void render(GuiGraphics graphics) {
+    public void render(GuiGraphicsExtractor graphics) {
         int childWidth = layout.calculateRect().getWidth();
         int childHeight = layout.calculateRect().getHeight();
 

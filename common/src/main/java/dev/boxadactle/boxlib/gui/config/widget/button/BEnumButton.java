@@ -2,7 +2,6 @@ package dev.boxadactle.boxlib.gui.config.widget.button;
 
 import com.google.common.collect.ImmutableList;
 import dev.boxadactle.boxlib.util.GuiUtils;
-import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 
 import java.util.Locale;

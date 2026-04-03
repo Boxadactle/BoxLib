@@ -10,16 +10,6 @@ import net.minecraft.client.KeyMapping;
 public class KeybindHelper {
 
     /**
-     * Registers a keybinding.
-     *
-     * @param key The keybinding to register.
-     */
-    public static KeyMapping registerKey(KeyMapping key) {
-        KeybindingImpl.addKeyMapping(key);
-        return key;
-    }
-
-    /**
      * Retrieves the bound key for a given keybinding.
      *
      * @param key The keybinding to retrieve the bound key for.

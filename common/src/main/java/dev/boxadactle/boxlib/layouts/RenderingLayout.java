@@ -2,7 +2,7 @@ package dev.boxadactle.boxlib.layouts;
 
 import dev.boxadactle.boxlib.math.geometry.Rect;
 import dev.boxadactle.boxlib.math.geometry.Vec3;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +38,7 @@ public abstract class RenderingLayout {
      *
      * @param graphics The graphics object used for rendering.
      */
-    public abstract void render(GuiGraphics graphics);
+    public abstract void render(GuiGraphicsExtractor graphics);
 
     /**
      * Orders the components within the layout.

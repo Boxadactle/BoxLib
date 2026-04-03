@@ -6,7 +6,7 @@ import dev.boxadactle.boxlib.gui.config.widget.slider.BIntegerSlider;
 import dev.boxadactle.boxlib.util.ClientUtils;
 import dev.boxadactle.boxlib.util.GuiUtils;
 import dev.boxadactle.boxlib.util.RenderUtils;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.layouts.*;
 import net.minecraft.client.gui.screens.Screen;
@@ -45,8 +45,8 @@ public class BColorPickerButton extends BOptionButton<Integer> {
     }
 
     @Override
-    public void renderContents(GuiGraphics p_93657_, int mouseX, int mouseY, float delta) {
-        super.renderContents(p_93657_, mouseX, mouseY, delta);
+    public void extractContents(GuiGraphicsExtractor p_93657_, int mouseX, int mouseY, float delta) {
+        super.extractContents(p_93657_, mouseX, mouseY, delta);
 
         int textWidth = GuiUtils.getTextRenderer().width(getMessage());
         int r = getWidth() / 2 + textWidth / 2;
@@ -127,8 +127,8 @@ public class BColorPickerButton extends BOptionButton<Integer> {
         }
 
         @Override
-        public void render(GuiGraphics guiGraphics, int i, int j, float f) {
-            super.render(guiGraphics, i, j, f);
+        public void extractRenderState(GuiGraphicsExtractor guiGraphics, int i, int j, float f) {
+            super.extractRenderState(guiGraphics, i, j, f);
 
             RenderUtils.drawSquare(guiGraphics, width / 2 - 50, 35, 100, 60, getColor());
         }

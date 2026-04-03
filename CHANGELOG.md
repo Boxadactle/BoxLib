@@ -1,2 +1,3 @@
-## Changelog
-- Update to 1.21.11
+# Changelog
+- Update to 26.1
+- Change icon

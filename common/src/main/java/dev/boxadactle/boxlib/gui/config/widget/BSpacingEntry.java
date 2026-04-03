@@ -1,7 +1,7 @@
 package dev.boxadactle.boxlib.gui.config.widget;
 
 import dev.boxadactle.boxlib.gui.config.BOptionButton;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.network.chat.Component;
 
 /**
@@ -18,7 +18,7 @@ public class BSpacingEntry extends BOptionButton<Object> {
     }
 
     @Override
-    protected void renderContents(GuiGraphics guiGraphics, int i, int i1, float v) {
+    protected void extractContents(GuiGraphicsExtractor guiGraphics, int i, int i1, float v) {
     }
 
     /**

@@ -1,7 +1,7 @@
 package dev.boxadactle.boxlib.gui.config.widget.label;
 
 import dev.boxadactle.boxlib.util.RenderUtils;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.network.chat.Component;
 
 /**
@@ -22,13 +22,13 @@ public class BCenteredLabel extends BLabel {
     /**
      * Renders the centered label widget.
      * 
-     * @param p_93657_ the GuiGraphics instance
+     * @param p_93657_ the GuiGraphicsExtractor instance
      * @param mouseX the x-coordinate of the mouse
      * @param mouseY the y-coordinate of the mouse
      * @param delta the time since the last tick
      */
     @Override
-    public void renderContents(GuiGraphics p_93657_, int mouseX, int mouseY, float delta) {
+    public void extractContents(GuiGraphicsExtractor p_93657_, int mouseX, int mouseY, float delta) {
         RenderUtils.drawTextCentered(p_93657_, message, this.getX() + this.width / 2, this.getY() + 5);
     }
 }

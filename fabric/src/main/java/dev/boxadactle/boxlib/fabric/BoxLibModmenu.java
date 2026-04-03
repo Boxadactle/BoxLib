@@ -9,6 +9,6 @@ public class BoxLibModmenu implements ModMenuApi {
 
     @Override
     public ConfigScreenFactory<?> getModConfigScreenFactory() {
-        return ModConstants.IS_DEVELOPMENT ? ExampleConfigScreen::new : (screen) -> null;
+        return ModConstants.IS_DEVELOPMENT ? ExampleConfigScreen::new : (_) -> null;
     }
 }

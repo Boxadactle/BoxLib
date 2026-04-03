@@ -2,7 +2,7 @@ package dev.boxadactle.boxlib.layouts.component;
 
 import dev.boxadactle.boxlib.layouts.LayoutComponent;
 import dev.boxadactle.boxlib.layouts.RenderingLayout;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 
 /**
  * Represents a layout container component that extends the LayoutComponent class.
@@ -39,14 +39,14 @@ public class LayoutContainerComponent extends LayoutComponent<RenderingLayout> {
     }
 
     /**
-     * Renders the component on the specified GuiGraphics at the given position.
+     * Renders the component on the specified GuiGraphicsExtractor at the given position.
      *
-     * @param graphics the GuiGraphics object to render on
+     * @param graphics the GuiGraphicsExtractor object to render on
      * @param x        the x-coordinate of the position to render the component
      * @param y        the y-coordinate of the position to render the component
      */
     @Override
-    public void render(GuiGraphics graphics, int x, int y) {
+    public void render(GuiGraphicsExtractor graphics, int x, int y) {
         component.setPosition(x, y);
         component.render(graphics);
     }

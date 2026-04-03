@@ -1,6 +1,6 @@
 package dev.boxadactle.boxlib.layouts;
 
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 
 /**
  * The abstract base class for layout components.
@@ -32,7 +32,7 @@ public abstract class LayoutComponent<T> {
      * @param x        the x-coordinate of the component's position
      * @param y        the y-coordinate of the component's position
      */
-    public abstract void render(GuiGraphics graphics, int x, int y);
+    public abstract void render(GuiGraphicsExtractor graphics, int x, int y);
 
     /**
      * Sets the component for the layout component.

@@ -2,7 +2,7 @@ package dev.boxadactle.boxlib.layouts.layout;
 
 import dev.boxadactle.boxlib.layouts.LayoutComponent;
 import dev.boxadactle.boxlib.layouts.RenderingLayout;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 
 /**
  * Represents a layout that arranges components in a vertical column.
@@ -40,7 +40,7 @@ public class ColumnLayout extends RenderingLayout {
     }
 
     @Override
-    public void render(GuiGraphics graphics) {
+    public void render(GuiGraphicsExtractor graphics) {
         final int[] currentY = {y};
 
         for (int i = 0; i < components.size(); i++) {

@@ -5,7 +5,6 @@ import dev.boxadactle.boxlib.command.BCommandImpl;
 import dev.boxadactle.boxlib.command.BCommandSourceStack;
 import dev.boxadactle.boxlib.core.BoxLib;
 import dev.boxadactle.boxlib.core.ModConstants;
-import dev.boxadactle.boxlib.keybind.KeybindingImpl;
 import dev.boxadactle.boxlib.scheduling.Scheduling;
 import dev.boxadactle.boxlib.test.TestMod;
 import dev.boxadactle.boxlib.test.config.ExampleConfigScreen;
@@ -19,7 +18,6 @@ import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.loading.FMLLoader;
 import net.neoforged.neoforge.client.event.ClientTickEvent;
 import net.neoforged.neoforge.client.event.RegisterClientCommandsEvent;
-import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
 import net.neoforged.neoforge.client.event.ScreenEvent;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 
@@ -65,11 +63,6 @@ public class BoxLibNeoforge {
                         (minecraft, screen) -> new ExampleConfigScreen(screen)
                 );
             }
-        }
-
-        @SubscribeEvent
-        public static void registerKeybinds(RegisterKeyMappingsEvent e) {
-            KeybindingImpl.register(e::register);
         }
     }
 

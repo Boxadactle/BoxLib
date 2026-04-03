@@ -40,7 +40,7 @@ public interface FabricClientCommandSourceMixin extends BCommandSourceStack {
 
     @Override
     default ClientLevel boxlib$getWorld() {
-        return ((FabricClientCommandSource) this).getWorld();
+        return ((FabricClientCommandSource) this).getLevel();
     }
 
 }
