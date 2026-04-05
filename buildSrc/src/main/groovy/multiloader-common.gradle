@@ -4,7 +4,7 @@ plugins {
 }
 
 base {
-    archivesName = "BoxLib-${project.name}-${version}"
+    archivesName = "BoxLib-${project.name}"
 }
 
 java {
@@ -148,4 +148,9 @@ publishing {
             println "Skipping Maven repository upload, no credentials provided."
         }
     }
+}
+
+tasks.withType(Javadoc).configureEach {
+    options.addBooleanOption("linksource", false)
+    options.addBooleanOption("noTimestamp", true)
 }
