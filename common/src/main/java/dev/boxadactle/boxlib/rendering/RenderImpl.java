@@ -1,8 +1,6 @@
 package dev.boxadactle.boxlib.rendering;
 
-import com.mojang.blaze3d.vertex.PoseStack;
 import dev.boxadactle.boxlib.function.Provider;
-import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.culling.Frustum;
 import net.minecraft.util.debug.DebugValueAccess;
 import oshi.util.tuples.Pair;

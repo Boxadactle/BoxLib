@@ -1,9 +1,7 @@
 package dev.boxadactle.boxlib.mixin;
 
 import com.llamalad7.mixinextras.sugar.Local;
-import com.mojang.blaze3d.vertex.PoseStack;
 import dev.boxadactle.boxlib.rendering.RenderImpl;
-import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.culling.Frustum;
 import net.minecraft.client.renderer.debug.DebugRenderer;
 import net.minecraft.util.debug.DebugValueAccess;

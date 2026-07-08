@@ -98,14 +98,14 @@ public class ClientUtils {
      * @return the current screen being displayed
      */
     public static Screen getCurrentScreen() {
-        return getClient().screen;
+        return getClient().gui.screen();
     }
 
     /**
      * Represents a screen in the game.
      */
     public static Screen setScreen(Screen newScreen) {
-        getClient().setScreen(newScreen);
+        getClient().gui.setScreen(newScreen);
 
         return newScreen;
     }
@@ -132,7 +132,7 @@ public class ClientUtils {
      * @param parent The parent screen to return to after confirming the link.
      */
     public static void openLinkConfirmScreen(String link, Screen parent) {
-        getClient().setScreen(new ConfirmLinkScreen(open -> {
+        getClient().gui.setScreen(new ConfirmLinkScreen(open -> {
             if (open) openUrl(link);
             setScreen(parent);
         }, link, true));
@@ -147,7 +147,7 @@ public class ClientUtils {
      * @param no          The method to run if the user denies.
      */
     public static void confirm(Component message, Component description, EmptyMethod yes, EmptyMethod no) {
-        getClient().setScreen(new ConfirmScreen((b) -> {
+        getClient().gui.setScreen(new ConfirmScreen((b) -> {
             if (b) yes.accept();
             else no.accept();
         }, message, description));
@@ -161,7 +161,7 @@ public class ClientUtils {
      */
     public static void showToast(Component message, Component description) {
         SystemToast.addOrUpdate(
-                getClient().getToastManager(),
+                getClient().gui.toastManager(),
                 SystemToast.SystemToastId.PERIODIC_NOTIFICATION,
                 message,
                 description

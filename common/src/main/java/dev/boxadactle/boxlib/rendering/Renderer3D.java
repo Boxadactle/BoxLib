@@ -1,9 +1,7 @@
 package dev.boxadactle.boxlib.rendering;
 
-import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.culling.Frustum;
 import net.minecraft.util.debug.DebugValueAccess;
 
@@ -52,6 +50,6 @@ public abstract class Renderer3D<T> {
     }
 
     protected Camera getCamera() {
-        return getMinecraft().gameRenderer.getMainCamera();
+        return getMinecraft().gameRenderer.mainCamera();
     }
 }

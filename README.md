@@ -28,7 +28,6 @@ BoxLib is a library mod containing shared code used in Boxadactle's client mods.
 BoxLib is required by all of the following mods:
 - [CoordinatesDisplay](https://www.curseforge.com/minecraft/mc-mods/coordinates-display) v10.0.0 and above
 - [DebugKeybind](https://www.curseforge.com/minecraft/mc-mods/debug-keybind) v8.0.0 and above
-- [MacroCraft](https://www.curseforge.com/minecraft/mc-mods/macrocraft) v4.0.0 and above
 
 <p style="color: red">If you have trouble finding the required version of BoxLib for a specific mod, just download the latest version of BoxLib for the Minecraft version you are using. </p>
 
