@@ -2,6 +2,7 @@ package dev.boxadactle.boxlib.util;
 
 import com.google.common.collect.ComparisonChain;
 import com.google.common.collect.Ordering;
+import com.mojang.datafixers.DataFixUtils;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.multiplayer.ClientPacketListener;
 import net.minecraft.client.multiplayer.PlayerInfo;
@@ -14,6 +15,7 @@ import net.minecraft.world.scores.Team;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Utility class for interacting with the game world.
@@ -43,8 +45,8 @@ public class WorldUtils {
      *
      * @return The game world.
      */
-    public static ClientLevel getWorld() {
-        return ClientUtils.getClient().level;
+    public static Level getWorld() {
+        return ClientUtils.getClient().level == null ? null : DataFixUtils.orElse(Optional.ofNullable(ClientUtils.getClient().getSingleplayerServer()).flatMap((s) -> Optional.ofNullable(s.getLevel(ClientUtils.getClient().level.dimension()))), ClientUtils.getClient().level);
     }
 
     /**
