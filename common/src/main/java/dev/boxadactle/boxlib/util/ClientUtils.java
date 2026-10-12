@@ -14,6 +14,8 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.Util;
 
+import java.awt.*;
+import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.file.Path;
@@ -119,8 +121,10 @@ public class ClientUtils {
     public static void openUrl(String url) {
         try {
             URI uri = new URI(url);
-            Util.getPlatform().openUri(uri);
-        } catch (URISyntaxException e) {
+            if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
+                Desktop.getDesktop().browse(uri);
+            }
+        } catch (URISyntaxException | IOException e) {
             throw new RuntimeException("Malformed URL: " + url, e);
         }
     }
@@ -135,7 +139,7 @@ public class ClientUtils {
         getClient().gui.setScreen(new ConfirmLinkScreen(open -> {
             if (open) openUrl(link);
             setScreen(parent);
-        }, link, true));
+        }, URI.create(link), true));
     }
 
     /**
