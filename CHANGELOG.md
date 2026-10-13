@@ -1,3 +1,2 @@
 # Changelog
-- Update to 26.1
-- Change icon
+- Update to 26.3
